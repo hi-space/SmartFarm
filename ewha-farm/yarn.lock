@@ -3853,6 +3853,11 @@ findup@^0.1.5:
     colors "~0.6.0-1"
     commander "~2.1.0"
 
+flatpickr@^4.6.6:
+  version "4.6.6"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.6.tgz#34d2ad80adfa34254e62583a34264d472f1038d6"
+  integrity sha512-EZ48CJMttMg3maMhJoX+GvTuuEhX/RbA1YeuI19attP3pwBdbYy6+yqAEVm0o0hSBFYBiLbVxscLW6gJXq6H3A==
+
 flush-write-stream@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.1.1.tgz#8dd7d873a1babc207d94ead0c2e0e44276ebf2e8"
@@ -8468,6 +8473,13 @@ vue-feather-icons@^5.1.0:
   integrity sha512-ZyM2yFGmL9DYLZYHm63KV1zCQOj8czC2LzDSkxoIp9o6zMAOY4yv1FkxbX+XNUwcH3RRrAuvf25Ij7CnUUsQVA==
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.2"
+
+vue-flatpickr-component@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/vue-flatpickr-component/-/vue-flatpickr-component-9.0.2.tgz#15e15b49279f680c6458de98d16611a377e1a27d"
+  integrity sha512-nVKjSgvcH/DJtk8FhB1MGw0Qv8RZxZSYi1Wnje/FWoXZFgkoO3VE6dGZKbYZtNPv0RyRk6Lr7PB1LIODQcYgxw==
+  dependencies:
+    flatpickr "^4.6.6"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"

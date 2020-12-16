@@ -34,7 +34,7 @@ const router = new Router({
               {
                 path: '/login',
                 name: 'login',
-                component: () => import('@/views/pages/Register.vue')
+                component: () => import('@/views/pages/user-settings/UserSettings.vue')
               },
             ],
         },
