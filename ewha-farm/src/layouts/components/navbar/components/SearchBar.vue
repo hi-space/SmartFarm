@@ -27,44 +27,6 @@
           </div>
         </template>
 
-        <!-- Files Suggestion -->
-        <template v-slot:files="{ suggestion }">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <div class="img-container w-8 mr-3 flex">
-                <!--
-                  Use below code to dynamically fetch image instead of if-else
-                  NOTE: We used if-else because laravel throws error in 'yarn prod'.
-                  If you are not using laravel + Vue, you can use below code to dynamically get image
-
-                  If you uncomment dynamic image rendering, computed property 'get_ext_img' is not required. So you can remove that.
-                -->
-                <!-- <img :src="require(`@assets/images/file-icons/${suggestion.file_ext}.png`)" :alt="suggestion.file_name" class="responsive"> -->
-                <img :src="get_ext_img(suggestion.file_ext)" :alt="suggestion.file_name" class="responsive">
-              </div>
-              <div class="leading-none mt-1">
-                <p class="mb-1">{{ suggestion.file_name }}</p>
-                <small>by {{ suggestion.from }}</small>
-              </div>
-            </div>
-            <small>{{ suggestion.size }}</small>
-          </div>
-        </template>
-
-        <!-- Contacts Suggestion -->
-        <template v-slot:contacts="{ suggestion }">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <img :src="suggestion.img" :alt="suggestion.name" class="w-8 h-8 mr-3 rounded-full">
-              <div class="leading-none mt-1">
-                <p>{{ suggestion.name }}</p>
-                <small>{{ suggestion.email }}</small>
-              </div>
-            </div>
-            <small>{{ suggestion.time }}</small>
-          </div>
-        </template>
-
         <!-- No Items Slot -->
         <template v-slot:noResult="{ group_name }">
           <div class="flex items-center">
@@ -97,18 +59,6 @@ export default {
     return {
       navbarSearchAndPinList: this.$store.state.navbarSearchAndPinList,
       showFullSearch: false
-    }
-  },
-  computed: {
-    // below computed property 'get_ext_img' is not required if you are using dynamic image rendering instead of if-else for laravel issue
-    get_ext_img () {
-      return (ext) => {
-        if (ext === 'doc')      return require('@/assets/images/file-icons/doc.png')
-        else if (ext === 'jpg') return require('@/assets/images/file-icons/jpg.png')
-        else if (ext === 'xls') return require('@/assets/images/file-icons/xls.png')
-        else if (ext === 'pdf') return require('@/assets/images/file-icons/pdf.png')
-        else return require('@/assets/images/file-icons/doc.png')
-      }
     }
   },
   methods: {
