@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import themeConfig from './themeConfig.js'
+import themeConfig from '@/../themeConfig.js'
 
 export default {
   data () {

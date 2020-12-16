@@ -1,13 +1,3 @@
-<!-- =========================================================================================
-    File Name: Main.vue
-    Description: Main layout
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
   <div class="layout--main" :class="[layoutTypeClass, navbarClasses, footerClasses, {'no-scroll': isAppPage}]">
 
@@ -121,7 +111,7 @@ import navMenuItems        from '@/layouts/components/vertical-nav-menu/navMenuI
 import TheNavbarHorizontal from '@/layouts/components/navbar/TheNavbarHorizontal.vue'
 import TheNavbarVertical   from '@/layouts/components/navbar/TheNavbarVertical.vue'
 import TheFooter           from '@/layouts/components/TheFooter.vue'
-import themeConfig         from '@/themeConfig.js'
+import themeConfig         from '@/../themeConfig.js'
 import VNavMenu            from '@/layouts/components/vertical-nav-menu/VerticalNavMenu.vue'
 
 export default {
