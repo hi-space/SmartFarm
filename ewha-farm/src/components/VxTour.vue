@@ -1,5 +1,3 @@
-
-
 <template>
     <v-tour name="vuexyTour" :steps="steps">
         <template slot-scope="tour">

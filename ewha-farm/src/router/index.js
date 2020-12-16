@@ -16,7 +16,7 @@ const router = new Router({
     // MAIN LAYOUT ROUTES
     // =============================================================================
             path: '',
-            component: () => import('../layouts/main/Main.vue'),
+            component: () => import('@/layouts/main/Main.vue'),
             children: [
         // =============================================================================
         // Theme Routes
@@ -24,12 +24,17 @@ const router = new Router({
               {
                 path: '/',
                 name: 'home',
-                component: () => import('../views/Home.vue')
+                component: () => import('@/views/Home.vue')
               },
               {
                 path: '/about',
                 name: 'about',
-                component: () => import('../views/About.vue')
+                component: () => import('@/views/About.vue')
+              },
+              {
+                path: '/login',
+                name: 'login',
+                component: () => import('@/views/pages/Login.vue')
               },
             ],
         },

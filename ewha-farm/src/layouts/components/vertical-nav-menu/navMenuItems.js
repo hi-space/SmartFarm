@@ -10,5 +10,11 @@ export default [
     name: "About",
     slug: "about",
     icon: "FileIcon",
+  },
+  {
+    url: "/login",
+    name: "Login",
+    slug: "login",
+    icon: "Link2Icon",
   }
 ]

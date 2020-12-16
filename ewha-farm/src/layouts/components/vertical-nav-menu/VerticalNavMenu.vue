@@ -277,46 +277,6 @@ export default {
 
       // Remove Only Icon in Menu
       this.$store.commit('UPDATE_VERTICAL_NAV_MENU_ITEMS_MIN', false)
-
-
-      // if(this.layoutType === 'vertical' || (this.layoutType === 'horizontal' && this.windowWidth < 1200))
-      // if (this.windowWidth < 1200) {
-
-      //   // Close NavMenu
-      //   this.$store.commit('TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE', false)
-
-      //   // Reduce button
-      //   if (this.reduceButton) this.reduce = false
-
-      //   // Menu Action buttons
-      //   this.showCloseButton = true
-      //   this.clickNotClose   = false
-
-      //   // Update NavMenu Width
-      //   this.$store.dispatch('updateVerticalNavMenuWidth', 'no-nav-menu')
-
-      //   // Remove Only Icon in Menu
-      //   this.$store.commit('UPDATE_VERTICAL_NAV_MENU_ITEMS_MIN', false)
-
-      // } else {
-
-      //   // Set reduce
-      //   this.reduce = this.reduceButton ? true : false
-
-      //   // Open NavMenu
-      //   this.$store.commit('TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE', true)
-
-      //   // Set Menu Items Only Icon Mode
-      //   const verticalNavMenuItemsMin = (this.reduceButton && !this.isMouseEnter) ? true : false
-      //   this.$store.commit('UPDATE_VERTICAL_NAV_MENU_ITEMS_MIN', verticalNavMenuItemsMin)
-
-      //   // Menu Action buttons
-      //   this.clickNotClose   = true
-      //   this.showCloseButton = false
-
-      //   const verticalNavMenuWidth   = this.isVerticalNavMenuReduced ? "reduced" : "default"
-      //   this.$store.dispatch('updateVerticalNavMenuWidth', verticalNavMenuWidth)
-      // }
     },
     toggleReduce (val) {
       this.reduceButton = val

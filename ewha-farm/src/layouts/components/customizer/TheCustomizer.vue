@@ -215,7 +215,7 @@ import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 export default {
   props: {
     footerType       : { type: String,  required: true },
-
+    hideScrollToTop  : { type: Boolean, required: true },
     navbarType       : { type: String,  required: true },
     navbarColor      : { type: String,  required: true, default: '#fff' },
     routerTransition : { type: String,  required: true }
@@ -257,7 +257,7 @@ export default {
       set (val) { this.$emit('updateFooter', val) }
     },
     hideScrollToTopLocal: {
-      get ()    { return false },
+      get ()    { return this.hideScrollToTop },
       set (val) { this.$emit('toggleHideScrollToTop', val) }
     },
     navbarColorInitial () {

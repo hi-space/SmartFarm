@@ -1,37 +1,67 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
-import router from './router'
-import store from './store'
-import vuetify from './plugins/vuetify';
-import 'roboto-fontface/css/roboto/roboto-fontface.css'
-import '@mdi/font/css/materialdesignicons.css'
-import './filters/filters.js'
-import './globalComponents.js'
 
+// Vuesax Component Framework
 import Vuesax from 'vuesax'
 import 'material-icons/iconfont/material-icons.css' //Material Icons
 import 'vuesax/dist/vuesax.css' // Vuesax
 Vue.use(Vuesax)
 
+
+// axios
 import axios from './axios.js'
 Vue.prototype.$http = axios
 
+// Filters
+import './filters/filters.js'
+
+
+// Theme Configurations
+import '../themeConfig.js'
+
+
+// Globally Registered Components
+import './globalComponents.js'
+
+
+// Styles: SCSS
 import './assets/scss/main.scss'
+
+
+// Tailwind
 import '@/assets/css/main.css'
 
+
+// Vue Router
+import router from './router'
+
+
+// Vuex Store
+import store from './store/store'
+
+
+// Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer'
 Vue.use(VueHammer)
 
 
-// API Calls
-// import './http/requests'
+// PrismJS
+import 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+
+
+// Feather font icon
+require('./assets/css/iconfont.css')
+
+
+// Vue select css
+// Note: In latest version you have to add it separately
+// import 'vue-select/dist/vue-select.css';
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  // vuetify,
   render: h => h(App)
 }).$mount('#app')

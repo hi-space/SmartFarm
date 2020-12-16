@@ -1,7 +1,7 @@
 module.exports = {
   publicPath: '/',
   transpileDependencies: [
-    // "vuetify",
+    'vue-echarts',
     'resize-detector'
   ],
   configureWebpack: {
@@ -11,4 +11,11 @@ module.exports = {
       }
     }
   }
+  // devServer: {
+  //   overlay: {
+  //     warnings: true,
+  //     errors: true
+  //   }
+  // }
 }
+
