@@ -124,8 +124,6 @@ $primary-color: #7367F0;
     }
 }
 
-// Can not use vuexy admin variables
-// agGrid vars and imported vars may conflict
 .theme-dark {
   .ag-grid-table {
     &.ag-theme-material {

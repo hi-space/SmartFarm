@@ -9,8 +9,8 @@ import colors from "@/../themeConfig.js"
 // *From Auth - Data will be received from auth provider
 const userDefaults = {
   uid         : 0,          // From Auth
-  displayName : "John Doe", // From Auth
-  about       : "Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.",
+  displayName : "관리자샘플", // From Auth
+  about       : "Test user",
   photoURL    : require("@/assets/images/portrait/small/avatar-s-1.jpg"), // From Auth
   status      : "online",
   userRole    : "admin"
