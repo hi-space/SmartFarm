@@ -12,11 +12,6 @@
         <user-settings-change-password />
       </div>
     </vs-tab>
-    <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Info' : ''">
-      <div class="tab-info md:ml-4 md:mt-0 mt-4 ml-0">
-        <user-settings-info />
-      </div>
-    </vs-tab>
     <vs-tab icon-pack="feather" icon="icon-bell" :label="!isSmallerScreen ? 'Notifications' : ''">
       <div class="tab-text md:ml-4 md:mt-0 mt-4 ml-0">
         <user-settings-notifications />
@@ -33,7 +28,6 @@
 <script>
 import UserSettingsGeneral from './UserSettingsGeneral.vue'
 import UserSettingsChangePassword from './UserSettingsChangePassword.vue'
-import UserSettingsInfo from './UserSettingsInfo.vue'
 import UserSettingsConnections from './UserSettingsConnections.vue'
 import UserSettingsNotifications from './UserSettingsNotifications.vue'
 
@@ -41,7 +35,6 @@ export default {
   components: {
     UserSettingsGeneral,
     UserSettingsChangePassword,
-    UserSettingsInfo,
     UserSettingsConnections,
     UserSettingsNotifications
   },

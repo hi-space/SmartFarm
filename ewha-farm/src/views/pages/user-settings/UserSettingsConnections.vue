@@ -16,10 +16,6 @@
       </div>
       <vs-button type="border" color="danger">Disconnect</vs-button>
     </div>
-
-    <vs-button color="#00aaff" icon-pack="feather" icon="icon-twitter" class="mb-6 ml-auto">Connected To Twitter</vs-button>
-    <vs-button color="#405DE6" icon-pack="feather" icon="icon-instagram" class="ml-auto">Connected To Instagram</vs-button>
-
   </vx-card>
 </template>
 

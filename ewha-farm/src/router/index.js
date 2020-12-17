@@ -85,11 +85,11 @@ const router = new Router({
               {
                 path: '/pages/login',
                 name: 'page-login',
-                component: () => import('@/views/pages/Login.vue')
+                component: () => import('@/views/pages/auth/Login.vue')
               },{
                 path: '/pages/register',
                 name: 'page-register',
-                component: () => import('@/views/pages/Register.vue')
+                component: () => import('@/views/pages/auth/Register.vue')
               },
               {
                 path: '/pages/error-404',

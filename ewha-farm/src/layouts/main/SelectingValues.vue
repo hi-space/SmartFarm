@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4"> -->
   <div class="ml-auto md:block hidden w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
     <v-select v-model="selected" :options="options" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
   </div>

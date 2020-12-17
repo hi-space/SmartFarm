@@ -10,7 +10,6 @@
       <feather-icon icon="UploadCloudIcon" svgClasses="h-16 w-16 stroke-current text-grey" class="block" />
       <span>Drop Excel File or </span>
       <span class="font-medium text-primary" @click.stop="$refs.fileInput.click()">Browse</span>
-      <!-- <vs-button type="border" @click.stop="$refs.fileInput.click()">Browse</vs-button> -->
     </div>
   </div>
 </template>
