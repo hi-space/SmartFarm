@@ -35,7 +35,7 @@
                 </div>
                 <div class="vx-row mb-2">
                   <div class="vx-col w-full">
-                    <vs-input class="w-full" icon-pack="feather" icon="icon-user" icon-no-border
+                    <vs-input class="w-full" icon-pack="feather" icon="icon-command" icon-no-border
                       label-placeholder="Farm" v-model="input21" />
                   </div>
                 </div>

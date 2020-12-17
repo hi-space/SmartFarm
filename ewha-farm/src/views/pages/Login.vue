@@ -41,7 +41,7 @@
                   <div class="flex flex-wrap justify-between my-5">
                       <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox>
                   </div>
-                  <vs-button  type="border">Register</vs-button>
+                  <vs-button  type="border" @click="$router.push('/pages/register').catch(() => {})">Register</vs-button>
                   <vs-button class="float-right">Login</vs-button>
                 </div>
 

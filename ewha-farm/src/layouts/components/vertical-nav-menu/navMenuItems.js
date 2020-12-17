@@ -1,20 +1,96 @@
 export default [
   {
-    url: "/",
-    name: "Home",
-    slug: "home",
-    icon: "HomeIcon",
+    header: 'Test',
+    icon: 'PackageIcon',
+    items: [
+      {
+        url: "/",
+        name: "Home",
+        slug: "home",
+        icon: "HomeIcon",
+      },
+      {
+        url: "/about",
+        name: "About",
+        slug: "about",
+        icon: "FileIcon",
+      }
+    ]
   },
   {
-    url: "/about",
-    name: "About",
-    slug: "about",
-    icon: "FileIcon",
+    header: 'Admin',
+    icon: 'PackageIcon',
+    items: [
+      {
+        url: null,
+        name: "회원관리",
+        slug: "home",
+        icon: "UserIcon",
+        submenu: [
+          {
+            url: null,
+            name: "가입 승인"
+          },
+          {
+            url: null,
+            name: "고객 현황"
+          },
+          {
+            url: null,
+            name: "장치 현황"
+          }
+        ]
+      },
+      {
+        url: null,
+        name: "등록",
+        slug: "about",
+        icon: "PlusCircleIcon",
+        submenu: [
+          {
+            url: null,
+            name: "함체 등록",
+          },
+          {
+            url: null,
+            name: "릴레이 등록",
+          },
+        ]
+      },
+      {
+        url: null,
+        name: "버튼 타입",
+        slug: "about",
+        icon: "SettingsIcon",
+      }
+    ]
   },
   {
-    url: "/login",
-    name: "Login",
-    slug: "login",
-    icon: "Link2Icon",
+    header: 'User',
+    icon: 'PackageIcon',
+    items: [
+      {
+        url: null,
+        name: "CCTV",
+        icon: "VideoIcon"
+      },
+      {
+        url: null,
+        name: "원격제어",
+        icon: "SlidersIcon"
+      },
+      {
+        url: null,
+        name: "센서 모니터링",
+        icon: "ActivityIcon"
+      },
+      {
+        url: null,
+        name: '자동화 설정',
+        icon: "SettingsIcon"
+      }
+    ]
   }
+
+  
 ]

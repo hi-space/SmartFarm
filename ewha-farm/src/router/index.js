@@ -32,9 +32,30 @@ const router = new Router({
                 component: () => import('@/views/About.vue')
               },
               {
-                path: '/login',
-                name: 'login',
-                component: () => import('@/views/pages/user-settings/UserSettings.vue')
+                path: '/user-settings',
+                name: 'user-settings',
+                component: () => import('@/views/pages/user-settings/UserSettings.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'User Settings', active: true }
+                  ],
+                  pageTitle: 'Settings',
+                  rule: 'editor'
+                }
+              },
+              {
+                path: '/user-list',
+                name: 'user-list',
+                component: () => import('@/views/apps/user-list/UserList.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'User Settings', active: true }
+                  ],
+                  pageTitle: 'Settings',
+                  rule: 'editor'
+                }
               },
             ],
         },
@@ -52,11 +73,15 @@ const router = new Router({
                 path: '/pages/login',
                 name: 'page-login',
                 component: () => import('@/views/pages/Login.vue')
+              },{
+                path: '/pages/register',
+                name: 'page-register',
+                component: () => import('@/views/pages/Register.vue')
               },
               {
                 path: '/pages/error-404',
                 name: 'page-error-404',
-                component: () => import('@/views/pages/Error404.vue')
+                component: () => import('@/views/pages/error/Error404.vue')
               },
             ]
         },
@@ -74,6 +99,41 @@ router.afterEach(() => {
     if (appLoading) {
         appLoading.style.display = "none";
     }
+})
+
+
+router.beforeEach((to, from, next) => {
+  // firebase.auth().onAuthStateChanged(() => {
+
+  //   // get firebase current user
+  //   const firebaseCurrentUser = firebase.auth().currentUser
+
+  //   // if (
+  //   //     to.path === "/pages/login" ||
+  //   //     to.path === "/pages/forgot-password" ||
+  //   //     to.path === "/pages/error-404" ||
+  //   //     to.path === "/pages/error-500" ||
+  //   //     to.path === "/pages/register" ||
+  //   //     to.path === "/callback" ||
+  //   //     to.path === "/pages/comingsoon" ||
+  //   //     (auth.isAuthenticated() || firebaseCurrentUser)
+  //   // ) {
+  //   //     return next();
+  //   // }
+
+  //   // If auth required, check login. If login fails redirect to login page
+  //   if (to.meta.authRequired) {
+  //     if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
+  //       router.push({ path: '/pages/login', query: { to: to.path } })
+  //     }
+  //   }
+
+    return next()
+  //   // Specify the current path as the customState parameter, meaning it
+  //   // will be returned to the application after auth
+  //   // auth.login({ target: to.path });
+
+  // })
 })
 
 export default router
