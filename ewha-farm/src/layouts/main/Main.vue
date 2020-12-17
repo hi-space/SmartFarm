@@ -56,7 +56,7 @@
                 <vx-breadcrumb class="ml-4 md:block hidden" v-if="$route.meta.breadcrumb" :route="$route" :isRTL="$vs.rtl" />
 
                 <!-- DROPDOWN -->
-                <vs-dropdown vs-trigger-click class="ml-auto md:block hidden cursor-pointer">
+                <!-- <vs-dropdown vs-trigger-click class="ml-auto md:block hidden cursor-pointer">
                   <vs-button radius icon="icon-settings" icon-pack="feather" />
 
                   <vs-dropdown-menu class="w-32">
@@ -80,7 +80,7 @@
                     </vs-dropdown-item>
                   </vs-dropdown-menu>
 
-                </vs-dropdown>
+                </vs-dropdown> -->
 
               </div>
             </transition>

@@ -28,15 +28,11 @@ export default [
         icon: "UserIcon",
         submenu: [
           {
-            url: null,
-            name: "가입 승인"
-          },
-          {
             url: "/user-list",
             name: "고객 현황"
           },
           {
-            url: null,
+            url: "/device-list",
             name: "장치 현황"
           }
         ]

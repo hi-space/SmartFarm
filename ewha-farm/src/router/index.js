@@ -57,6 +57,19 @@ const router = new Router({
                   rule: 'editor'
                 }
               },
+              {
+                path: '/device-list',
+                name: 'device-list',
+                component: () => import('@/views/apps/device-list/DeviceList.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'User Settings', active: true }
+                  ],
+                  pageTitle: 'Settings',
+                  rule: 'editor'
+                }
+              },
             ],
         },
     // =============================================================================
