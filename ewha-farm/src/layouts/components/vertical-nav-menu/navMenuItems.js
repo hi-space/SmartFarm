@@ -22,7 +22,7 @@ export default [
     icon: 'PackageIcon',
     items: [
       {
-        url: null,
+        url: "/user-list",
         name: "회원관리",
         slug: "home",
         icon: "UserIcon",
@@ -32,7 +32,7 @@ export default [
             name: "가입 승인"
           },
           {
-            url: null,
+            url: "/user-list",
             name: "고객 현황"
           },
           {
