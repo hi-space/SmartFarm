@@ -24,12 +24,7 @@ const router = new Router({
               {
                 path: '/',
                 name: 'home',
-                component: () => import('@/views/Dashboard.vue')
-              },
-              {
-                path: '/dashboard',
-                name: 'dashboard',
-                component: () => import('@/views/Dashboard.vue')
+                component: () => import('@/views/apps/dashboard/Dashboard.vue')
               },
               {
                 path: '/user-settings',
@@ -51,9 +46,9 @@ const router = new Router({
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'User Settings', active: true }
+                    { title: 'User Management', active: true }
                   ],
-                  pageTitle: 'Settings',
+                  pageTitle: 'Users',
                   rule: 'editor'
                 }
               },
@@ -64,9 +59,9 @@ const router = new Router({
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'User Settings', active: true }
+                    { title: 'Device Settings', active: true }
                   ],
-                  pageTitle: 'Settings',
+                  pageTitle: 'Devices',
                   rule: 'editor'
                 }
               },
@@ -95,6 +90,11 @@ const router = new Router({
                 path: '/pages/error-404',
                 name: 'page-error-404',
                 component: () => import('@/views/pages/error/Error404.vue')
+              },
+              {
+                path: '/pages/error-500',
+                name: 'page-error-500',
+                component: () => import('@/views/pages/error/Error500.vue')
               },
             ]
         },

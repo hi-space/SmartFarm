@@ -9,17 +9,35 @@ export default [
         slug: "home",
         icon: "HomeIcon",
       },
+    ]
+  },
+  {
+    header: 'Pages',
+    icon: 'PackageIcon',
+    items: [
       {
         url: "/pages/login",
         name: "Login",
         slug: "Login",
-        icon: "HomeIcon",
+        icon: "FileIcon",
       },
       {
         url: "/pages/register",
         name: "Register",
-        slug: "Register",
-        icon: "HomeIcon",
+        slug: "Login",
+        icon: "FileIcon",
+      },
+      {
+        url: "/pages/error-404",
+        name: "Error404",
+        slug: "Login",
+        icon: "FileIcon",
+      },
+      {
+        url: "/pages/error-500",
+        name: "Error500",
+        slug: "Error500",
+        icon: "FileIcon",
       }
     ]
   },

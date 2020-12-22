@@ -1,5 +1,5 @@
 <template>
-  <vx-card no-shadow>
+  <vx-card title="개인정보 변경" no-shadow>
 
     <!-- Info -->
     <vs-input class="w-full mb-base" label-placeholder="농장 이름" v-model="username"></vs-input>
