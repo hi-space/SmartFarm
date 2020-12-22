@@ -14,6 +14,12 @@ export default [
         name: "Login",
         slug: "Login",
         icon: "HomeIcon",
+      },
+      {
+        url: "/pages/register",
+        name: "Register",
+        slug: "Register",
+        icon: "HomeIcon",
       }
     ]
   },

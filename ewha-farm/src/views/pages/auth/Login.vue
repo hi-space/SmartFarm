@@ -1,9 +1,9 @@
 <template>
   <div class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center" id="page-login">
-    <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
+    <div class="vx-col sm:w-2/3 md:w-2/3 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
       <vx-card>
           <div class="vx-row no-gutter justify-center items-center">
-            <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
+            <div class="vx-col sm:w-2/3 md:w-2/3 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
               <div class="vx-row hidden lg:block mt-4 mb-4">
                 <img src="@/assets/images/pages/login.png" alt="login" class="mx-auto">
               </div>
@@ -14,7 +14,7 @@
                 </div>
 
                 <div>
-                  <vs-input name="id" icon-no-border icon="icon icon-user" icon-pack="feather"
+                  <vs-input name="id" icon-no-border icon="icon icon-smartphone" icon-pack="feather"
                     label-placeholder="핸드폰 번호" v-model="id" class="w-full" />
 
                   <vs-input type="password" name="password" icon-no-border icon="icon icon-lock" icon-pack="feather"

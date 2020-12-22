@@ -44,6 +44,8 @@ import router from './router'
 // Vuex Store
 import store from './store/store'
 
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate)
 
 // Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer'
