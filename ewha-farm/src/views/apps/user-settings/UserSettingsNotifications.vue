@@ -9,7 +9,7 @@
 
     <!-- Save & Reset Button -->
     <div class="flex flex-wrap items-center justify-end mt-base">
-      <vs-button class="ml-auto mt-2">Save Changes</vs-button>
+      <vs-button class="ml-auto mt-2">설정 완료</vs-button>
     </div>
 
   </vx-card>

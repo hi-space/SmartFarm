@@ -10,7 +10,7 @@
 
     <!-- Save & Reset Button -->
     <div class="flex flex-wrap items-center justify-end">
-      <vs-button class="ml-auto mt-2">Save Changes</vs-button>
+      <vs-button class="ml-auto mt-2">비밀번호 수정</vs-button>
     </div>
   </vx-card>
 </template>
