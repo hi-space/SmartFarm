@@ -11,7 +11,7 @@ const userDefaults = {
   uid         : 0,          // From Auth
   displayName : "관리자샘플", // From Auth
   about       : "Test user",
-  photoURL    : require("@/assets/images/portrait/small/avatar-s-1.jpg"), // From Auth
+  photoURL    : require("@/assets/images/portrait/user.jpg"), // From Auth
   status      : "online",
   userRole    : "admin"
 }

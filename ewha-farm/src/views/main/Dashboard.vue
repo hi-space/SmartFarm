@@ -2,8 +2,6 @@
     <div id="demo-basic-card">
         <div class="vx-row">
            
-
-
             <!-- OVERLAY CARD 2 -->
             <div class="vx-col w-full lg:w-1/3 sm:w-1/2 mb-base">
                 <vx-card class="overlay-card overflow-hidden">

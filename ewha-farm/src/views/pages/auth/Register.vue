@@ -1,10 +1,9 @@
 <template>
   <div class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center" id="page-register">
-    <div class="vx-col sm:w-2/3 md:w-2/3 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
+    <div class="vx-col">
       <vx-card>
-        <div class="vx-row no-gutter justify-center items-center">
-          <div class="vx-col sm:w-2/3 md:w-2/3 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
-            <div class="vx-row hidden lg:block mt-4 mb-4">
+        <div class="vx-col no-gutter justify-center items-center">
+            <div class="vx-row hidden lg:block m-12">
               <img src="@/assets/images/pages/register.jpg" alt="register" class="mx-auto">
             </div>
 
@@ -43,9 +42,7 @@
                 <vs-button class="float-right" @click="registerUserJWt" :disabled="!validateForm">회원가입</vs-button>
               </div>
             </div>
-          </div>
         </div>
-
       </vx-card>
     </div>
   </div>

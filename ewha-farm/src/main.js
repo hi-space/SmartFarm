@@ -1,68 +1,27 @@
-
-
 import Vue from 'vue'
 import App from './App.vue'
-
-// Vuesax Component Framework
 import Vuesax from 'vuesax'
-
-import 'material-icons/iconfont/material-icons.css' //Material Icons
-import 'vuesax/dist/vuesax.css' // Vuesax
-Vue.use(Vuesax)
-
-
-// axios
+import VeeValidate from 'vee-validate';
+import { VueHammer } from 'vue2-hammer'
+import router from './router'
+import store from './store/store'
 import axios from './axios.js'
-Vue.prototype.$http = axios
 
-// Filters
-import './filters/filters.js'
-
-
-// Theme Configurations
+import 'material-icons/iconfont/material-icons.css'
+import 'vuesax/dist/vuesax.css'
+import './utils/filters.js'
 import '../themeConfig.js'
-
-
-// Globally Registered Components
 import './globalComponents.js'
-
-
-// Styles: SCSS
 import './assets/scss/main.scss'
-
-
-// Tailwind
 import '@/assets/css/main.css'
 
-
-// Vue Router
-import router from './router'
-
-
-// Vuex Store
-import store from './store/store'
-
-import VeeValidate from 'vee-validate';
-Vue.use(VeeValidate)
-
-// Vuejs - Vue wrapper for hammerjs
-import { VueHammer } from 'vue2-hammer'
-Vue.use(VueHammer)
-
-
-// PrismJS
-import 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
-
-
-// Feather font icon
 require('./assets/css/iconfont.css')
 
+Vue.use(Vuesax)
+Vue.use(VeeValidate)
+Vue.use(VueHammer)
 
-// Vue select css
-// Note: In latest version you have to add it separately
-// import 'vue-select/dist/vue-select.css';
-
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 new Vue({
