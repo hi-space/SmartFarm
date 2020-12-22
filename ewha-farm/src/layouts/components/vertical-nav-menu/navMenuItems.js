@@ -8,6 +8,12 @@ export default [
         name: "Home",
         slug: "home",
         icon: "HomeIcon",
+      },
+      {
+        url: "/pages/login",
+        name: "Login",
+        slug: "Login",
+        icon: "HomeIcon",
       }
     ]
   },
