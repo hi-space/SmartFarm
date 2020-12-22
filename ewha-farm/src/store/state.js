@@ -1,4 +1,4 @@
-import navbarSearchAndPinList from "@/layouts/components/navbar/navbarSearchAndPinList"
+import navbarSearchAndPinList from "@/views/layouts/navbar/navbarSearchAndPinList"
 import themeConfig from "@/../themeConfig.js"
 import colors from "@/../themeConfig.js"
 

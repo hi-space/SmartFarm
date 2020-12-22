@@ -16,7 +16,7 @@ const router = new Router({
     // MAIN LAYOUT ROUTES
     // =============================================================================
             path: '',
-            component: () => import('@/layouts/main/Main.vue'),
+            component: () => import('@/views/layouts/main/AdminMain.vue'),
             children: [
         // =============================================================================
         // Theme Routes
@@ -24,17 +24,17 @@ const router = new Router({
               {
                 path: '/',
                 name: 'home',
-                component: () => import('@/views/Home.vue')
+                component: () => import('@/views/Dashboard.vue')
               },
               {
                 path: '/dashboard',
                 name: 'dashboard',
-                component: () => import('@/views/main/Dashboard.vue')
+                component: () => import('@/views/Dashboard.vue')
               },
               {
                 path: '/user-settings',
                 name: 'user-settings',
-                component: () => import('@/views/pages/user-settings/UserSettings.vue'),
+                component: () => import('@/views/apps/user-settings/UserSettings.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
@@ -77,7 +77,7 @@ const router = new Router({
     // =============================================================================
         {
             path: '',
-            component: () => import('@/layouts/full-page/FullPage.vue'),
+            component: () => import('@/views/layouts/full-page/FullPage.vue'),
             children: [
         // =============================================================================
         // PAGES

@@ -13,26 +13,10 @@ export default {
       vueAppClasses: []
     }
   },
-  watch: {
-    '$store.state.theme' (val) {
-      this.toggleClassInBody(val)
-    },
-    '$vs.rtl' (val) {
-      document.documentElement.setAttribute('dir', val ? 'rtl' : 'ltr')
-    }
-  },
   methods: {
     toggleClassInBody (className) {
-      if (className === 'dark') {
-        if (document.body.className.match('theme-semi-dark')) document.body.classList.remove('theme-semi-dark')
-        document.body.classList.add('theme-dark')
-      } else if (className === 'semi-dark') {
-        if (document.body.className.match('theme-dark')) document.body.classList.remove('theme-dark')
-        document.body.classList.add('theme-semi-dark')
-      } else {
-        if (document.body.className.match('theme-dark'))      document.body.classList.remove('theme-dark')
-        if (document.body.className.match('theme-semi-dark')) document.body.classList.remove('theme-semi-dark')
-      }
+      if (document.body.className.match('theme-dark'))      document.body.classList.remove('theme-dark')
+      if (document.body.className.match('theme-semi-dark')) document.body.classList.remove('theme-semi-dark')
     },
     setAppClasses (classesStr) {
       this.vueAppClasses.push(classesStr)
@@ -56,8 +40,7 @@ export default {
     document.documentElement.style.setProperty('--vh', `${vh}px`)
   },
   async created () {
-    const dir = this.$vs.rtl ? 'rtl' : 'ltr'
-    document.documentElement.setAttribute('dir', dir)
+    document.documentElement.setAttribute('dir', 'ltr')
 
     window.addEventListener('resize', this.handleWindowResize)
     window.addEventListener('scroll', this.handleScroll)

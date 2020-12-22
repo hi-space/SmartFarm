@@ -1,8 +1,6 @@
 <template>
   <div id="data-list-list-view" class="data-list-container">
 
-    <data-view-sidebar :isSidebarActive="addNewDataSidebar" @closeSidebar="toggleDataSidebar" :data="sidebarData" />
-
     <vs-table ref="table" multiple v-model="selected" pagination :max-items="itemsPerPage" search :data="products">
 
       <div slot="header" class="flex flex-wrap-reverse items-center flex-grow justify-between">
@@ -86,13 +84,9 @@
 </template>
 
 <script>
-import DataViewSidebar from '../DataViewSidebar.vue'
 import moduleDataList from '@/store/data-list/moduleDataList.js'
 
 export default {
-  components: {
-    DataViewSidebar
-  },
   data () {
     return {
       selected: [],
