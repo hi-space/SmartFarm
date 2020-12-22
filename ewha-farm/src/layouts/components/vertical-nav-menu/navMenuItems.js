@@ -1,6 +1,6 @@
 export default [
   {
-    header: 'Test',
+    header: 'Dashboard',
     icon: 'PackageIcon',
     items: [
       {
@@ -8,12 +8,6 @@ export default [
         name: "Home",
         slug: "home",
         icon: "HomeIcon",
-      },
-      {
-        url: "/about",
-        name: "About",
-        slug: "about",
-        icon: "FileIcon",
       }
     ]
   },

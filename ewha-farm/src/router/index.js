@@ -27,9 +27,9 @@ const router = new Router({
                 component: () => import('@/views/Home.vue')
               },
               {
-                path: '/about',
-                name: 'about',
-                component: () => import('@/views/About.vue')
+                path: '/dashboard',
+                name: 'dashboard',
+                component: () => import('@/views/main/Dashboard.vue')
               },
               {
                 path: '/user-settings',

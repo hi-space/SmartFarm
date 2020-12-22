@@ -9,6 +9,7 @@
   "dependencies": {
     "ag-grid-community": "^24.1.0",
     "ag-grid-vue": "^24.1.1",
+    "apexcharts": "^3.23.0",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "material-icons": "^0.5.1",
@@ -16,6 +17,7 @@
     "prismjs": "^1.22.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.0",
     "vue-backtotop": "^1.6.1",
     "vue-class-component": "^7.2.6",
     "vue-feather-icons": "^5.1.0",
@@ -25,6 +27,7 @@
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.2.0",
     "vue-select": "^3.10.8",
+    "vue-video-player": "^5.0.2",
     "vue2-hammer": "^2.1.2",
     "vuedraggable": "^2.24.3",
     "vuesax": "^3.12.2",
