@@ -5,8 +5,6 @@ import App from './App.vue'
 
 // Vuesax Component Framework
 import Vuesax from 'vuesax'
-// import vuetify from './plugins/vuetify';
-import vuetify from 'vuetify';
 
 import 'material-icons/iconfont/material-icons.css' //Material Icons
 import 'vuesax/dist/vuesax.css' // Vuesax
@@ -70,6 +68,5 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  vuetify,
   render: h => h(App)
 }).$mount('#app')

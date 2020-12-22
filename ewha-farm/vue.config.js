@@ -1,7 +1,6 @@
 module.exports = {
   publicPath: '/',
   transpileDependencies: [
-    'vuetify',
     'vue-echarts',
     'resize-detector'
   ],

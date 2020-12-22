@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center">
+  <div class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center" id="page-register">
     <div class="vx-col sm:w-2/3 md:w-2/3 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
       <vx-card>
         <div class="vx-row no-gutter justify-center items-center">
