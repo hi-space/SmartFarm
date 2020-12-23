@@ -104,7 +104,7 @@
                     },
                 ],
                 relay_count: 1,
-                operating_time: 0,
+                operating_time: 5,
 
             }
         },

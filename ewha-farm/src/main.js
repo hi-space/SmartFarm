@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Vuesax from 'vuesax'
-import VeeValidate from 'vee-validate';
+import VeeValidate, { Validator } from 'vee-validate';
 import { VueHammer } from 'vue2-hammer'
 import router from './router'
 import store from './store/store'
@@ -23,6 +23,9 @@ Vue.use(VueHammer)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
+
+import ko from 'vee-validate/dist/locale/ko.js'
+Validator.localize('ko', ko)
 
 new Vue({
   router,

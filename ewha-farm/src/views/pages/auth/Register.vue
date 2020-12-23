@@ -21,7 +21,7 @@
                 <vs-input ref="password" type="password" data-vv-validate-on="blur" v-validate="'required|min:4|max:12'"
                   name="password" label-placeholder="비밀번호" placeholder="비밀번호" v-model="password" class="w-full mt-6"
                   icon-pack="feather" icon="icon-lock" icon-no-border />
-                  <span class="text-danger text-sm">{{ errors.first('password') }}</span>
+                  <span class="text-danger text-sm">{{ errors.first('password')}}</span>
 
                 <vs-input type="password" v-validate="'min:4|max:12|confirmed:password'" data-vv-validate-on="blur"
                   data-vv-as="password" name="confirm_password" label-placeholder="비밀번호 확인" placeholder="비밀번호 확인"
