@@ -1,42 +1,50 @@
 <template>
     <ag-grid-vue ref="agGridTable" 
-    :gridOptions="gridOptions" 
-    class="ag-theme-material w-100 my-4 ag-grid-table"
-    @grid-ready="onGridReady" 
-    :columnDefs="columnDefs" 
-    :defaultColDef="defaultColDef" 
-    :rowData="rowData"
-        rowSelection="single" 
-        colResizeDefault="shift" 
-        :animateRows="true" 
-        :pagination="true"
-        :enterMovesDown="true"
-        :enterMovesDownAfterEdit="true"
-        :suppressPaginationPanel="true">
+        style="height: 320px;"
+        :gridOptions="gridOptions" 
+        class="ag-theme-material w-100 my-4 ag-grid-table"
+        @grid-ready="onGridReady" 
+        :columnDefs="columnDefs" 
+        :defaultColDef="defaultColDef" 
+        :rowData="rowData"
+            rowSelection="single" 
+            colResizeDefault="shift" 
+            :animateRows="true" 
+            :pagination="true"
+            :enterMovesDown="true"
+            :enterMovesDownAfterEdit="true"
+            :suppressPaginationPanel="true">
     </ag-grid-vue>
 </template>
 
 <script>
     import farm from '@/data/user-list.json'
 
-    import {
-        AgGridVue
-    } from 'ag-grid-vue'
+    import { AgGridVue } from 'ag-grid-vue'
+    import CellRendererActions from '@/views/components/cell-renderer/CellRendererActions.vue'
+
     import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 
     export default {
         components: {
-            'ag-grid-vue': AgGridVue,
+            AgGridVue,
+            CellRendererActions
         },
         data: function () {
             return {
                 gridOptions: {},
-                columnDefs: [{
-                        field: 'athlete',
-                        minWidth: 160,
+                columnDefs: [
+                    {
+                        headerName: '축사 ID',
+                        field: 'age',
                     },
                     {
-                        field: 'age'
+                        headerName: '축사 이름',
+                        field: 'athlete',
+                    },
+                    {
+                        headerName: 'Actions',
+                        cellRendererFramework: 'CellRendererActions'
                     }
                 ],
                 defaultColDef: {

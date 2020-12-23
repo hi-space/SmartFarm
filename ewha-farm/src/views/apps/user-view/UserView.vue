@@ -65,14 +65,15 @@
             </vx-card>
 
             <div class="vx-row">
-                <div class="vx-col lg:w-1/2 w-full">
-                    <vx-card title="축사" class="mb-base">
+                <div class="vx-col w-full">
+                    <vx-card title="축사 관리" class="mb-base">
                         <user-view-farm></user-view-farm>
                     </vx-card>
                 </div>
-
-                <div class="vx-col lg:w-1/2 w-full">
-                    <vx-card title="함체" class="mb-base">
+            </div>
+            <div class="vx-row">
+                <div class="vx-col w-full">
+                    <vx-card title="함체 관리" class="mb-base">
                         <user-view-device></user-view-device>
                     </vx-card>
                 </div>
