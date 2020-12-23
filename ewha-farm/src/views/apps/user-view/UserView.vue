@@ -67,63 +67,13 @@
             <div class="vx-row">
                 <div class="vx-col lg:w-1/2 w-full">
                     <vx-card title="축사" class="mb-base">
-                        <table>
-                            <tr>
-                                <td class="font-semibold">Birth Date</td>
-                                <td>{{ user_data.dob }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Mobile</td>
-                                <td>{{ user_data.mobile }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Website</td>
-                                <td>{{ user_data.website }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Languages</td>
-                                <td>{{ user_data.languages_known.join(", ") }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Gender</td>
-                                <td>{{ user_data.gender }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Contact</td>
-                                <td>{{ user_data.contact_options.join(", ") }}</td>
-                            </tr>
-                        </table>
+                        <user-view-farm></user-view-farm>
                     </vx-card>
                 </div>
 
                 <div class="vx-col lg:w-1/2 w-full">
                     <vx-card title="함체" class="mb-base">
-                        <table>
-                            <tr>
-                                <td class="font-semibold">Twitter</td>
-                                <td>{{ user_data.social_links.twitter }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Facebook</td>
-                                <td>{{ user_data.social_links.facebook }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Instagram</td>
-                                <td>{{ user_data.social_links.instagram }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Github</td>
-                                <td>{{ user_data.social_links.github }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">CodePen</td>
-                                <td>{{ user_data.social_links.codepen }}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold">Slack</td>
-                                <td>{{ user_data.social_links.slack }}</td>
-                            </tr>
-                        </table>
+                        <user-view-device></user-view-device>
                     </vx-card>
                 </div>
             </div>
@@ -144,11 +94,6 @@
                 <div class="block overflow-x-auto">
                     <table class="w-full permissions-table">
                         <tr>
-                            <!--
-                You can also use `Object.keys(Object.values(data_local.permissions)[0])` this logic if you consider,
-                our data structure. You just have to loop over above variable to get table headers.
-                Below we made it simple. So, everyone can understand.
-               -->
                             <th class="font-semibold text-base text-left px-3 py-2"
                                 v-for="heading in ['Module', 'Read', 'Write', 'Create', 'Delete']" :key="heading">
                                 {{ heading }}</th>
@@ -170,7 +115,9 @@
 
 <script>
     import moduleUserManagement from '@/store/user-management/moduleUserManagement.js'
-    import user_data from './user.json'
+    import UserViewFarm from './UserViewFarm.vue'
+    import UserViewDevice from './UserViewDevice.vue'
+    import user_data from '@/data/user.json'
 
     export default {
         data() {
@@ -178,6 +125,10 @@
                 user_data: user_data,
                 user_not_found: false
             }
+        },
+        components: {
+            UserViewFarm,
+            UserViewDevice,
         },
         computed: {
             userAddress() {

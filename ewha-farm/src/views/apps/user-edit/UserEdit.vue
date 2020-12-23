@@ -32,7 +32,7 @@
 <script>
     import UserEditAccount from './UserEditAccount.vue'
     import UserEditTabInformation from './UserEditTabInformation.vue'
-    import user_data from './user.json'
+    import user_data from '@/data/user.json'
 
     export default {
         components: {

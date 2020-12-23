@@ -44,14 +44,12 @@
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
         :rowData="contacts"
-        rowSelection="multiple"
+        rowSelection="single"
         colResizeDefault="shift"
         :animateRows="true"
-        :floatingFilter="true"
         :pagination="true"
         :paginationPageSize="paginationPageSize"
-        :suppressPaginationPanel="true"
-        :enableRtl="$vs.rtl">
+        :suppressPaginationPanel="true">
       </ag-grid-vue>
       <vs-pagination
         :total="totalPages"
@@ -64,7 +62,7 @@
 
 <script>
 import { AgGridVue } from 'ag-grid-vue'
-import contacts from './data.json'
+import contacts from '@/data/user-list.json'
 
 import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 
