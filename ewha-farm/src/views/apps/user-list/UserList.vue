@@ -97,56 +97,38 @@ export default {
       },
       columnDefs: [
         {
-          headerName: 'First Name',
-          field: 'firstname',
-          width: 175,
-          checkboxSelection: true,
-          headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true
-        },
-        {
-          headerName: 'Last Name',
-          field: 'lastname',
+          headerName: '이름',
+          field: 'name',
           pinned: 'left',
-          width: 175
-        },
-        {
-          headerName: 'Email',
-          field: 'email',
-          width: 250,
+          width: 130,
           cellRendererFramework: 'CellRendererLink'
         },
         {
-          headerName: 'Company',
-          field: 'company',
+          headerName: '전화번호',
+          field: 'phone',
+          width: 175
+        },
+        {
+          headerName: '함체',
+          field: 'followers',
+          width: 150
+        },
+        {
+          headerName: '농장 주소',
+          field: 'city',
           width: 250
         },
         {
-          headerName: 'City',
-          field: 'city',
-          width: 150
-        },
-        {
-          headerName: 'Country',
-          field: 'country',
-          width: 150
-        },
-        {
-          headerName: 'Followers',
-          field: 'followers',
-          width: 125
-        },
-        {
-          headerName: 'Verified',
+          headerName: '상태',
           field: 'is_verified',
-          width: 125,
+          width: 100,
           cellRendererFramework: 'CellRendererVerified',
           cellClass: 'text-center'
         },
         {
           headerName: 'Status',
           field: 'status',
-          width: 150,
+          width: 170,
           cellRendererFramework: 'CellRendererStatus'
         },
         {

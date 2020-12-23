@@ -1,7 +1,7 @@
 [
   {
     "firstname": "Essie",
-    "lastname": "Vaill",
+    "name": "Vaill",
     "company": "Litronic Industries",
     "address": "14225 Hancock Dr",
     "city": "Anchorage",
@@ -18,7 +18,7 @@
   },
   {
     "firstname": "Cruz",
-    "lastname": "Roudabush",
+    "name": "Roudabush",
     "company": "Meridian Products",
     "address": "2202 S Central Ave",
     "city": "Phoenix",
@@ -33,7 +33,7 @@
   },
   {
     "firstname": "Billie",
-    "lastname": "Tinnes",
+    "name": "Tinnes",
     "company": "D & M Plywood Inc",
     "address": "28 W 27th St",
     "city": "New York",
@@ -47,7 +47,7 @@
   },
   {
     "firstname": "Zackary",
-    "lastname": "Mockus",
+    "name": "Mockus",
     "company": "Metropolitan Elevator Co",
     "address": "286 State St",
     "city": "Perth Amboy",
@@ -64,7 +64,7 @@
   },
   {
     "firstname": "Rosemarie",
-    "lastname": "Fifield",
+    "name": "Fifield",
     "company": "Technology Services",
     "address": "3131 N Nimitz Hwy  #-105",
     "city": "Honolulu",
@@ -81,7 +81,7 @@
   },
   {
     "firstname": "Bernard",
-    "lastname": "Laboy",
+    "name": "Laboy",
     "company": "Century 21 Keewaydin Prop",
     "address": "22661 S Frontage Rd",
     "city": "Channahon",
@@ -98,7 +98,7 @@
   },
   {
     "firstname": "Willard",
-    "lastname": "Roughen",
+    "name": "Roughen",
     "company": "Nakamura Oyama & Assocs Inc",
     "address": "9 5officce Product Cent",
     "city": "Arlington",
@@ -115,7 +115,7 @@
   },
   {
     "firstname": "Elisa",
-    "lastname": "Gracely",
+    "name": "Gracely",
     "company": "Alexander, Christine T Esq",
     "address": "1805 Kings Hwy",
     "city": "Brooklyn",
@@ -132,7 +132,7 @@
   },
   {
     "firstname": "Jeri",
-    "lastname": "Farstvedt",
+    "name": "Farstvedt",
     "company": "Regan, Denis J Esq",
     "address": "16133 Ventura Blvd  #-700",
     "city": "Encino",
@@ -149,7 +149,7 @@
   },
   {
     "firstname": "Stacey",
-    "lastname": "Blow",
+    "name": "Blow",
     "company": "Schechter, Jeffrey S Esq",
     "address": "136 S Riverside Ave",
     "city": "Rialto",
@@ -166,7 +166,7 @@
   },
   {
     "firstname": "Bryan",
-    "lastname": "Rovell",
+    "name": "Rovell",
     "company": "All N All Shop",
     "address": "90 Hackensack St",
     "city": "East Rutherford",
@@ -183,7 +183,7 @@
   },
   {
     "firstname": "Joey",
-    "lastname": "Bolick",
+    "name": "Bolick",
     "company": "Utility Trailer Sales",
     "address": "7700 N Council Rd",
     "city": "Oklahoma City",

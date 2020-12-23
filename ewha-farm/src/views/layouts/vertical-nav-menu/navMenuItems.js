@@ -50,32 +50,12 @@ export default [
         name: "회원관리",
         slug: "home",
         icon: "UserIcon",
-        submenu: [
-          {
-            url: "/user-list",
-            name: "고객 현황"
-          },
-          {
-            url: "/device-list",
-            name: "장치 현황"
-          }
-        ]
       },
       {
-        url: null,
-        name: "등록",
+        url: "/farm-register",
+        name: "함체 등록",
         slug: "about",
         icon: "PlusCircleIcon",
-        submenu: [
-          {
-            url: null,
-            name: "함체 등록",
-          },
-          {
-            url: null,
-            name: "릴레이 등록",
-          },
-        ]
       },
       {
         url: null,

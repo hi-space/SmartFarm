@@ -65,6 +65,45 @@ const router = new Router({
                   rule: 'editor'
                 }
               },
+              {
+                path: '/farm-register',
+                name: 'farm-register',
+                component: () => import('@/views/apps/farm-register/FarmRegister.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Farm Register', active: true }
+                  ],
+                  pageTitle: 'Farm',
+                  rule: 'editor'
+                }
+              },
+              {
+                path: '/device-register',
+                name: 'device-register',
+                component: () => import('@/views/apps/farm-register/DeviceRegister.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Device Register', active: true }
+                  ],
+                  pageTitle: 'Devices',
+                  rule: 'editor'
+                }
+              },
+              {
+                path: '/relay-register',
+                name: 'relay-register',
+                component: () => import('@/views/apps/farm-register/RelayRegister.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Device Register', active: true }
+                  ],
+                  pageTitle: 'Devices',
+                  rule: 'editor'
+                }
+              },
             ],
         },
     // =============================================================================
