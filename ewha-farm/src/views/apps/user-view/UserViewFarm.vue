@@ -48,7 +48,7 @@
                     }
                 ],
                 defaultColDef: {
-                    width: 170,
+                    flex: 1,
                     sortable: true,
                     filter: true,
                     editable: true,
