@@ -1,62 +1,54 @@
 <template>
-    <div class="vx-row">
-        <div class="vx-col w-full mb-base">
-            <vx-card title="버튼 등록">
-                <div class="vx-row mb-6">
-                    <div class="vx-col sm:w-1/3 w-full">
-                        <span>버튼</span>
-                    </div>
-                    <div class="vx-col sm:w-2/3 w-full" >
-                        <v-select label="button_type" :options="button_type"/>
-                    </div>
-                </div>
-                <div class="vx-row mb-6">
-                    <div class="vx-col sm:w-1/3 w-full">
-                        <span>버튼 타입</span>
-                    </div>
-                    <div class="vx-col sm:w-2/3 w-full" >
-                        <v-select label="button_type_detail" :options="button_type_detail"/>
-                    </div>
-                </div>
-                <div class="vx-row mb-6">
-                    <div class="vx-col sm:w-1/3 w-full">
-                        <span>Relay 사용 개수</span>
-                    </div>
-                    <div class="vx-col">
-                        <vs-input-number v-model="relay_count"/>
-                    </div>
-                </div>
-                <div class="vx-row mb-6">
-                    <div class="vx-col sm:w-1/3 w-full">
-                        <span>신호 타입</span>
-                    </div>
-                    <div class="vx-col sm:w-2/3 w-full" >
-                        <v-select label="signal_type" :options="signal_type"/>
-                    </div>
-                </div>
-                <div class="vx-row mb-6">
-                    <div class="vx-col sm:w-1/3 w-full">
-                        <span>동작 시간</span>
-                    </div>
-                    <div class="vx-col">
-                        <vs-input-number v-model="operating_time" :step="5"/>
-                    </div>
-                    <div class="vx-col sm:w-1/3 w-full" >
-                        <v-select label="operating_time_unit" :options="operating_time_unit"/>
-                    </div>
-                </div>
-                <div class="vx-row">
-                    <div class="vx-col sm:w-2/3 w-full ml-auto">
-                        <vs-button color="warning" type="border" class="mb-2"
-                            @click="reset()">Reset</vs-button>
-                        <vs-button class="mr-3 mb-2 float-right">Submit</vs-button>
-                    </div>
-                </div>
-            </vx-card>
+    <vx-card title="버튼 등록">
+        <div class="vx-row mb-6">
+            <div class="vx-col sm:w-1/3 w-full">
+                <span>버튼</span>
+            </div>
+            <div class="vx-col sm:w-2/3 w-full">
+                <v-select label="button_type" :options="button_type" />
+            </div>
         </div>
-
-
-    </div>
+        <div class="vx-row mb-6">
+            <div class="vx-col sm:w-1/3 w-full">
+                <span>버튼 타입</span>
+            </div>
+            <div class="vx-col sm:w-2/3 w-full">
+                <v-select label="button_type_detail" :options="button_type_detail" />
+            </div>
+        </div>
+        <div class="vx-row mb-6">
+            <div class="vx-col sm:w-1/3 w-full">
+                <span>Relay 사용 개수</span>
+            </div>
+            <div class="vx-col">
+                <vs-input-number v-model="relay_count" />
+            </div>
+        </div>
+        <div class="vx-row mb-6">
+            <div class="vx-col sm:w-1/3 w-full">
+                <span>신호 타입</span>
+            </div>
+            <div class="vx-col sm:w-2/3 w-full">
+                <v-select label="signal_type" :options="signal_type" />
+            </div>
+        </div>
+        <div class="vx-row mb-6">
+            <div class="vx-col sm:w-1/3 w-full">
+                <span>동작 시간</span>
+            </div>
+            <div class="vx-col">
+                <vs-input-number v-model="operating_time" :step="5" />
+            </div>
+            <div class="vx-col sm:w-1/3 w-full">
+                <v-select label="operating_time_unit" :options="operating_time_unit" />
+            </div>
+        </div>
+        <div class="vx-row">
+            <div class="vx-col sm:w-2/3 w-full ml-auto">
+                <vs-button class="mr-3 mb-2 float-right">Submit</vs-button>
+            </div>
+        </div>
+    </vx-card>
 </template>
 
 <script>
@@ -66,10 +58,9 @@
         data() {
             return {
                 button_type: [{
-                        type: 'DE',
-                        button_type: '커튼'
-                    },
-                ],
+                    type: 'DE',
+                    button_type: '커튼'
+                }, ],
                 button_type_detail: [{
                         type: 'DE',
                         button_type_detail: 'CURTAIN 1'
@@ -84,12 +75,10 @@
                     }
                 ],
                 signal_type: [{
-                        type: 'DE',
-                        signal_type: 'Toggle'
-                    },
-                ],
-                operating_time_unit: [
-                    {
+                    type: 'DE',
+                    signal_type: 'Toggle'
+                }, ],
+                operating_time_unit: [{
                         type: 'sec',
                         operating_time_unit: '초'
                     },
@@ -116,7 +105,7 @@
                 ],
                 relay_count: 1,
                 operating_time: 0,
-                
+
             }
         },
         components: {
