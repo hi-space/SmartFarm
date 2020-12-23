@@ -52,9 +52,15 @@ export default [
         icon: "UserIcon",
       },
       {
-        url: "/user-detail",
-        name: "회원 디테일",
-        slug: "user-detail",
+        url: "/user-view",
+        name: "회원 확인",
+        slug: "user-view",
+        icon: "UserIcon",
+      },
+      {
+        url: "/user-edit",
+        name: "회원 수정",
+        slug: "user-edit",
         icon: "UserIcon",
       },
       {

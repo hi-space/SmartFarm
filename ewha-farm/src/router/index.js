@@ -53,9 +53,22 @@ const router = new Router({
                 }
               },
               {
-                path: '/user-detail',
-                name: 'user-detail',
-                component: () => import('@/views/apps/user-detail/UserDetail.vue'),
+                path: '/user-view',
+                name: 'user-view',
+                component: () => import('@/views/apps/user-view/UserView.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Farm Register', active: true }
+                  ],
+                  pageTitle: 'Farm',
+                  rule: 'editor'
+                }
+              },
+              {
+                path: '/user-edit',
+                name: 'user-edit',
+                component: () => import('@/views/apps/user-edit/UserEdit.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },

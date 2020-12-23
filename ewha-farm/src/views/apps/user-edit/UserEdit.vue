@@ -1,6 +1,5 @@
 <template>
     <div id="page-user-edit">
-
         <vs-alert color="danger" title="User Not Found" :active.sync="user_not_found">
             <span>User record with id: {{ $route.params.userId }} not found. </span>
             <span>
@@ -14,17 +13,12 @@
                 <vs-tabs v-model="activeTab" class="tab-action-btn-fill-conatiner">
                     <vs-tab label="Account" icon-pack="feather" icon="icon-user">
                         <div class="tab-text">
-                            <user-edit-tab-account class="mt-4" :data="user_data" />
+                            <user-edit-account class="mt-4" :data="user_data" />
                         </div>
                     </vs-tab>
                     <vs-tab label="Information" icon-pack="feather" icon="icon-info">
                         <div class="tab-text">
                             <user-edit-tab-information class="mt-4" :data="user_data" />
-                        </div>
-                    </vs-tab>
-                    <vs-tab label="Social" icon-pack="feather" icon="icon-share-2">
-                        <div class="tab-text">
-                            <user-edit-tab-social class="mt-4" :data="user_data" />
                         </div>
                     </vs-tab>
                 </vs-tabs>
@@ -36,16 +30,14 @@
 </template>
 
 <script>
-    import UserEditTabAccount from './UserEditTabAccount.vue'
+    import UserEditAccount from './UserEditAccount.vue'
     import UserEditTabInformation from './UserEditTabInformation.vue'
-    import UserEditTabSocial from './UserEditTabSocial.vue'
     import user_data from './user.json'
 
     export default {
         components: {
-            UserEditTabAccount,
-            UserEditTabInformation,
-            UserEditTabSocial
+            UserEditAccount,
+            UserEditTabInformation
         },
         data() {
             return {

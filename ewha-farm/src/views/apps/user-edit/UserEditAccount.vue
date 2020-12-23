@@ -3,34 +3,34 @@
     <!-- Content Row -->
     <div class="vx-row">
       <div class="vx-col md:w-1/2 w-full">
-        <vs-input class="w-full mt-4" label="Username" v-model="data_local.username" v-validate="'required|alpha_num'" name="username" />
+        <vs-input class="w-full mt-4" disabled label="이름" v-model="data_local.username" v-validate="'required|alpha_num'" name="username" />
         <span class="text-danger text-sm"  v-show="errors.has('username')">{{ errors.first('username') }}</span>
 
-        <vs-input class="w-full mt-4" label="Name" v-model="data_local.name" v-validate="'required|alpha_spaces'" name="name" />
-        <span class="text-danger text-sm"  v-show="errors.has('name')">{{ errors.first('name') }}</span>
+        <vs-input class="w-full mt-4" disabled label="핸드폰번호" v-model="data_local.mobile" type="mobile_phone" v-validate="'required|numeric'" name="email" />
+        <span class="text-danger text-sm"  v-show="errors.has('mobile_phone')">{{ errors.first('mobile_phone') }}</span>
 
-        <vs-input class="w-full mt-4" label="Email" v-model="data_local.email" type="email" v-validate="'required|email'" name="email" />
-        <span class="text-danger text-sm"  v-show="errors.has('email')">{{ errors.first('email') }}</span>
+        <vs-input class="w-full mt-4" disabled label="농장 주소" v-model="data_local.name" v-validate="'required|alpha_spaces'" name="name" />
+        <span class="text-danger text-sm"  v-show="errors.has('name')">{{ errors.first('name') }}</span>
       </div>
 
       <div class="vx-col md:w-1/2 w-full">
-
         <div class="mt-4">
-          <label class="vs-input--label">Status</label>
+          <label class="vs-input--label">계정 상태</label>
           <v-select v-model="status_local" :clearable="false" :options="statusOptions" v-validate="'required'" name="status" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
           <span class="text-danger text-sm"  v-show="errors.has('status')">{{ errors.first('status') }}</span>
         </div>
 
         <div class="mt-4">
-          <label class="vs-input--label">Role</label>
+          <label class="vs-input--label">권한</label>
           <v-select v-model="role_local" :clearable="false" :options="roleOptions" v-validate="'required'" name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
           <span class="text-danger text-sm"  v-show="errors.has('role')">{{ errors.first('role') }}</span>
         </div>
-
-        <vs-input class="w-full mt-4" label="Company" v-model="data_local.company" v-validate="'alpha_spaces'" name="company" />
-        <span class="text-danger text-sm"  v-show="errors.has('company')">{{ errors.first('company') }}</span>
-
       </div>
+
+      <div class="vx-col w-full mt-6">
+        <vs-textarea label="메모" v-model="data_local.memo" />
+      </div>
+      
     </div>
 
     <!-- Permissions -->
