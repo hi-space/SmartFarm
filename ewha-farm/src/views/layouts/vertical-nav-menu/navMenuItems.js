@@ -52,6 +52,12 @@ export default [
         icon: "UserIcon",
       },
       {
+        url: "/user-detail",
+        name: "회원 디테일",
+        slug: "user-detail",
+        icon: "UserIcon",
+      },
+      {
         url: "/farm-register",
         name: "함체 등록",
         slug: "about",
