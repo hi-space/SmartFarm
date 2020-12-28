@@ -1,15 +1,15 @@
 <template>
-    <vx-card title="함체 등록">
+    <vx-card title="CCTV 등록">
         <vs-button 
             @click="popupActive = true"
             color="primary"
-            type="border">함체 등록
+            type="border">CCTV 등록
         </vs-button>
         <vs-popup 
             @cancel="clearValMultiple" 
             @accept="acceptAlert" 
             @close="close" 
-            title="함체 등록" 
+            title="CCTV 등록" 
             accept-text="Submit"
             :is-valid="validName"
             :active.sync="popupActive">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="vx-row mb-6">
                     <div class="vx-col sm:w-1/3 w-full">
-                        <span>함체 이름</span>
+                        <span>CCTV 이름</span>
                     </div>
                     <div class="vx-col sm:w-2/3 w-full">
                         <vs-input class="w-full" v-model="device_name" />
@@ -46,10 +46,10 @@
 
                 <div class="vx-row mb-6">
                     <div class="vx-col sm:w-1/3 w-full">
-                        <span>DDNS</span>
+                        <span>IP</span>
                     </div>
                     <div class="vx-col sm:w-2/3 w-full">
-                        <vs-input class="w-full" v-model="ddns" />
+                        <vs-input class="w-full" v-model="ip" />
                     </div>
                 </div>
                 <div class="vx-row mb-6">
@@ -108,21 +108,21 @@
         </div>
         <div class="vx-row mb-6">
             <div class="vx-col sm:w-1/3 w-full">
-                <span>함체 이름</span>
+                <span>CCTV 이름</span>
             </div>
             <div class="vx-col sm:w-2/3 w-full">
                 <vs-input class="w-full" v-model="device_name" />
             </div>
         </div>
 
-        <vs-divider color="primary">Network Setting</vs-divider>
+        <vs-divider color="primary">Network Setting (RTSP)</vs-divider>
 
         <div class="vx-row mb-6">
             <div class="vx-col sm:w-1/3 w-full">
-                <span>DDNS</span>
+                <span>IP</span>
             </div>
             <div class="vx-col sm:w-2/3 w-full">
-                <vs-input class="w-full" v-model="ddns" />
+                <vs-input class="w-full" v-model="ip" />
             </div>
         </div>
         <div class="vx-row mb-6">
@@ -193,7 +193,7 @@
                 ],
                 farm_location_detail: '',
                 device_name: '',
-                ddns: '',
+                ip: '',
                 port_number: '',
                 network_id: '',
                 network_password: '',
@@ -206,7 +206,7 @@
             reset() {
                 this.farm_location_detail = '';
                 this.device_name = '';
-                this.ddns = '';
+                this.ip = '';
                 this.port_number = '';
                 this.network_id = '';
                 this.network_password = '';

@@ -12,6 +12,7 @@
     "apexcharts": "^3.23.0",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "firebase": "^8.2.1",
     "material-icons": "^0.5.1",
     "postcss-rtl": "^1.5.0",
     "prismjs": "^1.22.0",

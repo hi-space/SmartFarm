@@ -2,6 +2,8 @@
     <div id="demo-basic-card">
         <div class="vx-row">
            
+            <span> {{mytoken}} </span>
+
             <!-- OVERLAY CARD 2 -->
             <div class="vx-col w-full lg:w-1/3 sm:w-1/2 mb-base">
                 <vx-card class="overlay-card overflow-hidden">
@@ -91,6 +93,8 @@ import { videoPlayer }     from 'vue-video-player'
 import VxTimeline          from '@/views/components/timeline/VxTimeline.vue'
 import 'video.js/dist/video-js.css'
 
+import firebase from 'firebase/app'
+import 'firebase/messaging'
 
 export default{
   components: {
@@ -100,6 +104,7 @@ export default{
   },
   data () {
     return {
+      mytoken: '',
       // card 1
       card_1: {},
       card_2: {},
@@ -172,13 +177,60 @@ export default{
   },
   mounted () {
     const scroll_el = this.$refs.chatLogPS.$el || this.$refs.chatLogPS
-    scroll_el.scrollTop = this.$refs.chatLog.scrollHeight
+    scroll_el.scrollTop = this.$refs.chatLog.scrollHeight    
   },
   created () {
     // Card 1
     this.$http.get('/api/users/pixinvent/product/1')
       .then((response) => { this.card_1 = response.data })
       .catch((error)   => { console.log(error) })
+
+        var firebaseConfig = {
+          apiKey: "AIzaSyDCdTq8rTZiz3AJURPv2IOtWVqpPAx0MEo",
+          authDomain: "ewha-farm.firebaseapp.com",
+          projectId: "ewha-farm",
+          storageBucket: "ewha-farm.appspot.com",
+          messagingSenderId: "807655548321",
+          appId: "1:807655548321:web:fa1780e8b5000d4023d7e0",
+          measurementId: "G-53W79RTRFP"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const messaging = firebase.messaging();
+      messaging.usePublicVapidKey('BHpBXs42V6czZdZvuvOxcbb4vPiQFhbv0A43zRU1I7FiFUSOOmLfBA0vilF8EKainR9FYJ1A1iWsmb_1Gx_wvTY')
+
+      // 알림 수신을 위한 사용자 권한 요청
+      Notification.requestPermission()
+        .then((permission) => {
+          console.log('permission ', permission)
+          mytoken = permission;
+          if (permission !== 'granted') {
+            alert('알림을 허용해주세요')
+          }
+        })
+        
+      messaging.getToken().then((currentToken) => {
+          if (currentToken) {
+              console.log('Token: ', currentToken);
+              this.$vs.notify({
+                    color:'success',
+                    title:'Token',
+                    text:currentToken
+                })
+          } else {
+              // Show permission request.
+              console.log('No Instance ID token available. Request permission to generate one.');
+          }
+      });
+      
+      messaging.onMessage((payload) => {
+          console.log(payload.notification.body);
+          alert(payload.notification.body)
+      });
+
+
+        
   }
 }
 </script>

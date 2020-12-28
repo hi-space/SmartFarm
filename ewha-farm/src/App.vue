@@ -2,15 +2,20 @@
   <div id="app" :class="vueAppClasses">
     <router-view @setAppClasses="setAppClasses" />
   </div>
+  <!-- <div>
+    token: {{ myToken }}
+  </div> -->
 </template>
 
 <script>
 import themeConfig from '@/../themeConfig.js'
+import { myToken } from '@/services/messaging'
 
 export default {
   data () {
     return {
-      vueAppClasses: []
+      vueAppClasses: [],
+      myToken: myToken,
     }
   },
   methods: {
@@ -44,6 +49,7 @@ export default {
 
     window.addEventListener('resize', this.handleWindowResize)
     window.addEventListener('scroll', this.handleScroll)
+
   },
   destroyed () {
     window.removeEventListener('resize', this.handleWindowResize)

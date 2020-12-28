@@ -34,7 +34,7 @@
         <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
         <div class="flex flex-wrap items-center justify-between ag-grid-table-actions-right">
           <vs-input class="mb-4 md:mb-0 mr-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
-          <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button>
+          <!-- <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button> -->
         </div>
       </div>
       <ag-grid-vue
@@ -45,6 +45,7 @@
         :defaultColDef="defaultColDef"
         :rowData="contacts"
         rowSelection="single"
+        @selection-changed="onSelectionChanged"
         colResizeDefault="shift"
         :animateRows="true"
         :pagination="true"
@@ -167,6 +168,10 @@ export default {
     }
   },
   methods: {
+    onSelectionChanged() {
+      var selectedRows = this.gridApi.getSelectedRows();
+      console.log(selectedRows[0].name)
+    },
     updateSearchQuery (val) {
       this.gridApi.setQuickFilter(val)
     }
