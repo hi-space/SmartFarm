@@ -84,7 +84,7 @@ export default {
   data () {
     return {
       searchQuery: '',
-      gridOptions: {},
+      gridOptions: { },
       maxPageNumbers: 7,
       gridApi: null,
       defaultColDef: {

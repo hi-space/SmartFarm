@@ -10,8 +10,6 @@
             <button-register></button-register>
         </div>
     </div>
-    
-
 </template>
 
 <script>
@@ -25,6 +23,6 @@ export default {
         DeviceRegister,
         RelayRegister,
         ButtonRegister,
-    },
+    }
 }
 </script>

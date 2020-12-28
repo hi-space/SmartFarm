@@ -1,5 +1,54 @@
 <template>
     <vx-card title="릴레이 등록">
+
+        <vs-button 
+            @click="activePrompt = true"
+            color="primary"
+            type="border">릴레이 등록
+        </vs-button>
+        <vs-prompt 
+            @cancel="clearValMultiple" 
+            @accept="acceptAlert" 
+            @close="close" 릴레이
+            title="릴레이 등록" 
+            accept-text="Submit"
+            :is-valid="validName"
+            :active.sync="activePrompt">
+            <div class="con-exemple-prompt">
+                <div class="vx-row mb-6">
+                    <div class="vx-col sm:w-1/3 w-full">
+                        <span>DDNS</span>
+                    </div>
+                    <div class="vx-col sm:w-2/3 w-full">
+                        <vs-input disabled class="w-full" v-model="ddns" />
+                    </div>
+                </div>
+                <div class="vx-row mb-6">
+                    <div class="vx-col sm:w-1/3 w-full">
+                        <span>Port</span>
+                    </div>
+                    <div class="vx-col sm:w-2/3 w-full">
+                        <vs-input disabled class="w-full" v-model="port_number" />
+                    </div>
+                </div>
+                <div class="vx-row mb-6">
+                    <div class="vx-col sm:w-1/3 w-full">
+                        <span>Relay 타입</span>
+                    </div>
+                    <div class="vx-col sm:w-2/3 w-full">
+                        <v-select label="relay_type" :options="relay_type" />
+                    </div>
+                </div>
+                <div class="vx-row mb-6">
+                    <div class="vx-col sm:w-2/3 w-full btn-group ml-auto">
+                        <vs-button type="border" size="small">OPEN</vs-button>
+                        <vs-button type="border" size="small">STOP</vs-button>
+                        <vs-button type="border" size="small">CLOSE</vs-button>
+                    </div>
+                </div>
+            </div>
+        </vs-prompt>
+
         <div class="vx-row mb-6">
             <div class="vx-col sm:w-1/3 w-full">
                 <span>DDNS</span>
@@ -46,6 +95,7 @@
     export default {
         data() {
             return {
+                activePrompt: false,
                 relay_type: [{
                         "type": "1",
                         "relay_type": "ET0808"
