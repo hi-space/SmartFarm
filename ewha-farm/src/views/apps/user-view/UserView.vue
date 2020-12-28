@@ -11,6 +11,10 @@
 
         <div id="user-data" v-if="user_data">
             <vx-card title="Account" class="mb-base">
+                <user-view-info :data="user_data"></user-view-info>
+            </vx-card>
+
+            <vx-card title="Account" class="mb-base">
                 <div class="vx-row">
                     <!-- Information - Col 1 -->
                     <div class="vx-col flex-1" id="account-info-col-1">
@@ -48,7 +52,6 @@
                             </tr>
                         </table>
                     </div>
-
                 </div>
 
                 <vx-card class="mt-4" no-shadow card-border>                    
@@ -78,44 +81,13 @@
                     </vx-card>
                 </div>
             </div>
-
-            <!-- Permissions -->
-            <vx-card>
-
-                <div class="vx-row">
-                    <div class="vx-col w-full">
-                        <div class="flex items-end px-3">
-                            <feather-icon svgClasses="w-6 h-6" icon="LockIcon" class="mr-2" />
-                            <span class="font-medium text-lg leading-none">Permissions</span>
-                        </div>
-                        <vs-divider />
-                    </div>
-                </div>
-
-                <div class="block overflow-x-auto">
-                    <table class="w-full permissions-table">
-                        <tr>
-                            <th class="font-semibold text-base text-left px-3 py-2"
-                                v-for="heading in ['Module', 'Read', 'Write', 'Create', 'Delete']" :key="heading">
-                                {{ heading }}</th>
-                        </tr>
-
-                        <tr v-for="(val, name) in user_data.permissions" :key="name">
-                            <td class="px-3 py-2">{{ name }}</td>
-                            <td v-for="(permission, name) in val" class="px-3 py-2" :key="name+permission">
-                                <vs-checkbox v-model="val[name]" class="pointer-events-none" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-            </vx-card>
         </div>
     </div>
 </template>
 
 <script>
     import moduleUserManagement from '@/store/user-management/moduleUserManagement.js'
+    import UserViewInfo from './UserViewInfo.vue'
     import UserViewFarm from './UserViewFarm.vue'
     import UserViewDevice from './UserViewDevice.vue'
     import user_data from '@/data/user.json'
@@ -130,6 +102,7 @@
         components: {
             UserViewFarm,
             UserViewDevice,
+            UserViewInfo,
         },
         computed: {
             userAddress() {

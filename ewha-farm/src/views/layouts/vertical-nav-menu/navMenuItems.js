@@ -58,12 +58,6 @@ export default [
         icon: "UserIcon",
       },
       {
-        url: "/user-edit",
-        name: "회원 수정",
-        slug: "user-edit",
-        icon: "UserIcon",
-      },
-      {
         url: "/farm-register",
         name: "함체 등록",
         slug: "about",
