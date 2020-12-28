@@ -1,18 +1,18 @@
 <template>
     <vx-card title="함체 등록">
         <vs-button 
-            @click="activePrompt = true"
+            @click="popupActive = true"
             color="primary"
             type="border">함체 등록
         </vs-button>
-        <vs-prompt 
+        <vs-popup 
             @cancel="clearValMultiple" 
             @accept="acceptAlert" 
             @close="close" 
             title="함체 등록" 
             accept-text="Submit"
             :is-valid="validName"
-            :active.sync="activePrompt">
+            :active.sync="popupActive">
             <div class="con-exemple-prompt">
                 <div class="vx-row mb-6">
                     <div class="vx-col sm:w-1/3 w-full">
@@ -76,10 +76,16 @@
                         <vs-input type="password" class="w-full" v-model="network_password" />
                     </div>
                 </div>
+                <div class="vx-row">
+                    <div class="vx-col sm:w-2/3 w-full ml-auto">
+                        <vs-button color="warning" type="border" class="mb-2" @click="reset">Reset</vs-button>
+                        <vs-button class="mr-3 mb-2 float-right">Submit</vs-button>
+                    </div>
+                </div>
             </div>
-        </vs-prompt>
+        </vs-popup>
 
-
+        <vs-divider color="danger">Popup</vs-divider>
 
         <div class="vx-row mb-6">
             <div class="vx-col sm:w-1/3 w-full">
@@ -158,7 +164,7 @@
     export default {
         data() {
             return {
-                activePrompt: false,
+                popupActive: false,
                 username: [{
                         countryCode: 'DE',
                         username: '이동엽'
