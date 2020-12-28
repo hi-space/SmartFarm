@@ -9,7 +9,7 @@
 
 <script>
 import themeConfig from '@/../themeConfig.js'
-import { myToken } from '@/services/messaging'
+import { myToken, messaging } from '@/services/messaging'
 
 export default {
   data () {
@@ -50,6 +50,23 @@ export default {
     window.addEventListener('resize', this.handleWindowResize)
     window.addEventListener('scroll', this.handleScroll)
 
+    messaging.onMessage((payload) => {
+        console.log(payload);
+
+        this.$vs.notify({
+                        color:'success',
+                        title:'FCM Noti',
+                        text: payload.notification.body
+                    })
+
+        const title = 'Title';
+        const options = {
+            body: payload.notification.body,
+            icon: '/firebase-logo.png',
+        };
+        const notification = new Notification(title, options);
+        return notification;
+    });
   },
   destroyed () {
     window.removeEventListener('resize', this.handleWindowResize)

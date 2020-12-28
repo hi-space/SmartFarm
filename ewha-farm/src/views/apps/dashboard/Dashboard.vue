@@ -55,14 +55,7 @@
                 </vx-card>
             </div>
 
-            <div class="vx-col w-full lg:w-2/3 mb-base">
-                <vx-card class="overflow-hidden">
-                    <template slot="no-body">
-                        <video-player ref="player" class="media-video-player card-video" :options="playerOptions" />
-                    </template>
-                </vx-card>
-            </div>
-
+      
             <!-- ACTIVITY TIMELINE -->
             <div class="vx-col w-full sm:w-1/2 md:w-1/2 mb-base">
                 <vx-card title="Activity Timeline">
@@ -169,14 +162,10 @@ export default{
     scrollbarTag () { return this.$store.getters.scrollbarTag }
   },
   mounted () {
-    const scroll_el = this.$refs.chatLogPS.$el || this.$refs.chatLogPS
-    scroll_el.scrollTop = this.$refs.chatLog.scrollHeight    
+    // const scroll_el = this.$refs.chatLogPS.$el || this.$refs.chatLogPS
+    // scroll_el.scrollTop = this.$refs.chatLog.scrollHeight    
   },
   created () {
-    // Card 1
-    this.$http.get('/api/users/pixinvent/product/1')
-      .then((response) => { this.card_1 = response.data })
-      .catch((error)   => { console.log(error) })        
   }
 }
 </script>

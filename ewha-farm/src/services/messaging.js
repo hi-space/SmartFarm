@@ -1,7 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/messaging'
 
-
 var firebaseConfig = {
     apiKey: "AIzaSyDCdTq8rTZiz3AJURPv2IOtWVqpPAx0MEo",
     authDomain: "ewha-farm.firebaseapp.com",
@@ -16,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 
 var myToken = '';
 const messaging = firebase.messaging();
-messaging.usePublicVapidKey('BHpBXs42V6czZdZvuvOxcbb4vPiQFhbv0A43zRU1I7FiFUSOOmLfBA0vilF8EKainR9FYJ1A1iWsmb_1Gx_wvTY');
+messaging.usePublicVapidKey('BHpBXs42V6czZdZvuvOxcbb4vPiQFhbv0A43zRU1I7FiFUSOOmLfBA0vilF8EKainR9FYJ1A1iWsmb_1Gx_wvTY')
 
 Notification.requestPermission()
         .then((permission) => {
@@ -35,10 +34,11 @@ messaging.getToken().then((currentToken) => {
         console.log('No Instance ID token available. Request permission to generate one.');
     }
 });
+
 messaging.onMessage((payload) => {
     console.log(payload);
     alert(payload.notification.body)
-    
+
     const title = 'Title';
     const options = {
         body: payload.notification.body,
@@ -50,4 +50,5 @@ messaging.onMessage((payload) => {
 
 export {
     myToken,
+    messaging
 };
