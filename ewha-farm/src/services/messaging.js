@@ -37,9 +37,11 @@ messaging.getToken().then((currentToken) => {
 });
 messaging.onMessage((payload) => {
     console.log(payload);
+    alert(payload.notification.body)
+    
     const title = 'Title';
     const options = {
-        body: payload.data.message,
+        body: payload.notification.body,
         icon: '/firebase-logo.png',
     };
     const notification = new Notification(title, options);
