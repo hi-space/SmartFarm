@@ -1,5 +1,8 @@
 <template>
     <div id="demo-basic-card">
+      
+        <cctv-viewer></cctv-viewer>
+
         <div class="vx-row">
             <!-- OVERLAY CARD 2 -->
             <div class="vx-col w-full lg:w-1/3 sm:w-1/2 mb-base">
@@ -81,13 +84,15 @@
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import { videoPlayer }     from 'vue-video-player'
 import VxTimeline          from '@/views/components/timeline/VxTimeline.vue'
+import CCTVViewer from './CCTVViewer.vue'
 import 'video.js/dist/video-js.css'
 
 export default{
   components: {
     VuePerfectScrollbar,
     videoPlayer,
-    VxTimeline
+    VxTimeline,
+    'cctv-viewer': CCTVViewer,
   },
   data () {
     return {

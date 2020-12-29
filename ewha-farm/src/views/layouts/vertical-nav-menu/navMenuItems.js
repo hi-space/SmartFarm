@@ -75,7 +75,7 @@ export default [
         icon: "VideoIcon"
       },
       {
-        url: null,
+        url: '/remote-control',
         name: "원격제어",
         icon: "SlidersIcon"
       },

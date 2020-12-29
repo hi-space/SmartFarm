@@ -117,6 +117,19 @@ const router = new Router({
                   rule: 'editor'
                 }
               },
+              {
+                path: '/remote-control',
+                name: 'remote-control',
+                component: () => import('@/views/apps/dashboard/RemoteControl.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: '원격 제어', active: true }
+                  ],
+                  pageTitle: 'Farm',
+                  rule: 'editor'
+                }
+              },
   
             ],
         },
