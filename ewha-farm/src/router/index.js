@@ -10,35 +10,42 @@ const router = new Router({
         return { x: 0, y: 0 }
     },
     routes: [
-
         {
-    // =============================================================================
-    // MAIN LAYOUT ROUTES
-    // =============================================================================
+            // =============================================================================
+            // MAIN LAYOUT ROUTES
+            // =============================================================================
             path: '',
             component: () => import('@/components/layouts/main/Main.vue'),
             children: [
-        // =============================================================================
-        // Theme Routes
-        // =============================================================================
+              // =============================================================================
+              // Theme Routes
+              // =============================================================================
               {
                 path: '/',
                 name: 'home',
                 component: () => import('@/views/apps/dashboard/Dashboard.vue')
               },
+              
+              // =============================================================================
+              // Common Routes
+              // =============================================================================
               {
-                path: '/user-settings',
-                name: 'user-settings',
-                component: () => import('@/views/apps/user-settings/UserSettings.vue'),
+                path: '/settings',
+                name: 'settings',
+                component: () => import('@/views/apps/common/settings/Settings.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'User Settings', active: true }
+                    { title: 'Settings', active: true }
                   ],
                   pageTitle: 'Settings',
                   rule: 'editor'
                 }
               },
+
+              // =============================================================================
+              // Admin Routes
+              // =============================================================================
               {
                 path: '/user-list',
                 name: 'user-list',
