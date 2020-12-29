@@ -1,6 +1,72 @@
 <template>
     <div class="vx-row">
-        <div class="vx-col w-full lg:w-1/2 mb-base">
+        <div class="vx-col w-1/2 mb-base">
+            <vx-card class="overflow-hidden">
+                <template slot="no-body">
+                    <video-player class="vjs-custom-skin"
+                            ref="videoPlayer"
+                            :options="playerOptions"
+                            :playsinline="true"
+                            @play="onPlayerPlay($event)"
+                            @pause="onPlayerPause($event)"
+                            @ended="onPlayerEnded($event)"
+                            @loadeddata="onPlayerLoadeddata($event)"
+                            @waiting="onPlayerWaiting($event)"
+                            @playing="onPlayerPlaying($event)"
+                            @timeupdate="onPlayerTimeupdate($event)"
+                            @canplay="onPlayerCanplay($event)"
+                            @canplaythrough="onPlayerCanplaythrough($event)"
+                            @ready="playerReadied"
+                            @statechanged="playerStateChanged($event)">
+                    </video-player>
+                </template>
+            </vx-card>
+        </div>
+        <div class="vx-col w-1/2 mb-base">
+            <vx-card class="overflow-hidden">
+                <template slot="no-body">
+                    <video-player class="vjs-custom-skin"
+                            ref="videoPlayer"
+                            :options="playerOptions"
+                            :playsinline="true"
+                            @play="onPlayerPlay($event)"
+                            @pause="onPlayerPause($event)"
+                            @ended="onPlayerEnded($event)"
+                            @loadeddata="onPlayerLoadeddata($event)"
+                            @waiting="onPlayerWaiting($event)"
+                            @playing="onPlayerPlaying($event)"
+                            @timeupdate="onPlayerTimeupdate($event)"
+                            @canplay="onPlayerCanplay($event)"
+                            @canplaythrough="onPlayerCanplaythrough($event)"
+                            @ready="playerReadied"
+                            @statechanged="playerStateChanged($event)">
+                    </video-player>
+                </template>
+            </vx-card>
+        </div>
+        <div class="vx-col w-1/2 mb-base">
+            <vx-card class="overflow-hidden">
+                <template slot="no-body">
+                    <video-player class="vjs-custom-skin"
+                            ref="videoPlayer"
+                            :options="playerOptions"
+                            :playsinline="true"
+                            @play="onPlayerPlay($event)"
+                            @pause="onPlayerPause($event)"
+                            @ended="onPlayerEnded($event)"
+                            @loadeddata="onPlayerLoadeddata($event)"
+                            @waiting="onPlayerWaiting($event)"
+                            @playing="onPlayerPlaying($event)"
+                            @timeupdate="onPlayerTimeupdate($event)"
+                            @canplay="onPlayerCanplay($event)"
+                            @canplaythrough="onPlayerCanplaythrough($event)"
+                            @ready="playerReadied"
+                            @statechanged="playerStateChanged($event)">
+                    </video-player>
+                </template>
+            </vx-card>
+        </div>
+        <div class="vx-col w-1/2 mb-base">
             <vx-card class="overflow-hidden">
                 <template slot="no-body">
                     <video-player class="vjs-custom-skin"
@@ -23,8 +89,6 @@
             </vx-card>
         </div>
     </div>
-
-
 </template>
 
 <script>
@@ -42,6 +106,9 @@
                 playerOptions: {                
                     autoplay: true,
                     muted: true,
+                    loop: true,
+                    controls: true,
+                    fluid: true,
                     language: 'en',
                     playbackRates: [0.7, 1.0, 1.5, 2.0],
                     sources: [{
@@ -93,11 +160,9 @@
             // player is ready
             playerReadied(player) {
                 // seek to 10s
-                console.log('example player 1 readied', player)
-                player.currentTime(10)
+                // player.currentTime(10)
                 // console.log('example 01: the player is readied', player)
             }
         }
-
     }
 </script>
