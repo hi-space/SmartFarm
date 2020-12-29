@@ -17,14 +17,6 @@ const router = new Router({
             path: '',
             component: () => import('@/components/layouts/main/Main.vue'),
             children: [
-              // =============================================================================
-              // Theme Routes
-              // =============================================================================
-              {
-                path: '/',
-                name: 'home',
-                component: () => import('@/views/apps/dashboard/Dashboard.vue')
-              },
               
               // =============================================================================
               // Common Routes
@@ -32,7 +24,7 @@ const router = new Router({
               {
                 path: '/settings',
                 name: 'settings',
-                component: () => import('@/views/apps/common/settings/Settings.vue'),
+                component: () => import('@/views/common/settings/Settings.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
@@ -47,121 +39,137 @@ const router = new Router({
               // Admin Routes
               // =============================================================================
               {
-                path: '/user-list',
+                path: '/users',
                 name: 'user-list',
-                component: () => import('@/views/apps/user-list/UserList.vue'),
+                component: () => import('@/views/admin/user-list/UserList.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'User Management', active: true }
+                    { title: 'User' },
+                    { title: 'List', active: true }
                   ],
-                  pageTitle: 'Users',
+                  pageTitle: 'User List',
                   rule: 'editor'
                 }
               },
               {
-                path: '/user-view',
+                path: '/user/view/:userId',
                 name: 'user-view',
-                component: () => import('@/views/apps/user-view/UserView.vue'),
+                component: () => import('@/views/admin/user-view/UserView.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'Farm Register', active: true }
+                    { title: 'User' },
+                    { title: 'View', active: true }
                   ],
-                  pageTitle: 'Farm',
+                  pageTitle: 'User View',
                   rule: 'editor'
                 }
               },
               {
-                path: '/user-edit',
+                path: '/user/edit/:userId',
                 name: 'user-edit',
-                component: () => import('@/views/apps/user-edit/UserEdit.vue'),
+                component: () => import('@/views/admin/user-edit/UserEdit.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'Farm Register', active: true }
+                    { title: 'User' },
+                    { title: 'Edit', active: true }
                   ],
-                  pageTitle: 'Farm',
+                  pageTitle: 'User Edit',
                   rule: 'editor'
                 }
               },
               {
-                path: '/device-list',
-                name: 'device-list',
-                component: () => import('@/views/apps/device-list/DeviceList.vue'),
-                meta: {
-                  breadcrumb: [
-                    { title: 'Home', url: '/' },
-                    { title: 'Device Settings', active: true }
-                  ],
-                  pageTitle: 'Devices',
-                  rule: 'editor'
-                }
-              },
-              {
-                path: '/farm-register',
+                path: '/user/farm/:userId',
                 name: 'farm-register',
-                component: () => import('@/views/apps/farm-register/FarmRegister.vue'),
+                component: () => import('@/views/admin/farm-register/FarmRegister.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'Farm Register', active: true }
                   ],
-                  pageTitle: 'Farm',
+                  pageTitle: 'TODO',
+                  rule: 'editor'
+                }
+              },
+
+              // =============================================================================
+              // User Routes
+              // =============================================================================
+              {
+                path: '/',
+                name: 'home',
+                component: () => import('@/views/user/Dashboard.vue')
+              },
+              {
+                path: '/monitor/cctv',
+                name: 'cctv-monitoring',
+                component: () => import('@/views/user/monitoring/CCTVViewer.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Monitoring' },
+                    { title: 'CCTV', active: true }
+                  ],
+                  pageTitle: 'Monitoring',
                   rule: 'editor'
                 }
               },
               {
-                path: '/cctv',
-                name: 'cctv',
-                component: () => import('@/views/apps/dashboard/CCTVViewer.vue'),
+                path: '/monitor/sensor',
+                name: 'sensor-monitoring',
+                component: () => import('@/views/user/monitoring/SensorMonitor.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'Farm Register', active: true }
+                    { title: 'Monitoring' },
+                    { title: 'Sensor', active: true }
                   ],
-                  pageTitle: 'Farm',
+                  pageTitle: 'Monitoring',
                   rule: 'editor'
                 }
               },
               {
-                path: '/remote-control',
+                path: '/control/remote',
                 name: 'remote-control',
-                component: () => import('@/views/apps/dashboard/RemoteControl.vue'),
+                component: () => import('@/views/user/control/RemoteControl.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: '원격 제어', active: true }
+                    { title: '원격 제어' },
+                    { title: '실시간 제어', active: true }
                   ],
-                  pageTitle: 'Farm',
+                  pageTitle: 'Remote Control',
                   rule: 'editor'
                 }
               },
               {
-                path: '/sensor-monitor',
-                name: 'sensor-monitor',
-                component: () => import('@/views/apps/dashboard/SensorMonitor.vue'),
+                path: '/control/setting',
+                name: 'remote-setting',
+                component: () => import('@/views/user/control/AutoControlSetting.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: '원격 제어', active: true }
+                    { title: '원격 제어' },
+                    { title: '자동화 설정', active: true }
                   ],
-                  pageTitle: 'Farm',
+                  pageTitle: 'Remote Control',
                   rule: 'editor'
                 }
               },
             ],
         },
-    // =============================================================================
-    // FULL PAGE LAYOUTS
-    // =============================================================================
+
+        // =============================================================================
+        // FULL PAGE LAYOUTS
+        // =============================================================================
         {
             path: '',
             component: () => import('@/components/layouts/full-page/FullPage.vue'),
             children: [
-        // =============================================================================
-        // PAGES
-        // =============================================================================
+              // =============================================================================
+              // PAGES
+              // =============================================================================
               {
                 path: '/pages/login',
                 name: 'page-login',

@@ -46,19 +46,19 @@ export default [
     icon: 'PackageIcon',
     items: [
       {
-        url: "/user-list",
+        url: "/users",
         name: "회원관리",
         slug: "home",
         icon: "UsersIcon",
       },
       {
-        url: "/user-view",
+        url: "/user/view/123",
         name: "회원 확인",
         slug: "user-view",
         icon: "UserIcon",
       },
       {
-        url: "/farm-register",
+        url: "/user/farm/123",
         name: "함체 등록",
         slug: "about",
         icon: "PlusCircleIcon",
@@ -70,27 +70,25 @@ export default [
     icon: 'PackageIcon',
     items: [
       {
-        url: '/cctv',
+        url: '/monitor/cctv',
         name: "CCTV",
         icon: "VideoIcon"
       },
       {
-        url: '/remote-control',
-        name: "원격제어",
-        icon: "SlidersIcon"
-      },
-      {
-        url: '/sensor-monitor',
+        url: '/monitor/sensor',
         name: "센서 모니터링",
         icon: "ActivityIcon"
       },
       {
-        url: null,
+        url: '/control/remote',
+        name: "원격제어",
+        icon: "SlidersIcon"
+      },
+      {
+        url: '/control/setting',
         name: '자동화 설정',
         icon: "SettingsIcon"
       }
     ]
   }
-
-  
 ]

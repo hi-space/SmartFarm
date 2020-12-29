@@ -10,7 +10,7 @@ export default {
   name: 'CellRendererLink',
   computed: {
     url () {
-      return '/user-view'
+      return '/user/view/123'
 
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose

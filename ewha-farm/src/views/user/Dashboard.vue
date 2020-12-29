@@ -12,8 +12,8 @@
 
 <script>
 import VxCard from '@/components/vx-card/VxCard.vue'
-import CCTVViewer from './CCTVViewer.vue'
-import SensorMonitor from './SensorMonitor.vue'
+import CCTVViewer from './monitoring/CCTVViewer.vue'
+import SensorMonitor from './monitoring/SensorMonitor.vue'
 
 export default {
   components: {
