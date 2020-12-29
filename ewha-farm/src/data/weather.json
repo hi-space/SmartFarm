@@ -5,17 +5,26 @@
     "weather_icon": "http://openweathermap.org/img/wn/09d@4x.png",
     "temperature": "-6",
     "time": "2020-08-21 12:49:50 PM",
-    "meta": [{
+    "meta": [
+        {
+            "label": "Feels",
+            "value": "-8"
+        },
+        {
             "label": "Humidity",
             "value": "60%"
         },
         {
-            "label": "Wind",
-            "value": "4823km/h"
+            "label": "Temp Min / Max",
+            "value": "-4 ~ 4"
         },
         {
-            "label": "A",
-            "value": "60%"
+            "label": "Wind",
+            "value": "4823 km/h"
+        },
+        {
+            "label": "Pressure",
+            "value": "90"
         }
     ]
 }
