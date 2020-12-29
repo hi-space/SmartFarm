@@ -30,6 +30,26 @@
                   color="danger" />
             </div>
 
+            
+            <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
+                <vx-card title="Sessions By Device">
+                    <ul>
+                        <li v-for="deviceData in analyticsData" :key="deviceData.device" class="flex mb-3">
+                            <feather-icon :icon="deviceData.icon" :svgClasses="[`h-5 w-5 stroke-current text-${deviceData.color}`]"></feather-icon>
+                            <span class="ml-2 inline-block font-semibold">{{ deviceData.device }}</span>
+                            <span class="mx-2">-</span>
+                            <span class="mr-4">{{ deviceData.sessionsPercentage }}%</span>
+                            <div class="ml-auto flex -mr-1">
+                            <span class="mr-1">{{ deviceData.comparedResultPercentage }}%</span>
+                            <feather-icon :icon=" deviceData.comparedResultPercentage < 0 ? 'ArrowDownIcon' : 'ArrowUpIcon'" :svgClasses="[deviceData.comparedResultPercentage < 0 ? 'text-danger' : 'text-success'  ,'stroke-current h-4 w-4 mb-1 mr-1']"></feather-icon>
+                            </div>
+                        </li>
+                    </ul>
+
+                </vx-card>
+            </div>
+
+
             <!-- LINE CHART -->
             <div class="vx-col w-full md:w-2/3 mb-base">
                 <vx-card title="Revenue">
@@ -214,7 +234,31 @@ export default {
                 tooltip: {
                     x: { show: false }
                 }
-            }
+            },
+            analyticsData:  [
+                {
+                    "device": "Dekstop",
+                    "icon": "MonitorIcon",
+                    "color": "primary",
+                    "sessionsPercentage": 58.6,
+                    "comparedResultPercentage": 2
+                },
+                {
+                    "device": "Mobile",
+                    "icon": "SmartphoneIcon",
+                    "color": "warning",
+                    "sessionsPercentage": 34.9,
+                    "comparedResultPercentage": 8
+                },
+                {
+                    "device": "Tablet",
+                    "icon": "TabletIcon",
+                    "color": "danger",
+                    "sessionsPercentage": 6.5,
+                    "comparedResultPercentage": -5
+                }
+            ]
+                
         }
     }
 }
