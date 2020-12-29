@@ -1,12 +1,12 @@
 <template>
-    <vx-card title="농장 환경" class="overflow-hidden">
-        <ul>
+    <vx-card title="농장 환경" class="overflow-hidden" refresh-content-action>
+        <ul class="px-6">
             <li v-for="sensorData in sensorList" :key="sensorData.id" class="flex mb-5">
                 <feather-icon 
                     :icon="sensorData.icon" 
                     :svgClasses="[`h-5 w-5 stroke-current text-${sensorData.color}`]">
                 </feather-icon>
-                <span class="ml-3 inline-block font-semibold text-xl">{{ sensorData.name }}</span>
+                <span class="ml-3 inline-block font-semibold text-xl px-2">{{ sensorData.name }}</span>
                 <div class="ml-auto flex">
                     <span class="mr-1 text-xl">{{ sensorData.value }}</span>
                 </div>
