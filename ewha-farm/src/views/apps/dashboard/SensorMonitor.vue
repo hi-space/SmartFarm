@@ -23,20 +23,26 @@
                 <sensor-graph-card></sensor-graph-card>
             </vx-card>
         </div>
+
+        <!-- Sensor Graph Card -->
+        <div class="vx-col w-full mb-base">
+            <network-state-card></network-state-card>
+        </div>
     </div>
 </template>
 
 <script>
+import NetworkStateCard from './sensor-card/NetworkStateCard.vue'
 import SensorCard from './sensor-card/SensorCard.vue'
 import SensorGraphCard from './sensor-card/SensorGraphCard.vue'
 import WeatherCard from './sensor-card/WeatherCard.vue'
 
-
 export default {
   components: { 
-      WeatherCard, 
-      SensorCard,
-    SensorGraphCard 
+        WeatherCard, 
+        SensorCard,
+        SensorGraphCard,
+        NetworkStateCard
     },
 }
 </script>
