@@ -25,13 +25,13 @@
         "name": "HS2",
         "icon": "CpuIcon",
         "color": "default",
-        "value": "ON"
+        "value": "30 ppm"
     },
     {
         "id": 5,
         "name": "NH3",
         "icon": "CpuIcon",
         "color": "default",
-        "value": "ON"
+        "value": "45 ppm"
     }
 ]

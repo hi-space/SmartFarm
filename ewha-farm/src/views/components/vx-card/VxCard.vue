@@ -10,7 +10,7 @@
 
             <!-- card title -->
             <div class="vx-card__title">
-                <h4 v-if="this.$props.title" :style="titleStyles" :class="titleClasses">{{ title }}</h4>
+                <h4 v-if="this.$props.title" :style="titleStyles" :class="titleClasses"> {{ title }} </h4>
                 <h6 v-if="this.$props.subtitle" :style="subtitleStyles" :class="subtitleClasses">{{ subtitle }}</h6>
             </div>
 
@@ -185,7 +185,7 @@ export default{
       }
     },
     titleClasses () {
-      let str = ''
+      let str = 'font-semibold '
 
       // add content color
       if (_color.isColor(this.titleColor)) {
