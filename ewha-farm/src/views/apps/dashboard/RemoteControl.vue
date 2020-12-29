@@ -1,56 +1,58 @@
 <template>
     <div class="vx-row">
 
-        <!-- Collpase  -->
-        <div class="vx-col w-full">
-            <vs-collapse :type="collapse_type">
-                <vs-collapse-item icon-pack="feather" icon-arrow="icon-arrow-down">
-                    <div slot="header">
-                        <span class="text-primary"> <b> Collapse item </b> </span>
-                    </div>
-                    
-                    <!-- Drag & Drop -->
-                    <vs-list>
-                        <vs-list-header title="People Group" color="primary"></vs-list-header>
-                        <draggable :list="list" class="cursor-move">
-                            <transition-group>
-                                <vs-list-item 
-                                    class="list-item" 
-                                    v-for="listItem in list" 
-                                    :key="listItem.email" 
-                                    :title="listItem.name" 
-                                    :subtitle="listItem.email">
-                                <vs-avatar slot="avatar" 
-                                    :text="listItem.name" />
-                                </vs-list-item>
-                            </transition-group>
-                        </draggable>
-                    </vs-list>
+        <vx-card class="overflow-hidden">
+             <!-- Collpase  -->
+            <div class="vx-col w-full">
+                <vs-collapse :type="collapse_type" accordion>
+                    <vs-collapse-item icon-pack="feather" icon-arrow="icon-arrow-down">
+                        <div slot="header">
+                            Collapse item
+                        </div>
+                        <!-- Drag & Drop -->
+                        <vs-list>
+                            <vs-list-header icon-pack="feather" icon="icon-shield" title="People Group" color="warning"></vs-list-header>
+                            <draggable :list="list" class="cursor-move">
+                                <transition-group>
+                                    <vs-list-item 
+                                        class="list-item" 
+                                        v-for="listItem in list" 
+                                        :key="listItem.email" 
+                                        :title="listItem.name" 
+                                        :subtitle="listItem.email">
+                                    <vs-avatar slot="avatar" 
+                                        :text="listItem.name" />
+                                    </vs-list-item>
+                                </transition-group>
+                            </draggable>
+                        </vs-list>
+                    </vs-collapse-item>
 
-                </vs-collapse-item>
+                    <vs-collapse-item icon-pack="feather" icon-arrow="icon-chevrons-down">
+                        <div slot="header">
+                            Collapse item2
+                        </div>
+                        Nunc....maximus.
+                    </vs-collapse-item>
 
-                <vs-collapse-item icon-pack="feather" icon-arrow="icon-star">
-                    <div slot="header">
-                        Collapse item 2
-                    </div>
-                    Nunc....maximus.
-                </vs-collapse-item>
+                    <vs-collapse-item icon-pack="feather" icon-arrow="icon-chevrons-down">
+                        <div slot="header">
+                            Collapse item3
+                        </div>
+                        Suspendisse....eu
+                    </vs-collapse-item>
 
-                <vs-collapse-item icon-pack="feather" icon-arrow="icon-bookmark">
-                    <div slot="header">
-                        Collapse item 3
-                    </div>
-                    Suspendisse....eu
-                </vs-collapse-item>
+                    <vs-collapse-item icon-pack="feather" icon-arrow="icon-chevrons-down">
+                        <div slot="header">
+                            Collapse item4
+                        </div>
+                        Suspendisse....finibus.
+                    </vs-collapse-item>
+                </vs-collapse>
+            </div>
+        </vx-card>
 
-                <vs-collapse-item icon-pack="feather" icon-arrow="icon-chevrons-down">
-                    <div slot="header">
-                        Collapse item 4
-                    </div>
-                    Suspendisse....finibus.
-                </vs-collapse-item>
-            </vs-collapse>
-        </div>
+        
     </div>
 </template>
 
@@ -104,4 +106,12 @@ export default {
 
 <style>
 .list-item { transition: all .5s }
+
+.vs-collapse-item--header {
+  font-size: 1.2rem;
+  padding: 1rem;
+  /* background-color: rgba(var(--vs-primary), 1) !important; */
+  color: rgb(var(--vs-primary));
+  font-weight: 600;
+}
 </style>
