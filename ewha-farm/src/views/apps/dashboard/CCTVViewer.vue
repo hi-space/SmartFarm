@@ -19,7 +19,6 @@
 </template>
 
 <script>
-
 import CCTVPlayer from './cctv-player/CCTVPlayer.vue'
 
 export default {
