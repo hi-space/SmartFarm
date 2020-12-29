@@ -55,7 +55,6 @@
                 <!-- BREADCRUMB -->
                 <vx-breadcrumb class="ml-4 md:block hidden" v-if="$route.meta.breadcrumb" :route="$route" :isRTL="$vs.rtl" />
 
-                <selecting-values></selecting-values>
               </div>
             </transition>
 

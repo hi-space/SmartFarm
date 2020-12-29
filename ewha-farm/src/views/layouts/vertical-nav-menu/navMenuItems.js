@@ -49,7 +49,7 @@ export default [
         url: "/user-list",
         name: "회원관리",
         slug: "home",
-        icon: "UserIcon",
+        icon: "UsersIcon",
       },
       {
         url: "/user-view",
@@ -63,12 +63,6 @@ export default [
         slug: "about",
         icon: "PlusCircleIcon",
       },
-      {
-        url: null,
-        name: "버튼 타입",
-        slug: "about",
-        icon: "SettingsIcon",
-      }
     ]
   },
   {
@@ -76,7 +70,7 @@ export default [
     icon: 'PackageIcon',
     items: [
       {
-        url: null,
+        url: '/cctv',
         name: "CCTV",
         icon: "VideoIcon"
       },

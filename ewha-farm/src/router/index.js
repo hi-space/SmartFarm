@@ -16,7 +16,7 @@ const router = new Router({
     // MAIN LAYOUT ROUTES
     // =============================================================================
             path: '',
-            component: () => import('@/views/layouts/main/AdminMain.vue'),
+            component: () => import('@/views/layouts/main/Main.vue'),
             children: [
         // =============================================================================
         // Theme Routes
@@ -95,6 +95,19 @@ const router = new Router({
                 path: '/farm-register',
                 name: 'farm-register',
                 component: () => import('@/views/apps/farm-register/FarmRegister.vue'),
+                meta: {
+                  breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Farm Register', active: true }
+                  ],
+                  pageTitle: 'Farm',
+                  rule: 'editor'
+                }
+              },
+              {
+                path: '/cctv',
+                name: 'cctv',
+                component: () => import('@/views/apps/dashboard/CCTVViewer.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
