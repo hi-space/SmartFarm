@@ -81,9 +81,9 @@ const router = new Router({
                 }
               },
               {
-                path: '/user/farm/:userId',
+                path: '/user/farm',
                 name: 'farm-register',
-                component: () => import('@/views/admin/farm-register/FarmRegister.vue'),
+                component: () => import('@/views/admin/farm-register/RegisterView.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },

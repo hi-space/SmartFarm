@@ -58,7 +58,7 @@ export default [
         icon: "UserIcon",
       },
       {
-        url: "/user/farm/123",
+        url: "/user/farm",
         name: "함체 등록",
         slug: "about",
         icon: "PlusCircleIcon",
