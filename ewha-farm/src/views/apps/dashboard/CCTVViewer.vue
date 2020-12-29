@@ -1,18 +1,18 @@
 <template>
     <div class="vx-row">
-        <div class="vx-col w-1/2 mb-base">
+        <div class="w-1/2">
             <cctv-player :src=cctv_url_1></cctv-player>
         </div>
 
-        <div class="vx-col w-1/2 mb-base">
+        <div class="w-1/2">
             <cctv-player :src=cctv_url_2></cctv-player>
         </div>
 
-        <div class="vx-col w-1/2 mb-base">
+        <div class="w-1/2">
             <cctv-player :src=cctv_url_3></cctv-player>
         </div>
 
-        <div class="vx-col w-1/2 mb-base">
+        <div class="w-1/2">
             <cctv-player :src=cctv_url_4></cctv-player>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
-    <vx-card class="overflow-hidden">
-        <template slot="no-body">
+    <!-- <vx-card class="overflow-hidden">
+        <template slot="no-body"> -->
             <video-player class="vjs-custom-skin"
                     ref="videoPlayer"
                     :options="playerOptions"
@@ -17,8 +17,8 @@
                     @ready="playerReadied"
                     @statechanged="playerStateChanged($event)">
             </video-player>
-        </template>
-    </vx-card>
+        <!-- </template>
+    </vx-card> -->
 </template>
 
 <script>
