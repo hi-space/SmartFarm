@@ -21,7 +21,7 @@
     import farm from '@/data/user-list.json'
 
     import { AgGridVue } from 'ag-grid-vue'
-    import CellRendererActions from '@/views/components/cell-renderer/CellRendererActions.vue'
+    import CellRendererActions from '@/components/cell-renderer/CellRendererActions.vue'
 
     import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 

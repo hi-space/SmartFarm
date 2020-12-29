@@ -67,10 +67,10 @@ import contacts from '@/data/user-list.json'
 
 import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 
-import CellRendererLink from '@/views/components/cell-renderer/CellRendererLink.vue'
-import CellRendererStatus from '@/views/components/cell-renderer/CellRendererStatus.vue'
-import CellRendererVerified from '@/views/components/cell-renderer/CellRendererVerified.vue'
-import CellRendererActions from '@/views/components/cell-renderer/CellRendererActions.vue'
+import CellRendererLink from '@/components/cell-renderer/CellRendererLink.vue'
+import CellRendererStatus from '@/components/cell-renderer/CellRendererStatus.vue'
+import CellRendererVerified from '@/components/cell-renderer/CellRendererVerified.vue'
+import CellRendererActions from '@/components/cell-renderer/CellRendererActions.vue'
 
 
 export default {

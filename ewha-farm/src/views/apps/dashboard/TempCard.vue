@@ -66,15 +66,15 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
-import StatisticsCardLine from '@/views/components/statistics-cards/StatisticsCardLine.vue'
-import ChangeTimeDurationDropdown from '@/views/components/ChangeTimeDurationDropdown.vue'
+import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
+import ChangeTimeDurationDropdown from '@/components/ChangeTimeDurationDropdown.vue'
 
 import subscribersGained from '@/data/subscribersGained.json'
 import revenueComparisonLine from '@/data/revenueComparisonLine.json'
 import analyticsData from '@/data/analyticsData.json'
 import chartOptions from './chart-options.js'
 
-import LineChart from '@/views/components/charts/LineChart.vue'
+import LineChart from '@/components/charts/LineChart.vue'
 
 export default {
     components: {

@@ -370,7 +370,7 @@
 <script>
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import { videoPlayer }     from 'vue-video-player'
-import VxTimeline          from '@/views/components/timeline/VxTimeline.vue'
+import VxTimeline          from '@/components/timeline/VxTimeline.vue'
 import 'video.js/dist/video-js.css'
 
 

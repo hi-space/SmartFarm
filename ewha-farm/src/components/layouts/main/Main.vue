@@ -79,13 +79,13 @@
 
 <script>
 import BackToTop           from 'vue-backtotop'
-import HNavMenu            from '@/views/layouts/horizontal-nav-menu/HorizontalNavMenu.vue'
-import navMenuItems        from '@/views/layouts/vertical-nav-menu/navMenuItems.js'
-import TheNavbarHorizontal from '@/views/layouts/navbar/TheNavbarHorizontal.vue'
-import TheNavbarVertical   from '@/views/layouts/navbar/TheNavbarVertical.vue'
-import TheFooter           from '@/views/layouts/TheFooter.vue'
+import HNavMenu            from '@/components/layouts/horizontal-nav-menu/HorizontalNavMenu.vue'
+import navMenuItems        from '@/components/layouts/vertical-nav-menu/navMenuItems.js'
+import TheNavbarHorizontal from '@/components/layouts/navbar/TheNavbarHorizontal.vue'
+import TheNavbarVertical   from '@/components/layouts/navbar/TheNavbarVertical.vue'
+import TheFooter           from '@/components/layouts/TheFooter.vue'
 import themeConfig         from '@/../themeConfig.js'
-import VNavMenu            from '@/views/layouts/vertical-nav-menu/VerticalNavMenu.vue'
+import VNavMenu            from '@/components/layouts/vertical-nav-menu/VerticalNavMenu.vue'
 import SelectingValues from './SelectingValues.vue'
 
 export default {

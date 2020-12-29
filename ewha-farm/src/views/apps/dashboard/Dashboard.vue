@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import VxCard from '../../components/vx-card/VxCard.vue'
+import VxCard from '@/components/vx-card/VxCard.vue'
 import CCTVViewer from './CCTVViewer.vue'
 import SensorMonitor from './SensorMonitor.vue'
 

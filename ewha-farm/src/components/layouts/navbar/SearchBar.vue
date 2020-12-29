@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import VxAutoSuggest from '@/views/components/vx-auto-suggest/VxAutoSuggest.vue'
+import VxAutoSuggest from '@/components/vx-auto-suggest/VxAutoSuggest.vue'
 
 export default {
   components: {
