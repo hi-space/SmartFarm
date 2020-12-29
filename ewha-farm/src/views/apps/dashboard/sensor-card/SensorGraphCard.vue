@@ -1,5 +1,7 @@
 <template>
-    <line-chart :height="250" :data="data" :options="options"></line-chart>
+    <vx-card :title=title collapse-action>
+        <line-chart :height="250" :data="data" :options="options"></line-chart>
+    </vx-card>
 </template>
 
 <script>
@@ -8,6 +10,12 @@ import LineChart from '@/views/components/charts/LineChart.vue'
 export default {
     components: {
         LineChart,
+    },
+    props: {
+        title: {
+            type: String,
+            default: '',
+        }
     },
     data () {
         return {

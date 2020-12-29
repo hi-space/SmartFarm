@@ -1,8 +1,6 @@
 <template>
-    <vx-card title="네트워크 현황" class="overflow-hidden" refresh-content-action>
-        
+    <vx-card title="네트워크 현황" class="overflow-hidden" collapse-action refresh-content-action>
         <vs-table :data="users" max-items="5" pagination>
-
             <template slot="thead">
                 <vs-th sort-key="id">축사</vs-th>
                 <vs-th sort-key="email">Email</vs-th>
@@ -27,8 +25,6 @@
                 </vs-tr>
             </template>
         </vs-table>
-
-
     </vx-card>
 </template>
 

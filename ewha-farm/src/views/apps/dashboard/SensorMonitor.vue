@@ -1,27 +1,23 @@
 <template>
     <div class="vx-row">
         <!-- Weather Card -->
-        <div class="vx-col w-full lg:w-1/2 mb-base">
+        <div class="vx-col w-full lg:w-1/2 xl:w-2/3 mb-base">
             <weather-card></weather-card>
         </div>
 
         <!-- Sensor Card -->
-        <div class="vx-col w-full lg:w-1/2 mb-base">
+        <div class="vx-col w-full lg:w-1/2 xl:w-1/3 mb-base">
             <sensor-card></sensor-card>
         </div>
 
         <!-- Sensor Graph Card -->
         <div class="vx-col w-full xl:w-1/2 mb-base">
-            <vx-card title="온도 / 습도">
-                <sensor-graph-card></sensor-graph-card>
-            </vx-card>
+            <sensor-graph-card title="온도 / 습도"></sensor-graph-card>
         </div>
 
         <!-- Sensor Graph Card -->
         <div class="vx-col w-full xl:w-1/2 mb-base">
-            <vx-card title="암모니아 / 황화수소">
-                <sensor-graph-card></sensor-graph-card>
-            </vx-card>
+            <sensor-graph-card title="암모니아 / 황화수소"></sensor-graph-card>
         </div>
 
         <!-- Sensor Graph Card -->

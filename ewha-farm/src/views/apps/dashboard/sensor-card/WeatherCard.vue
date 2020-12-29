@@ -1,7 +1,7 @@
 <template>    
-    <vx-card title="현재 날씨" class="overlay-card overflow-hidden" refresh-content-action @refresh="refresh">
+    <vx-card title="현재 날씨" class="overlay-card overflow-hidden" collapse-action refresh-content-action @refresh="refresh">
         <div class="flex flex-col justify-between h-full">
-            <div class="text-center mt-4 w-full mb-4">
+            <div class="text-center w-full mb-4">
                 <h3 class="mb-2 tracking-wide">{{ weather_card.weather }}</h3>
                 <p class="mb-4">{{ weather_card.place_name }}</p>
                 <div class="flex justify-around">

@@ -1,5 +1,5 @@
 <template>
-    <vx-card title="농장 환경" class="overflow-hidden" refresh-content-action>
+    <vx-card title="농장 환경" class="overflow-hidden" collapse-action refresh-content-action>
         <ul class="px-6">
             <li v-for="sensorData in sensorList" :key="sensorData.id" class="flex mb-5">
                 <feather-icon 
