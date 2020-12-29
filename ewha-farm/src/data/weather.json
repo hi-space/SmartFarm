@@ -1,0 +1,21 @@
+{
+    "overlay_img": "https://d279m997dpfwgl.cloudfront.net/wp/2017/12/weather_album-art-1000x1000.jpg",
+    "weather": "Snowy",
+    "place_name": "Seoul",
+    "weather_icon": "http://openweathermap.org/img/wn/09d@4x.png",
+    "temperature": "-6",
+    "time": "2020-08-21 12:49:50 PM",
+    "meta": [{
+            "label": "Humidity",
+            "value": "60%"
+        },
+        {
+            "label": "Wind",
+            "value": "4823km/h"
+        },
+        {
+            "label": "A",
+            "value": "60%"
+        }
+    ]
+}

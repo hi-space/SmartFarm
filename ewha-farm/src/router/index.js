@@ -133,7 +133,7 @@ const router = new Router({
               {
                 path: '/sensor-monitor',
                 name: 'sensor-monitor',
-                component: () => import('@/views/apps/dashboard/sensor-card/FarmCard.vue'),
+                component: () => import('@/views/apps/dashboard/sensor-card/WeatherCard.vue'),
                 meta: {
                   breadcrumb: [
                     { title: 'Home', url: '/' },
