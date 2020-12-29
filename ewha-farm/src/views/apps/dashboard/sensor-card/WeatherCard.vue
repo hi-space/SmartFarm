@@ -16,7 +16,7 @@
                     class="flex justify-between px-8 mb-8 text-xl"
                     v-for="meta in weather_card.meta"
                     :key="meta.label">
-                    <span>{{ meta.label }}</span>
+                    <span class="font-semibold">{{ meta.label }}</span>
                     <span>{{ meta.value }}</span>
                 </div>
             </div>
