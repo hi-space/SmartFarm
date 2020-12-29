@@ -80,7 +80,7 @@ export default [
         icon: "SlidersIcon"
       },
       {
-        url: null,
+        url: '/sensor-monitor',
         name: "센서 모니터링",
         icon: "ActivityIcon"
       },
