@@ -28,7 +28,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="Email"
+                name="이메일"
                 rules="required|email"
               >
                 <b-form-input
@@ -50,7 +50,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="Password"
+                name="비밀번호"
                 rules="required"
               >
                 <b-input-group

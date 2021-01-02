@@ -1,9 +1,14 @@
 <template>
-  <div class="row">
-    <b-row>
-      <b-col>
-        <cctv-viewer />
-      </b-col>
+  <div>
+    <b-row
+      class="mb-4"
+    >
+      <cctv-viewer />
+    </b-row>
+    <b-row
+      class="mb-2"
+    >
+      <sensor-monitor />
     </b-row>
   </div>
 </template>
@@ -11,16 +16,16 @@
 <script>
 import {
   BRow,
-  BCol,
 } from 'bootstrap-vue'
 
 import CCTVPlayer from './monitoring/CCTVViewer.vue'
+import SensorMonitor from './monitoring/SensorMonitor.vue'
 
 export default {
   components: {
     BRow,
-    BCol,
     'cctv-viewer': CCTVPlayer,
+    SensorMonitor,
   },
 }
 </script>

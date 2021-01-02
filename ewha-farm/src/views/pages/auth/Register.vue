@@ -25,7 +25,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="Email"
+                name="이메일"
                 rules="required|email"
               >
                 <b-form-input
@@ -46,7 +46,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="mobile"
+                name="핸드폰 번호"
                 rules="required|digits"
               >
                 <b-form-input
@@ -67,7 +67,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="password"
+                name="비밀번호"
                 rules="required"
               >
                 <b-input-group
@@ -102,7 +102,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="PasswordConfirm"
+                name="비밀번호 확인"
                 rules="required|confirmed:password"
               >
                 <b-input-group
@@ -137,7 +137,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="Username"
+                name="이름"
                 rules="required"
               >
                 <b-form-input
