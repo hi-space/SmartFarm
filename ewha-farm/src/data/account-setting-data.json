@@ -1,0 +1,44 @@
+{
+    "general": {
+      "avatar": "/img/avatar-s-11.14cf1734.jpg",
+      "username": "hispace",
+      "fullName": "관리자 이름",
+      "email": "hello12@hispace.kr",
+      "company": "서울시 용산구",
+      "bio": "",
+      "dob": null,
+      "country": "USA",
+      "website": "",
+      "phone": 6562542568
+    },
+    "social": {
+      "socialLinks": {
+        "twitter": "https://www.twitter.com",
+        "facebook": "",
+        "google": "",
+        "linkedIn": "https://www.linkedin.com",
+        "instagram": "",
+        "quora": ""
+      },
+      "connections": {
+        "twitter": {
+          "profileImg": "/img/11-small.4ade0856.png",
+          "id": "johndoe"
+        },
+        "google": {
+          "profileImg": "/img/3-small.33d29f56.png",
+          "id": "luraweber"
+        },
+        "facebook": {},
+        "github": {}
+      }
+    },
+    "notification": {
+      "commentOnArticle": true,
+      "AnswerOnForm": true,
+      "followMe": false,
+      "newAnnouncements": true,
+      "productUpdates": true,
+      "blogDigest": false
+    }
+  }

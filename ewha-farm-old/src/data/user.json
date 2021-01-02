@@ -1,0 +1,63 @@
+{
+    "id": 268,
+    "username": "adoptionism744",
+    "avatar": "/img/avatar-s-3.7ed1da4a.jpg",
+    "email": "angelo@sashington.com",
+    "name": "Angelo Sashington",
+    "dob": "28 January 1998",
+    "gender": "male",
+    "country": "Bolivia",
+    "role": "admin",
+    "status": "active",
+    "is_verified": true,
+    "department": "sales",
+    "company": "WinDon Technologies Pvt Ltd",
+    "mobile": "+65958951757",
+    "website": "https://rowboat.com/insititious/Angelo",
+    "memo": "this is memo",
+    "languages_known": [
+      "English",
+      "Arabic"
+    ],
+    "contact_options": [
+      "email",
+      "message",
+      "phone"
+    ],
+    "location": {
+      "add_line_1": "A-65, Belvedere Streets",
+      "add_line_2": "",
+      "post_code": "1868",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States"
+    },
+    "social_links": {
+      "twitter": "https://twitter.com/adoptionism744",
+      "facebook": "https://www.facebook.com/adoptionism664",
+      "instagram": "https://www.instagram.com/adopt-ionism744/",
+      "github": "https://github.com/madop818",
+      "codepen": "https://codepen.io/adoptism243",
+      "slack": "@adoptionism744"
+    },
+    "permissions": {
+      "users": {
+        "read": true,
+        "write": false,
+        "create": false,
+        "delete": false
+      },
+      "posts": {
+        "read": true,
+        "write": true,
+        "create": true,
+        "delete": true
+      },
+      "comments": {
+        "read": true,
+        "write": false,
+        "create": true,
+        "delete": false
+      }
+    }
+  }

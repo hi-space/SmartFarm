@@ -1,183 +1,303 @@
 <template>
-    <div id="user-edit-tab-info">
-        <!-- Content Row -->
+  <b-card>
 
-        <div class="vx-row">
-            <div class="vx-col md:w-1/2 w-full">
-
-                <vs-input 
-                    class="w-full mt-4" 
-                    label="이름" 
-                    v-model="data_local.name" 
-                    v-validate="'required|alpha_num'"
-                    name="name" />
-
-                <span class="text-danger text-sm" 
-                    v-show="errors.has('name')">
-                        {{ errors.first('name') }}
-                </span>
-
-                <vs-input 
-                    class="w-full mt-4" 
-                    label="핸드폰번호" 
-                    v-model="data_local.mobile" 
-                    type="mobile_phone"
-                    v-validate="'required|numeric'" 
-                    name="email" />
-
-                <span class="text-danger text-sm"
-                    v-show="errors.has('mobile_phone')">
-                        {{ errors.first('mobile_phone') }}
-                </span>
-
-                <div class="mt-4">
-                    <label class="vs-input--label">계정 상태</label>
-                    <v-select v-model="status_local" :clearable="false" :options="statusOptions" v-validate="'required'"
-                        name="status" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-                    <span class="text-danger text-sm" v-show="errors.has('status')">{{ errors.first('status') }}</span>
-                </div>
-            </div>
-
-            <div class="vx-col md:w-1/2 w-full">
-
-                <vs-input class="w-full mt-4" disabled label="아이디" v-model="data_local.username"
-                    v-validate="'required|alpha_num'" name="username" />
-                <span class="text-danger text-sm" v-show="errors.has('username')">{{ errors.first('username') }}</span>
-
-                <vs-input class="w-full mt-4" label="농장 주소" v-model="data_local.country"
-                    v-validate="'required|alpha_spaces'" name="country" />
-                <span class="text-danger text-sm" v-show="errors.has('country')">{{ errors.first('country') }}</span>
-
-                <div class="mt-4">
-                    <label class="vs-input--label">권한</label>
-                    <v-select v-model="role_local" :clearable="false" :options="roleOptions" v-validate="'required'"
-                        name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-                    <span class="text-danger text-sm" v-show="errors.has('role')">{{ errors.first('role') }}</span>
-                </div>
-            </div>
-
-            <div class="vx-col w-full mt-6">
-                <vs-textarea label="메모" v-model="data_local.memo" />
-            </div>
-        </div>
-        <!-- Save & Reset Button -->
-        <div class="vx-row">
-            <div class="vx-col w-full">
-                <div class="mt-8 flex flex-wrap items-center justify-end">
-                    <vs-button class="ml-auto mt-2" @click="save_changes" :disabled="!validateForm">Save Changes
-                    </vs-button>
-                    <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data">Reset</vs-button>
-                    <vs-button class="ml-4 mt-2" type="border" color="danger" icon-pack="feather" icon="icon-trash"
-                        @click="confirmDeleteRecord">Delete</vs-button>
-                </div>
-            </div>
-        </div>
+    <!-- Media -->
+    <div class="d-flex justify-content-start mb-2">
+      <b-avatar
+        :src="userData.avatar"
+        :text="avatarText(userData.fullName)"
+        :variant="`light-${resolveUserRoleVariant(userData.role)}`"
+        size="104px"
+        rounded
+      />
+      <div class="d-flex flex-column ml-1">
+        <h4 class="mb-0">
+          {{ userData.fullName }}
+        </h4>
+        <span class="card-text">{{ userData.email }}</span>
+      </div>
     </div>
+
+    <!-- User Info: Input Fields -->
+    <b-form>
+      <b-row
+        class="mb-2"
+      >
+        <!-- Field: Username -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="ID"
+            label-for="username"
+          >
+            <b-form-input
+              id="username"
+              v-model="userData.username"
+              readonly
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Full Name -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="이름"
+            label-for="full-name"
+          >
+            <b-form-input
+              id="full-name"
+              v-model="userData.fullName"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Email -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="Email"
+            label-for="email"
+          >
+            <b-form-input
+              id="email"
+              v-model="userData.email"
+              type="email"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Mobile -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="전화번호"
+            label-for="contact"
+          >
+            <b-form-input
+              id="contact"
+              v-model="userData.contact"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Status -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="상태"
+            label-for="user-status"
+          >
+            <v-select
+              v-model="userData.status"
+              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
+              :options="statusOptions"
+              :reduce="val => val.value"
+              :clearable="false"
+              input-id="user-status"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Role -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="권한"
+            label-for="user-role"
+          >
+            <v-select
+              v-model="userData.role"
+              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
+              :options="roleOptions"
+              :reduce="val => val.value"
+              :clearable="false"
+              input-id="user-role"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Email -->
+        <b-col
+          cols="12"
+          md="12"
+        >
+          <b-form-group
+            label="농장 주소"
+            label-for="company"
+          >
+            <b-form-input
+              id="company"
+              v-model="userData.company"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Email -->
+        <b-col
+          cols="12"
+          md="12"
+        >
+          <b-form-group
+            label="메모"
+            label-for="memo"
+          >
+            <b-form-textarea
+              id="memo"
+              v-model="userData.avatar"
+            />
+          </b-form-group>
+        </b-col>
+
+      </b-row>
+    </b-form>
+
+    <!-- Action Buttons -->
+    <b-button
+      variant="primary"
+      class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
+      :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+    >
+      Save Changes
+    </b-button>
+    <b-button
+      variant="outline-secondary"
+      type="reset"
+      class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
+      :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+    >
+      Reset
+    </b-button>
+    <b-button
+      variant="outline-danger"
+      class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
+    >
+      Delete
+    </b-button>
+  </b-card>
 </template>
 
 <script>
-    import vSelect from 'vue-select'
+import {
+  BButton, BAvatar, BRow, BCol, BFormGroup, BFormInput, BForm, BCard, BFormTextarea,
+} from 'bootstrap-vue'
+import { avatarText } from '@core/utils/filter'
+import vSelect from 'vue-select'
+import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
+import { ref } from '@vue/composition-api'
+import useUsersList from '../user-list/useUsersList'
 
-    export default {
-        components: {
-            vSelect
-        },
-        props: {
-            data: {
-                type: Object,
-                required: true
-            }
-        },
-        data() {
-            return {
-                data_local: JSON.parse(JSON.stringify(this.data)),
+export default {
+  components: {
+    BButton,
+    BAvatar,
+    BRow,
+    BCol,
+    BFormGroup,
+    BFormInput,
+    BForm,
+    BFormTextarea,
+    BCard,
+    vSelect,
+  },
+  props: {
+    userData: {
+      type: Object,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { resolveUserRoleVariant } = useUsersList()
 
-                statusOptions: [{
-                        label: 'Active',
-                        value: 'active'
-                    },
-                    {
-                        label: 'Blocked',
-                        value: 'blocked'
-                    },
-                    {
-                        label: 'Deactivated',
-                        value: 'deactivated'
-                    }
-                ],
-                roleOptions: [{
-                        label: 'Admin',
-                        value: 'admin'
-                    },
-                    {
-                        label: 'User',
-                        value: 'user'
-                    },
-                    {
-                        label: 'Staff',
-                        value: 'staff'
-                    }
-                ]
-            }
-        },
-        computed: {
-            status_local: {
-                get() {
-                    return {
-                        label: this.capitalize(this.data_local.status),
-                        value: this.data_local.status
-                    }
-                },
-                set(obj) {
-                    this.data_local.status = obj.value
-                }
-            },
-            role_local: {
-                get() {
-                    return {
-                        label: this.capitalize(this.data_local.role),
-                        value: this.data_local.role
-                    }
-                },
-                set(obj) {
-                    this.data_local.role = obj.value
-                }
-            },
-            validateForm() {
-                return !this.errors.any()
-            }
-        },
-        methods: {
-            capitalize(str) {
-                return str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
-            },
-            save_changes() {
-                /* eslint-disable */
-                if (!this.validateForm) return
+    const roleOptions = [
+      { label: 'Admin', value: 'admin' },
+      { label: 'Author', value: 'author' },
+      { label: 'Editor', value: 'editor' },
+      { label: 'Maintainer', value: 'maintainer' },
+      { label: 'Subscriber', value: 'subscriber' },
+    ]
 
-                // Here will go your API call for updating data
-                // You can get data in "this.data_local"
+    const statusOptions = [
+      { label: 'Pending', value: 'pending' },
+      { label: 'Active', value: 'active' },
+      { label: 'Inactive', value: 'inactive' },
+    ]
 
-                /* eslint-enable */
-            },
-            reset_data() {
-                this.data_local = JSON.parse(JSON.stringify(this.data))
-            },
-            confirmDeleteRecord() {
-                this.$vs.dialog({
-                    type: 'confirm',
-                    color: 'danger',
-                    title: 'Confirm Delete',
-                    text: `You are about to delete "${this.data_local.name}"`,
-                    accept: this.deleteRecord,
-                    acceptText: 'Delete'
-                })
-            },
-            update_avatar() {
-                // You can update avatar Here
-                // For reference you can check dataList example
-                // We haven't integrated it here, because data isn't saved in DB
-            }
-        }
+    const permissionsData = [
+      {
+        module: 'Admin',
+        read: true,
+        write: false,
+        create: false,
+        delete: false,
+      },
+      {
+        module: 'Staff',
+        read: false,
+        write: true,
+        create: false,
+        delete: false,
+      },
+      {
+        module: 'Author',
+        read: true,
+        write: false,
+        create: true,
+        delete: false,
+      },
+      {
+        module: 'Contributor',
+        read: false,
+        write: false,
+        create: false,
+        delete: false,
+      },
+      {
+        module: 'User',
+        read: false,
+        write: false,
+        create: false,
+        delete: true,
+      },
+    ]
+
+    // ? Demo Purpose => Update image on click of update
+    const refInputEl = ref(null)
+    const previewEl = ref(null)
+
+    const { inputImageRenderer } = useInputImageRenderer(refInputEl, base64 => {
+      // eslint-disable-next-line no-param-reassign
+      props.userData.avatar = base64
+    })
+
+    return {
+      resolveUserRoleVariant,
+      avatarText,
+      roleOptions,
+      statusOptions,
+      permissionsData,
+
+      //  ? Demo - Update Image on click of update button
+      refInputEl,
+      previewEl,
+      inputImageRenderer,
     }
+  },
+}
 </script>
+
+<style lang="scss">
+@import '@core/scss/vue/libs/vue-select.scss';
+</style>

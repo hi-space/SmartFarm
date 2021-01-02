@@ -1,34 +1,38 @@
 import Vue from 'vue'
-import App from './App.vue'
-import Vuesax from 'vuesax'
-import VeeValidate, { Validator } from 'vee-validate';
-import { VueHammer } from 'vue2-hammer'
+import { ToastPlugin, ModalPlugin } from 'bootstrap-vue'
+import VueCompositionAPI from '@vue/composition-api'
+
 import router from './router'
-import store from './store/store'
-import axios from './axios.js'
+import store from './store'
+import App from './App.vue'
 
-import 'material-icons/iconfont/material-icons.css'
-import 'vuesax/dist/vuesax.css'
-import './utils/filters.js'
-import '../themeConfig.js'
-import './globalComponents.js'
-import './assets/scss/main.scss'
-import '@/assets/css/main.css'
+// Global Components
+import './global-components'
 
-require('./assets/css/iconfont.css')
+// 3rd party plugins
+import '@axios'
+import '@/libs/acl'
+import '@/libs/portal-vue'
+import '@/libs/toastification'
+import '@/libs/vue-select'
 
-Vue.use(Vuesax)
-Vue.use(VeeValidate)
-Vue.use(VueHammer)
+// BSV Plugin Registration
+Vue.use(ToastPlugin)
+Vue.use(ModalPlugin)
 
-Vue.prototype.$http = axios
+// Composition API
+Vue.use(VueCompositionAPI)
+
+// import core styles
+require('@core/scss/core.scss')
+
+// import assets styles
+require('@/assets/scss/style.scss')
+
 Vue.config.productionTip = false
-
-import ko from 'vee-validate/dist/locale/ko.js'
-Validator.localize('ko', ko)
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
