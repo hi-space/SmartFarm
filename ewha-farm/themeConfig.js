@@ -9,7 +9,7 @@ export const $themeBreakpoints = {}
 // APP CONFIG
 export const $themeConfig = {
   app: {
-    appName: 'Vuexy',
+    appName: 'Ewha',
     // eslint-disable-next-line global-require
     appLogoImage: require('@/assets/images/logo/logo.svg'),
   },
