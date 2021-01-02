@@ -6,8 +6,11 @@ export default {
     },
   },
   render(h) {
-    const span = h('span', {}, this.this.item.header)
+    const span = h('span', {}, this.$(this.item.header))
     const icon = h('feather-icon', { props: { icon: 'MoreHorizontalIcon', size: '18' } })
-    return h('li', { class: 'navigation-header text-truncate' }, [span, icon])
+    if (this.$can(this.item.action, this.item.resource)) {
+      return h('li', { class: 'navigation-header text-truncate' }, [span, icon])
+    }
+    return h()
   },
 }

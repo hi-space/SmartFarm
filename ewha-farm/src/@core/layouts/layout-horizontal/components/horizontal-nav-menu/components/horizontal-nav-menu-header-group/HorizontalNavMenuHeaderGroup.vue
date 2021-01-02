@@ -1,5 +1,6 @@
 <template>
   <li
+    v-if="hasAbilityToAccess"
     class="dropdown nav-item"
     :class="{
       'sidebar-group-active active open': isActive,
@@ -55,6 +56,8 @@ export default {
       isOpen,
       updateGroupOpen,
 
+      // ACL
+      hasAbilityToAccess,
     } = useHorizontalNavMenuHeaderGroup(props.item)
 
     return {
@@ -64,6 +67,8 @@ export default {
       updateIsActive,
       resolveHorizontalNavMenuItemComponent,
 
+      // ACL
+      hasAbilityToAccess,
     }
   },
 }

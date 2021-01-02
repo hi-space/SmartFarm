@@ -1,5 +1,6 @@
 <template>
   <li
+    v-if="item.children.some(i => $can(item.action, item.resource))"
     class="nav-item has-sub"
     :class="{
       'open': isOpen,

@@ -14,12 +14,9 @@ import {
   length as rule_length,
 } from 'vee-validate/dist/rules'
 import en from 'vee-validate/dist/locale/en.json'
-import ko from 'vee-validate/dist/locale/ko.json'
 
 // eslint-disable-next-line object-curly-newline
 import { validatorPositive, validatorUrlValidator, validatorPassword, validatorCreditCard } from './validators'
-
-localize('ko', ko)
 
 // ////////////////////////////////////////////////////////
 // General
@@ -80,18 +77,6 @@ localize({
     fields: {
       password: {
         min: '{_field_} is too short, you want to get hacked?',
-      },
-    },
-  },
-  ko: {
-    messages: ko.messages,
-    names: {
-      email: '이메일',
-      password: '비밀번호',
-    },
-    fields: {
-      password: {
-        min: '{_field_}가 너무 짧습니다',
       },
     },
   },

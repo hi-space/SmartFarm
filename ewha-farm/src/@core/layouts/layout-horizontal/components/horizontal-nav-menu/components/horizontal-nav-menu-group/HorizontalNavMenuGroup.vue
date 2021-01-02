@@ -1,5 +1,6 @@
 <template>
   <li
+    v-if="item.children.some(i => $can(i.action, i.resource))"
     class="dropdown dropdown-submenu"
     :class="{
       'show': isOpen,

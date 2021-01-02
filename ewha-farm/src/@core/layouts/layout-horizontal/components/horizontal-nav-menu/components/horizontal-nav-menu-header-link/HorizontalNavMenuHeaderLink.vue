@@ -1,5 +1,6 @@
 <template>
   <li
+    v-if="$can(item.action, item.resource)"
     class="nav-item"
     :class="{'sidebar-group-active active': isActive}"
   >
