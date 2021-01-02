@@ -8,8 +8,8 @@ export default [
     icon: 'UsersIcon',
   },
   {
-    title: '회원 확인',
-    route: null,
+    title: '테스트',
+    route: 'test',
     icon: 'UserIcon',
   },
   {

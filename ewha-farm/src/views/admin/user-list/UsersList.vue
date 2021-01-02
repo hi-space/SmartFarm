@@ -51,12 +51,6 @@
                 class="d-inline-block mr-1"
                 placeholder="Search..."
               />
-              <b-button
-                variant="primary"
-                @click="isAddNewUserSidebarActive = true"
-              >
-                <span class="text-nowrap">Add User</span>
-              </b-button>
             </div>
           </b-col>
         </b-row>
@@ -137,14 +131,10 @@
                 class="align-middle text-body"
               />
             </template>
-            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item.id } }">
-              <feather-icon icon="FileTextIcon" />
-              <span class="align-middle ml-50">Details</span>
-            </b-dropdown-item>
 
-            <b-dropdown-item :to="{ name: 'user-edit', params: { id: data.item.id } }">
+            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item.id } }">
               <feather-icon icon="EditIcon" />
-              <span class="align-middle ml-50">Edit</span>
+              <span class="align-middle ml-50">Details</span>
             </b-dropdown-item>
 
             <b-dropdown-item>
@@ -206,7 +196,7 @@
 
 <script>
 import {
-  BCard, BRow, BCol, BFormInput, BButton, BTable, BMedia, BAvatar, BLink,
+  BCard, BRow, BCol, BFormInput, BTable, BMedia, BAvatar, BLink,
   BBadge, BDropdown, BDropdownItem, BPagination,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
@@ -226,7 +216,6 @@ export default {
     BRow,
     BCol,
     BFormInput,
-    BButton,
     BTable,
     BMedia,
     BAvatar,
