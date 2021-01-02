@@ -37,8 +37,8 @@ export default [
     },
   },
   {
-    path: '/pages/account-setting',
-    name: 'pages-account-setting',
+    path: '/account-setting',
+    name: 'account-setting',
     component: () => import('@/views/pages/account-setting/AccountSetting.vue'),
     meta: {
       pageTitle: '사용자 설정',

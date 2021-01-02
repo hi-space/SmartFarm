@@ -1,5 +1,8 @@
 export default [
   {
+    header: 'User',
+  },
+  {
     title: 'CCTV',
     route: null,
     icon: 'VideoIcon',

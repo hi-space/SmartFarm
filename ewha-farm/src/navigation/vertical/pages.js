@@ -1,5 +1,8 @@
 export default [
   {
+    header: 'Page',
+  },
+  {
     title: 'Pages',
     icon: 'FileIcon',
     children: [

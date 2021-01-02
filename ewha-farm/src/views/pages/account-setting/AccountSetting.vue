@@ -27,23 +27,6 @@
     </b-tab>
     <!--/ general tab -->
 
-    <!-- change password tab -->
-    <b-tab>
-
-      <!-- title -->
-      <template #title>
-        <feather-icon
-          icon="LockIcon"
-          size="18"
-          class="mr-50"
-        />
-        <span class="font-weight-bold">비밀번호 변경</span>
-      </template>
-
-      <account-setting-password />
-    </b-tab>
-    <!--/ change password tab -->
-
     <!-- notification -->
     <b-tab>
 
@@ -69,7 +52,6 @@
 import fakeData from '@/data/account-setting-data.json'
 import { BTabs, BTab } from 'bootstrap-vue'
 import AccountSettingGeneral from './AccountSettingGeneral.vue'
-import AccountSettingPassword from './AccountSettingPassword.vue'
 import AccountSettingNotification from './AccountSettingNotification.vue'
 
 export default {
@@ -77,7 +59,6 @@ export default {
     BTabs,
     BTab,
     AccountSettingGeneral,
-    AccountSettingPassword,
     AccountSettingNotification,
   },
   data() {

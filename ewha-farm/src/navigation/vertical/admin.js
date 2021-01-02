@@ -1,5 +1,8 @@
 export default [
   {
+    header: 'Admin',
+  },
+  {
     title: '회원관리',
     route: null,
     icon: 'UsersIcon',

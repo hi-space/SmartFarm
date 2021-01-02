@@ -215,7 +215,7 @@ import {
 } from 'bootstrap-vue'
 import Logo from '@core/layouts/components/Logo.vue'
 import { required, email } from '@validations'
-import { togglePasswordVisibility } from '@core/mixins/ui/forms'
+import { togglePasswordVisibility } from '@core/mixins/forms'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {

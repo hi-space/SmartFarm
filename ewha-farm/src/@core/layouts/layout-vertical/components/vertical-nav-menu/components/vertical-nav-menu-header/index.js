@@ -6,7 +6,7 @@ export default {
     },
   },
   render(h) {
-    const span = h('span', {}, this.$(this.item.header))
+    const span = h('span', {}, this.item.header)
     const icon = h('feather-icon', { props: { icon: 'MoreHorizontalIcon', size: '18' } })
     if (this.$can(this.item.action, this.item.resource)) {
       return h('li', { class: 'navigation-header text-truncate' }, [span, icon])
