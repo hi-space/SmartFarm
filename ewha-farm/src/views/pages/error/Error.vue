@@ -10,27 +10,25 @@
 
     <div class="misc-inner p-2 p-sm-3">
       <div class="w-100 text-center">
-        <h2 class="mb-1">
-          Page Not Found 🕵🏻‍♀️
-        </h2>
-        <p class="mb-2">
-          Oops! 😖 The requested URL was not found on this server.
-        </p>
-
-        <b-button
-          variant="primary"
-          class="mb-2 btn-sm-block"
-          :to="{path:'/'}"
-        >
-          Back to home
-        </b-button>
-
         <!-- image -->
         <b-img
           fluid
           :src="imgUrl"
           alt="Error page"
         />
+
+        <h1 class="mt-4 font-weight-bolder">
+          페이지를 찾을 수 없습니다
+        </h1>
+
+        <b-button
+          variant="primary"
+          class="mt-2 btn-sm-block"
+          :to="{path:'/'}"
+        >
+          돌아가기
+        </b-button>
+
       </div>
     </div>
   </div>
@@ -52,7 +50,7 @@ export default {
   },
   data() {
     return {
-      downImg: require('@/assets/images/pages/error.svg'),
+      downImg: require('@/assets/images/pages/404.png'),
     }
   },
   computed: {

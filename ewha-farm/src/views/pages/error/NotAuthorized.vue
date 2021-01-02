@@ -9,22 +9,25 @@
 
     <div class="misc-inner p-2 p-sm-3">
       <div class="w-100 text-center">
-        <h2 class="mb-1">
-          You are not authorized! 🔐
-        </h2>
-        <p class="mb-2">
-          You don’t have permission to access this page. Go Home!!
-        </p>
-        <b-button
-          variant="primary"
-          class="mb-1 btn-sm-block"
-          :to="loginRoute()"
-        >Back to Home</b-button>
+        <!-- image -->
         <b-img
           fluid
           :src="imgUrl"
           alt="Not authorized page"
         />
+
+        <h1 class="mt-4 font-weight-bolder">
+          권한이 없습니다
+        </h1>
+
+        <b-button
+          variant="primary"
+          class="mt-2 btn-sm-block"
+          :to="loginRoute()"
+        >
+          돌아가기
+        </b-button>
+
       </div>
     </div>
   </div>
@@ -43,7 +46,7 @@ export default {
   },
   data() {
     return {
-      downImg: require('@/assets/images/pages/not-authorized.svg'),
+      downImg: require('@/assets/images/pages/not-authorized.png'),
     }
   },
   computed: {

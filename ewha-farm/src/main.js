@@ -10,6 +10,8 @@ import App from './App.vue'
 import './global-components'
 
 // 3rd party plugins
+import '@axios'
+import '@/libs/acl'
 import '@/libs/portal-vue'
 import '@/libs/toastification'
 

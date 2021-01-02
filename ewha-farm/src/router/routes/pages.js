@@ -20,7 +20,7 @@ export default [
     },
   },
   {
-    path: '/pages/error/not-authorized',
+    path: '/error/not-authorized',
     name: 'not-authorized',
     component: () => import('@/views/pages/error/NotAuthorized.vue'),
     meta: {
@@ -29,17 +29,7 @@ export default [
     },
   },
   {
-    path: '/error-404',
-    name: 'error-404',
-    component: () => import('@/views/pages/error/Error404.vue'),
-    meta: {
-      layout: 'full',
-      resource: 'Auth',
-      action: 'read',
-    },
-  },
-  {
-    path: '/pages/error/error',
+    path: '/error',
     name: 'error',
     component: () => import('@/views/pages/error/Error.vue'),
     meta: {

@@ -28,7 +28,7 @@
     </template>
 
     <b-dropdown-item
-      :to="{ name: 'pages-account-setting' }"
+      :to="{ name: 'pages-profile'}"
       link-class="d-flex align-items-center"
     >
       <feather-icon
