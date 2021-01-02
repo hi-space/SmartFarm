@@ -43,5 +43,5 @@ module.exports = {
         return options
       })
   },
-  transpileDependencies: ['vue-echarts', 'resize-detector'],
+  transpileDependencies: ['resize-detector'],
 }

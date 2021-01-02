@@ -14,6 +14,7 @@ import '@axios'
 import '@/libs/acl'
 import '@/libs/portal-vue'
 import '@/libs/toastification'
+import '@/libs/vue-select'
 
 // BSV Plugin Registration
 Vue.use(ToastPlugin)
