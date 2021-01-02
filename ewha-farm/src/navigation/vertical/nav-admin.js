@@ -12,9 +12,4 @@ export default [
     route: 'test',
     icon: 'UserIcon',
   },
-  {
-    title: '함체 등록',
-    route: null,
-    icon: 'PlusCircleIcon',
-  },
 ]

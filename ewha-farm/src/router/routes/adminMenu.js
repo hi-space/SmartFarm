@@ -18,7 +18,7 @@ export default [
   {
     path: '/test',
     name: 'test',
-    component: () => import('@/views/admin/TestView.vue'),
+    component: () => import('@/views/admin/AdminTestView.vue'),
     meta: {
       resource: 'Auth',
     },

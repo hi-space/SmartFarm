@@ -1,5 +1,5 @@
-import pages from './pages'
-import admin from './admin'
-import users from './users'
+import pages from './nav-pages'
+import admin from './nav-admin'
+import users from './nav-users'
 
 export default [...pages, ...admin, ...users]

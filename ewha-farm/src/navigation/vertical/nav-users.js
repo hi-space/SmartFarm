@@ -3,6 +3,11 @@ export default [
     header: 'User',
   },
   {
+    title: 'Test',
+    route: 'test-user',
+    icon: 'VideoIcon',
+  },
+  {
     title: 'CCTV',
     route: null,
     icon: 'VideoIcon',
