@@ -2,24 +2,28 @@
   <div class="row">
     <b-row>
       <b-col
-        cols="6"
+        md="6"
+        sm="12"
       >
         <cctv-player :src="cctv_url_1" />
       </b-col>
       <b-col
-        cols="6"
+        md="6"
+        sm="12"
       >
         <cctv-player :src="cctv_url_1" />
       </b-col>
     </b-row>
     <b-row>
       <b-col
-        cols="6"
+        md="6"
+        sm="12"
       >
         <cctv-player :src="cctv_url_1" />
       </b-col>
       <b-col
-        cols="6"
+        md="6"
+        sm="12"
       >
         <cctv-player :src="cctv_url_1" />
       </b-col>

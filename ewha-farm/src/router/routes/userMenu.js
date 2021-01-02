@@ -10,7 +10,7 @@ export default [
   {
     path: '/cctv',
     name: 'cctv',
-    component: () => import('@/views/users/UserTestView.vue'),
+    component: () => import('@/views/users/monitoring/sensor-card/SensorStateCard.vue'),
     meta: {
       resource: 'Auth',
     },

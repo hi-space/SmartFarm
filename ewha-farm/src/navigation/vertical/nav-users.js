@@ -9,12 +9,12 @@ export default [
   },
   {
     title: 'CCTV',
-    route: null,
+    route: 'null',
     icon: 'VideoIcon',
   },
   {
     title: '센서 모니터링',
-    route: null,
+    route: 'cctv',
     icon: 'ActivityIcon',
   },
   {
