@@ -5,19 +5,12 @@
       <!-- Login v1 -->
       <b-card class="mb-0">
         <b-link class="brand-logo">
-          <vuexy-logo />
+          <logo />
 
           <h2 class="brand-text text-primary ml-1">
-            Vuexy
+            Ewha Farm
           </h2>
         </b-link>
-
-        <b-card-title class="mb-1">
-          Welcome to Vuexy! 👋
-        </b-card-title>
-        <b-card-text class="mb-2">
-          Please sign-in to your account and start the adventure
-        </b-card-text>
 
         <!-- form -->
         <validation-observer
@@ -32,7 +25,7 @@
             <!-- email -->
             <b-form-group
               label-for="email"
-              label="Email"
+              label="이메일"
             >
               <validation-provider
                 #default="{ errors }"
@@ -44,7 +37,7 @@
                   v-model="userEmail"
                   name="login-email"
                   :state="errors.length > 0 ? false:null"
-                  placeholder="john@example.com"
+                  placeholder="hello@hispace.kr"
                   autofocus
                 />
                 <small class="text-danger">{{ errors[0] }}</small>
@@ -52,13 +45,10 @@
             </b-form-group>
 
             <!-- password -->
-            <b-form-group>
-              <div class="d-flex justify-content-between">
-                <label for="password">Password</label>
-                <b-link :to="{name:'auth-forgot-password-v1'}">
-                  <small>Forgot Password?</small>
-                </b-link>
-              </div>
+            <b-form-group
+              label-for="password"
+              label="비밀번호"
+            >
               <validation-provider
                 #default="{ errors }"
                 name="Password"
@@ -97,7 +87,7 @@
                 v-model="status"
                 name="checkbox-1"
               >
-                Remember Me
+                아이디, 비밀번호 저장
               </b-form-checkbox>
             </b-form-group>
 
@@ -108,17 +98,10 @@
               block
               :disabled="invalid"
             >
-              Sign in
+              로그인
             </b-button>
           </b-form>
         </validation-observer>
-
-        <b-card-text class="text-center mt-2">
-          <span>New on our platform? </span>
-          <b-link :to="{name:'auth-register-v1'}">
-            <span>Create an account</span>
-          </b-link>
-        </b-card-text>
 
         <div class="divider my-2">
           <div class="divider-text">
@@ -126,33 +109,16 @@
           </div>
         </div>
 
-        <!-- social button -->
-        <div class="auth-footer-btn d-flex justify-content-center">
+        <b-card-text class="text-center mt-2">
           <b-button
-            href="javascript:void(0)"
-            variant="facebook"
+            variant="secondary"
+            type="submit"
+            block
+            :disabled="invalid"
           >
-            <feather-icon icon="FacebookIcon" />
+            회원가입
           </b-button>
-          <b-button
-            href="javascript:void(0)"
-            variant="twitter"
-          >
-            <feather-icon icon="TwitterIcon" />
-          </b-button>
-          <b-button
-            href="javascript:void(0)"
-            variant="google"
-          >
-            <feather-icon icon="MailIcon" />
-          </b-button>
-          <b-button
-            href="javascript:void(0)"
-            variant="github"
-          >
-            <feather-icon icon="GithubIcon" />
-          </b-button>
-        </div>
+        </b-card-text>
       </b-card>
       <!-- /Login v1 -->
     </div>
@@ -162,23 +128,21 @@
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
-  BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardTitle, BCardText, BInputGroup, BInputGroupAppend, BFormCheckbox,
+  BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardText, BInputGroup, BInputGroupAppend, BFormCheckbox,
 } from 'bootstrap-vue'
-import VuexyLogo from '@core/layouts/components/Logo.vue'
+import Logo from '@core/layouts/components/Logo.vue'
 import { required, email } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/ui/forms'
 
 export default {
   components: {
-    // BSV
     BButton,
     BForm,
     BFormInput,
     BFormGroup,
     BCard,
-    BCardTitle,
     BLink,
-    VuexyLogo,
+    Logo,
     BCardText,
     BInputGroup,
     BInputGroupAppend,
