@@ -85,11 +85,11 @@
                 :src="data.item.avatar"
                 :text="avatarText(data.item.fullName)"
                 :variant="`light-${resolveUserRoleVariant(data.item.role)}`"
-                :to="{ name: 'apps-users-view', params: { id: data.item.id } }"
+                :to="{ name: 'user-view', params: { id: data.item.id } }"
               />
             </template>
             <b-link
-              :to="{ name: 'apps-users-view', params: { id: data.item.id } }"
+              :to="{ name: 'user-view', params: { id: data.item.id } }"
               class="font-weight-bold d-block text-nowrap"
             >
               {{ data.item.fullName }}
@@ -137,12 +137,12 @@
                 class="align-middle text-body"
               />
             </template>
-            <b-dropdown-item :to="{ name: 'apps-users-view', params: { id: data.item.id } }">
+            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item.id } }">
               <feather-icon icon="FileTextIcon" />
               <span class="align-middle ml-50">Details</span>
             </b-dropdown-item>
 
-            <b-dropdown-item :to="{ name: 'apps-users-edit', params: { id: data.item.id } }">
+            <b-dropdown-item :to="{ name: 'user-edit', params: { id: data.item.id } }">
               <feather-icon icon="EditIcon" />
               <span class="align-middle ml-50">Edit</span>
             </b-dropdown-item>
@@ -216,7 +216,7 @@ import { avatarText } from '@core/utils/filter'
 import UsersListFilters from './UsersListFilters.vue'
 
 import useUsersList from './useUsersList'
-import userStoreModule from './userStoreModule'
+import userStoreModule from '../userStoreModule'
 
 export default {
   components: {
