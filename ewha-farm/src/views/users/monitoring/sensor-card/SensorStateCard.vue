@@ -1,60 +1,50 @@
 <template>
-  <b-card
-    no-body
+  <b-card-actions
+    title="농장 환경"
+    action-collapse
   >
-    <b-card-actions
-      title="농장 환경"
-      action-collapse
-    >
-      <b-row
-        class="ml-1 mr-1"
+    <b-row>
+      <b-col
+        v-for="item in statisticsItems"
+        :key="item.subtitle"
+        class="mb-2"
+        lg="6"
+        sm="12"
       >
-        <b-col>
-          <b-row>
-            <b-col
-              v-for="item in statisticsItems"
-              :key="item.subtitle"
-              lg="3"
-              md="6"
-              sm="12"
+        <b-media
+          no-body
+          class="ml-2 mr-2 mt-2"
+        >
+          <b-media-aside
+            class="mr-2"
+          >
+            <b-avatar
+              size="48"
+              :variant="item.color"
             >
-              <b-media
-                no-body
-                class="mt-2"
-              >
-                <b-media-aside
-                  class="mr-2"
-                >
-                  <b-avatar
-                    size="48"
-                    :variant="item.color"
-                  >
-                    <feather-icon
-                      size="24"
-                      :icon="item.icon"
-                    />
-                  </b-avatar>
-                </b-media-aside>
-                <b-media-body class="my-auto">
-                  <h4 class="font-weight-bolder mb-0">
-                    {{ item.title }}
-                  </h4>
-                  <b-card-text class="font-small-5 mb-0">
-                    {{ item.subtitle }}
-                  </b-card-text>
-                </b-media-body>
-              </b-media>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-card-actions>
-  </b-card>
+              <feather-icon
+                size="24"
+                :icon="item.icon"
+              />
+            </b-avatar>
+          </b-media-aside>
+          <b-media-body class="my-auto">
+            <h4 class="font-weight-bolder mb-0">
+              {{ item.title }}
+            </h4>
+            <b-card-text class="font-small-3 mb-0">
+              {{ item.subtitle }}
+            </b-card-text>
+          </b-media-body>
+        </b-media>
+      </b-col>
+    </b-row>
+  </b-card-actions>
 </template>
 
 <script>
 import {
-  BCard, BCardText, BRow, BCol, BMedia, BMediaAside, BAvatar, BMediaBody,
+  BCardText, BRow, BCol, BMedia, BMediaAside, BAvatar, BMediaBody,
 } from 'bootstrap-vue'
 import BCardActions from '@core/components/b-card-actions/BCardActions.vue'
 
@@ -63,7 +53,6 @@ export default {
     BCardActions,
     BRow,
     BCol,
-    BCard,
     BCardText,
     BMedia,
     BAvatar,
