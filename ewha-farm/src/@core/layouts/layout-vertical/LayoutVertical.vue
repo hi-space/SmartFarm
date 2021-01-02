@@ -93,7 +93,7 @@ import { BNavbar } from 'bootstrap-vue'
 import LayoutContentRendererDefault from '@core/layouts/components/layout-content-renderer/LayoutContentRendererDefault.vue'
 import LayoutContentRendererLeft from '@core/layouts/components/layout-content-renderer/LayoutContentRendererLeft.vue'
 import LayoutContentRendererLeftDetached from '@core/layouts/components/layout-content-renderer/LayoutContentRendererLeftDetached.vue'
-import VerticalNavMenu from './components/vertical-nav-menu/VerticalNavMenu.vue'
+import VerticalNavMenu from './components/VerticalNavMenu.vue'
 import useVerticalLayout from './useVerticalLayout'
 import mixinVerticalLayout from './mixinVerticalLayout'
 

@@ -113,11 +113,11 @@ import LayoutContentRendererDefault from '@core/layouts/components/layout-conten
 import LayoutContentRendererLeft from '@core/layouts/components/layout-content-renderer/LayoutContentRendererLeft.vue'
 import LayoutContentRendererLeftDetached from '@core/layouts/components/layout-content-renderer/LayoutContentRendererLeftDetached.vue'
 import useLayoutHorizontal from './useLayoutHorizontal'
-import HorizontalNavMenu from './components/horizontal-nav-menu/HorizontalNavMenu.vue'
+import HorizontalNavMenu from './components/HorizontalNavMenu.vue'
 
 // Vertical Menu
 /* eslint-disable import/order */
-import VerticalNavMenu from '@core/layouts/layout-vertical/components/vertical-nav-menu/VerticalNavMenu.vue'
+import VerticalNavMenu from '@core/layouts/layout-vertical/components/VerticalNavMenu.vue'
 import useVerticalLayout from '@core/layouts/layout-vertical/useVerticalLayout'
 import mixinLayoutHorizontal from './mixinLayoutHorizontal'
 /* eslint-enable import/order */

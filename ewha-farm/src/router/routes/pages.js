@@ -2,7 +2,7 @@ export default [
   {
     path: '/login',
     name: 'auth-login',
-    component: () => import('@/views/pages/authentication/Login.vue'),
+    component: () => import('@/views/pages/auth/Login.vue'),
     meta: {
       layout: 'full',
       resource: 'Auth',
@@ -12,7 +12,7 @@ export default [
   {
     path: '/register',
     name: 'auth-register',
-    component: () => import('@/views/pages/authentication/Register.vue'),
+    component: () => import('@/views/pages/auth/Register.vue'),
     meta: {
       layout: 'full',
       resource: 'Auth',
