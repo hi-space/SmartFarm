@@ -1,15 +1,18 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+// Modules
+import app from './app'
+import appConfig from './app-config'
+import verticalMenu from './vertical-menu'
+
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    app,
+    appConfig,
+    verticalMenu,
   },
-});
+  strict: process.env.DEV,
+})

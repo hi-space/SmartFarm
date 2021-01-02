@@ -1,18 +1,22 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <b-card title="Kick start your project 🚀">
+      <b-card-text>All the best for your new project.</b-card-text>
+    </b-card>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { BCard, BCardText } from 'bootstrap-vue'
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld,
+    BCard,
+    BCardText,
   },
-};
+}
 </script>
+
+<style>
+
+</style>
