@@ -2,11 +2,10 @@
   <div class="auth-wrapper auth-v1 px-2">
     <div class="auth-inner py-2">
 
-      <!-- Login v1 -->
+      <!-- Login -->
       <b-card class="mb-0">
         <b-link class="brand-logo">
           <logo />
-
           <h2 class="brand-text text-primary ml-1">
             Ewha Farm
           </h2>
@@ -91,6 +90,8 @@
               </b-form-checkbox>
             </b-form-group>
 
+            <div class="divider my-2" />
+
             <!-- submit button -->
             <b-button
               variant="primary"
@@ -112,9 +113,8 @@
         <b-card-text class="text-center mt-2">
           <b-button
             variant="secondary"
-            type="submit"
             block
-            :disabled="invalid"
+            :to="{name:'auth-register'}"
           >
             회원가입
           </b-button>

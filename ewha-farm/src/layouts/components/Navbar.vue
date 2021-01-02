@@ -30,7 +30,7 @@
         <template #button-content>
           <div class="d-sm-flex d-none user-nav">
             <p class="user-name font-weight-bolder mb-0">
-              John Doe
+              관리자 샘플
             </p>
             <span class="user-status">Admin</span>
           </div>
@@ -44,31 +44,28 @@
           />
         </template>
 
-        <b-dropdown-item link-class="d-flex align-items-center">
+        <b-dropdown-item
+          :to="{ name: 'pages-account-setting' }"
+          link-class="d-flex align-items-center"
+        >
           <feather-icon
             size="16"
             icon="UserIcon"
             class="mr-50"
           />
-          <span>Profile</span>
+          <span>사용자 정보</span>
         </b-dropdown-item>
 
-        <b-dropdown-item link-class="d-flex align-items-center">
+        <b-dropdown-item
+          :to="{ name: 'pages-account-setting' }"
+          link-class="d-flex align-items-center"
+        >
           <feather-icon
             size="16"
-            icon="MailIcon"
+            icon="AlertCircleIcon"
             class="mr-50"
           />
-          <span>Inbox</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="CheckSquareIcon"
-            class="mr-50"
-          />
-          <span>Task</span>
+          <span>알림 설정</span>
         </b-dropdown-item>
 
         <b-dropdown-item link-class="d-flex align-items-center">
@@ -77,7 +74,7 @@
             icon="MessageSquareIcon"
             class="mr-50"
           />
-          <span>Chat</span>
+          <span>문의처</span>
         </b-dropdown-item>
 
         <b-dropdown-divider />
@@ -88,7 +85,7 @@
             icon="LogOutIcon"
             class="mr-50"
           />
-          <span>Logout</span>
+          <span>로그아웃</span>
         </b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar-nav>

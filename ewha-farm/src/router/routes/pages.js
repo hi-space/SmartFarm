@@ -51,13 +51,10 @@ export default [
     name: 'pages-account-setting',
     component: () => import('@/views/pages/account-setting/AccountSetting.vue'),
     meta: {
-      pageTitle: 'Account Settings',
+      pageTitle: '사용자 설정',
       breadcrumb: [
         {
-          text: 'Pages',
-        },
-        {
-          text: 'Account Settings',
+          text: '사용자 설정',
           active: true,
         },
       ],

@@ -17,7 +17,7 @@
           size="18"
           class="mr-50"
         />
-        <span class="font-weight-bold">General</span>
+        <span class="font-weight-bold">개인정보</span>
       </template>
 
       <account-setting-general
@@ -37,50 +37,12 @@
           size="18"
           class="mr-50"
         />
-        <span class="font-weight-bold">Change Password</span>
+        <span class="font-weight-bold">비밀번호 변경</span>
       </template>
 
       <account-setting-password />
     </b-tab>
     <!--/ change password tab -->
-
-    <!-- info -->
-    <b-tab>
-
-      <!-- title -->
-      <template #title>
-        <feather-icon
-          icon="InfoIcon"
-          size="18"
-          class="mr-50"
-        />
-        <span class="font-weight-bold">Information</span>
-      </template>
-
-      <account-setting-information
-        v-if="options.info"
-        :information-data="options.info"
-      />
-    </b-tab>
-
-    <!-- social links -->
-    <b-tab>
-
-      <!-- title -->
-      <template #title>
-        <feather-icon
-          icon="LinkIcon"
-          size="18"
-          class="mr-50"
-        />
-        <span class="font-weight-bold">Social</span>
-      </template>
-
-      <account-setting-social
-        v-if="options.social"
-        :social-data="options.social"
-      />
-    </b-tab>
 
     <!-- notification -->
     <b-tab>
@@ -92,7 +54,7 @@
           size="18"
           class="mr-50"
         />
-        <span class="font-weight-bold">Notifications</span>
+        <span class="font-weight-bold">알림 설정</span>
       </template>
 
       <account-setting-notification
@@ -104,11 +66,10 @@
 </template>
 
 <script>
+import fakeData from '@/data/account-setting-data.json'
 import { BTabs, BTab } from 'bootstrap-vue'
 import AccountSettingGeneral from './AccountSettingGeneral.vue'
 import AccountSettingPassword from './AccountSettingPassword.vue'
-import AccountSettingInformation from './AccountSettingInformation.vue'
-import AccountSettingSocial from './AccountSettingSocial.vue'
 import AccountSettingNotification from './AccountSettingNotification.vue'
 
 export default {
@@ -117,17 +78,15 @@ export default {
     BTab,
     AccountSettingGeneral,
     AccountSettingPassword,
-    AccountSettingInformation,
-    AccountSettingSocial,
     AccountSettingNotification,
   },
   data() {
     return {
-      options: {},
+      options: fakeData,
     }
   },
   beforeCreate() {
-    this.$http.get('/account-setting/data').then(res => { this.options = res.data })
+    // this.$http.get('/account-setting/data').then(res => { this.options = res.data })
   },
 }
 </script>

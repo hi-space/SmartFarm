@@ -2,7 +2,7 @@
   <b-card>
     <b-row>
       <h6 class="section-label mx-1 mb-2">
-        Activity
+        알림 설정
       </h6>
       <b-col
         cols="12"
@@ -15,7 +15,7 @@
           switch
           inline
         >
-          <span>Email me when someone comments on my article</span>
+          <span>센서 알림</span>
         </b-form-checkbox>
       </b-col>
       <b-col
@@ -29,7 +29,7 @@
           switch
           inline
         >
-          <span>Email me when someone answers on my form</span>
+          <span>자동 제어 알림</span>
         </b-form-checkbox>
       </b-col>
       <b-col
@@ -43,74 +43,24 @@
           switch
           inline
         >
-          <span>Email me hen someone follows me</span>
+          <span>네트워크 연결 알림</span>
         </b-form-checkbox>
       </b-col>
-
-      <!-- application switch -->
-      <h6 class="section-label mx-1 mt-2">
-        Application
-      </h6>
-      <b-col
-        cols="12"
-        class="mt-1 mb-2"
-      >
-        <b-form-checkbox
-          id="accountSwitch4"
-          :checked="localOptions.newAnnouncements"
-          name="check-button"
-          switch
-          inline
-        >
-          <span>News and announcements</span>
-        </b-form-checkbox>
-      </b-col>
-      <b-col
-        cols="12"
-        class="mb-2"
-      >
-        <b-form-checkbox
-          id="accountSwitch5"
-          :checked="localOptions.productUpdates"
-          name="check-button"
-          switch
-          inline
-        >
-          <span>Weekly product updates</span>
-        </b-form-checkbox>
-      </b-col>
-      <b-col
-        cols="12"
-        class="mb-2"
-      >
-        <b-form-checkbox
-          id="accountSwitch6"
-          :checked="localOptions.blogDigest"
-          name="check-button"
-          switch
-          inline
-        >
-          <span>Weekly blog digest</span>
-        </b-form-checkbox>
-      </b-col>
-      <!--/ application switch -->
 
       <!-- buttons -->
       <b-col cols="12">
         <b-button
-          v-ripple.400="'rgba(255, 255, 255, 0.15)'"
           variant="primary"
           class="mr-1 mt-1"
         >
-          Save changes
+          설정 변경
         </b-button>
         <b-button
-          v-ripple.400="'rgba(186, 191, 199, 0.15)'"
           type="reset"
           class="mt-1"
           variant="outline-secondary"
         >
-          Cancel
+          취소
         </b-button>
       </b-col>
       <!--/ buttons -->
