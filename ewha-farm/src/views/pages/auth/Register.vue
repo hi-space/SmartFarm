@@ -67,7 +67,7 @@
             >
               <validation-provider
                 #default="{ errors }"
-                name="Password"
+                name="password"
                 rules="required"
               >
                 <b-input-group
@@ -97,25 +97,25 @@
 
             <!-- password confirm-->
             <b-form-group
-              label="Password"
-              label-for="password"
+              label="PasswordConfirm"
+              label-for="PasswordConfirm"
             >
               <validation-provider
                 #default="{ errors }"
-                name="Password"
-                rules="required"
+                name="PasswordConfirm"
+                rules="required|confirmed:password"
               >
                 <b-input-group
                   class="input-group-merge"
                   :class="errors.length > 0 ? 'is-invalid':null"
                 >
                   <b-form-input
-                    id="password"
-                    v-model="password"
+                    id="PasswordConfirm"
+                    v-model="PasswordConfirm"
                     :type="passwordFieldType"
                     :state="errors.length > 0 ? false:null"
                     class="form-control-merge"
-                    name="register-password"
+                    name="register-password-confirm"
                     placeholder="············"
                   />
                   <b-input-group-append is-text>
