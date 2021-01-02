@@ -15,7 +15,6 @@
       ok-title="submit"
       cancel-variant="outline-secondary"
       scrollable
-      no-close-on-backdrop
     >
       <b-form>
         <b-form-group

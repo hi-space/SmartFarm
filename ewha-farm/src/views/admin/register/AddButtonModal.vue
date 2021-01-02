@@ -14,7 +14,6 @@
       title="버튼 등록"
       ok-title="submit"
       cancel-variant="outline-secondary"
-      no-close-on-backdrop
     >
       <b-form>
         <b-form-group
