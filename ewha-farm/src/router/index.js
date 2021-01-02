@@ -4,8 +4,9 @@ import VueRouter from 'vue-router'
 // Routes
 import { canNavigate } from '@/libs/acl/routeProtection'
 import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
-import apps from './routes/apps'
+import adminMenu from './routes/adminMenu'
 import dashboard from './routes/dashboard'
+import userMenu from './routes/userMenu'
 import pages from './routes/pages'
 
 Vue.use(VueRouter)
@@ -18,9 +19,10 @@ const router = new VueRouter({
   },
   routes: [
     { path: '/', redirect: { name: 'dashboard' } },
-    ...apps,
     ...dashboard,
     ...pages,
+    ...adminMenu,
+    ...userMenu,
     {
       path: '*',
       redirect: 'error',

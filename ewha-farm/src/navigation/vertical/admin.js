@@ -4,7 +4,7 @@ export default [
   },
   {
     title: '회원관리',
-    route: null,
+    route: 'user-list',
     icon: 'UsersIcon',
   },
   {
