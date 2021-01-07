@@ -73,7 +73,7 @@ import { initialAbility } from '@/libs/acl/config'
 import useJwt from '@/auth/jwt/useJwt'
 import { avatarText } from '@core/utils/filter'
 
-import fakeUser from '@/data/user.json'
+// import fakeUser from '@/data/user.json'
 
 export default {
   components: {
@@ -84,8 +84,8 @@ export default {
   },
   data() {
     return {
-      // userData: JSON.parse(localStorage.getItem('userData')),
-      userData: fakeUser,
+      userData: JSON.parse(localStorage.getItem('userData')),
+      // userData: fakeUser,
       avatarText,
     }
   },

@@ -159,16 +159,9 @@
       Save Changes
     </b-button>
     <b-button
-      variant="outline-secondary"
-      type="reset"
-      class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
-      :block="$store.getters['app/currentBreakPoint'] === 'xs'"
-    >
-      Reset
-    </b-button>
-    <b-button
       variant="outline-danger"
       class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
+      :block="$store.getters['app/currentBreakPoint'] === 'xs'"
       @click="checkDelete"
     >
       Delete
@@ -270,8 +263,8 @@ export default {
           }
         })
     },
+
     updateUser() {
-      console.log(this.userData)
       store.dispatch('app-user/updateUser', { id: router.currentRoute.params.id, queryBody: this.userData })
         .then(() => {
           router.push({ name: 'user-list' })

@@ -18,25 +18,25 @@
         >
           <b-form
             class="auth-login-form mt-2"
-            @submit.prevent
+            @submit.prevent="login"
           >
 
-            <!-- email -->
+            <!-- phone -->
             <b-form-group
-              label-for="email"
-              label="이메일"
+              label-for="phone"
+              label="핸드폰 번호"
             >
               <validation-provider
                 #default="{ errors }"
-                name="이메일"
-                rules="required|email"
+                name="핸드폰 번호"
+                rules="required"
               >
                 <b-form-input
-                  id="email"
-                  v-model="userEmail"
-                  name="login-email"
+                  id="phone"
+                  v-model="userId"
+                  name="login-id"
                   :state="errors.length > 0 ? false:null"
-                  placeholder="hello@hispace.kr"
+                  placeholder="01012345678"
                   autofocus
                 />
                 <small class="text-danger">{{ errors[0] }}</small>
@@ -64,7 +64,7 @@
                     class="form-control-merge"
                     :state="errors.length > 0 ? false:null"
                     name="login-password"
-                    placeholder="Password"
+                    placeholder="******"
                   />
 
                   <b-input-group-append is-text>
@@ -80,7 +80,7 @@
             </b-form-group>
 
             <!-- checkbox -->
-            <b-form-group>
+            <!-- <b-form-group>
               <b-form-checkbox
                 id="remember-me"
                 v-model="status"
@@ -88,7 +88,7 @@
               >
                 아이디, 비밀번호 저장
               </b-form-checkbox>
-            </b-form-group>
+            </b-form-group> -->
 
             <div class="divider my-2" />
 
@@ -128,11 +128,15 @@
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
-  BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardText, BInputGroup, BInputGroupAppend, BFormCheckbox,
+  BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardText, BInputGroup, BInputGroupAppend,
 } from 'bootstrap-vue'
+import useJwt from '@/auth/jwt/useJwt'
 import Logo from '@core/layouts/components/Logo.vue'
-import { required, email } from '@validations'
+import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/forms'
+import { getHomeRouteForLoggedInUser } from '@/auth/utils'
+
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
   components: {
@@ -146,24 +150,59 @@ export default {
     BCardText,
     BInputGroup,
     BInputGroupAppend,
-    BFormCheckbox,
+    // BFormCheckbox,
     ValidationProvider,
     ValidationObserver,
   },
   mixins: [togglePasswordVisibility],
   data() {
     return {
-      userEmail: '',
+      userId: '',
       password: '',
       status: '',
       // validation rules
       required,
-      email,
     }
   },
   computed: {
     passwordToggleIcon() {
-      return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
+      return this.passwordFieldType === 'password' ? 'EyeOffIcon' : 'EyeIcon'
+    },
+  },
+  methods: {
+    login() {
+      this.$refs.loginForm.validate().then(success => {
+        if (success) {
+          useJwt.login({
+            email: this.userId,
+            password: this.password,
+          })
+            .then(response => {
+              const { userData } = response.data
+              useJwt.setToken(response.data.accessToken)
+              useJwt.setRefreshToken(response.data.refreshToken)
+              localStorage.setItem('userData', JSON.stringify(userData))
+              this.$ability.update(userData.ability)
+
+              this.$router.push(getHomeRouteForLoggedInUser(userData.role))
+                .then(() => {
+                  this.$toast({
+                    component: ToastificationContent,
+                    position: 'top-right',
+                    props: {
+                      title: `Welcome ${userData.fullName || userData.username}`,
+                      icon: 'CoffeeIcon',
+                      variant: 'success',
+                      text: `You have successfully logged in as ${userData.role}. Now you can start to explore!`,
+                    },
+                  })
+                })
+                .catch(error => {
+                  this.$refs.loginForm.setErrors(error.response.data.error)
+                })
+            })
+        }
+      })
     },
   },
 }

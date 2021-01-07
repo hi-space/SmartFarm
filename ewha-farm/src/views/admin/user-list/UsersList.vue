@@ -1,5 +1,4 @@
 <template>
-
   <div>
 
     <!-- Filters -->
@@ -19,7 +18,6 @@
     >
 
       <div class="m-2">
-
         <!-- Table Top -->
         <b-row>
 
@@ -54,7 +52,6 @@
             </div>
           </b-col>
         </b-row>
-
       </div>
 
       <b-table

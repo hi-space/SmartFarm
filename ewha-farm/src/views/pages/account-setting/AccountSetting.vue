@@ -21,8 +21,8 @@
       </template>
 
       <account-setting-general
-        v-if="options.general"
-        :general-data="options.general"
+        v-if="userData.general"
+        :general-data="userData.general"
       />
     </b-tab>
     <!--/ general tab -->
@@ -41,8 +41,8 @@
       </template>
 
       <account-setting-notification
-        v-if="options.notification"
-        :notification-data="options.notification"
+        v-if="userData.notification"
+        :notification-data="userData.notification"
       />
     </b-tab>
   </b-tabs>
@@ -63,11 +63,11 @@ export default {
   },
   data() {
     return {
-      options: fakeData,
+      userData: fakeData,
     }
   },
-  beforeCreate() {
-    // this.$http.get('/account-setting/data').then(res => { this.options = res.data })
+  setup() {
+    // this.$http.get('/account-setting/data').then(res => { this.userData = res.data })
   },
 }
 </script>

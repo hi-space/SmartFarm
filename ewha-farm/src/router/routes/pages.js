@@ -5,7 +5,8 @@ export default [
     component: () => import('@/views/pages/auth/Login.vue'),
     meta: {
       layout: 'full',
-      redirectIfLoggedIn: false,
+      resource: 'Auth',
+      redirectIfLoggedIn: true,
     },
   },
   {
@@ -14,7 +15,8 @@ export default [
     component: () => import('@/views/pages/auth/Register.vue'),
     meta: {
       layout: 'full',
-      redirectIfLoggedIn: false,
+      resource: 'Auth',
+      redirectIfLoggedIn: true,
     },
   },
   {

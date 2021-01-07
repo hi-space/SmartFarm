@@ -81,8 +81,6 @@ import {
   BButton, BForm, BFormGroup, BFormInput, BRow, BCol, BCard,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
-import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
-import { ref } from '@vue/composition-api'
 
 export default {
   components: {
@@ -106,7 +104,6 @@ export default {
   data() {
     return {
       optionsLocal: JSON.parse(JSON.stringify(this.generalData)),
-      profileFile: null,
     }
   },
   methods: {
@@ -115,16 +112,7 @@ export default {
     },
   },
   setup() {
-    const refInputEl = ref(null)
-    const previewEl = ref(null)
 
-    const { inputImageRenderer } = useInputImageRenderer(refInputEl, previewEl)
-
-    return {
-      refInputEl,
-      previewEl,
-      inputImageRenderer,
-    }
   },
 }
 </script>
