@@ -31,6 +31,8 @@ export default [
     component: () => import('@/views/pages/error/Error.vue'),
     meta: {
       layout: 'full',
+      resource: 'Auth',
+      action: 'read',
     },
   },
   {

@@ -132,7 +132,7 @@
               />
             </template>
 
-            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item.userInfo.phone } }">
+            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item._id } }">
               <feather-icon icon="EditIcon" />
               <span class="align-middle ml-50">Details</span>
             </b-dropdown-item>
@@ -201,7 +201,7 @@ import {
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import store from '@/store'
-import { ref, onUnmounted } from '@vue/composition-api'
+import { onUnmounted } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
 import UsersListFilters from './UsersListFilters.vue'
 
@@ -236,8 +236,6 @@ export default {
     onUnmounted(() => {
       if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
     })
-
-    const isAddNewUserSidebarActive = ref(false)
 
     const roleOptions = [
       { label: 'Admin', value: 'admin' },
@@ -283,10 +281,6 @@ export default {
     } = userListTable()
 
     return {
-
-      // Sidebar
-      isAddNewUserSidebarActive,
-
       fetchUsers,
       tableColumns,
       perPage,
