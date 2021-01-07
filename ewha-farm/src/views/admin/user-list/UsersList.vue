@@ -48,7 +48,7 @@
             <div class="d-flex align-items-center justify-content-end">
               <b-form-input
                 v-model="searchQuery"
-                class="d-inline-block mr-1"
+                class="d-inline-block"
                 placeholder="Search..."
               />
             </div>
@@ -63,7 +63,7 @@
         :items="fetchUsers"
         responsive
         :fields="tableColumns"
-        primary-key="id"
+        primary-key="_id"
         :sort-by.sync="sortBy"
         show-empty
         empty-text="No matching records found"
@@ -78,17 +78,17 @@
                 size="32"
                 :src="data.item.avatar"
                 :text="avatarText(data.item.fullName)"
-                :variant="`light-${resolveUserRoleVariant(data.item.role)}`"
-                :to="{ name: 'user-view', params: { id: data.item.id } }"
+                :variant="`light-${resolveUserRoleVariant(data.item.userInfo.role)}`"
+                :to="{ name: 'user-view', params: { id: data.item.phone } }"
               />
             </template>
             <b-link
-              :to="{ name: 'user-view', params: { id: data.item.id } }"
+              :to="{ name: 'user-view', params: { id: data.item._id } }"
               class="font-weight-bold d-block text-nowrap"
             >
-              {{ data.item.fullName }}
+              {{ data.item._id }}
             </b-link>
-            <small class="text-muted">@{{ data.item.username }}</small>
+            <small class="text-muted">@{{ data.item.userInfo.phone }}</small>
           </b-media>
         </template>
 
@@ -96,12 +96,12 @@
         <template #cell(role)="data">
           <div class="text-nowrap">
             <feather-icon
-              :icon="resolveUserRoleIcon(data.item.role)"
+              :icon="resolveUserRoleIcon(data.item.userInfo.role)"
               size="18"
               class="mr-50"
-              :class="`text-${resolveUserRoleVariant(data.item.role)}`"
+              :class="`text-${resolveUserRoleVariant(data.item.userInfo.role)}`"
             />
-            <span class="align-text-top text-capitalize">{{ data.item.role }}</span>
+            <span class="align-text-top text-capitalize">{{ data.item.userInfo.role }}</span>
           </div>
         </template>
 
@@ -109,10 +109,10 @@
         <template #cell(status)="data">
           <b-badge
             pill
-            :variant="`light-${resolveUserStatusVariant(data.item.status)}`"
+            :variant="`light-${resolveUserStatusVariant(data.item.userInfo.status)}`"
             class="text-capitalize"
           >
-            {{ data.item.status }}
+            {{ data.item.userInfo.status }}
           </b-badge>
         </template>
 
@@ -132,7 +132,7 @@
               />
             </template>
 
-            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item.id } }">
+            <b-dropdown-item :to="{ name: 'user-view', params: { id: data.item.userInfo.phone } }">
               <feather-icon icon="EditIcon" />
               <span class="align-middle ml-50">Details</span>
             </b-dropdown-item>
@@ -242,10 +242,7 @@ export default {
 
     const roleOptions = [
       { label: 'Admin', value: 'admin' },
-      { label: 'Author', value: 'author' },
-      { label: 'Editor', value: 'editor' },
-      { label: 'Maintainer', value: 'maintainer' },
-      { label: 'Subscriber', value: 'subscriber' },
+      { label: 'Customer', value: 'customer' },
     ]
 
     const planOptions = [

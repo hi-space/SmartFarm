@@ -6,13 +6,9 @@ export default {
   getters: {},
   mutations: {},
   actions: {
-    fetchUsers(ctx, queryParams) {
-      return new Promise((resolve, reject) => {
-        axios
-          .get('/apps/user/users', { params: queryParams })
-          .then(response => resolve(response))
-          .catch(error => reject(error))
-      })
+    async fetchUsers(ctx, queryParams) {
+      const result = await axios.get('/users', { params: queryParams })
+      return result
     },
     fetchUser(ctx, { id }) {
       return new Promise((resolve, reject) => {
