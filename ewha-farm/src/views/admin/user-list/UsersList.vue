@@ -77,18 +77,18 @@
               <b-avatar
                 size="32"
                 :src="data.item.avatar"
-                :text="avatarText(data.item.fullName)"
+                :text="avatarText(data.item.userInfo.name)"
                 :variant="`light-${resolveUserRoleVariant(data.item.userInfo.role)}`"
-                :to="{ name: 'user-view', params: { id: data.item.phone } }"
+                :to="{ name: 'user-view', params: { id: data.item._id } }"
               />
             </template>
             <b-link
               :to="{ name: 'user-view', params: { id: data.item._id } }"
               class="font-weight-bold d-block text-nowrap"
             >
-              {{ data.item._id }}
+              {{ data.item.userInfo.name }}
             </b-link>
-            <small class="text-muted">@{{ data.item.userInfo.phone }}</small>
+            <small class="text-muted">{{ data.item._id }}</small>
           </b-media>
         </template>
 
@@ -205,13 +205,12 @@ import { ref, onUnmounted } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
 import UsersListFilters from './UsersListFilters.vue'
 
-import useUsersList from './useUsersList'
+import userListTable from './userListTable'
 import userStoreModule from '../userStoreModule'
 
 export default {
   components: {
     UsersListFilters,
-
     BCard,
     BRow,
     BCol,
@@ -281,7 +280,7 @@ export default {
       roleFilter,
       planFilter,
       statusFilter,
-    } = useUsersList()
+    } = userListTable()
 
     return {
 

@@ -5,16 +5,16 @@
     <div class="d-flex justify-content-start mb-2">
       <b-avatar
         :src="userData.avatar"
-        :text="avatarText(userData.fullName)"
-        :variant="`light-${resolveUserRoleVariant(userData.role)}`"
+        :text="avatarText(userData.userInfo.name)"
+        :variant="`light-${resolveUserRoleVariant(userData.userInfo.role)}`"
         size="104px"
         rounded
       />
       <div class="d-flex flex-column ml-1">
-        <h4 class="mb-0">
-          {{ userData.fullName }}
-        </h4>
-        <span class="card-text">{{ userData.email }}</span>
+        <h2 class="mb-1">
+          {{ userData.userInfo.name }}
+        </h2>
+        <span class="card-text">{{ userData._id }}</span>
       </div>
     </div>
 
@@ -23,52 +23,19 @@
       <b-row
         class="mb-2"
       >
-        <!-- Field: Username -->
-        <b-col
-          cols="12"
-          md="4"
-        >
-          <b-form-group
-            label="ID"
-            label-for="username"
-          >
-            <b-form-input
-              id="username"
-              v-model="userData.username"
-              readonly
-            />
-          </b-form-group>
-        </b-col>
 
-        <!-- Field: Full Name -->
+        <!-- Field: Name -->
         <b-col
           cols="12"
           md="4"
         >
           <b-form-group
             label="이름"
-            label-for="full-name"
+            label-for="name"
           >
             <b-form-input
-              id="full-name"
-              v-model="userData.fullName"
-            />
-          </b-form-group>
-        </b-col>
-
-        <!-- Field: Email -->
-        <b-col
-          cols="12"
-          md="4"
-        >
-          <b-form-group
-            label="Email"
-            label-for="email"
-          >
-            <b-form-input
-              id="email"
-              v-model="userData.email"
-              type="email"
+              id="name"
+              v-model="userData.userInfo.name"
             />
           </b-form-group>
         </b-col>
@@ -80,11 +47,28 @@
         >
           <b-form-group
             label="전화번호"
-            label-for="contact"
+            label-for="phone"
           >
             <b-form-input
-              id="contact"
-              v-model="userData.contact"
+              id="phone"
+              v-model="userData.userInfo.phone"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Password -->
+        <b-col
+          cols="12"
+          md="4"
+        >
+          <b-form-group
+            label="비밀번호"
+            label-for="password"
+          >
+            <b-form-input
+              id="password"
+              v-model="userData.userInfo.password"
+              type="password"
             />
           </b-form-group>
         </b-col>
@@ -99,7 +83,7 @@
             label-for="user-status"
           >
             <v-select
-              v-model="userData.status"
+              v-model="userData.userInfo.status"
               :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               :options="statusOptions"
               :reduce="val => val.value"
@@ -119,7 +103,7 @@
             label-for="user-role"
           >
             <v-select
-              v-model="userData.role"
+              v-model="userData.userInfo.role"
               :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               :options="roleOptions"
               :reduce="val => val.value"
@@ -136,11 +120,11 @@
         >
           <b-form-group
             label="농장 주소"
-            label-for="company"
+            label-for="address"
           >
             <b-form-input
-              id="company"
-              v-model="userData.company"
+              id="address"
+              v-model="userData.userInfo.address"
             />
           </b-form-group>
         </b-col>
@@ -156,7 +140,7 @@
           >
             <b-form-textarea
               id="memo"
-              v-model="userData.avatar"
+              v-model="userData.userInfo.info"
             />
           </b-form-group>
         </b-col>
@@ -197,7 +181,7 @@ import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
 import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
 import { ref } from '@vue/composition-api'
-import useUsersList from '../user-list/useUsersList'
+import userListTable from '../user-list/userListTable'
 
 export default {
   components: {
@@ -219,58 +203,17 @@ export default {
     },
   },
   setup(props) {
-    const { resolveUserRoleVariant } = useUsersList()
+    const { resolveUserRoleVariant } = userListTable()
 
     const roleOptions = [
       { label: 'Admin', value: 'admin' },
-      { label: 'Author', value: 'author' },
-      { label: 'Editor', value: 'editor' },
-      { label: 'Maintainer', value: 'maintainer' },
-      { label: 'Subscriber', value: 'subscriber' },
+      { label: 'Customer', value: 'customer' },
     ]
 
     const statusOptions = [
       { label: 'Pending', value: 'pending' },
       { label: 'Active', value: 'active' },
       { label: 'Inactive', value: 'inactive' },
-    ]
-
-    const permissionsData = [
-      {
-        module: 'Admin',
-        read: true,
-        write: false,
-        create: false,
-        delete: false,
-      },
-      {
-        module: 'Staff',
-        read: false,
-        write: true,
-        create: false,
-        delete: false,
-      },
-      {
-        module: 'Author',
-        read: true,
-        write: false,
-        create: true,
-        delete: false,
-      },
-      {
-        module: 'Contributor',
-        read: false,
-        write: false,
-        create: false,
-        delete: false,
-      },
-      {
-        module: 'User',
-        read: false,
-        write: false,
-        create: false,
-        delete: true,
-      },
     ]
 
     // ? Demo Purpose => Update image on click of update
@@ -287,7 +230,6 @@ export default {
       avatarText,
       roleOptions,
       statusOptions,
-      permissionsData,
 
       //  ? Demo - Update Image on click of update button
       refInputEl,

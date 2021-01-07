@@ -7,7 +7,7 @@ import ToastificationContent from '@core/components/toastification/Toastificatio
 
 import fakeUsersData from '@/data/user-list.json'
 
-export default function useUsersList() {
+export default function userListTable() {
   // Use toast
   const toast = useToast()
 
@@ -17,8 +17,8 @@ export default function useUsersList() {
   const tableColumns = [
     { key: 'user', sortable: true },
     {
-      key: 'userInfo.password',
-      label: 'email',
+      label: 'phone',
+      key: 'userInfo.phone',
       sortable: true,
     },
     { key: 'role', sortable: true },
@@ -30,7 +30,7 @@ export default function useUsersList() {
   const currentPage = ref(1)
   const perPageOptions = [10, 25, 50, 100]
   const searchQuery = ref('')
-  const sortBy = ref('id')
+  const sortBy = ref('_id')
   const isSortDirDesc = ref(true)
   const roleFilter = ref(null)
   const planFilter = ref(null)
@@ -92,7 +92,7 @@ export default function useUsersList() {
   // *===============================================---*
 
   const resolveUserRoleVariant = role => {
-    if (role === 'customer') return 'warning'
+    if (role === 'customer') return 'primary'
     if (role === 'admin') return 'danger'
     return 'primary'
   }
