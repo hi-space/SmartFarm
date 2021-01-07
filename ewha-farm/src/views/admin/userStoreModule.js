@@ -15,7 +15,7 @@ export default {
       return result
     },
     async updateUser(ctx, { id, queryBody }) {
-      const result = await axios.get(`/users/${id}`, { data: queryBody })
+      const result = await axios.put(`/users/${id}`, queryBody)
       return result
     },
     async deleteUser(ctx, { id }) {

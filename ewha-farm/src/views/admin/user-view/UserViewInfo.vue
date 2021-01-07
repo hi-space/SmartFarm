@@ -52,6 +52,7 @@
             <b-form-input
               id="phone"
               v-model="userData.userInfo.phone"
+              readonly
             />
           </b-form-group>
         </b-col>
@@ -153,6 +154,7 @@
       variant="primary"
       class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
       :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+      @click="updateUser"
     >
       Save Changes
     </b-button>
@@ -167,7 +169,7 @@
     <b-button
       variant="outline-danger"
       class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
-      @click="showConfirmBox"
+      @click="checkDelete"
     >
       Delete
     </b-button>
@@ -245,7 +247,7 @@ export default {
     }
   },
   methods: {
-    showConfirmBox() {
+    checkDelete() {
       this.$bvModal
         .msgBoxConfirm('이 사용자를 삭제하시겠습니까?', {
           title: '사용자 삭제',
@@ -266,6 +268,15 @@ export default {
                 console.log(error)
               })
           }
+        })
+    },
+    updateUser() {
+      console.log(this.userData)
+      store.dispatch('app-user/updateUser', { id: router.currentRoute.params.id, queryBody: this.userData })
+        .then(() => {
+          router.push({ name: 'user-list' })
+        }).catch(error => {
+          console.log(error)
         })
     },
   },
