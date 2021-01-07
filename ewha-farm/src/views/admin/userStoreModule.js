@@ -14,13 +14,13 @@ export default {
       const result = await axios.get(`/users/${id}`)
       return result
     },
-    addUser(ctx, userData) {
-      return new Promise((resolve, reject) => {
-        axios
-          .post('/apps/user/users', { user: userData })
-          .then(response => resolve(response))
-          .catch(error => reject(error))
-      })
+    async updateUser(ctx, { id, queryBody }) {
+      const result = await axios.get(`/users/${id}`, { data: queryBody })
+      return result
+    },
+    async deleteUser(ctx, { id }) {
+      const result = await axios.delete(`/users/${id}`)
+      return result
     },
   },
 }

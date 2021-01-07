@@ -167,6 +167,7 @@
     <b-button
       variant="outline-danger"
       class="mb-1 mb-sm-0 mr-0 mr-sm-1 float-md-right"
+      @click="showConfirmBox"
     >
       Delete
     </b-button>
@@ -177,10 +178,13 @@
 import {
   BButton, BAvatar, BRow, BCol, BFormGroup, BFormInput, BForm, BCard, BFormTextarea,
 } from 'bootstrap-vue'
+import Ripple from 'vue-ripple-directive'
 import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
 import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
 import { ref } from '@vue/composition-api'
+import store from '@/store'
+import router from '@/router'
 import userListTable from '../user-list/userListTable'
 
 export default {
@@ -195,6 +199,9 @@ export default {
     BFormTextarea,
     BCard,
     vSelect,
+  },
+  directives: {
+    Ripple,
   },
   props: {
     userData: {
@@ -236,6 +243,31 @@ export default {
       previewEl,
       inputImageRenderer,
     }
+  },
+  methods: {
+    showConfirmBox() {
+      this.$bvModal
+        .msgBoxConfirm('이 사용자를 삭제하시겠습니까?', {
+          title: '사용자 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: 'Yes',
+          cancelTitle: 'No',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('app-user/deleteUser', { id: router.currentRoute.params.id })
+              .then(() => {
+                router.push({ name: 'user-list' })
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
+    },
   },
 }
 </script>
