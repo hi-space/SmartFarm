@@ -174,15 +174,17 @@ export default {
       this.$refs.loginForm.validate().then(success => {
         if (success) {
           useJwt.login({
-            email: this.userId,
+            phone: this.userId,
             password: this.password,
           })
             .then(response => {
+              console.log(response.data)
+
               const { userData } = response.data
               useJwt.setToken(response.data.accessToken)
               useJwt.setRefreshToken(response.data.refreshToken)
               localStorage.setItem('userData', JSON.stringify(userData))
-              this.$ability.update(userData.ability)
+              // this.$ability.update(userData.ability)
 
               this.$router.push(getHomeRouteForLoggedInUser(userData.role))
                 .then(() => {
@@ -190,7 +192,7 @@ export default {
                     component: ToastificationContent,
                     position: 'top-right',
                     props: {
-                      title: `Welcome ${userData.fullName || userData.username}`,
+                      title: `안녕하세요 ${userData.name}님`,
                       icon: 'CoffeeIcon',
                       variant: 'success',
                       text: `You have successfully logged in as ${userData.role}. Now you can start to explore!`,

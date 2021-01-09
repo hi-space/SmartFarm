@@ -256,16 +256,32 @@ export default {
       this.$refs.registerForm.validate().then(success => {
         if (success) {
           useJwt.register({
-            username: this.name,
-            email: this.phone,
-            password: this.password,
+            userInfo: {
+              phone: this.phone,
+              name: this.name,
+              address: this.address,
+              password: this.password,
+            },
           })
             .then(response => {
-              useJwt.setToken(response.data.accessToken)
-              useJwt.setRefreshToken(response.data.refreshToken)
-              localStorage.setItem('userData', JSON.stringify(response.data.userData))
-              this.$ability.update(response.data.userData.ability)
-              this.$router.push('/')
+              console.log(response)
+              // useJwt.setToken(response.data.accessToken)
+              // useJwt.setRefreshToken(response.data.refreshToken)
+              // localStorage.setItem('userData', JSON.stringify(response.data.userData))
+              // this.$ability.update(response.data.userData.ability)
+
+              this.$bvModal
+                .msgBoxOk('관리자의 승인이 있을 때 까지 기다려주세요', {
+                  title: '회원가입 완료',
+                  size: 'sm',
+                  hideHeaderClose: true,
+                  centered: true,
+                })
+                .then(value => {
+                  if (value === true) {
+                    this.$router.push({ name: 'auth-login' })
+                  }
+                })
             })
             .catch(error => {
               this.$refs.registerForm.setErrors(error.response.data.error)
