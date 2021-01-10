@@ -178,7 +178,17 @@ export default {
             password: this.password,
           })
             .then(response => {
-              console.log(response.data)
+              if (response.status !== 200) {
+                console.log('vvv')
+                this.$bvModal
+                  .msgBoxOk('등록되지 않은 사용자 입니다', {
+                    title: '회원가입 완료',
+                    size: 'sm',
+                    hideHeaderClose: true,
+                    centered: true,
+                  })
+                return
+              }
 
               const { userData } = response.data
               useJwt.setToken(response.data.accessToken)
