@@ -116,6 +116,7 @@
             pill
             :variant="`light-${resolveUserStatusVariant(data.item.userInfo.status)}`"
             class="text-capitalize"
+            @click="toggleStatus(data.item._id, data.item.userInfo.status)"
           >
             {{ data.item.userInfo.status }}
           </b-badge>
@@ -326,6 +327,40 @@ export default {
       userListData,
       totalUsers,
     }
+  },
+  methods: {
+    toggleStatus(userId, status) {
+      if (status === 'inactive' || status === 'pending') {
+        this.$bvModal
+          .msgBoxConfirm('이 사용자를 승인하시겠습니까?', {
+            title: '사용자 상태 변경',
+            size: 'sm',
+            okVariant: 'primary',
+            okTitle: '승인',
+            cancelTitle: '취소',
+            cancelVariant: 'outline-secondary',
+            hideHeaderClose: true,
+            centered: true,
+          })
+          .then(value => {
+            if (value === true) {
+              store
+                .dispatch('app-user/updateUser', {
+                  id: userId,
+                  queryBody: {
+
+                  },
+                })
+                .then(response => {
+                  console.log(response.data)
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            }
+          })
+      }
+    },
   },
 }
 </script>
