@@ -3,9 +3,13 @@
     <!-- Button -->
     <b-button
       v-b-modal.add-relay-modal
+      v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
+      class="btn-icon"
+      pill
     >
-      릴레이 등록
+      <span class="align-middle"> 버튼 추가</span>
+      <feather-icon icon="PlusIcon" />
     </b-button>
 
     <!-- Modal -->
@@ -14,6 +18,7 @@
       title="릴레이 등록"
       ok-title="submit"
       cancel-variant="outline-secondary"
+      centered
     >
       <b-form>
         <b-form-group

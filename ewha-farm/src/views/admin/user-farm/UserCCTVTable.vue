@@ -5,6 +5,7 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> CCTV 정보 </h3> </b-card-title>
+      <b-card-sub-title> <add-camera-modal /> </b-card-sub-title>
     </div>
 
     <div>
@@ -27,16 +28,19 @@
 
 <script>
 import {
-  BCard, BCardTitle, BTable, BBadge,
+  BCard, BCardTitle, BCardSubTitle, BTable, BBadge,
 } from 'bootstrap-vue'
 import fakeData from '@/data/cctv.json'
+import AddCameraModal from '../register/AddCameraModal.vue'
 
 export default {
   components: {
     BCard,
     BCardTitle,
+    BCardSubTitle,
     BTable,
     BBadge,
+    'add-camera-modal': AddCameraModal,
   },
   data() {
     return {

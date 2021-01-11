@@ -58,6 +58,15 @@
           />
         </b-col>
       </b-row>
+
+      <b-row>
+        <b-col>
+          <user-button-table
+            :user-data="userData"
+            class="mt-2 pt-75"
+          />
+        </b-col>
+      </b-row>
     </template>
 
   </div>
@@ -78,6 +87,7 @@ import UserViewInfo from './UserViewInfo.vue'
 import UserFarmTable from '../user-farm/UserFarmTable.vue'
 import UserCCTVTable from '../user-farm/UserCCTVTable.vue'
 import UserDeviceTable from '../user-farm/UserDeviceTable.vue'
+import UserButtonTable from '../user-farm/UserButtonTable.vue'
 
 export default {
   components: {
@@ -89,6 +99,7 @@ export default {
     UserFarmTable,
     'user-cctv-table': UserCCTVTable,
     UserDeviceTable,
+    UserButtonTable,
   },
   setup() {
     const userData = ref(null)

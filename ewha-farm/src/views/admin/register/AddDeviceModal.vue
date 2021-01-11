@@ -19,6 +19,7 @@
       ok-title="submit"
       cancel-variant="outline-secondary"
       scrollable
+      centered
     >
       <b-form>
         <b-form-group

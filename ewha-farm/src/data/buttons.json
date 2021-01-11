@@ -1,0 +1,19 @@
+[
+    {
+       "id":1,
+       "type": "CURTAIN1",
+       "info":"1번 커튼 버튼",
+       "relay_num": 2,
+       "signal_type": "toggle",
+       "operation_time": 15
+    },
+    {
+        "id":2,
+        "type": "CURTAIN2",
+        "info":"1번 커튼 버튼",
+        "relay_num": 1,
+        "signal_type": "toggle",
+        "operation_time": 10
+    }
+ ]
+ 

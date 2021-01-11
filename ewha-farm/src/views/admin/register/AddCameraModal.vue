@@ -3,9 +3,13 @@
     <!-- Button -->
     <b-button
       v-b-modal.add-camera-modal
+      v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
+      class="btn-icon"
+      pill
     >
-      CCTV 등록
+      <span class="align-middle"> CCTV 추가</span>
+      <feather-icon icon="PlusIcon" />
     </b-button>
 
     <!-- Modal -->
@@ -15,17 +19,9 @@
       ok-title="submit"
       cancel-variant="outline-secondary"
       scrollable
+      centered
     >
       <b-form>
-        <b-form-group
-          label="농장주"
-          label-for="name"
-        >
-          <b-form-input
-            id="name"
-            type="text"
-          />
-        </b-form-group>
         <b-form-group
           label="위치"
           label-for="location"
@@ -40,6 +36,7 @@
             class="mt-1"
             placeholder="상세 위치"
             type="text"
+            readonly
           />
         </b-form-group>
         <b-form-group
@@ -49,6 +46,13 @@
           <b-form-input
             id="camera-name"
             type="text"
+            placeholder="이름"
+          />
+          <b-form-input
+            id="camera-info"
+            class="mt-1"
+            type="text"
+            placeholder="상세 정보"
           />
         </b-form-group>
 
