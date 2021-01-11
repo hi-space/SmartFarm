@@ -1,63 +1,19 @@
 [
     {
        "id":1,
-       "full_name":"Korrie O'Crevy",
-       "ddns":"ewha.iptime.org",
-       "port":"10000",
-       "city":"Krasnosilka",
-       "start_date":"09/23/2016",
-       "salary":"$23896.35",
-       "age":"61",
-       "experience":"1 Year",
-       "status":2
+       "name":"1축사 CCTV",
+       "info":"1축사에 위치한 CCTV",
+       "rtsp":"rtsp://220.71.87.250:554/media/video1",
+       "account":"admin",
+       "created":"09/23/2016"
     },
     {
-       "id":2,
-       "full_name":"Bailie Coulman",
-       "ddns":"ewha.iptime.org",
-       "port":"10000",
-       "city":"Hinigaran",
-       "start_date":"05/20/2018",
-       "salary":"$13633.69",
-       "age":"63",
-       "experience":"3 Years",
-       "status":2
-    },
-    {
-       "id":3,
-       "full_name":"Stella Ganderton",
-       "ddns":"ewha.iptime.org",
-       "port":"10000",
-       "city":"Golcowa",
-       "start_date":"03/24/2018",
-       "salary":"$13076.28",
-       "age":"66",
-       "experience":"6 Years",
-       "status":5
-    },
-    {
-       "id":4,
-       "full_name":"Dorolice Crossman",
-       "ddns":"ewha.iptime.org",
-       "port":"10000",
-       "city":"Paquera",
-       "start_date":"12/03/2017",
-       "salary":"$12336.17",
-       "age":"22",
-       "experience":"2 Years",
-       "status":2
-    },
-    {
-       "id":5,
-       "full_name":"Harmonia Nisius",
-       "ddns":"ewha.iptime.org",
-       "port":"10000",
-       "city":"Lucan",
-       "start_date":"08/25/2017",
-       "salary":"$10909.52",
-       "age":"33",
-       "experience":"3 Years",
-       "status":2
+        "id":1,
+        "name":"2축사 CCTV",
+        "info":"2축사에 위치한 CCTV",
+        "rtsp":"rtsp://220.71.87.250:554/media/video1",
+        "account":"admin",
+        "created":"09/23/2016"
     }
  ]
  

@@ -42,12 +42,6 @@
           </b-card>
         </template>
 
-        <template #cell(status)="data">
-          <b-badge :variant="status[1][data.value]">
-            {{ status[0][data.value] }}
-          </b-badge>
-        </template>
-
         <template #cell(show_details)="row">
           <b-button
             size="sm"
@@ -66,7 +60,7 @@
 
 <script>
 import {
-  BCard, BCardTitle, BTable, BButton, BRow, BCol, BBadge,
+  BCard, BCardTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 import fakeData from '@/data/farms.json'
 
@@ -78,7 +72,6 @@ export default {
     BButton,
     BRow,
     BCol,
-    BBadge,
   },
   data() {
     return {
@@ -90,7 +83,10 @@ export default {
           sortable: true,
           isRowHeader: true,
         },
+        // { key: 'cctv', label: 'CCTV 갯수', sortable: true },
+        // { key: 'device', label: '함체 갯수', sortable: true },
         { key: 'info', label: '정보', sortable: true },
+        { key: 'created', label: '생성일', sortable: true },
         { key: 'show_details', label: 'details' },
       ],
       /* eslint-disable global-require */
