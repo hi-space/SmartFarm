@@ -5,9 +5,11 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 함체 정보 </h3> </b-card-title>
+      <b-card-sub-title> <add-device-modal /> </b-card-sub-title>
     </div>
 
     <div>
+
       <b-table
         :items="items"
         :fields="fields"
@@ -90,20 +92,23 @@
 
 <script>
 import {
-  BCard, BCardTitle, BTable, BFormCheckbox, BButton, BRow, BCol, BBadge,
+  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton, BRow, BCol, BBadge,
 } from 'bootstrap-vue'
 import fakeData from '@/data/devices.json'
+import AddDeviceModal from '../register/AddDeviceModal.vue'
 
 export default {
   components: {
     BCard,
     BCardTitle,
+    BCardSubTitle,
     BTable,
     BButton,
     BFormCheckbox,
     BRow,
     BCol,
     BBadge,
+    'add-device-modal': AddDeviceModal,
   },
   data() {
     return {

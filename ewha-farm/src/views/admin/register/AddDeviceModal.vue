@@ -3,9 +3,13 @@
     <!-- Button -->
     <b-button
       v-b-modal.add-device-modal
+      v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
+      class="btn-icon"
+      pill
     >
-      함체 등록
+      <span class="align-middle"> 함체 추가</span>
+      <feather-icon icon="PlusIcon" />
     </b-button>
 
     <!-- Modal -->
@@ -18,28 +22,20 @@
     >
       <b-form>
         <b-form-group
-          label="농장주"
-          label-for="name"
-        >
-          <b-form-input
-            id="name"
-            type="text"
-          />
-        </b-form-group>
-        <b-form-group
           label="위치"
           label-for="location"
         >
           <v-select
             id="location"
-            v-model="selected"
-            :options="option"
+            v-model="loc_selected"
+            :options="loc_option"
           />
           <b-form-input
             id="location-detail"
             class="mt-1"
             placeholder="상세 위치"
             type="text"
+            readonly
           />
         </b-form-group>
         <b-form-group
@@ -49,6 +45,13 @@
           <b-form-input
             id="device-name"
             type="text"
+            placeholder="이름"
+          />
+          <b-form-input
+            id="device-info"
+            class="mt-1"
+            type="text"
+            placeholder="상세 정보"
           />
         </b-form-group>
 
@@ -58,6 +61,16 @@
           </div>
         </div>
 
+        <b-form-group
+          label="타입"
+          label-for="type"
+        >
+          <v-select
+            id="type"
+            v-model="type_selected"
+            :options="type_option"
+          />
+        </b-form-group>
         <b-form-group
           label="DDNS"
           label-for="network-ddns"
@@ -125,8 +138,10 @@ export default {
   },
   data() {
     return {
-      selected: '제 1축사',
-      option: ['제 1축사', '제 2축사', '제 3축사'],
+      loc_selected: '제 1축사',
+      loc_option: ['제 1축사', '제 2축사', '제 3축사'],
+      type_selected: 'K868',
+      type_option: ['ET0808', 'K868'],
     }
   },
 }
