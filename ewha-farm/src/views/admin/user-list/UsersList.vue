@@ -1,5 +1,13 @@
 <template>
   <div>
+    <!-- Filters -->
+    <!-- <users-list-filters
+      :role-filter.sync="roleFilter"
+      :plan-filter.sync="planFilter"
+      :status-filter.sync="statusFilter"
+      :role-options="roleOptions"
+      :status-options="statusOptions"
+    /> -->
 
     <!-- Table Container Card -->
     <b-card
@@ -197,6 +205,7 @@ import vSelect from 'vue-select'
 import store from '@/store'
 import { ref, onUnmounted } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
+// import UsersListFilters from './UsersListFilters.vue'
 
 import userListTable from './userListTable'
 import userStoreModule from '../userStoreModule'
@@ -218,6 +227,8 @@ export default {
     BFormGroup,
     BInputGroup,
     vSelect,
+
+    // UsersListFilters,
   },
   data() {
     return {
