@@ -14,7 +14,7 @@
         :fields="fields"
         hover
         responsive
-        class="mb-0"
+        class="position-relative mb-0"
       >
         <template #cell(status)="data">
           <b-badge :variant="status[1][data.value]">

@@ -20,8 +20,7 @@
             <label>Show</label>
             <v-select
               v-model="perPage"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-              :options="perPageOptions"
+              :options="pageOptions"
               :clearable="false"
               class="per-page-selector d-inline-block mx-50"
             />
@@ -34,11 +33,20 @@
             md="6"
           >
             <div class="d-flex align-items-center justify-content-end">
-              <b-form-input
-                v-model="searchQuery"
-                class="d-inline-block"
-                placeholder="Search..."
-              />
+              <b-form-group
+                label-for="filter-input"
+                label-align-sm="right"
+                class="mb-0"
+              >
+                <b-input-group>
+                  <b-form-input
+                    id="filter-input"
+                    v-model="filter"
+                    type="search"
+                    placeholder="Search..."
+                  />
+                </b-input-group>
+              </b-form-group>
             </div>
           </b-col>
         </b-row>
@@ -47,14 +55,16 @@
       <b-table
         ref="refUserListTable"
         class="position-relative"
-        :items="fetchUsers"
-        responsive
+        :items="userListData"
         :fields="tableColumns"
+        :current-page="currentPage"
+        :per-page="perPage"
+        :filter="filter"
         primary-key="_id"
-        :sort-by.sync="sortBy"
+        hover
+        responsive
         show-empty
         empty-text="No matching records found"
-        :sort-desc.sync="isSortDirDesc"
       >
 
         <!-- Column: User -->
@@ -146,7 +156,7 @@
           <b-col
             cols="12"
             sm="6"
-            class="d-flex align-items-center justify-content-center justify-content-sm-end"
+            class="d-flex justify-content-sm-end"
           >
 
             <b-pagination
@@ -172,7 +182,6 @@
                 />
               </template>
             </b-pagination>
-
           </b-col>
 
         </b-row>
@@ -184,11 +193,11 @@
 <script>
 import {
   BCard, BRow, BCol, BFormInput, BTable, BMedia, BAvatar, BLink,
-  BBadge, BDropdown, BDropdownItem, BPagination,
+  BBadge, BDropdown, BDropdownItem, BPagination, BFormGroup, BInputGroup,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import store from '@/store'
-import { onUnmounted } from '@vue/composition-api'
+import { ref, onUnmounted } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
 
 import userListTable from './userListTable'
@@ -208,10 +217,57 @@ export default {
     BDropdown,
     BDropdownItem,
     BPagination,
-
+    BFormGroup,
+    BInputGroup,
     vSelect,
   },
+  data() {
+    return {
+      tableColumns: [
+        {
+          key: 'user',
+          sortable: true,
+          sortByFormatted: true,
+          filterByFormatted: true,
+        },
+        {
+          label: 'phone',
+          key: 'userInfo.phone',
+          sortable: true,
+          sortByFormatted: true,
+          filterByFormatted: true,
+        },
+        {
+          key: 'role',
+          sortable: true,
+          sortByFormatted: true,
+          filterByFormatted: true,
+        },
+        {
+          key: 'status',
+          sortable: true,
+          sortByFormatted: true,
+          filterByFormatted: true,
+        },
+        { key: 'actions' },
+      ],
+
+      totalRows: 1,
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 10, 15, 20],
+      sortBy: '',
+      sortDesc: false,
+      sortDirection: 'asc',
+      filter: null,
+
+      totalUsers: 10,
+      searchQuery: '',
+    }
+  },
   setup() {
+    const userListData = ref(null)
+
     const USER_APP_STORE_MODULE_NAME = 'app-user'
 
     // Register module
@@ -221,6 +277,19 @@ export default {
     onUnmounted(() => {
       if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
     })
+
+    store
+      .dispatch('app-user/fetchUsers')
+      .then(response => {
+        console.log(response)
+        const users = response.data
+        userListData.value = users
+        this.totalUsers.value = users.length
+      })
+      .catch(err => {
+        console.log(err)
+        console.log('Error fetching users list')
+      })
 
     const roleOptions = [
       { label: 'Admin', value: 'admin' },
@@ -241,60 +310,24 @@ export default {
     ]
 
     const {
-      fetchUsers,
-      tableColumns,
-      perPage,
-      currentPage,
-      totalUsers,
-      dataMeta,
-      perPageOptions,
-      searchQuery,
-      sortBy,
-      isSortDirDesc,
-      refUserListTable,
-      refetchData,
-
-      // UI
       resolveUserRoleVariant,
       resolveUserRoleIcon,
       resolveUserStatusVariant,
-
-      // Extra Filters
-      roleFilter,
-      planFilter,
-      statusFilter,
+      dataMeta,
     } = userListTable()
 
     return {
-      fetchUsers,
-      tableColumns,
-      perPage,
-      currentPage,
-      totalUsers,
-      dataMeta,
-      perPageOptions,
-      searchQuery,
-      sortBy,
-      isSortDirDesc,
-      refUserListTable,
-      refetchData,
-
-      // Filter
-      avatarText,
-
-      // UI
       resolveUserRoleVariant,
       resolveUserRoleIcon,
       resolveUserStatusVariant,
+      dataMeta,
+      avatarText,
 
       roleOptions,
       planOptions,
       statusOptions,
 
-      // Extra Filters
-      roleFilter,
-      planFilter,
-      statusFilter,
+      userListData,
     }
   },
 }

@@ -1,4 +1,4 @@
-import { ref, watch, computed } from '@vue/composition-api'
+import { ref, computed } from '@vue/composition-api'
 import store from '@/store'
 
 // Notification
@@ -30,8 +30,6 @@ export default function userListTable() {
   const currentPage = ref(1)
   const perPageOptions = [5, 10, 25, 50, 100]
   const searchQuery = ref('')
-  const sortBy = ref('_id')
-  const isSortDirDesc = ref(true)
   const roleFilter = ref(null)
   const planFilter = ref(null)
   const statusFilter = ref(null)
@@ -45,22 +43,12 @@ export default function userListTable() {
     }
   })
 
-  const refetchData = () => {
-    refUserListTable.value.refresh()
-  }
-
-  watch([currentPage, perPage, searchQuery, roleFilter, planFilter, statusFilter], () => {
-    refetchData()
-  })
-
   const fetchUsers = (ctx, callback) => {
     store
       .dispatch('app-user/fetchUsers', {
         q: searchQuery.value,
         perPage: perPage.value,
         page: currentPage.value,
-        sortBy: sortBy.value,
-        sortDesc: isSortDirDesc.value,
         role: roleFilter.value,
         plan: planFilter.value,
         status: statusFilter.value,
@@ -119,18 +107,10 @@ export default function userListTable() {
     dataMeta,
     perPageOptions,
     searchQuery,
-    sortBy,
-    isSortDirDesc,
     refUserListTable,
 
     resolveUserRoleVariant,
     resolveUserRoleIcon,
     resolveUserStatusVariant,
-    refetchData,
-
-    // Extra Filters
-    roleFilter,
-    planFilter,
-    statusFilter,
   }
 }
