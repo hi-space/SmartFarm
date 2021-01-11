@@ -5,6 +5,7 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 농장 정보 </h3> </b-card-title>
+      <b-card-sub-title> <add-farm-modal /> </b-card-sub-title>
     </div>
 
     <div>
@@ -63,6 +64,7 @@ import {
   BCard, BCardTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 import fakeData from '@/data/farms.json'
+import AddFarmModal from '../register/AddFarmModal.vue'
 
 export default {
   components: {
@@ -72,6 +74,7 @@ export default {
     BButton,
     BRow,
     BCol,
+    'add-farm-modal': AddFarmModal,
   },
   data() {
     return {

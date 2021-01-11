@@ -2,55 +2,41 @@
   <div>
     <!-- Button -->
     <b-button
-      v-b-modal.add-relay-modal
+      v-b-modal.add-farm-modal
       v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
       class="btn-icon"
       pill
     >
-      <span class="align-middle"> 버튼 추가</span>
+      <span class="align-middle"> 축사 추가</span>
       <feather-icon icon="PlusIcon" />
     </b-button>
 
     <!-- Modal -->
     <b-modal
-      id="add-relay-modal"
-      title="릴레이 등록"
+      id="add-farm-modal"
+      title="축사 등록"
       ok-title="등록"
       cancel-title="취소"
       cancel-variant="outline-secondary"
+      scrollable
       centered
     >
       <b-form>
         <b-form-group
-          label="DDNS"
-          label-for="network-ddns"
+          label="축사 이름"
+          label-for="device-name"
         >
           <b-form-input
-            id="network-ddns"
+            id="device-name"
             type="text"
-            placeholder="xxx.iptime.org"
-            readonly
+            placeholder="이름"
           />
-        </b-form-group>
-        <b-form-group
-          label="Port"
-          label-for="network-port"
-        >
           <b-form-input
-            id="network-port"
-            type="number"
-            placeholder="10000"
-          />
-        </b-form-group>
-        <b-form-group
-          label="Relay 타입"
-          label-for="relay-type"
-        >
-          <v-select
-            id="relay-type"
-            v-model="selected"
-            :options="option"
+            id="device-info"
+            class="mt-1"
+            type="text"
+            placeholder="상세 정보"
           />
         </b-form-group>
       </b-form>
@@ -62,7 +48,6 @@
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
-import vSelect from 'vue-select'
 import Ripple from 'vue-ripple-directive'
 
 export default {
@@ -72,17 +57,10 @@ export default {
     BForm,
     BFormInput,
     BFormGroup,
-    vSelect,
   },
   directives: {
     'b-modal': VBModal,
     Ripple,
-  },
-  data() {
-    return {
-      selected: 'ET0808',
-      option: ['ET0808', 'KC868'],
-    }
   },
 }
 </script>

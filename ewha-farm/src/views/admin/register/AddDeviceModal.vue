@@ -16,7 +16,8 @@
     <b-modal
       id="add-device-modal"
       title="함체 등록"
-      ok-title="submit"
+      ok-title="등록"
+      cancel-title="취소"
       cancel-variant="outline-secondary"
       scrollable
       centered
