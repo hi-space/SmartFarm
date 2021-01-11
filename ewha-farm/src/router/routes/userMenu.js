@@ -4,7 +4,8 @@ export default [
     name: 'test-user',
     component: () => import('@/views/users/UserTestView.vue'),
     meta: {
-      resource: 'Auth',
+      resource: 'ACL',
+      action: 'read',
     },
   },
   {
@@ -12,7 +13,8 @@ export default [
     name: 'monitoring',
     component: () => import('@/views/users/monitoring/SensorMonitor.vue'),
     meta: {
-      resource: 'Auth',
+      resource: 'ACL',
+      action: 'read',
     },
   },
 ]

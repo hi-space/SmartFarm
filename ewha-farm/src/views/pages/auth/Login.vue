@@ -179,22 +179,37 @@ export default {
           })
             .then(response => {
               if (response.status !== 200) {
-                console.log('vvv')
                 this.$bvModal
                   .msgBoxOk('등록되지 않은 사용자 입니다', {
-                    title: '회원가입 완료',
+                    title: '로그인 실패',
                     size: 'sm',
                     hideHeaderClose: true,
                     centered: true,
                   })
-                return
               }
 
               const { userData } = response.data
               useJwt.setToken(response.data.accessToken)
               useJwt.setRefreshToken(response.data.refreshToken)
               localStorage.setItem('userData', JSON.stringify(userData))
-              // this.$ability.update(userData.ability)
+
+              if (userData.role === 'admin') {
+                this.$ability.update([
+                  {
+                    action: 'manage',
+                    subject: 'Manage',
+                  }])
+              } else {
+                this.$ability.update([
+                  {
+                    action: 'read',
+                    subject: 'ACL',
+                  },
+                  {
+                    action: 'read',
+                    subject: 'Auth',
+                  }])
+              }
 
               this.$router.push(getHomeRouteForLoggedInUser(userData.role))
                 .then(() => {

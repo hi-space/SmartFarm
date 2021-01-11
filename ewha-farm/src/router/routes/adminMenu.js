@@ -4,7 +4,8 @@ export default [
     name: 'user-list',
     component: () => import('@/views/admin/user-list/UsersList.vue'),
     meta: {
-      resource: 'Auth',
+      action: 'manage',
+      resource: 'Manage',
       breadcrumb: [
         {
           text: '사용자 목록',
@@ -18,7 +19,6 @@ export default [
     name: 'user-view',
     component: () => import('@/views/admin/user-view/UserView.vue'),
     meta: {
-      resource: 'Auth',
       breadcrumb: [
         {
           text: '사용자 목록',
@@ -36,8 +36,5 @@ export default [
     path: '/test',
     name: 'test',
     component: () => import('@/views/admin/AdminTestView.vue'),
-    meta: {
-      resource: 'Auth',
-    },
   },
 ]

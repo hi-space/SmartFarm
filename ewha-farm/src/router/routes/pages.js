@@ -43,6 +43,7 @@ export default [
     component: () => import('@/views/pages/account-setting/AccountSetting.vue'),
     meta: {
       pageTitle: '사용자 설정',
+      resource: 'Auth',
       breadcrumb: [
         {
           text: '사용자 설정',
