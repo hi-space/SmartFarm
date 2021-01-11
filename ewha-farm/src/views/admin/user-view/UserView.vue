@@ -31,6 +31,33 @@
           />
         </b-col>
       </b-row>
+
+      <b-row>
+        <b-col>
+          <user-farm-table
+            :user-data="userData"
+            class="mt-2 pt-75"
+          />
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col>
+          <user-cctv-table
+            :user-data="userData"
+            class="mt-2 pt-75"
+          />
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col>
+          <user-device-table
+            :user-data="userData"
+            class="mt-2 pt-75"
+          />
+        </b-col>
+      </b-row>
     </template>
 
   </div>
@@ -48,6 +75,9 @@ import fakeData from '@/data/user.json'
 
 import userStoreModule from '../userStoreModule'
 import UserViewInfo from './UserViewInfo.vue'
+import UserFarmTable from '../user-farm/UserFarmTable.vue'
+import UserCCTVTable from '../user-farm/UserCCTVTable.vue'
+import UserDeviceTable from '../user-farm/UserDeviceTable.vue'
 
 export default {
   components: {
@@ -56,6 +86,9 @@ export default {
     BAlert,
     BLink,
     UserViewInfo,
+    UserFarmTable,
+    'user-cctv-table': UserCCTVTable,
+    UserDeviceTable,
   },
   setup() {
     const userData = ref(null)

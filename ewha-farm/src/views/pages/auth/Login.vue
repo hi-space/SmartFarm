@@ -197,10 +197,14 @@ export default {
                 this.$ability.update([
                   {
                     action: 'manage',
-                    subject: 'Manage',
+                    subject: 'all',
                   }])
               } else {
                 this.$ability.update([
+                  {
+                    action: 'manage',
+                    subject: 'all',
+                  },
                   {
                     action: 'read',
                     subject: 'ACL',
@@ -220,7 +224,7 @@ export default {
                       title: `안녕하세요 ${userData.name}님`,
                       icon: 'CoffeeIcon',
                       variant: 'success',
-                      text: `You have successfully logged in as ${userData.role}. Now you can start to explore!`,
+                      text: `${userData.role} 계정으로 로그인 되었습니다.`,
                     },
                   })
                 })

@@ -4,8 +4,6 @@ export default [
     name: 'user-list',
     component: () => import('@/views/admin/user-list/UsersList.vue'),
     meta: {
-      action: 'manage',
-      resource: 'Manage',
       breadcrumb: [
         {
           text: '사용자 목록',

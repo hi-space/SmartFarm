@@ -28,7 +28,7 @@ export default function userListTable() {
   const perPage = ref(10)
   const totalUsers = ref(0)
   const currentPage = ref(1)
-  const perPageOptions = [10, 25, 50, 100]
+  const perPageOptions = [5, 10, 25, 50, 100]
   const searchQuery = ref('')
   const sortBy = ref('_id')
   const isSortDirDesc = ref(true)

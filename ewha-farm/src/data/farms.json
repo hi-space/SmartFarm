@@ -1,0 +1,43 @@
+[
+    {
+       "id":1,
+       "name":"제 1축사",
+       "info":"aaa.iptime.org",
+       "cctv":"3",
+       "device":"2",
+       "created":"09/23/2016"
+    },
+    {
+       "id":2,
+       "name":"제 2축사",
+       "info":"bbb.iptime.org",
+       "cctv":"1",
+       "device":"1",
+       "created":"09/23/2016"
+    },
+    {
+       "id":3,
+       "name":"제 3축사",
+       "info":"ccc.iptime.org",
+       "cctv":"4",
+       "device":"5",
+       "created":"09/23/2016"
+    },
+    {
+       "id":4,
+       "name":"제 4축사",
+       "info":"ddd.iptime.org",
+       "cctv":"1",
+       "device":"2",
+       "created":"09/23/2016"
+    },
+    {
+       "id":5,
+       "name":"제 5축사",
+       "info":"eee.iptime.org",
+       "cctv":"1",
+       "device":"1",
+       "created":"09/23/2016"
+    }
+ ]
+ 
