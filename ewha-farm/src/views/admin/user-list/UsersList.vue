@@ -118,9 +118,7 @@
           <b-dropdown
             variant="link"
             no-caret
-            :right="$store.state.appConfig.isRTL"
           >
-
             <template #button-content>
               <feather-icon
                 icon="MoreVerticalIcon"
@@ -150,7 +148,7 @@
             sm="6"
             class="d-flex align-items-center justify-content-center justify-content-sm-start"
           >
-            <span class="text-muted">Showing {{ dataMeta.from }} to {{ dataMeta.to }} of {{ dataMeta.of }} entries</span>
+            <span class="text-muted">Showing {{ totalUsers }} users</span>
           </b-col>
           <!-- Pagination -->
           <b-col
@@ -238,34 +236,32 @@ export default {
           filterByFormatted: true,
         },
         {
+          label: 'role',
           key: 'role',
           sortable: true,
           sortByFormatted: true,
           filterByFormatted: true,
         },
         {
+          label: 'status',
           key: 'status',
           sortable: true,
           sortByFormatted: true,
           filterByFormatted: true,
         },
-        { key: 'actions' },
+        // { key: 'actions' },
       ],
 
       totalRows: 1,
       currentPage: 1,
-      perPage: 5,
+      perPage: 10,
       pageOptions: [5, 10, 15, 20],
-      sortBy: '',
-      sortDesc: false,
       sortDirection: 'asc',
       filter: null,
-
-      totalUsers: 10,
-      searchQuery: '',
     }
   },
   setup() {
+    const totalUsers = ref(0)
     const userListData = ref(null)
 
     const USER_APP_STORE_MODULE_NAME = 'app-user'
@@ -281,10 +277,9 @@ export default {
     store
       .dispatch('app-user/fetchUsers')
       .then(response => {
-        console.log(response)
         const users = response.data
         userListData.value = users
-        this.totalUsers.value = users.length
+        totalUsers.value = users.length
       })
       .catch(err => {
         console.log(err)
@@ -294,13 +289,6 @@ export default {
     const roleOptions = [
       { label: 'Admin', value: 'admin' },
       { label: 'Customer', value: 'customer' },
-    ]
-
-    const planOptions = [
-      { label: 'Basic', value: 'basic' },
-      { label: 'Company', value: 'company' },
-      { label: 'Enterprise', value: 'enterprise' },
-      { label: 'Team', value: 'team' },
     ]
 
     const statusOptions = [
@@ -313,21 +301,19 @@ export default {
       resolveUserRoleVariant,
       resolveUserRoleIcon,
       resolveUserStatusVariant,
-      dataMeta,
     } = userListTable()
 
     return {
       resolveUserRoleVariant,
       resolveUserRoleIcon,
       resolveUserStatusVariant,
-      dataMeta,
       avatarText,
 
       roleOptions,
-      planOptions,
       statusOptions,
 
       userListData,
+      totalUsers,
     }
   },
 }
