@@ -41,11 +41,12 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'id', label: 'ID' },
-        { key: 'name', label: 'CCTV 이름' },
-        { key: 'info', label: '정보' },
-        { key: 'rtsp', label: 'rtsp URL' },
-        { key: 'account', label: 'account' },
+        { key: 'id', label: 'ID', sortable: true },
+        { key: 'farm', label: '축사 이름', sortable: true },
+        { key: 'name', label: 'CCTV 이름', sortable: true },
+        { key: 'info', label: '정보', sortable: true },
+        { key: 'rtsp', label: 'rtsp URL', sortable: true },
+        { key: 'account', label: 'account', sortable: true },
       ],
       /* eslint-disable global-require */
       items: fakeData,

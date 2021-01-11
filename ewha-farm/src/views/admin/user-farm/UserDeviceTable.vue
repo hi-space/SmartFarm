@@ -107,22 +107,17 @@ export default {
   },
   data() {
     return {
-      fields: ['show_details',
-        { key: 'id', label: '축사 이름' },
-        { key: 'full_name', label: '함체 이름' },
-        { key: 'ddns', label: 'DDNS' },
-        { key: 'port', label: 'port' },
-        { key: 'status', label: 'Status' },
+      fields: [
+        { key: 'id', label: 'ID', sortable: true },
+        { key: 'farm', label: '축사 이름', sortable: true },
+        { key: 'type', label: '장치 타입', sortable: true },
+        { key: 'ddns', label: 'DDNS', sortable: true },
+        { key: 'port', label: 'port', sortable: true },
+        { key: 'account', label: 'account', sortable: true },
+        { key: 'serial_num', label: 'S/N', sortable: true },
+        { key: 'show_details', label: 'details' },
       ],
-      /* eslint-disable global-require */
       items: fakeData,
-      /* eslint-disable global-require */
-      status: [{
-        1: 'Current', 2: 'Professional', 3: 'Rejected', 4: 'Resigned', 5: 'Applied',
-      },
-      {
-        1: 'light-primary', 2: 'light-success', 3: 'light-danger', 4: 'light-warning', 5: 'light-info',
-      }],
     }
   },
 }
