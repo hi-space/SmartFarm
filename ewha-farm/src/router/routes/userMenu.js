@@ -1,8 +1,8 @@
 export default [
   {
-    path: '/test/user',
-    name: 'test-user',
-    component: () => import('@/views/users/UserTestView.vue'),
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('@/views/users/UserDashboard.vue'),
     meta: {
       resource: 'ACL',
       action: 'read',

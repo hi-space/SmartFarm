@@ -4,7 +4,7 @@ export default [
   },
   {
     title: '대시보드',
-    route: 'test-user',
+    route: 'dashboard',
     icon: 'VideoIcon',
     action: 'read',
     resource: 'ACL',

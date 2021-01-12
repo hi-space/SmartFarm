@@ -6,7 +6,9 @@
       <cctv-viewer />
     </b-row>
 
-    <sensor-monitor />
+    <b-row>
+      <sensor-monitor />
+    </b-row>
 
     <network-state-table />
   </div>

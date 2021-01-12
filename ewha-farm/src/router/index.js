@@ -5,7 +5,6 @@ import VueRouter from 'vue-router'
 import { canNavigate } from '@/libs/acl/routeProtection'
 import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
 import adminMenu from './routes/adminMenu'
-import dashboard from './routes/dashboard'
 import userMenu from './routes/userMenu'
 import pages from './routes/pages'
 
@@ -19,7 +18,6 @@ const router = new VueRouter({
   },
   routes: [
     { path: '/', redirect: { name: 'dashboard' } },
-    ...dashboard,
     ...pages,
     ...adminMenu,
     ...userMenu,

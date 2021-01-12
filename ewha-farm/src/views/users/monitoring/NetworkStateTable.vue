@@ -4,7 +4,7 @@
   >
     <div class="card-header">
       <!-- Title -->
-      <b-card-title> <h3> 축사 정보 </h3> </b-card-title>
+      <b-card-title> <h3> <strong> 네트워크 현황 </strong> </h3> </b-card-title>
     </div>
 
     <div>
