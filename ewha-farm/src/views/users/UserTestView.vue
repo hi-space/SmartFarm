@@ -5,11 +5,8 @@
     >
       <cctv-viewer />
     </b-row>
-    <b-row
-      class="mb-2"
-    >
-      <sensor-monitor />
-    </b-row>
+
+    <sensor-monitor />
 
     <network-state-table />
   </div>
