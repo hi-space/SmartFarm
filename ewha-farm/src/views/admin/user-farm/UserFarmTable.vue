@@ -4,7 +4,7 @@
   >
     <div class="card-header">
       <!-- Title -->
-      <b-card-title> <h3> 농장 정보 </h3> </b-card-title>
+      <b-card-title> <h3> 축사 정보 </h3> </b-card-title>
       <b-card-sub-title> <add-farm-modal /> </b-card-sub-title>
     </div>
 
