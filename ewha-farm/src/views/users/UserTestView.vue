@@ -10,6 +10,8 @@
     >
       <sensor-monitor />
     </b-row>
+
+    <network-state-table />
   </div>
 </template>
 
@@ -20,12 +22,14 @@ import {
 
 import CCTVPlayer from './monitoring/CCTVViewer.vue'
 import SensorMonitor from './monitoring/SensorMonitor.vue'
+import NetworkStateTable from './monitoring/NetworkStateTable.vue'
 
 export default {
   components: {
     BRow,
     'cctv-viewer': CCTVPlayer,
     SensorMonitor,
+    NetworkStateTable,
   },
 }
 </script>

@@ -3,13 +3,11 @@
     :title="title"
     action-collapse
   >
-    <b-row>
-      <!-- chart -->
-      <chartjs-component-line-chart
-        :height="250"
-        :data="data"
-      />
-    </b-row>
+    <!-- chart -->
+    <chartjs-component-line-chart
+      :height="250"
+      :data="data"
+    />
   </b-card-actions>
 </template>
 
