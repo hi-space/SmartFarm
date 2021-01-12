@@ -33,6 +33,6 @@ export default [
   {
     path: '/test',
     name: 'test',
-    component: () => import('@/views/admin/AdminTestView.vue'),
+    component: () => import('@/views/admin/user-farm/UserRelayList.vue'),
   },
 ]

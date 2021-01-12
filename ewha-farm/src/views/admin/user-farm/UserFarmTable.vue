@@ -61,7 +61,7 @@
 
 <script>
 import {
-  BCard, BCardTitle, BTable, BButton, BRow, BCol,
+  BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 import fakeData from '@/data/farms.json'
 import AddFarmModal from '../register/AddFarmModal.vue'
@@ -70,6 +70,7 @@ export default {
   components: {
     BCard,
     BCardTitle,
+    BCardSubTitle,
     BTable,
     BButton,
     BRow,

@@ -344,19 +344,19 @@ export default {
           })
           .then(value => {
             if (value === true) {
-              store
-                .dispatch('app-user/updateUser', {
-                  id: userId,
-                  queryBody: {
+              // store
+              //   .dispatch('app-user/updateUser', {
+              //     id: userId,
+              //     queryBody: {
 
-                  },
-                })
-                .then(response => {
-                  console.log(response.data)
-                })
-                .catch(err => {
-                  console.log(err)
-                })
+              //     },
+              //   })
+              //   .then(response => {
+              //     console.log(response.data)
+              //   })
+              //   .catch(err => {
+              //     console.log(err)
+              //   })
             }
           })
       }

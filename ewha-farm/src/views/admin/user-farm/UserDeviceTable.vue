@@ -15,7 +15,10 @@
         :fields="fields"
         hover
         responsive
+        selectable
+        select-mode="single"
         class="mb-0"
+        @row-selected="onRowSelected"
       >
         <template #cell(show_details)="row">
 
@@ -123,7 +126,14 @@ export default {
         { key: 'show_details', label: 'details' },
       ],
       items: fakeData,
+      selected: [],
     }
+  },
+  methods: {
+    onRowSelected(items) {
+      this.selected = items
+      console.log(this.selected)
+    },
   },
 }
 </script>
