@@ -15,7 +15,6 @@ export default {
       return result
     },
     async createFarm(ctx, { queryBody }) {
-      console.log(queryBody)
       const result = await axios.post('/farm', queryBody)
       return result
     },

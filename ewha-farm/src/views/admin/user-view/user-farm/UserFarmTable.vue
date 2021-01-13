@@ -65,9 +65,9 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 
-import store from '@/store'
 import { getUserData } from '@/auth/utils'
 import fakeData from '@/data/farms.json'
+import store from '@/store'
 
 import AddFarmModal from './AddFarmModal.vue'
 import farmStoreModule from './farmStoreModule'
@@ -84,7 +84,6 @@ export default {
     'add-farm-modal': AddFarmModal,
   },
   setup() {
-    const userData = getUserData()
     const FARM_APP_STORE_MODULE_NAME = 'app-farm'
 
     // Register module
@@ -96,7 +95,7 @@ export default {
     })
 
     const farmData = ref(null)
-    store.dispatch('app-farm/fetchFarms', { userId: userData.id })
+    store.dispatch('app-farm/fetchFarms', { userId: getUserData().id })
       .then(response => {
         farmData.value = response.data
         console.log(response)

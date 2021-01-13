@@ -27,7 +27,7 @@ export default {
         muted: true,
         loop: true,
         controls: true,
-        // fluid: true,
+        fluid: true,
         language: 'en',
         playbackRates: [0.7, 1.0, 1.5, 2.0],
         sources: [{

@@ -5,13 +5,13 @@
       no-body
     >
       <b-col
-        lg="4"
+        lg="6"
         sm="12"
       >
         <weather-card />
       </b-col>
       <b-col
-        lg="8"
+        lg="6"
         sm="12"
       >
         <sensor-state-card />

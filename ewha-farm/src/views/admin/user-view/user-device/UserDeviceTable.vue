@@ -97,8 +97,12 @@
 import {
   BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton, BRow, BCol, BBadge,
 } from 'bootstrap-vue'
+import { ref, onUnmounted } from '@vue/composition-api'
+import { getUserData } from '@/auth/utils'
+import store from '@/store'
 import fakeData from '@/data/devices.json'
 import AddDeviceModal from './AddDeviceModal.vue'
+import deviceStoreModule from './deviceStoreModule'
 
 export default {
   components: {
@@ -112,6 +116,31 @@ export default {
     BCol,
     BBadge,
     'add-device-modal': AddDeviceModal,
+  },
+  setup() {
+    const DEVICE_APP_STORE_MODULE_NAME = 'app-device'
+
+    // Register module
+    if (!store.hasModule(DEVICE_APP_STORE_MODULE_NAME)) store.registerModule(DEVICE_APP_STORE_MODULE_NAME, deviceStoreModule)
+
+    // UnRegister on leave
+    onUnmounted(() => {
+      if (store.hasModule(DEVICE_APP_STORE_MODULE_NAME)) store.unregisterModule(DEVICE_APP_STORE_MODULE_NAME)
+    })
+
+    const deviceData = ref(null)
+    store.dispatch('app-device/fetchDevices', { userId: getUserData().id })
+      .then(response => {
+        deviceData.value = response.data
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    return {
+      deviceData,
+    }
   },
   data() {
     return {

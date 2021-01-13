@@ -89,10 +89,8 @@ export default {
   },
   methods: {
     createFarm() {
-      const userData = getUserData()
-
       const postBody = {
-        userId: userData.id,
+        userId: getUserData().id,
         'farmInfo.name': this.name,
         'farmInfo.info': this.info,
       }
