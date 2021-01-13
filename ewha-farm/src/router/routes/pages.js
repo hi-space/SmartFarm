@@ -53,4 +53,19 @@ export default [
       ],
     },
   },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    component: () => import('@/views/pages/contacts/Contacts.vue'),
+    meta: {
+      pageTitle: '담당자 연락처',
+      resource: 'Auth',
+      breadcrumb: [
+        {
+          text: '담당자 연락처',
+          active: true,
+        },
+      ],
+    },
+  },
 ]

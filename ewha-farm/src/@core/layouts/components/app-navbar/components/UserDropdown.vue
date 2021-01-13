@@ -40,6 +40,7 @@
     </b-dropdown-item>
 
     <b-dropdown-item
+      :to="{ name: 'contacts'}"
       link-class="d-flex align-items-center"
     >
       <feather-icon

@@ -18,6 +18,7 @@
           src="http://openweathermap.org/img/wn/09d@4x.png"
           alt="logo"
           width="140"
+          height="140"
         />
         <h2 class="display-3 font-weight-bolder mt-2"> -6
           <sup>o</sup>
