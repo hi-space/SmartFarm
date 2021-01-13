@@ -193,27 +193,24 @@ export default {
               useJwt.setRefreshToken(response.data.refreshToken)
               localStorage.setItem('userData', JSON.stringify(userData))
 
-              if (userData.role === 'admin') {
-                this.$ability.update([
-                  {
-                    action: 'manage',
-                    subject: 'all',
-                  }])
-              } else {
-                this.$ability.update([
-                  {
-                    action: 'manage',
-                    subject: 'all',
-                  },
-                  {
-                    action: 'read',
-                    subject: 'ACL',
-                  },
-                  {
-                    action: 'read',
-                    subject: 'Auth',
-                  }])
-              }
+              this.$ability.update(userData.ability)
+              // if (userData.role === 'admin') {
+              //   this.$ability.update([
+              //     {
+              //       action: 'manage',
+              //       subject: 'all',
+              //     }])
+              // } else {
+              //   this.$ability.update([
+              //     {
+              //       action: 'manage',
+              //       subject: 'all',
+              //     },
+              //     {
+              //       action: 'read',
+              //       subject: 'Auth',
+              //     }])
+              // }
 
               this.$router.push(getHomeRouteForLoggedInUser(userData.role))
                 .then(() => {

@@ -4,7 +4,7 @@ export default [
     name: 'dashboard',
     component: () => import('@/views/users/UserDashboard.vue'),
     meta: {
-      resource: 'ACL',
+      resource: 'Auth',
       action: 'read',
     },
   },
@@ -13,7 +13,7 @@ export default [
     name: 'monitoring',
     component: () => import('@/views/users/monitoring/SensorMonitor.vue'),
     meta: {
-      resource: 'ACL',
+      resource: 'Auth',
       action: 'read',
     },
   },

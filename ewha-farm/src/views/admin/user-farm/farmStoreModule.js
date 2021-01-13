@@ -7,19 +7,19 @@ export default {
   mutations: {},
   actions: {
     async fetchFarms(ctx, queryParams) {
-      const result = await axios.get('/users', { params: queryParams })
+      const result = await axios.get('/farm', { params: queryParams })
       return result
     },
-    async fetchUser(ctx, { id }) {
-      const result = await axios.get(`/users/${id}`)
+    async fetchFarm(ctx, { id }) {
+      const result = await axios.get(`/farm/${id}`)
       return result
     },
-    async updateUser(ctx, { id, queryBody }) {
-      const result = await axios.put(`/users/${id}`, queryBody)
+    async updateFarm(ctx, { id, queryBody }) {
+      const result = await axios.put(`/farm/${id}`, queryBody)
       return result
     },
-    async deleteUser(ctx, { id }) {
-      const result = await axios.delete(`/users/${id}`)
+    async deleteFarm(ctx, { id }) {
+      const result = await axios.delete(`/farm/${id}`)
       return result
     },
   },

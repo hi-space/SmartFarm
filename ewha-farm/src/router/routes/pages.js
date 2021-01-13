@@ -25,6 +25,7 @@ export default [
     component: () => import('@/views/pages/error/NotAuthorized.vue'),
     meta: {
       layout: 'full',
+      resource: 'Auth',
     },
   },
   {

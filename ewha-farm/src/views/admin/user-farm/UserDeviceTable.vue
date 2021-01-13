@@ -123,7 +123,7 @@ export default {
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         { key: 'serial_num', label: 'S/N', sortable: true },
-        { key: 'show_details', label: 'details' },
+        // { key: 'show_details', label: 'details' },
       ],
       items: fakeData,
       selected: [],

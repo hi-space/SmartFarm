@@ -60,11 +60,15 @@
 </template>
 
 <script>
+import store from '@/store'
+import { ref, onUnmounted } from '@vue/composition-api'
 import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 import fakeData from '@/data/farms.json'
 import AddFarmModal from '../register/AddFarmModal.vue'
+
+import farmStoreModule from './farmStoreModule'
 
 export default {
   components: {
@@ -76,6 +80,32 @@ export default {
     BRow,
     BCol,
     'add-farm-modal': AddFarmModal,
+  },
+  setup() {
+    const userData = JSON.parse(localStorage.getItem('userData'))
+    const USER_APP_STORE_MODULE_NAME = 'app-farm'
+
+    // Register module
+    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, farmStoreModule)
+
+    // UnRegister on leave
+    onUnmounted(() => {
+      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
+    })
+
+    const farmData = ref(null)
+    store.dispatch('app-farm/fetchFarms', { userId: userData.id })
+      .then(response => {
+        farmData.value = response.data
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    return {
+      farmData,
+    }
   },
   data() {
     return {
@@ -93,9 +123,7 @@ export default {
         { key: 'created', label: '생성일', sortable: true },
         { key: 'show_details', label: 'details' },
       ],
-      /* eslint-disable global-require */
       items: fakeData,
-      /* eslint-disable global-require */
       status: [{
         1: 'Current', 2: 'Professional', 3: 'Rejected', 4: 'Resigned', 5: 'Applied',
       },
