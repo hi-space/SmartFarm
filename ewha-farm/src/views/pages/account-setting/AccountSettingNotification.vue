@@ -10,7 +10,7 @@
       >
         <b-form-checkbox
           id="accountSwitch1"
-          :checked="localOptions.commentOnArticle"
+          checked="true"
           name="check-button"
           switch
           inline
@@ -24,7 +24,7 @@
       >
         <b-form-checkbox
           id="accountSwitch2"
-          :checked="localOptions.AnswerOnForm"
+          :checked="true"
           name="check-button"
           switch
           inline
@@ -38,7 +38,7 @@
       >
         <b-form-checkbox
           id="accountSwitch3"
-          :checked="localOptions.followMe"
+          :checked="false"
           name="check-button"
           switch
           inline
@@ -84,17 +84,6 @@ export default {
   },
   directives: {
     Ripple,
-  },
-  props: {
-    notificationData: {
-      type: Object,
-      default: () => {},
-    },
-  },
-  data() {
-    return {
-      localOptions: JSON.parse(JSON.stringify(this.notificationData)),
-    }
   },
 }
 </script>

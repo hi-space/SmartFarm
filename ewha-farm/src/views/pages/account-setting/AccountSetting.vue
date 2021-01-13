@@ -21,7 +21,9 @@
       </template>
 
       <account-setting-general
-        :user-info="userData"
+        v-if="userData"
+        :user-id="userId"
+        :user-data="userData"
       />
     </b-tab>
     <!--/ general tab -->
@@ -30,19 +32,18 @@
     <b-tab>
 
       <!-- title -->
-      <!-- <template #title>
+      <template #title>
         <feather-icon
           icon="BellIcon"
           size="18"
           class="mr-50"
         />
         <span class="font-weight-bold">알림 설정</span>
-      </template> -->
+      </template>
 
-      <!-- <account-setting-notification
-        v-if="userData.notification"
-        :notification-data="userData.notification"
-      /> -->
+      <account-setting-notification
+        v-if="userData"
+      />
     </b-tab>
   </b-tabs>
 </template>
@@ -50,21 +51,42 @@
 <script>
 import { BTabs, BTab } from 'bootstrap-vue'
 import { getUserData } from '@/auth/utils'
+import store from '@/store'
+import { ref, onUnmounted } from '@vue/composition-api'
+
+import userStoreModule from '@/views/admin/userStoreModule'
 import AccountSettingGeneral from './AccountSettingGeneral.vue'
-// import AccountSettingNotification from './AccountSettingNotification.vue'
+import AccountSettingNotification from './AccountSettingNotification.vue'
 
 export default {
   components: {
     BTabs,
     BTab,
     AccountSettingGeneral,
-    // AccountSettingNotification,
+    AccountSettingNotification,
   },
   setup() {
-    const userData = getUserData()
-    console.log(userData)
-    // this.$http.get('/account-setting/data').then(res => { this.userData = res.data })
+    const userData = ref(null)
+    const USER_APP_STORE_MODULE_NAME = 'app-user'
+
+    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, userStoreModule)
+
+    onUnmounted(() => {
+      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
+    })
+
+    const userId = getUserData().id
+    store.dispatch('app-user/fetchUser', { id: userId })
+      .then(response => {
+        userData.value = response.data
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
     return {
+      userId,
       userData,
     }
   },

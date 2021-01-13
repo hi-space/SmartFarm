@@ -10,7 +10,7 @@
             label-for="name"
           >
             <b-form-input
-              v-model="user.name"
+              v-model="userData.userInfo.name"
               name="name"
               placeholder="Name"
             />
@@ -22,7 +22,7 @@
             label-for="phone"
           >
             <b-form-input
-              v-model="user.phone"
+              v-model="userData.userInfo.phone"
               name="phone"
             />
           </b-form-group>
@@ -33,7 +33,7 @@
             label-for="address"
           >
             <b-form-input
-              v-model="user.address"
+              v-model="userData.userInfo.address"
               name="address"
               placeholder="Address"
             />
@@ -61,9 +61,6 @@ import {
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import store from '@/store'
-import { onUnmounted } from '@vue/composition-api'
-
-import userStoreModule from '@/views/admin/userStoreModule'
 
 export default {
   components: {
@@ -79,40 +76,32 @@ export default {
     Ripple,
   },
   props: {
-    userInfo: {
-      type: Object,
-      default: () => {},
+    userId: {
+      type: String,
+      required: true,
     },
-  },
-  data() {
-    return {
-      user: this.userInfo,
-    }
-  },
-  setup() {
-    const USER_APP_STORE_MODULE_NAME = 'app-user'
-
-    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, userStoreModule)
-
-    onUnmounted(() => {
-      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
-    })
+    userData: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
     updateInfo() {
-      const body = {
-        'userInfo.name': this.user.name,
-        'userInfo.phone': this.user.phone,
-        'userInfo.address': this.user.address,
-      }
-
-      store.dispatch('app-user/updateUser', { id: this.user.id, queryBody: body })
-        .then(response => {
-          console.log(response)
-          this.$bvModal.msgBoxOk('수정이 완료됐습니다').then({})
+      console.log(this.userId)
+      console.log(this.userData)
+      store.dispatch('app-user/updateUser', { id: this.userId, queryBody: this.userData })
+        .then(() => {
+          this.$bvModal.msgBoxOk('개인 정보가 수정되었습니다', {
+            title: '개인 정보 수정',
+            centered: true,
+          }).then({})
         })
         .catch(error => {
           console.log(error)
+          this.$bvModal.msgBoxOk('개인 정보 수정이 실패했습니다', {
+            title: '개인 정보 수정',
+            centered: true,
+          }).then({})
         })
     },
   },
