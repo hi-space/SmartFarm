@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cctv-viewer />
+    <!-- <cctv-viewer /> -->
     <sensor-monitor />
     <network-state-table />
   </div>
@@ -11,14 +11,14 @@
 //   BRow,
 // } from 'bootstrap-vue'
 
-import CCTVPlayer from './monitoring/CCTVViewer.vue'
+// import CCTVPlayer from './monitoring/CCTVViewer.vue'
 import SensorMonitor from './monitoring/SensorMonitor.vue'
 import NetworkStateTable from './monitoring/NetworkStateTable.vue'
 
 export default {
   components: {
     // BRow,
-    'cctv-viewer': CCTVPlayer,
+    // 'cctv-viewer': CCTVPlayer,
     SensorMonitor,
     NetworkStateTable,
   },
