@@ -21,6 +21,7 @@
       cancel-variant="outline-secondary"
       scrollable
       centered
+      @ok="createFarm"
     >
       <b-form>
         <b-form-group
@@ -29,11 +30,13 @@
         >
           <b-form-input
             id="device-name"
+            v-model="name"
             type="text"
             placeholder="이름"
           />
           <b-form-input
             id="device-info"
+            v-model="info"
             class="mt-1"
             type="text"
             placeholder="상세 정보"
@@ -45,10 +48,15 @@
 </template>
 
 <script>
+import { onUnmounted } from '@vue/composition-api'
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
+
+import store from '@/store'
+import { getUserData } from '@/auth/utils'
+import farmStoreModule from './farmStoreModule'
 
 export default {
   components: {
@@ -61,6 +69,42 @@ export default {
   directives: {
     'b-modal': VBModal,
     Ripple,
+  },
+  data() {
+    return {
+      name: '',
+      info: '',
+    }
+  },
+  setup() {
+    const FARM_APP_STORE_MODULE_NAME = 'app-farm'
+
+    // Register module
+    if (!store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.registerModule(FARM_APP_STORE_MODULE_NAME, farmStoreModule)
+
+    // UnRegister on leave
+    onUnmounted(() => {
+      if (store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.unregisterModule(FARM_APP_STORE_MODULE_NAME)
+    })
+  },
+  methods: {
+    createFarm() {
+      const userData = getUserData()
+
+      const postBody = {
+        userId: userData.id,
+        'farmInfo.name': this.name,
+        'farmInfo.info': this.info,
+      }
+
+      store.dispatch('app-farm/createFarm', { queryBody: postBody })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
   },
 }
 </script>

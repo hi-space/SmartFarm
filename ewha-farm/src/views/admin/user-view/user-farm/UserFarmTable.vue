@@ -60,14 +60,16 @@
 </template>
 
 <script>
-import store from '@/store'
 import { ref, onUnmounted } from '@vue/composition-api'
 import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
-import fakeData from '@/data/farms.json'
-import AddFarmModal from './AddFarmModal.vue'
 
+import store from '@/store'
+import { getUserData } from '@/auth/utils'
+import fakeData from '@/data/farms.json'
+
+import AddFarmModal from './AddFarmModal.vue'
 import farmStoreModule from './farmStoreModule'
 
 export default {
@@ -82,15 +84,15 @@ export default {
     'add-farm-modal': AddFarmModal,
   },
   setup() {
-    const userData = JSON.parse(localStorage.getItem('userData'))
-    const USER_APP_STORE_MODULE_NAME = 'app-farm'
+    const userData = getUserData()
+    const FARM_APP_STORE_MODULE_NAME = 'app-farm'
 
     // Register module
-    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, farmStoreModule)
+    if (!store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.registerModule(FARM_APP_STORE_MODULE_NAME, farmStoreModule)
 
     // UnRegister on leave
     onUnmounted(() => {
-      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
+      if (store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.unregisterModule(FARM_APP_STORE_MODULE_NAME)
     })
 
     const farmData = ref(null)

@@ -10,11 +10,14 @@
         size="104px"
         rounded
       />
-      <div class="d-flex flex-column ml-1">
+      <div class="d-flex flex-column ml-1 mt-1">
         <h2 class="mb-1">
-          {{ userData.userInfo.name }}
+          <strong> {{ userData.userInfo.name }} </strong>
         </h2>
-        <span class="card-text">{{ userData._id }}</span>
+        <h3 class="card-text">
+          {{ userData.userInfo.phone }}
+        </h3>
+        <!-- <span class="card-text">{{ userData._id }}</span> -->
       </div>
     </div>
 
@@ -41,7 +44,7 @@
         </b-col>
 
         <!-- Field: Mobile -->
-        <b-col
+        <!-- <b-col
           cols="12"
           md="4"
         >
@@ -55,24 +58,7 @@
               readonly
             />
           </b-form-group>
-        </b-col>
-
-        <!-- Field: Password -->
-        <b-col
-          cols="12"
-          md="4"
-        >
-          <b-form-group
-            label="비밀번호"
-            label-for="password"
-          >
-            <b-form-input
-              id="password"
-              v-model="userData.userInfo.password"
-              type="password"
-            />
-          </b-form-group>
-        </b-col>
+        </b-col> -->
 
         <!-- Field: Status -->
         <b-col

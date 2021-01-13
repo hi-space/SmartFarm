@@ -14,6 +14,11 @@ export default {
       const result = await axios.get(`/farm/${id}`)
       return result
     },
+    async createFarm(ctx, { queryBody }) {
+      console.log(queryBody)
+      const result = await axios.post('/farm', queryBody)
+      return result
+    },
     async updateFarm(ctx, { id, queryBody }) {
       const result = await axios.put(`/farm/${id}`, queryBody)
       return result
