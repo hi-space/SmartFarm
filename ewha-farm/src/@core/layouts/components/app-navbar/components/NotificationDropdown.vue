@@ -51,7 +51,7 @@
       <!-- System Notifications -->
       <b-link
         v-for="notification in systemNotifications"
-        :key="notification.subtitle"
+        :key="notification.id"
       >
         <b-media>
           <template #aside>
@@ -106,54 +106,63 @@ export default {
   setup() {
     const systemNotifications = [
       {
+        id: 1,
         title: '서버 연결 실패',
         subtitle: '서버 연결이 실패했습니다',
         type: 'light-danger',
         icon: 'XIcon',
       },
       {
+        id: 2,
         title: '커튼 닫음',
         subtitle: '커튼이 자동으로 닫혔습니다',
         type: 'light-success',
         icon: 'CheckIcon',
       },
       {
+        id: 3,
         title: '온도 센서',
         subtitle: '온도가 너무 높습니다',
         type: 'light-warning',
         icon: 'AlertTriangleIcon',
       },
       {
+        id: 4,
         title: '서버 연결 실패',
         subtitle: '서버 연결이 실패했습니다',
         type: 'light-danger',
         icon: 'XIcon',
       },
       {
+        id: 5,
         title: '커튼 닫음',
         subtitle: '커튼이 자동으로 닫혔습니다',
         type: 'light-success',
         icon: 'CheckIcon',
       },
       {
+        id: 6,
         title: '온도 센서',
         subtitle: '온도가 너무 높습니다',
         type: 'light-warning',
         icon: 'AlertTriangleIcon',
       },
       {
+        id: 7,
         title: '서버 연결 실패',
         subtitle: '서버 연결이 실패했습니다',
         type: 'light-danger',
         icon: 'XIcon',
       },
       {
+        id: 8,
         title: '커튼 닫음',
         subtitle: '커튼이 자동으로 닫혔습니다',
         type: 'light-success',
         icon: 'CheckIcon',
       },
       {
+        id: 9,
         title: '온도 센서',
         subtitle: '온도가 너무 높습니다',
         type: 'light-warning',

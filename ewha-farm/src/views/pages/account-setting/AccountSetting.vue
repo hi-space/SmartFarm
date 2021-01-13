@@ -21,8 +21,7 @@
       </template>
 
       <account-setting-general
-        v-if="userData.general"
-        :general-data="userData.general"
+        :user-info="userData"
       />
     </b-tab>
     <!--/ general tab -->
@@ -31,43 +30,43 @@
     <b-tab>
 
       <!-- title -->
-      <template #title>
+      <!-- <template #title>
         <feather-icon
           icon="BellIcon"
           size="18"
           class="mr-50"
         />
         <span class="font-weight-bold">알림 설정</span>
-      </template>
+      </template> -->
 
-      <account-setting-notification
+      <!-- <account-setting-notification
         v-if="userData.notification"
         :notification-data="userData.notification"
-      />
+      /> -->
     </b-tab>
   </b-tabs>
 </template>
 
 <script>
-import fakeData from '@/data/account-setting-data.json'
 import { BTabs, BTab } from 'bootstrap-vue'
+import { getUserData } from '@/auth/utils'
 import AccountSettingGeneral from './AccountSettingGeneral.vue'
-import AccountSettingNotification from './AccountSettingNotification.vue'
+// import AccountSettingNotification from './AccountSettingNotification.vue'
 
 export default {
   components: {
     BTabs,
     BTab,
     AccountSettingGeneral,
-    AccountSettingNotification,
-  },
-  data() {
-    return {
-      userData: fakeData,
-    }
+    // AccountSettingNotification,
   },
   setup() {
+    const userData = getUserData()
+    console.log(userData)
     // this.$http.get('/account-setting/data').then(res => { this.userData = res.data })
+    return {
+      userData,
+    }
   },
 }
 </script>
