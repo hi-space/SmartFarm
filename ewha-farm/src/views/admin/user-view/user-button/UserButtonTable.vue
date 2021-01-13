@@ -25,7 +25,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable,
 } from 'bootstrap-vue'
 import fakeData from '@/data/buttons.json'
-import AddButtonModal from '../register/AddButtonModal.vue'
+import AddButtonModal from './AddButtonModal.vue'
 
 export default {
   components: {

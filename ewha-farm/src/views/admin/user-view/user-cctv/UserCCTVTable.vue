@@ -31,7 +31,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BBadge,
 } from 'bootstrap-vue'
 import fakeData from '@/data/cctv.json'
-import AddCameraModal from '../register/AddCameraModal.vue'
+import AddCameraModal from './AddCameraModal.vue'
 
 export default {
   components: {

@@ -84,10 +84,10 @@ import fakeData from '@/data/user.json'
 
 import userStoreModule from '../userStoreModule'
 import UserViewInfo from './UserViewInfo.vue'
-import UserFarmTable from '../user-farm/UserFarmTable.vue'
-import UserCCTVTable from '../user-farm/UserCCTVTable.vue'
-import UserDeviceTable from '../user-farm/UserDeviceTable.vue'
-import UserButtonTable from '../user-farm/UserButtonTable.vue'
+import UserFarmTable from './user-farm/UserFarmTable.vue'
+import UserCCTVTable from './user-cctv/UserCCTVTable.vue'
+import UserDeviceTable from './user-device/UserDeviceTable.vue'
+import UserButtonTable from './user-button/UserButtonTable.vue'
 
 export default {
   components: {

@@ -98,7 +98,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton, BRow, BCol, BBadge,
 } from 'bootstrap-vue'
 import fakeData from '@/data/devices.json'
-import AddDeviceModal from '../register/AddDeviceModal.vue'
+import AddDeviceModal from './AddDeviceModal.vue'
 
 export default {
   components: {

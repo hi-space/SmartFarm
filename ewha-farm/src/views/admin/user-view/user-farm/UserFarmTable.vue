@@ -66,7 +66,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 import fakeData from '@/data/farms.json'
-import AddFarmModal from '../register/AddFarmModal.vue'
+import AddFarmModal from './AddFarmModal.vue'
 
 import farmStoreModule from './farmStoreModule'
 
@@ -121,15 +121,9 @@ export default {
         // { key: 'device', label: '함체 갯수', sortable: true },
         { key: 'info', label: '정보', sortable: true },
         { key: 'created', label: '생성일', sortable: true },
-        { key: 'show_details', label: 'details' },
+        // { key: 'show_details', label: 'details' },
       ],
       items: fakeData,
-      status: [{
-        1: 'Current', 2: 'Professional', 3: 'Rejected', 4: 'Resigned', 5: 'Applied',
-      },
-      {
-        1: 'light-primary', 2: 'light-success', 3: 'light-danger', 4: 'light-warning', 5: 'light-info',
-      }],
     }
   },
 }
