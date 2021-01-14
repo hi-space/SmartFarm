@@ -6,7 +6,7 @@ import app from './app'
 import appConfig from './app-config'
 import verticalMenu from './vertical-menu'
 import auth from './auth'
-// import userList from './user-list'
+import users from './users'
 // import userView from './user-view'
 // import farm from './farm'
 // import device from './device'
@@ -20,7 +20,7 @@ export default new Vuex.Store({
     verticalMenu,
 
     auth,
-    // userList,
+    users,
     // userView,
     // farm,
     // device,

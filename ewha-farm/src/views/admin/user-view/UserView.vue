@@ -75,14 +75,13 @@
 <script>
 import store from '@/store'
 import router from '@/router'
-import { ref, onUnmounted } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 import {
   BRow, BCol, BAlert, BLink,
 } from 'bootstrap-vue'
 
 import fakeData from '@/data/user.json'
 
-import userStoreModule from '../userStoreModule'
 import UserViewInfo from './UserViewInfo.vue'
 import UserFarmTable from './user-farm/UserFarmTable.vue'
 import UserCCTVTable from './user-cctv/UserCCTVTable.vue'
@@ -104,17 +103,7 @@ export default {
   setup() {
     const userData = ref(null)
 
-    const USER_APP_STORE_MODULE_NAME = 'app-user'
-
-    // Register module
-    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, userStoreModule)
-
-    // UnRegister on leave
-    onUnmounted(() => {
-      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
-    })
-
-    store.dispatch('app-user/fetchUser', { id: router.currentRoute.params.id })
+    store.dispatch('users/fetchUser', { id: router.currentRoute.params.id })
       .then(response => { userData.value = response.data })
       .catch(error => {
         if (error.response.status === 404) {

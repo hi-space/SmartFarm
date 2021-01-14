@@ -207,13 +207,11 @@ import {
   BBadge, BDropdown, BDropdownItem, BPagination, BFormGroup, BInputGroup,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
-import store from '@/store'
-import { ref, onUnmounted } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
-// import UsersListFilters from './UsersListFilters.vue'
+import store from '@/store'
 
 import userListTable from './userListTable'
-import userStoreModule from '../userStoreModule'
 
 export default {
   components: {
@@ -288,18 +286,8 @@ export default {
     const totalUsers = ref(0)
     const userListData = ref(null)
 
-    const USER_APP_STORE_MODULE_NAME = 'app-user'
-
-    // Register module
-    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, userStoreModule)
-
-    // UnRegister on leave
-    onUnmounted(() => {
-      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
-    })
-
     store
-      .dispatch('app-user/fetchUsers')
+      .dispatch('users/fetchUsers')
       .then(response => {
         const users = response.data
         userListData.value = users

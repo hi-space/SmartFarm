@@ -52,9 +52,8 @@
 import { BTabs, BTab } from 'bootstrap-vue'
 import { getUserData } from '@/auth/utils'
 import store from '@/store'
-import { ref, onUnmounted } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 
-import userStoreModule from '@/views/admin/userStoreModule'
 import AccountSettingGeneral from './AccountSettingGeneral.vue'
 import AccountSettingNotification from './AccountSettingNotification.vue'
 
@@ -67,16 +66,9 @@ export default {
   },
   setup() {
     const userData = ref(null)
-    const USER_APP_STORE_MODULE_NAME = 'app-user'
-
-    if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, userStoreModule)
-
-    onUnmounted(() => {
-      if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
-    })
 
     const userId = getUserData().id
-    store.dispatch('app-user/fetchUser', { id: userId })
+    store.dispatch('users/fetchUser', { id: userId })
       .then(response => {
         userData.value = response.data
         console.log(response)

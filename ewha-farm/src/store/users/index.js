@@ -2,16 +2,26 @@ import axios from '@axios'
 
 export default {
   namespaced: true,
-  state: {},
+  state: {
+    user: null,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    SET_USER(state, user) {
+      state.user = user
+    },
+    CLEAR_USER(state) {
+      state.user = null
+    },
+  },
   actions: {
     async fetchUsers(ctx, queryParams) {
       const result = await axios.get('/users', { params: queryParams })
       return result
     },
-    async fetchUser(ctx, { id }) {
+    async fetchUser({ commit }, { id }) {
       const result = await axios.get(`/users/${id}`)
+      commit('SET_USER', result.data)
       return result
     },
     async updateUser(ctx, { id, queryBody }) {
