@@ -21,6 +21,12 @@
         fixed
         @row-selected="onRowSelected"
       >
+        <template #row-details="row">
+          <b-card>
+            {{ row.item.id }}
+            <!-- <user-device-table /> -->
+          </b-card>
+        </template>
         <template #cell(show_details)="row">
 
           <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
@@ -28,7 +34,7 @@
             v-model="row.detailsShowing"
             @change="row.toggleDetails"
           >
-            <!-- {{ row.detailsShowing ? 'Hide' : 'Show' }} -->
+            {{ row.detailsShowing ? 'Hide' : 'Show' }}
           </b-form-checkbox>
         </template>
 
@@ -93,7 +99,6 @@ export default {
   methods: {
     onRowSelected(items) {
       this.selected = items
-      console.log(this.selected)
     },
   },
 }

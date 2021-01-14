@@ -2,11 +2,11 @@
   <div>
     <!-- Button -->
     <b-button
-      v-b-modal.add-device-modal
       v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
       class="btn-icon"
       pill
+      @click="showModal"
     >
       <span class="align-middle"> 통신 장비 추가</span>
       <feather-icon icon="PlusIcon" />
@@ -14,7 +14,7 @@
 
     <!-- Modal -->
     <b-modal
-      id="add-device-modal"
+      v-model="addDeviceModal"
       title="통신 장비 등록"
       ok-title="등록"
       cancel-title="취소"
@@ -31,6 +31,7 @@
           <v-select
             id="farmName"
             v-model="farmName"
+            :options="farmOptions"
           />
         </b-form-group>
         <b-form-group
@@ -40,6 +41,7 @@
           <v-select
             id="housingName"
             v-model="housingName"
+            :options="housingOptions"
           />
         </b-form-group>
         <b-form-group
@@ -48,6 +50,7 @@
         >
           <b-form-input
             id="deviceName"
+            v-model="deviceName"
             type="text"
           />
         </b-form-group>
@@ -64,7 +67,7 @@
         >
           <v-select
             id="type"
-            v-model="type_selected"
+            v-model="deviceType"
             :options="type_option"
           />
         </b-form-group>
@@ -74,6 +77,7 @@
         >
           <b-form-input
             id="port"
+            v-model="port"
             type="number"
             placeholder="10000"
           />
@@ -84,6 +88,7 @@
         >
           <b-form-input
             id="account"
+            v-model="account"
             type="text"
             placeholder="admin"
           />
@@ -94,6 +99,7 @@
         >
           <b-form-input
             id="password"
+            v-model="password"
             type="password"
             placeholder="············"
           />
@@ -104,6 +110,7 @@
         >
           <b-form-input
             id="serialNum"
+            v-model="serialNum"
             type="text"
           />
         </b-form-group>
@@ -135,23 +142,64 @@ export default {
   },
   data() {
     return {
-      type_selected: 'K868',
+      addDeviceModal: false,
+      farmOptions: [],
+      housingOptions: [],
       type_option: ['ET0808', 'K868'],
       farmName: '',
       housingName: '',
+      deviceName: '',
+      deviceType: '',
+      port: '',
+      account: '',
+      password: '',
+      serialNum: '',
     }
   },
+  watch: {
+    farmName(newVal, oldVal) {
+      console.log(oldVal.value, newVal.value)
+
+      const housingList = store.state.housing.housings
+      this.housingOptions = housingList
+        .filter(elem => elem.farmId === newVal.value)
+        .map((obj => {
+          const rObj = {}
+          rObj.label = obj.name
+          rObj.value = obj._id
+          return rObj
+        }))
+    },
+  },
   methods: {
+    showModal() {
+      const farmList = store.state.farm.farms
+      this.farmOptions = farmList.map((obj => {
+        const rObj = {}
+        rObj.label = obj.name
+        rObj.value = obj._id
+        return rObj
+      }))
+
+      this.addDeviceModal = true
+    },
+
     createDevice() {
       const postBody = {
         userId: store.state.users.user._id,
-        name: this.name,
-        info: this.info,
+        farmId: this.farmName.value,
+        housingId: this.housingName.value,
+        name: this.deviceName,
+        type: this.deviceType,
+        port: this.port,
+        account: this.account,
+        password: this.password,
+        serialNum: this.serialNum,
       }
 
       store.dispatch('device/createDevice', { queryBody: postBody })
-        .then(response => {
-          console.log(response)
+        .then(() => {
+          this.$router.go()
         })
         .catch(error => {
           console.log(error)
