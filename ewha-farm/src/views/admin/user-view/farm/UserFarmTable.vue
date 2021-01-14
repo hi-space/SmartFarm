@@ -87,7 +87,6 @@ export default {
     store.dispatch('farm/fetchFarms', { userId: store.state.users.user._id })
       .then(response => {
         farmData.value = response.data
-        console.log(response)
       })
       .catch(error => {
         console.log(error)

@@ -65,7 +65,7 @@ export default {
     store.dispatch('device/fetchDevices', { userId: store.state.users.user._Id })
       .then(response => {
         deviceData.value = response.data
-        console.log(response)
+        // console.log(response)
       })
       .catch(error => {
         console.log(error)
@@ -93,7 +93,7 @@ export default {
   methods: {
     onRowSelected(items) {
       this.selected = items
-      console.log(this.selected)
+      // console.log(this.selected)
     },
   },
 }

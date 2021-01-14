@@ -10,7 +10,7 @@
 
     <div>
       <b-table
-        :items="items"
+        :items="cctvData"
         :fields="fields"
         hover
         responsive
@@ -32,7 +32,8 @@
 import {
   BCard, BCardTitle, BCardSubTitle, BTable, BBadge,
 } from 'bootstrap-vue'
-import fakeData from '@/data/cctv.json'
+import { ref } from '@vue/composition-api'
+import store from '@/store'
 import AddCameraModal from './AddCameraModal.vue'
 
 export default {
@@ -44,18 +45,30 @@ export default {
     BBadge,
     'add-camera-modal': AddCameraModal,
   },
+  setup() {
+    const cctvData = ref(null)
+    store.dispatch('cctv/fetchCCTVs', { userId: store.state.users.user._id })
+      .then(response => {
+        cctvData.value = response.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return {
+      cctvData,
+    }
+  },
+
   data() {
     return {
       fields: [
-        { key: 'id', label: 'ID', sortable: true },
-        { key: 'farm', label: '축사 이름', sortable: true },
+        { key: '_id', label: 'ID', sortable: true },
+        { key: 'farmId', label: '축사 ID', sortable: true },
         { key: 'name', label: 'CCTV 이름', sortable: true },
         { key: 'info', label: '정보', sortable: true },
-        { key: 'rtsp', label: 'rtsp URL', sortable: true },
+        { key: 'rtspUrl', label: 'rtsp URL', sortable: true },
         { key: 'account', label: 'account', sortable: true },
       ],
-      /* eslint-disable global-require */
-      items: fakeData,
     }
   },
 }

@@ -11,7 +11,7 @@
     <div>
 
       <b-table
-        :items="deviceData"
+        :items="housingData"
         :fields="fields"
         hover
         responsive
@@ -67,18 +67,18 @@ export default {
     AddHousingModal,
   },
   setup() {
-    const deviceData = ref(null)
+    const housingData = ref(null)
     store.dispatch('housing/fetchHousings', { userId: store.state.users.user._Id })
       .then(response => {
-        deviceData.value = response.data
-        console.log(response)
+        housingData.value = response.data
+        // console.log(response)
       })
       .catch(error => {
         console.log(error)
       })
 
     return {
-      deviceData,
+      housingData,
     }
   },
   data() {

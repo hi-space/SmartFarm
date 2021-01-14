@@ -157,9 +157,7 @@ export default {
     }
   },
   watch: {
-    farmName(newVal, oldVal) {
-      console.log(oldVal.value, newVal.value)
-
+    farmName(newVal) {
       const housingList = store.state.housing.housings
       this.housingOptions = housingList
         .filter(elem => elem.farmId === newVal.value)

@@ -111,7 +111,6 @@
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
-import store from '@/store'
 import vSelect from 'vue-select'
 import Ripple from 'vue-ripple-directive'
 
@@ -128,18 +127,6 @@ export default {
     'b-modal': VBModal,
     Ripple,
   },
-  // setup() {
-  //   const farmList = store.state.farm.farms
-  //   const farmOptions = farmList.map((obj => {
-  //     const rObj = {}
-  //     rObj.label = obj.name
-  //     rObj.value = obj._id
-  //     return rObj
-  //   }))
-  //   return {
-  //     farmOptions,
-  //   }
-  // },
   data() {
     return {
       addHousingModal: false,
@@ -155,19 +142,13 @@ export default {
   },
   methods: {
     showModal() {
-      const farmList = store.state.farm.farms
-      this.farmOptions = farmList.map((obj => {
-        const rObj = {}
-        rObj.label = obj.name
-        rObj.value = obj._id
-        return rObj
-      }))
+      this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.addHousingModal = true
     },
 
     createHousing() {
-      const postBody = {
-        userId: store.state.users.user._id,
+      const payload = {
+        userId: this.$store.state.users.user._id,
         farmId: this.farmName.value,
         name: this.housingName,
         info: this.info,
@@ -177,7 +158,7 @@ export default {
         password: this.password,
       }
 
-      store.dispatch('housing/createHousing', { queryBody: postBody })
+      this.$store.dispatch('housing/createHousing', { queryBody: payload })
         .then(() => {
           this.$bvModal.msgBoxOk('새로운 함체 추가되었습니다', {
             title: '함체 추가',

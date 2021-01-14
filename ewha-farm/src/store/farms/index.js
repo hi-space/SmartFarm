@@ -5,7 +5,18 @@ export default {
   state: {
     farms: [],
   },
-  getters: {},
+  getters: {
+    getFarmSelect(state) {
+      console.log(state.farms)
+      const farmList = state.farms
+      return farmList.map((obj => {
+        const rObj = {}
+        rObj.label = obj.name
+        rObj.value = obj._id
+        return rObj
+      }))
+    },
+  },
   mutations: {
     SET_FARM(state, farms) {
       state.farms = farms

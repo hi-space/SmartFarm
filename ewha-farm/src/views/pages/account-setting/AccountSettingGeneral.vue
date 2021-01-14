@@ -87,8 +87,6 @@ export default {
   },
   methods: {
     updateInfo() {
-      console.log(this.userId)
-      console.log(this.userData)
       store.dispatch('app-user/updateUser', { id: this.userId, queryBody: this.userData })
         .then(() => {
           this.$bvModal.msgBoxOk('개인 정보가 수정되었습니다', {

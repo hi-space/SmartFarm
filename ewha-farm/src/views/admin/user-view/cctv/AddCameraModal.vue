@@ -2,11 +2,11 @@
   <div>
     <!-- Button -->
     <b-button
-      v-b-modal.add-camera-modal
       v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
       class="btn-icon"
       pill
+      @click="showModal"
     >
       <span class="align-middle"> CCTV 추가</span>
       <feather-icon icon="PlusIcon" />
@@ -14,43 +14,39 @@
 
     <!-- Modal -->
     <b-modal
-      id="add-camera-modal"
+      v-model="addCameraModal"
       title="CCTV 등록"
       ok-title="등록"
       cancel-title="취소"
       cancel-variant="outline-secondary"
       scrollable
       centered
+      @ok="createCCTV()"
     >
       <b-form>
         <b-form-group
-          label="위치"
-          label-for="location"
+          label="농장 이름"
+          label-for="farmName"
         >
           <v-select
-            id="location"
-            v-model="selected"
-            :options="option"
-          />
-          <b-form-input
-            id="location-detail"
-            class="mt-1"
-            placeholder="상세 위치"
-            type="text"
-            readonly
+            id="farmName"
+            v-model="farmName"
+            :options="farmOptions"
           />
         </b-form-group>
         <b-form-group
           label="CCTV 이름"
-          label-for="camera-name"
+          label-for="name"
         >
           <b-form-input
-            id="camera-name"
+            id="name"
+            v-model="name"
             type="text"
             placeholder="이름"
           />
           <b-form-input
-            id="camera-info"
+            id="info"
+            v-model="info"
             class="mt-1"
             type="text"
             placeholder="상세 정보"
@@ -65,30 +61,33 @@
 
         <b-form-group
           label="URL"
-          label-for="network-url"
+          label-for="rtspUrl"
         >
           <b-form-input
-            id="network-url"
+            id="rtspUrl"
+            v-model="rtspUrl"
             type="text"
             placeholder="rtsp://.../media/video1"
           />
         </b-form-group>
         <b-form-group
           label="ID"
-          label-for="network-id"
+          label-for="account"
         >
           <b-form-input
-            id="network-id"
+            id="account"
+            v-model="account"
             type="text"
             placeholder="admin"
           />
         </b-form-group>
         <b-form-group
           label="Password"
-          label-for="network-password"
+          label-for="password"
         >
           <b-form-input
-            id="network-password"
+            id="password"
+            v-model="password"
             type="password"
             placeholder="············"
           />
@@ -120,9 +119,40 @@ export default {
   },
   data() {
     return {
-      selected: '제 1축사',
-      option: ['제 1축사', '제 2축사', '제 3축사'],
+      addCameraModal: false,
+      farmOptions: [],
+      farmName: '',
+      name: '',
+      info: '',
+      rtspUrl: '',
+      account: '',
+      password: '',
     }
+  },
+  methods: {
+    showModal() {
+      this.farmOptions = this.$store.getters['farm/getFarmSelect']
+      this.addCameraModal = true
+    },
+
+    createCCTV() {
+      const payload = {
+        userId: this.$store.state.users.user._id,
+        farmId: this.farmName.value,
+        name: this.name,
+        info: this.info,
+        rtspUrl: this.rtspUrl,
+        account: this.account,
+        password: this.password,
+      }
+
+      this.$store.dispatch('cctv/createCCTV', { queryBody: payload })
+        .then(() => {
+          this.$router.go()
+        }).catch(err => {
+          console.log(err)
+        })
+    },
   },
 }
 </script>
