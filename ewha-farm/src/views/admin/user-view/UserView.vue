@@ -43,7 +43,7 @@
 
       <b-row>
         <b-col>
-          <user-cctv-table
+          <user-device-table
             :user-data="userData"
             class="mt-2 pt-75"
           />
@@ -52,7 +52,7 @@
 
       <b-row>
         <b-col>
-          <user-device-table
+          <user-cctv-table
             :user-data="userData"
             class="mt-2 pt-75"
           />

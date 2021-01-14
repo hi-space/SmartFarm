@@ -113,6 +113,15 @@
             placeholder="············"
           />
         </b-form-group>
+        <b-form-group
+          label="Serial Number"
+          label-for="network-sn"
+        >
+          <b-form-input
+            id="network-sn"
+            type="text"
+          />
+        </b-form-group>
       </b-form>
     </b-modal>
   </div>

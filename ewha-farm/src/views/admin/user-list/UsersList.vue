@@ -69,10 +69,14 @@
         :per-page="perPage"
         :filter="filter"
         primary-key="_id"
+        fixed
         hover
         responsive
         show-empty
+        selectable
+        select-mode="single"
         empty-text="No matching records found"
+        @row-selected="onRowSelected"
       >
 
         <!-- Column: User -->
@@ -248,6 +252,13 @@ export default {
           filterByFormatted: true,
         },
         {
+          label: 'address',
+          key: 'userInfo.address',
+          sortable: true,
+          sortByFormatted: true,
+          filterByFormatted: true,
+        },
+        {
           label: 'role',
           key: 'role',
           sortable: true,
@@ -270,6 +281,7 @@ export default {
       pageOptions: [5, 10, 15, 20],
       sortDirection: 'asc',
       filter: null,
+      selectedRow: [],
     }
   },
   setup() {
@@ -299,8 +311,8 @@ export default {
       })
 
     const roleOptions = [
-      { label: 'Admin', value: 'admin' },
-      { label: 'Customer', value: 'customer' },
+      { label: '관리자', value: 'admin' },
+      { label: '고객', value: 'customer' },
     ]
 
     const statusOptions = [
@@ -329,6 +341,10 @@ export default {
     }
   },
   methods: {
+    onRowSelected(items) {
+      this.selectedRow = items
+      console.log(this.selectedRow)
+    },
     toggleStatus(userId, status) {
       if (status === 'inactive' || status === 'pending') {
         this.$bvModal
@@ -344,6 +360,7 @@ export default {
           })
           .then(value => {
             if (value === true) {
+              console.log(userId)
               // store
               //   .dispatch('app-user/updateUser', {
               //     id: userId,

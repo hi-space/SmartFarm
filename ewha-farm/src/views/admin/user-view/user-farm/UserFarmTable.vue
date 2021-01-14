@@ -10,10 +10,11 @@
 
     <div>
       <b-table
-        :items="items"
+        :items="farmData"
         :fields="fields"
         hover
         responsive
+        fixed
         class="mb-0"
       >
 
@@ -66,7 +67,7 @@ import {
 } from 'bootstrap-vue'
 
 import { getUserData } from '@/auth/utils'
-import fakeData from '@/data/farms.json'
+// import fakeData from '@/data/farms.json'
 import store from '@/store'
 
 import AddFarmModal from './AddFarmModal.vue'
@@ -111,20 +112,20 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'id', label: '축사 ID', sortable: true },
+        { key: '_id', label: '축사 ID', sortable: true },
         {
-          key: 'name',
+          key: 'farmInfo.name',
           label: '축사 이름',
           sortable: true,
           isRowHeader: true,
         },
         // { key: 'cctv', label: 'CCTV 갯수', sortable: true },
         // { key: 'device', label: '함체 갯수', sortable: true },
-        { key: 'info', label: '정보', sortable: true },
-        { key: 'created', label: '생성일', sortable: true },
+        { key: 'farmInfo.info', label: '정보', sortable: true },
+        { key: 'createdAt', label: '생성일', sortable: true },
         // { key: 'show_details', label: 'details' },
       ],
-      items: fakeData,
+      // items: fakeData,
     }
   },
 }

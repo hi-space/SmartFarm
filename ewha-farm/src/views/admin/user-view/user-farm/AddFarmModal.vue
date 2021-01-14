@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { onUnmounted } from '@vue/composition-api'
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
@@ -56,7 +55,6 @@ import Ripple from 'vue-ripple-directive'
 
 import store from '@/store'
 import { getUserData } from '@/auth/utils'
-import farmStoreModule from './farmStoreModule'
 
 export default {
   components: {
@@ -76,17 +74,6 @@ export default {
       info: '',
     }
   },
-  setup() {
-    const FARM_APP_STORE_MODULE_NAME = 'app-farm'
-
-    // Register module
-    if (!store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.registerModule(FARM_APP_STORE_MODULE_NAME, farmStoreModule)
-
-    // UnRegister on leave
-    onUnmounted(() => {
-      if (store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.unregisterModule(FARM_APP_STORE_MODULE_NAME)
-    })
-  },
   methods: {
     createFarm() {
       const postBody = {
@@ -96,10 +83,14 @@ export default {
       }
 
       store.dispatch('app-farm/createFarm', { queryBody: postBody })
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
+        .then(() => {
+          this.$bvModal.msgBoxOk('새로운 축사가 추가되었습니다', {
+            title: '축사 추가',
+            centered: true,
+          }).then(() => {
+            this.$router.go()
+          })
+        }).catch(error => {
           console.log(error)
         })
     },
