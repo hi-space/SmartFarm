@@ -2,7 +2,7 @@
   <b-card-actions
     ref="weatherCard"
     title="현재 날씨"
-    sub-title="2020-08-21 12:49:50 PM"
+    :sub-title="getCurrentTime()"
     @refresh="getWeatherData"
   >
     <b-row>
@@ -50,7 +50,7 @@
             </h4>
           </b-media-body>
           <b-card-text class="font-weight-bolder mb-0">
-            <h4 class=" mb-0">
+            <h4 class="mb-0">
               {{ item.subtitle }}
             </h4>
           </b-card-text>
@@ -98,7 +98,7 @@ export default {
         {
           icon: 'ThermometerIcon',
           color: 'light-primary',
-          title: '체감 온도',
+          title: '온도',
           subtitle: this.temp,
         },
         {
@@ -132,6 +132,9 @@ export default {
     this.getWeatherData()
   },
   methods: {
+    getCurrentTime() {
+      return new Date().toLocaleString()
+    },
     async getWeatherData() {
       const parmas = {
         lat: 37.57,
@@ -141,7 +144,7 @@ export default {
       try {
         const result = await axios.get('/utils/weather', { params: parmas })
         this.location = result.data.location.toUpperCase()
-        this.temp = result.data.temp.toFixed(2)
+        this.temp = result.data.temp.toFixed(1)
         this.pressure = result.data.pressure
         this.temp_max = result.data.temp_max
         this.temp_min = result.data.temp_min
