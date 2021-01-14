@@ -26,7 +26,6 @@
       <b-row>
         <b-col>
           <user-view-info
-            :user-data="userData"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -35,7 +34,6 @@
       <b-row>
         <b-col>
           <user-farm-table
-            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -44,7 +42,6 @@
       <b-row>
         <b-col>
           <user-device-table
-            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -53,7 +50,6 @@
       <b-row>
         <b-col>
           <user-cctv-table
-            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -62,7 +58,6 @@
       <b-row>
         <b-col>
           <user-button-table
-            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -79,8 +74,6 @@ import { ref } from '@vue/composition-api'
 import {
   BRow, BCol, BAlert, BLink,
 } from 'bootstrap-vue'
-
-import fakeData from '@/data/user.json'
 
 import UserViewInfo from './UserViewInfo.vue'
 import UserFarmTable from './user-farm/UserFarmTable.vue'
@@ -106,10 +99,7 @@ export default {
     store.dispatch('users/fetchUser', { id: router.currentRoute.params.id })
       .then(response => { userData.value = response.data })
       .catch(error => {
-        if (error.response.status === 404) {
-          // userData.value = undefined
-          userData.value = fakeData
-        }
+        console.log(error)
       })
 
     return {

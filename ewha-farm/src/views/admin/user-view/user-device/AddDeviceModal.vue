@@ -128,14 +128,12 @@
 </template>
 
 <script>
-import { onUnmounted } from '@vue/composition-api'
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
 import store from '@/store'
 import vSelect from 'vue-select'
 import Ripple from 'vue-ripple-directive'
-import deviceStoreModule from './deviceStoreModule'
 
 export default {
   components: {
@@ -150,17 +148,6 @@ export default {
     'b-modal': VBModal,
     Ripple,
   },
-  setup() {
-    const DEVICE_APP_STORE_MODULE_NAME = 'app-device'
-
-    // Register module
-    if (!store.hasModule(DEVICE_APP_STORE_MODULE_NAME)) store.registerModule(DEVICE_APP_STORE_MODULE_NAME, deviceStoreModule)
-
-    // UnRegister on leave
-    onUnmounted(() => {
-      if (store.hasModule(DEVICE_APP_STORE_MODULE_NAME)) store.unregisterModule(DEVICE_APP_STORE_MODULE_NAME)
-    })
-  },
   data() {
     return {
       loc_selected: '제 1축사',
@@ -169,23 +156,23 @@ export default {
       type_option: ['ET0808', 'K868'],
     }
   },
-  // methods: {
-  //   createFarm() {
-  //     const postBody = {
-  //       userId: getUserData().id,
-  //       'farmInfo.name': this.name,
-  //       'farmInfo.info': this.info,
-  //     }
+  methods: {
+    createDevice() {
+      const postBody = {
+        userId: store.state.users.user._id,
+        'farmInfo.name': this.name,
+        'farmInfo.info': this.info,
+      }
 
-  //     store.dispatch('app-farm/createFarm', { queryBody: postBody })
-  //       .then(response => {
-  //         console.log(response)
-  //       })
-  //       .catch(error => {
-  //         console.log(error)
-  //       })
-  //   },
-  // },
+      store.dispatch('device/createDevice', { queryBody: postBody })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  },
 }
 </script>
 

@@ -2,11 +2,21 @@ import axios from '@axios'
 
 export default {
   namespaced: true,
-  state: {},
+  state: {
+    device: null,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    SET_DEVICE(state, device) {
+      state.device = device
+    },
+    CLEAR_DEVICE(state) {
+      state.device = null
+    },
+  },
   actions: {
     async fetchDevices(ctx, queryParams) {
+      console.log(queryParams)
       const result = await axios.get('/device', { params: queryParams })
       return result
     },

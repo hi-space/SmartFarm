@@ -7,9 +7,8 @@ import appConfig from './app-config'
 import verticalMenu from './vertical-menu'
 import auth from './auth'
 import users from './users'
-// import userView from './user-view'
-// import farm from './farm'
-// import device from './device'
+import farm from './farms'
+import device from './devices'
 
 Vue.use(Vuex)
 
@@ -21,9 +20,8 @@ export default new Vuex.Store({
 
     auth,
     users,
-    // userView,
-    // farm,
-    // device,
+    farm,
+    device,
   },
   strict: process.env.DEV,
 })

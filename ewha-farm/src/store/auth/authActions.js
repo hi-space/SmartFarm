@@ -25,7 +25,6 @@ export default {
           router.push(getHomeRouteForLoggedInUser(userData.role))
           resolve(userData)
         } else {
-          // eslint-disable-next-line prefer-promise-reject-errors
           reject(response)
         }
       }).catch(err => { reject(err) })

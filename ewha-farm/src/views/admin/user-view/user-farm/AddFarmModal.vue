@@ -67,12 +67,6 @@ export default {
     'b-modal': VBModal,
     Ripple,
   },
-  props: {
-    userId: {
-      type: String,
-      required: true,
-    },
-  },
   data() {
     return {
       name: '',
@@ -80,14 +74,14 @@ export default {
     }
   },
   methods: {
-    createFarm(id) {
+    createFarm() {
       const postBody = {
-        userId: id,
+        userId: store.state.users.user._id,
         'farmInfo.name': this.name,
         'farmInfo.info': this.info,
       }
 
-      store.dispatch('app-farm/createFarm', { queryBody: postBody })
+      store.dispatch('farm/createFarm', { queryBody: postBody })
         .then(() => {
           this.$bvModal.msgBoxOk('새로운 축사가 추가되었습니다', {
             title: '축사 추가',

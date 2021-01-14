@@ -4,7 +4,6 @@
     <!-- Media -->
     <div class="d-flex justify-content-start mb-2">
       <b-avatar
-        :src="userData.avatar"
         :text="avatarText(userData.userInfo.name)"
         :variant="`light-${resolveUserRoleVariant(userData.userInfo.role)}`"
         size="104px"
@@ -162,8 +161,6 @@ import {
 import Ripple from 'vue-ripple-directive'
 import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
-import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
-import { ref } from '@vue/composition-api'
 import store from '@/store'
 import router from '@/router'
 import userListTable from '../user-list/userListTable'
@@ -184,13 +181,12 @@ export default {
   directives: {
     Ripple,
   },
-  props: {
-    userData: {
-      type: Object,
-      required: true,
-    },
+  data() {
+    return {
+      userData: store.state.users.user,
+    }
   },
-  setup(props) {
+  setup() {
     const { resolveUserRoleVariant } = userListTable()
 
     const roleOptions = [
@@ -204,25 +200,11 @@ export default {
       { label: 'Inactive', value: 'inactive' },
     ]
 
-    // ? Demo Purpose => Update image on click of update
-    const refInputEl = ref(null)
-    const previewEl = ref(null)
-
-    const { inputImageRenderer } = useInputImageRenderer(refInputEl, base64 => {
-      // eslint-disable-next-line no-param-reassign
-      props.userData.avatar = base64
-    })
-
     return {
       resolveUserRoleVariant,
       avatarText,
       roleOptions,
       statusOptions,
-
-      //  ? Demo - Update Image on click of update button
-      refInputEl,
-      previewEl,
-      inputImageRenderer,
     }
   },
   methods: {

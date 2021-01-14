@@ -5,7 +5,7 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 축사 정보 </h3> </b-card-title>
-      <b-card-sub-title> <add-farm-modal :user-id="props.userId" /> </b-card-sub-title>
+      <b-card-sub-title> <add-farm-modal /> </b-card-sub-title>
     </div>
 
     <div>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { ref, onUnmounted } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
@@ -70,7 +70,6 @@ import {
 import store from '@/store'
 
 import AddFarmModal from './AddFarmModal.vue'
-import farmStoreModule from './farmStoreModule'
 
 export default {
   components: {
@@ -83,26 +82,9 @@ export default {
     BCol,
     'add-farm-modal': AddFarmModal,
   },
-  props: {
-    userId: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props) {
-    console.log(props.userId)
-    const FARM_APP_STORE_MODULE_NAME = 'app-farm'
-
-    // Register module
-    if (!store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.registerModule(FARM_APP_STORE_MODULE_NAME, farmStoreModule)
-
-    // UnRegister on leave
-    onUnmounted(() => {
-      if (store.hasModule(FARM_APP_STORE_MODULE_NAME)) store.unregisterModule(FARM_APP_STORE_MODULE_NAME)
-    })
-
+  setup() {
     const farmData = ref(null)
-    store.dispatch('app-farm/fetchFarms', { userId: props.userId })
+    store.dispatch('farm/fetchFarms', { userId: store.state.users.user._id })
       .then(response => {
         farmData.value = response.data
         console.log(response)
