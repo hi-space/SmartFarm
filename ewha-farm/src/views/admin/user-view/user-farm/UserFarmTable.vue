@@ -5,7 +5,7 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 축사 정보 </h3> </b-card-title>
-      <b-card-sub-title> <add-farm-modal /> </b-card-sub-title>
+      <b-card-sub-title> <add-farm-modal :user-id="props.userId" /> </b-card-sub-title>
     </div>
 
     <div>
@@ -66,7 +66,6 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 
-import { getUserData } from '@/auth/utils'
 // import fakeData from '@/data/farms.json'
 import store from '@/store'
 
@@ -84,7 +83,14 @@ export default {
     BCol,
     'add-farm-modal': AddFarmModal,
   },
-  setup() {
+  props: {
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    console.log(props.userId)
     const FARM_APP_STORE_MODULE_NAME = 'app-farm'
 
     // Register module
@@ -96,7 +102,7 @@ export default {
     })
 
     const farmData = ref(null)
-    store.dispatch('app-farm/fetchFarms', { userId: getUserData().id })
+    store.dispatch('app-farm/fetchFarms', { userId: props.userId })
       .then(response => {
         farmData.value = response.data
         console.log(response)

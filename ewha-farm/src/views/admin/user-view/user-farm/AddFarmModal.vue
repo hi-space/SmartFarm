@@ -21,7 +21,7 @@
       cancel-variant="outline-secondary"
       scrollable
       centered
-      @ok="createFarm"
+      @ok="createFarm()"
     >
       <b-form>
         <b-form-group
@@ -54,7 +54,6 @@ import {
 import Ripple from 'vue-ripple-directive'
 
 import store from '@/store'
-import { getUserData } from '@/auth/utils'
 
 export default {
   components: {
@@ -68,6 +67,12 @@ export default {
     'b-modal': VBModal,
     Ripple,
   },
+  props: {
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       name: '',
@@ -75,9 +80,9 @@ export default {
     }
   },
   methods: {
-    createFarm() {
+    createFarm(id) {
       const postBody = {
-        userId: getUserData().id,
+        userId: id,
         'farmInfo.name': this.name,
         'farmInfo.info': this.info,
       }

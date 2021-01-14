@@ -130,13 +130,9 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
   BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardText, BInputGroup, BInputGroupAppend,
 } from 'bootstrap-vue'
-import useJwt from '@/auth/jwt/useJwt'
 import Logo from '@core/layouts/components/Logo.vue'
 import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/forms'
-import { getHomeRouteForLoggedInUser } from '@/auth/utils'
-
-import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
   components: {
@@ -173,61 +169,16 @@ export default {
     login() {
       this.$refs.loginForm.validate().then(success => {
         if (success) {
-          useJwt.login({
+          const payload = {
             phone: this.userId,
             password: this.password,
-          })
-            .then(response => {
-              if (response.status !== 200) {
-                this.$bvModal
-                  .msgBoxOk('등록되지 않은 사용자 입니다', {
-                    title: '로그인 실패',
-                    size: 'sm',
-                    hideHeaderClose: true,
-                    centered: true,
-                  })
-              }
+          }
 
-              const { userData } = response.data
-              useJwt.setToken(response.data.accessToken)
-              useJwt.setRefreshToken(response.data.refreshToken)
-              localStorage.setItem('userData', JSON.stringify(userData))
-
-              this.$ability.update(userData.ability)
-              // if (userData.role === 'admin') {
-              //   this.$ability.update([
-              //     {
-              //       action: 'manage',
-              //       subject: 'all',
-              //     }])
-              // } else {
-              //   this.$ability.update([
-              //     {
-              //       action: 'manage',
-              //       subject: 'all',
-              //     },
-              //     {
-              //       action: 'read',
-              //       subject: 'Auth',
-              //     }])
-              // }
-
-              this.$router.push(getHomeRouteForLoggedInUser(userData.role))
-                .then(() => {
-                  this.$toast({
-                    component: ToastificationContent,
-                    position: 'top-right',
-                    props: {
-                      title: `안녕하세요 ${userData.name}님`,
-                      icon: 'CoffeeIcon',
-                      variant: 'success',
-                      text: `${userData.role} 계정으로 로그인 되었습니다.`,
-                    },
-                  })
-                })
-                .catch(error => {
-                  this.$refs.loginForm.setErrors(error.response.data.error)
-                })
+          this.$store.dispatch('auth/login', payload)
+            .then(result => {
+              console.log(result)
+            }).catch(err => {
+              console.log(err)
             })
         }
       })

@@ -11,7 +11,7 @@
     <div>
 
       <b-table
-        :items="items"
+        :items="deviceData"
         :fields="fields"
         hover
         responsive
@@ -99,9 +99,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton, BRow, BCol, BBadge,
 } from 'bootstrap-vue'
 import { ref, onUnmounted } from '@vue/composition-api'
-import { getUserData } from '@/auth/utils'
 import store from '@/store'
-import fakeData from '@/data/devices.json'
 import AddDeviceModal from './AddDeviceModal.vue'
 import deviceStoreModule from './deviceStoreModule'
 
@@ -118,7 +116,13 @@ export default {
     BBadge,
     'add-device-modal': AddDeviceModal,
   },
-  setup() {
+  props: {
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     const DEVICE_APP_STORE_MODULE_NAME = 'app-device'
 
     // Register module
@@ -130,7 +134,7 @@ export default {
     })
 
     const deviceData = ref(null)
-    store.dispatch('app-device/fetchDevices', { userId: getUserData().id })
+    store.dispatch('app-device/fetchDevices', { userId: props.userId })
       .then(response => {
         deviceData.value = response.data
         console.log(response)
@@ -155,7 +159,6 @@ export default {
         { key: 'serial_num', label: 'S/N', sortable: true },
         // { key: 'show_details', label: 'details' },
       ],
-      items: fakeData,
       selected: [],
     }
   },

@@ -35,7 +35,7 @@
       <b-row>
         <b-col>
           <user-farm-table
-            :user-data="userData"
+            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -44,7 +44,7 @@
       <b-row>
         <b-col>
           <user-device-table
-            :user-data="userData"
+            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -53,7 +53,7 @@
       <b-row>
         <b-col>
           <user-cctv-table
-            :user-data="userData"
+            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
@@ -62,7 +62,7 @@
       <b-row>
         <b-col>
           <user-button-table
-            :user-data="userData"
+            :user-id="userData._id"
             class="mt-2 pt-75"
           />
         </b-col>
