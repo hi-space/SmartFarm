@@ -8,52 +8,47 @@
       class="btn-icon"
       pill
     >
-      <span class="align-middle"> 함체 추가</span>
+      <span class="align-middle"> 통신 장비 추가</span>
       <feather-icon icon="PlusIcon" />
     </b-button>
 
     <!-- Modal -->
     <b-modal
       id="add-device-modal"
-      title="함체 등록"
+      title="통신 장비 등록"
       ok-title="등록"
       cancel-title="취소"
       cancel-variant="outline-secondary"
       scrollable
       centered
+      @ok="createDevice()"
     >
       <b-form>
         <b-form-group
-          label="위치"
-          label-for="location"
+          label="농장 이름"
+          label-for="farmName"
         >
           <v-select
-            id="location"
-            v-model="loc_selected"
-            :options="loc_option"
-          />
-          <b-form-input
-            id="location-detail"
-            class="mt-1"
-            placeholder="상세 위치"
-            type="text"
-            readonly
+            id="farmName"
+            v-model="farmName"
           />
         </b-form-group>
         <b-form-group
           label="함체 이름"
-          label-for="device-name"
+          label-for="housingName"
+        >
+          <v-select
+            id="housingName"
+            v-model="housingName"
+          />
+        </b-form-group>
+        <b-form-group
+          label="통신 장비 이름"
+          label-for="deviceName"
         >
           <b-form-input
-            id="device-name"
+            id="deviceName"
             type="text"
-            placeholder="이름"
-          />
-          <b-form-input
-            id="device-info"
-            class="mt-1"
-            type="text"
-            placeholder="상세 정보"
           />
         </b-form-group>
 
@@ -74,51 +69,41 @@
           />
         </b-form-group>
         <b-form-group
-          label="DDNS"
-          label-for="network-ddns"
-        >
-          <b-form-input
-            id="network-ddns"
-            type="text"
-            placeholder="xxx.iptime.org"
-          />
-        </b-form-group>
-        <b-form-group
           label="Port"
-          label-for="network-port"
+          label-for="port"
         >
           <b-form-input
-            id="network-port"
+            id="port"
             type="number"
             placeholder="10000"
           />
         </b-form-group>
         <b-form-group
           label="ID"
-          label-for="network-id"
+          label-for="account"
         >
           <b-form-input
-            id="network-id"
+            id="account"
             type="text"
             placeholder="admin"
           />
         </b-form-group>
         <b-form-group
           label="Password"
-          label-for="network-password"
+          label-for="password"
         >
           <b-form-input
-            id="network-password"
+            id="password"
             type="password"
             placeholder="············"
           />
         </b-form-group>
         <b-form-group
           label="Serial Number"
-          label-for="network-sn"
+          label-for="serialNum"
         >
           <b-form-input
-            id="network-sn"
+            id="serialNum"
             type="text"
           />
         </b-form-group>
@@ -150,18 +135,18 @@ export default {
   },
   data() {
     return {
-      loc_selected: '제 1축사',
-      loc_option: ['제 1축사', '제 2축사', '제 3축사'],
       type_selected: 'K868',
       type_option: ['ET0808', 'K868'],
+      farmName: '',
+      housingName: '',
     }
   },
   methods: {
     createDevice() {
       const postBody = {
         userId: store.state.users.user._id,
-        'farmInfo.name': this.name,
-        'farmInfo.info': this.info,
+        name: this.name,
+        info: this.info,
       }
 
       store.dispatch('device/createDevice', { queryBody: postBody })

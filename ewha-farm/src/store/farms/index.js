@@ -3,12 +3,12 @@ import axios from '@axios'
 export default {
   namespaced: true,
   state: {
-    farm: null,
+    farms: [],
   },
   getters: {},
   mutations: {
-    SET_FARM(state, farm) {
-      state.farm = farm
+    SET_FARM(state, farms) {
+      state.farms = farms
     },
     CLEAR_FARM(state) {
       state.farm = null
@@ -17,12 +17,11 @@ export default {
   actions: {
     async fetchFarms({ commit }, queryParams) {
       const result = await axios.get('/farm', { params: queryParams })
-      commit('CLEAR_FARM')
+      commit('SET_FARM', result.data)
       return result
     },
-    async fetchFarm({ commit }, { id }) {
+    async fetchFarm(ctx, { id }) {
       const result = await axios.get(`/farm/${id}`)
-      commit('SET_FARM', result.data)
       return result
     },
     async createFarm(ctx, { queryBody }) {

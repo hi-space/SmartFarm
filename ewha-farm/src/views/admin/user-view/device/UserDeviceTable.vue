@@ -4,7 +4,7 @@
   >
     <div class="card-header">
       <!-- Title -->
-      <b-card-title> <h3> 함체 정보 </h3> </b-card-title>
+      <b-card-title> <h3> 통신 장비 정보 </h3> </b-card-title>
       <b-card-sub-title> <add-device-modal /> </b-card-sub-title>
     </div>
 
@@ -32,58 +32,6 @@
           </b-form-checkbox>
         </template>
 
-        <!-- full detail on click -->
-        <template #row-details="row">
-          <b-card>
-            <b-row class="mb-2">
-              <b-col
-                md="4"
-                class="mb-1"
-              >
-                <strong>Full Name : </strong>{{ row.item.full_name }}
-              </b-col>
-              <b-col
-                md="4"
-                class="mb-1"
-              >
-                <strong>Post : </strong>{{ row.item.post }}
-              </b-col>
-              <b-col
-                md="4"
-                class="mb-1"
-              >
-                <strong>Email : </strong>{{ row.item.email }}
-              </b-col>
-              <b-col
-                md="4"
-                class="mb-1"
-              >
-                <strong>City : </strong>{{ row.item.city }}
-              </b-col>
-              <b-col
-                md="4"
-                class="mb-1"
-              >
-                <strong>Salary : </strong>{{ row.item.salary }}
-              </b-col>
-              <b-col
-                md="4"
-                class="mb-1"
-              >
-                <strong>Age : </strong>{{ row.item.age }}
-              </b-col>
-            </b-row>
-
-            <b-button
-              size="sm"
-              variant="outline-secondary"
-              @click="row.toggleDetails"
-            >
-              Hide Details
-            </b-button>
-          </b-card>
-        </template>
-
         <template #cell(status)="data">
           <b-badge :variant="status[1][data.value]">
             {{ status[0][data.value] }}
@@ -96,7 +44,7 @@
 
 <script>
 import {
-  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton, BRow, BCol, BBadge,
+  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BBadge,
 } from 'bootstrap-vue'
 import { ref } from '@vue/composition-api'
 import store from '@/store'
@@ -108,10 +56,7 @@ export default {
     BCardTitle,
     BCardSubTitle,
     BTable,
-    BButton,
     BFormCheckbox,
-    BRow,
-    BCol,
     BBadge,
     'add-device-modal': AddDeviceModal,
   },
@@ -133,13 +78,13 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'id', label: 'ID', sortable: true },
-        { key: 'farm', label: '축사 이름', sortable: true },
-        { key: 'type', label: '장치 타입', sortable: true },
-        { key: 'ddns', label: 'DDNS', sortable: true },
+        { key: 'farmId', label: '축사 Id', sortable: true },
+        { key: 'housingId', label: '함체 Id', sortable: true },
+        { key: 'name', label: '장비 이름', sortable: true },
+        { key: 'type', label: '함체 타입', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
-        { key: 'serial_num', label: 'S/N', sortable: true },
+        { key: 'serialNum', label: 'S/N', sortable: true },
         // { key: 'show_details', label: 'details' },
       ],
       selected: [],

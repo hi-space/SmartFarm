@@ -102,14 +102,14 @@ export default {
       fields: [
         { key: '_id', label: '축사 ID', sortable: true },
         {
-          key: 'farmInfo.name',
+          key: 'name',
           label: '축사 이름',
           sortable: true,
           isRowHeader: true,
         },
         // { key: 'cctv', label: 'CCTV 갯수', sortable: true },
         // { key: 'device', label: '함체 갯수', sortable: true },
-        { key: 'farmInfo.info', label: '정보', sortable: true },
+        { key: 'info', label: '정보', sortable: true },
         { key: 'createdAt', label: '생성일', sortable: true },
         // { key: 'show_details', label: 'details' },
       ],

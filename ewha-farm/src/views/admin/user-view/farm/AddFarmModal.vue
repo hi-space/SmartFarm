@@ -77,8 +77,8 @@ export default {
     createFarm() {
       const postBody = {
         userId: store.state.users.user._id,
-        'farmInfo.name': this.name,
-        'farmInfo.info': this.info,
+        name: this.name,
+        info: this.info,
       }
 
       store.dispatch('farm/createFarm', { queryBody: postBody })

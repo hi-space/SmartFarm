@@ -8,6 +8,7 @@ import verticalMenu from './vertical-menu'
 import auth from './auth'
 import users from './users'
 import farm from './farms'
+import housing from './housing'
 import device from './devices'
 
 Vue.use(Vuex)
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     auth,
     users,
     farm,
+    housing,
     device,
   },
   strict: process.env.DEV,

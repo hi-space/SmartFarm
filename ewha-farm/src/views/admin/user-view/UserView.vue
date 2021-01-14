@@ -41,6 +41,14 @@
 
       <b-row>
         <b-col>
+          <user-housing-table
+            class="mt-2 pt-75"
+          />
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col>
           <user-device-table
             class="mt-2 pt-75"
           />
@@ -76,10 +84,11 @@ import {
 } from 'bootstrap-vue'
 
 import UserViewInfo from './UserViewInfo.vue'
-import UserFarmTable from './user-farm/UserFarmTable.vue'
-import UserCCTVTable from './user-cctv/UserCCTVTable.vue'
-import UserDeviceTable from './user-device/UserDeviceTable.vue'
-import UserButtonTable from './user-button/UserButtonTable.vue'
+import UserFarmTable from './farm/UserFarmTable.vue'
+import UserHousingTable from './housing/UserHousingTable.vue'
+import UserCCTVTable from './cctv/UserCCTVTable.vue'
+import UserDeviceTable from './device/UserDeviceTable.vue'
+import UserButtonTable from './button/UserButtonTable.vue'
 
 export default {
   components: {
@@ -89,6 +98,7 @@ export default {
     BLink,
     UserViewInfo,
     UserFarmTable,
+    UserHousingTable,
     'user-cctv-table': UserCCTVTable,
     UserDeviceTable,
     UserButtonTable,

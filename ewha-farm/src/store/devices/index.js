@@ -16,7 +16,6 @@ export default {
   },
   actions: {
     async fetchDevices(ctx, queryParams) {
-      console.log(queryParams)
       const result = await axios.get('/device', { params: queryParams })
       return result
     },
