@@ -62,7 +62,7 @@ export default {
   },
   setup() {
     const deviceData = ref(null)
-    store.dispatch('device/fetchDevices', { userId: store.state.users.user._Id })
+    store.dispatch('device/fetchDevices', { userId: store.state.users.user._id })
       .then(response => {
         deviceData.value = response.data
         // console.log(response)

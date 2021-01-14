@@ -1,13 +1,14 @@
 <template>
   <b-card-actions
+    ref="weatherCard"
     title="현재 날씨"
     sub-title="2020-08-21 12:49:50 PM"
-    @refresh="refreshStop('cardAction')"
+    @refresh="getWeatherData"
   >
     <b-row>
       <div class="w-100 text-center">
-        <h3><b>Snowy</b></h3>
-        <p>Seoul</p>
+        <h1><b>{{ weather.toUpperCase() }}</b></h1>
+        <h3><p> {{ location }} </p></h3>
       </div>
     </b-row>
     <b-row>
@@ -15,12 +16,12 @@
         class="d-flex justify-content-around"
       >
         <b-img
-          src="http://openweathermap.org/img/wn/09d@4x.png"
+          :src="icon"
           alt="logo"
           width="140"
           height="140"
         />
-        <h2 class="display-3 font-weight-bolder mt-2"> -6
+        <h2 class="display-3 font-weight-bolder mt-2"> {{ temp }}
           <sup>o</sup>
         </h2>
       </b-col>
@@ -28,7 +29,7 @@
     <b-row>
       <b-col
         v-for="item in statisticsItems"
-        :key="item.subtitle"
+        :key="item.icon"
         cols="12"
       >
         <b-media
@@ -64,6 +65,7 @@ import {
   BCardText, BRow, BCol, BMedia, BMediaAside, BMediaBody, BImg,
 } from 'bootstrap-vue'
 import BCardActions from '@core/components/b-card-actions/BCardActions.vue'
+import axios from '@axios'
 
 export default {
   components: {
@@ -78,39 +80,82 @@ export default {
   },
   data() {
     return {
-      statisticsItems: [
+      location: '',
+      weather: '',
+      icon: '',
+      temp: '',
+      temp_min: '',
+      temp_max: '',
+      pressure: '',
+      humidity: '',
+      wind_speed: '',
+      wind_deg: '',
+    }
+  },
+  computed: {
+    statisticsItems() {
+      return [
         {
           icon: 'ThermometerIcon',
           color: 'light-primary',
           title: '체감 온도',
-          subtitle: '-8',
+          subtitle: this.temp,
         },
         {
           icon: 'DropletIcon',
           color: 'light-info',
           title: '습도',
-          subtitle: '60%',
+          subtitle: this.humidity,
         },
         {
           icon: 'SlidersIcon',
           color: 'light-danger',
           title: '최저/최고 온도',
-          subtitle: '-4 ~ 4',
+          subtitle: `${this.temp_min} ~ ${this.temp_max}`,
         },
         {
           icon: 'WindIcon',
           color: 'light-success',
-          title: '풍량',
-          subtitle: '4823 km/h',
+          title: '풍속',
+          subtitle: `${this.wind_speed} km/h`,
         },
         {
           icon: 'DownloadCloudIcon',
           color: 'light-success',
           title: '압력',
-          subtitle: '90',
+          subtitle: this.pressure,
         },
-      ],
-    }
+      ]
+    },
+  },
+  created() {
+    this.getWeatherData()
+  },
+  methods: {
+    async getWeatherData() {
+      const parmas = {
+        lat: 37.57,
+        lon: 126.98,
+      }
+
+      try {
+        const result = await axios.get('/utils/weather', { params: parmas })
+        this.location = result.data.location.toUpperCase()
+        this.temp = result.data.temp.toFixed(2)
+        this.pressure = result.data.pressure
+        this.temp_max = result.data.temp_max
+        this.temp_min = result.data.temp_min
+        this.humidity = result.data.humidity
+        this.weather = result.data.weather
+        this.wind_deg = result.data.wind_deg
+        this.wind_speed = result.data.wind_speed
+        this.icon = result.data.icon
+      } catch (err) {
+        console.log(err)
+      }
+
+      this.$refs.weatherCard.showLoading = false
+    },
   },
 }
 </script>

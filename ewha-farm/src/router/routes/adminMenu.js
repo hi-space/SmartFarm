@@ -30,9 +30,4 @@ export default [
       ],
     },
   },
-  {
-    path: '/test',
-    name: 'test',
-    component: () => import('@/views/admin/user-view/UserView.vue'),
-  },
 ]

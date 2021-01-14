@@ -69,7 +69,6 @@
         :per-page="perPage"
         :filter="filter"
         primary-key="_id"
-        fixed
         hover
         responsive
         show-empty
@@ -85,7 +84,6 @@
             <template #aside>
               <b-avatar
                 size="32"
-                :src="data.item.avatar"
                 :text="avatarText(data.item.userInfo.name)"
                 :variant="`light-${resolveUserRoleVariant(data.item.userInfo.role)}`"
                 :to="{ name: 'user-view', params: { id: data.item._id } }"
@@ -97,7 +95,7 @@
             >
               {{ data.item.userInfo.name }}
             </b-link>
-            <small class="text-muted">{{ data.item._id }}</small>
+            <small class="text-muted">{{ data.item.userInfo.info }}</small>
           </b-media>
         </template>
 
@@ -239,8 +237,6 @@ export default {
         {
           key: 'user',
           sortable: true,
-          sortByFormatted: true,
-          filterByFormatted: true,
         },
         {
           label: 'phone',
@@ -259,16 +255,14 @@ export default {
         {
           label: 'role',
           key: 'role',
-          sortable: true,
-          sortByFormatted: true,
-          filterByFormatted: true,
         },
         {
           label: 'status',
           key: 'status',
-          sortable: true,
-          sortByFormatted: true,
-          filterByFormatted: true,
+        },
+        {
+          label: '생성일',
+          key: 'createdAt',
         },
         // { key: 'actions' },
       ],
@@ -331,7 +325,7 @@ export default {
   methods: {
     onRowSelected(items) {
       this.selectedRow = items
-      console.log(this.selectedRow)
+      this.$router.push({ name: 'user-view', params: { id: this.selectedRow[0]._id } })
     },
     toggleStatus(userId, status) {
       if (status === 'inactive' || status === 'pending') {
@@ -349,19 +343,6 @@ export default {
           .then(value => {
             if (value === true) {
               console.log(userId)
-              // store
-              //   .dispatch('app-user/updateUser', {
-              //     id: userId,
-              //     queryBody: {
-
-              //     },
-              //   })
-              //   .then(response => {
-              //     console.log(response.data)
-              //   })
-              //   .catch(err => {
-              //     console.log(err)
-              //   })
             }
           })
       }

@@ -68,7 +68,7 @@ export default {
   },
   setup() {
     const housingData = ref(null)
-    store.dispatch('housing/fetchHousings', { userId: store.state.users.user._Id })
+    store.dispatch('housing/fetchHousings', { userId: store.state.users.user._id })
       .then(response => {
         housingData.value = response.data
         // console.log(response)

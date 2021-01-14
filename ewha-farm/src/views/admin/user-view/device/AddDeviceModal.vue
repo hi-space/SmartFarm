@@ -123,7 +123,6 @@
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
-import store from '@/store'
 import vSelect from 'vue-select'
 import Ripple from 'vue-ripple-directive'
 
@@ -158,7 +157,7 @@ export default {
   },
   watch: {
     farmName(newVal) {
-      const housingList = store.state.housing.housings
+      const housingList = this.$store.state.housing.housings
       this.housingOptions = housingList
         .filter(elem => elem.farmId === newVal.value)
         .map((obj => {
@@ -171,20 +170,13 @@ export default {
   },
   methods: {
     showModal() {
-      const farmList = store.state.farm.farms
-      this.farmOptions = farmList.map((obj => {
-        const rObj = {}
-        rObj.label = obj.name
-        rObj.value = obj._id
-        return rObj
-      }))
-
+      this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.addDeviceModal = true
     },
 
     createDevice() {
       const postBody = {
-        userId: store.state.users.user._id,
+        userId: this.$store.state.users.user._id,
         farmId: this.farmName.value,
         housingId: this.housingName.value,
         name: this.deviceName,
@@ -195,7 +187,7 @@ export default {
         serialNum: this.serialNum,
       }
 
-      store.dispatch('device/createDevice', { queryBody: postBody })
+      this.$store.dispatch('device/createDevice', { queryBody: postBody })
         .then(() => {
           this.$router.go()
         })

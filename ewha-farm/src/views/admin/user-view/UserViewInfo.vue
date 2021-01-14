@@ -222,7 +222,7 @@ export default {
         })
         .then(value => {
           if (value === true) {
-            store.dispatch('app-user/deleteUser', { id: router.currentRoute.params.id })
+            store.dispatch('users/deleteUser', { id: router.currentRoute.params.id })
               .then(() => {
                 router.push({ name: 'user-list' })
               }).catch(error => {
@@ -233,7 +233,7 @@ export default {
     },
 
     updateUser() {
-      store.dispatch('app-user/updateUser', { id: router.currentRoute.params.id, queryBody: this.userData })
+      store.dispatch('users/updateUser', { id: router.currentRoute.params.id, queryBody: this.userData })
         .then(() => {
           router.push({ name: 'user-list' })
         }).catch(error => {
