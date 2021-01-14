@@ -179,6 +179,13 @@ export default {
               console.log(result)
             }).catch(err => {
               console.log(err)
+              this.$bvModal
+                .msgBoxOk('사용자 정보를 다시 입력하세요', {
+                  title: '로그인 실패',
+                  size: 'sm',
+                  hideHeaderClose: true,
+                  centered: true,
+                })
             })
         }
       })

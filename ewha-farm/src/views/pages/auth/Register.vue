@@ -199,8 +199,6 @@ import Logo from '@core/layouts/components/Logo.vue'
 import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/forms'
 
-import useJwt from '@/auth/jwt/useJwt'
-
 export default {
   components: {
     Logo,
@@ -238,38 +236,18 @@ export default {
     },
   },
   methods: {
-    // validationForm() {
-    //   this.$refs.registerForm.validate().then(success => {
-    //     if (success) {
-    //       this.$toast({
-    //         component: ToastificationContent,
-    //         props: {
-    //           title: 'Form Submitted',
-    //           icon: 'EditIcon',
-    //           variant: 'success',
-    //         },
-    //       })
-    //     }
-    //   })
-    // },
     register() {
       this.$refs.registerForm.validate().then(success => {
         if (success) {
-          useJwt.register({
-            userInfo: {
-              phone: this.phone,
-              name: this.name,
-              address: this.address,
-              password: this.password,
-            },
-          })
+          const payload = {
+            phone: this.phone,
+            name: this.name,
+            address: this.address,
+            password: this.password,
+          }
+          this.$store.dispatch('auth/register', payload)
             .then(response => {
               console.log(response)
-              // useJwt.setToken(response.data.accessToken)
-              // useJwt.setRefreshToken(response.data.refreshToken)
-              // localStorage.setItem('userData', JSON.stringify(response.data.userData))
-              // this.$ability.update(response.data.userData.ability)
-
               this.$bvModal
                 .msgBoxOk('관리자의 승인이 있을 때 까지 기다려주세요', {
                   title: '회원가입 완료',
@@ -282,9 +260,15 @@ export default {
                     this.$router.push({ name: 'auth-login' })
                   }
                 })
-            })
-            .catch(error => {
-              this.$refs.registerForm.setErrors(error.response.data.error)
+            }).catch(error => {
+              console.log(error)
+              this.$bvModal
+                .msgBoxOk('사용자 정보를 다시 입력하세요', {
+                  title: '회원가입 실패',
+                  size: 'sm',
+                  hideHeaderClose: true,
+                  centered: true,
+                })
             })
         }
       })

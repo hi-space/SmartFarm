@@ -10,6 +10,7 @@ export default {
         phone: payload.phone,
         password: payload.password,
       }).then(response => {
+        console.log(response)
         if (response.status === 200) {
           const { userData } = response.data
 
@@ -22,16 +23,16 @@ export default {
           commit('UPDATE_USER_INFO', userData)
 
           router.push(getHomeRouteForLoggedInUser(userData.role))
-          resolve(response)
+          resolve(userData)
         } else {
           // eslint-disable-next-line prefer-promise-reject-errors
-          reject('Wrong id or password')
+          reject(response)
         }
       }).catch(err => { reject(err) })
     })
   },
 
-  register(payload) {
+  register({ commit }, payload) {
     return new Promise((resolve, reject) => {
       useJwt.register({
         userInfo: {
@@ -42,6 +43,7 @@ export default {
         },
       }).then(response => {
         resolve(response)
+        commit('UPDATE_USER_INFO')
       }).catch(err => { reject(err) })
     })
   },
