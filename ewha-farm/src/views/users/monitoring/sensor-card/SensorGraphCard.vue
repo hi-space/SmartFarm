@@ -3,22 +3,49 @@
     :title="title"
     action-collapse
   >
-    <!-- chart -->
-    <chartjs-component-line-chart
-      :height="250"
-      :data="data"
-    />
+    <!-- datepicker -->
+    <!-- <div class="d-flex align-items-center">
+      <feather-icon
+        icon="CalendarIcon"
+        size="16"
+      />
+      <flat-pickr
+        v-model="rangePicker"
+        :config="{ mode: 'range'}"
+        class="form-control flat-picker bg-transparent border-0 shadow-none"
+        placeholder="YYYY-MM-DD"
+      />
+    </div> -->
+    <!-- datepicker -->
+
+    <b-card-body>
+      <vue-apex-charts
+        ref="chart"
+        type="area"
+        height="400"
+        :options="chartOptions"
+        :series="sensorData"
+      />
+    </b-card-body>
+
   </b-card-actions>
 </template>
 
 <script>
+import {
+  BCardBody,
+} from 'bootstrap-vue'
 import BCardActions from '@core/components/b-card-actions/BCardActions.vue'
-import ChartjsComponentLineChart from './charts-components/ChartjsComponentLineChart.vue'
+import axiosIns from '@/libs/axios'
+import VueApexCharts from 'vue-apexcharts'
+// import flatPickr from 'vue-flatpickr-component'
 
 export default {
   components: {
     BCardActions,
-    ChartjsComponentLineChart,
+    BCardBody,
+    // flatPickr,
+    VueApexCharts,
   },
   props: {
     title: {
@@ -28,24 +55,44 @@ export default {
   },
   data() {
     return {
-      data: {
-        labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
-        datasets: [
-          {
-            data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-            label: '온도',
-            borderColor: '#7367F0',
-            fill: false,
+      rangePicker: ['2019-05-01', '2019-05-10'],
+      sensorData: [],
+      chartOptions: {
+        chart: {
+          toolbar: {
+            show: false,
           },
-          {
-            data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-            label: '습도',
-            borderColor: '#28C76F',
-            fill: false,
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          show: false,
+          curve: 'straight',
+        },
+        grid: {
+          xaxis: {
+            lines: {
+              show: true,
+            },
           },
-        ],
+        },
+        xaxis: {
+        },
+        fill: {
+          opacity: 1,
+          type: 'solid',
+        },
       },
     }
+  },
+  mounted() {
+    axiosIns.get('/dummy/sensor/123').then(res => {
+      console.log(res.data)
+      this.$refs.chart.updateSeries(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
   },
 }
 </script>

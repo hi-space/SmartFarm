@@ -294,6 +294,7 @@ export default {
 
     const roleOptions = [
       { label: '관리자', value: 'admin' },
+      { label: '담당자', value: 'manager' },
       { label: '고객', value: 'customer' },
     ]
 

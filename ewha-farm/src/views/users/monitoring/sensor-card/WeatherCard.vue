@@ -146,8 +146,8 @@ export default {
         this.location = result.data.location.toUpperCase()
         this.temp = result.data.temp.toFixed(1)
         this.pressure = result.data.pressure
-        this.temp_max = result.data.temp_max
-        this.temp_min = result.data.temp_min
+        this.temp_max = result.data.temp_max.toFixed(2)
+        this.temp_min = result.data.temp_min.toFixed(2)
         this.humidity = result.data.humidity
         this.weather = result.data.weather
         this.wind_deg = result.data.wind_deg

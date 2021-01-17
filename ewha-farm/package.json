@@ -28,6 +28,7 @@
     "vee-validate": "3.4.5",
     "video.js": "^7.10.2",
     "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.0",
     "vue-chartjs": "3.5.0",
     "vue-cleave-component": "^3.0.0",
     "vue-feather-icons": "5.1.0",
