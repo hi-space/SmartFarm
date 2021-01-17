@@ -1,6 +1,8 @@
 <template>
   <b-card>
-    <b-card-title class="text-center"> <h3> <strong> 자동화 설정 </strong> </h3> </b-card-title>
+    <b-card-title class="text-center">
+      <h3> <strong> 자동화 설정 </strong> </h3>
+    </b-card-title>
     <b-row>
       <b-col cols="12">
         <b-form-group
@@ -36,13 +38,11 @@
           class="text-center"
         >
           <b-form-timepicker
-            v-model="startTime"
-            seconds-step="30"
+            minutes-step="30"
             label-ampm="오전/오후"
             label-am="오전"
             label-pm="오후"
             label-no-time-selected="시간 선택"
-            reset-button
             required
           />
         </b-form-group>
@@ -59,7 +59,6 @@
             label-am="오전"
             label-pm="오후"
             label-no-time-selected="시간 선택"
-            reset-button
             required
           />
         </b-form-group>
@@ -98,6 +97,40 @@
       </b-col>
     </b-row>
 
+    <!-- sensor setting -->
+    <b-row v-if="selectedMode.value==='sensor'">
+      <b-col cols="12">
+        <b-form-group class="text-center">
+          <v-select
+            v-model="selectedSensor"
+            :options="sensorOptions"
+            placeholder="선택해주세요"
+          />
+        </b-form-group>
+      </b-col>
+      <b-col cols="6">
+        <b-form-group
+          label="최소값 (°C)"
+          class="text-center"
+        >
+          <b-form-input
+            v-model="minValue"
+            type="number"
+          />
+        </b-form-group>
+      </b-col>
+      <b-col cols="6">
+        <b-form-group
+          label="최대값 (°C)"
+          class="text-center"
+        >
+          <b-form-input
+            v-model="maxValue"
+          />
+        </b-form-group>
+      </b-col>
+    </b-row>
+
     <!-- submit and reset -->
     <b-row v-if="selectedMode">
       <b-col>
@@ -118,7 +151,7 @@
 
 <script>
 import {
-  BRow, BCol, BFormGroup, BButton, BFormCheckboxGroup, BCard, BCardTitle, BFormTimepicker, BFormSpinbutton,
+  BRow, BCol, BFormGroup, BButton, BFormCheckboxGroup, BCard, BCardTitle, BFormTimepicker, BFormSpinbutton, BFormInput,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import 'vue2-timepicker/dist/VueTimepicker.css'
@@ -135,6 +168,7 @@ export default {
     vSelect,
     BFormTimepicker,
     BFormSpinbutton,
+    BFormInput,
   },
   data() {
     return {
@@ -154,6 +188,8 @@ export default {
         { label: '센서 설정', value: 'sensor' },
       ],
       selectedMode: '',
+
+      // time
       startTime: '00:00',
       endTime: '00:00',
       inputTime: 5,
@@ -163,6 +199,18 @@ export default {
         { label: '시간', value: 'hour' },
         { label: '일', value: 'day' },
       ],
+
+      // periodic
+      selectedSensor: '',
+      sensorOptions: [
+        { label: '우적 센서', value: 'rain' },
+        { label: '온도 센서', value: 'temp' },
+        { label: '습도 센서', value: 'humi' },
+      ],
+
+      // sensor
+      minValue: 0,
+      maxValue: 0,
     }
   },
   methods: {
