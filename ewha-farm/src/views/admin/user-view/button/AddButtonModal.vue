@@ -72,7 +72,7 @@ u<template>
               <b-form-spinbutton
                 id="working-time"
                 v-model="workingTime"
-                min="0"
+                min="5"
                 step="5"
                 cols="6"
               />

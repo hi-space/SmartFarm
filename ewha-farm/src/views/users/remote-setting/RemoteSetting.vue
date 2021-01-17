@@ -25,6 +25,10 @@
           />
         </b-form-group>
       </b-col>
+    </b-row>
+
+    <!-- time setting -->
+    <b-row v-if="selectedMode.value==='time'">
       <b-col cols="6">
         <b-form-group
           label="시작 시간"
@@ -59,13 +63,49 @@
           />
         </b-form-group>
       </b-col>
+    </b-row>
 
-      <!-- submit and reset -->
-      <b-col cols="12">
+    <!-- periodic setting -->
+    <b-row v-if="selectedMode.value==='periodic'">
+      <b-col md="6">
+        <b-form-group
+          label="동작 시간"
+          label-for="working-time"
+          class="text-center"
+        >
+          <b-form-spinbutton
+            id="working-time"
+            v-model="inputTime"
+            min="5"
+            step="5"
+            cols="6"
+          />
+        </b-form-group>
+      </b-col>
+      <b-col md="6">
+        <b-form-group
+          label="단위"
+          label-for="working-time-unit"
+          class="text-center"
+        >
+          <v-select
+            id="working-time-unit"
+            v-model="selectedTime"
+            :options="timeOptions"
+          />
+        </b-form-group>
+      </b-col>
+    </b-row>
+
+    <!-- submit and reset -->
+    <b-row v-if="selectedMode">
+      <b-col>
         <b-button
           type="submit"
           variant="primary"
           class="float-right mt-1"
+          block
+          @click="submit"
         >
           Submit
         </b-button>
@@ -77,7 +117,7 @@
 
 <script>
 import {
-  BRow, BCol, BFormGroup, BButton, BFormCheckboxGroup, BCard, BCardTitle, BFormTimepicker,
+  BRow, BCol, BFormGroup, BButton, BFormCheckboxGroup, BCard, BCardTitle, BFormTimepicker, BFormSpinbutton,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import 'vue2-timepicker/dist/VueTimepicker.css'
@@ -93,6 +133,7 @@ export default {
     BFormCheckboxGroup,
     vSelect,
     BFormTimepicker,
+    BFormSpinbutton,
   },
   data() {
     return {
@@ -114,7 +155,30 @@ export default {
       selectedMode: '',
       startTime: '00:00',
       endTime: '00:00',
+      inputTime: 5,
+      selectedTime: { label: '분', value: 'min' },
+      timeOptions: [
+        { label: '분', value: 'min' },
+        { label: '시간', value: 'hour' },
+        { label: '일', value: 'day' },
+      ],
     }
+  },
+  methods: {
+    submit() {
+      if (this.selectedMode.value === 'time') this.submitTime()
+      else if (this.selectedMode.value === 'periodic') this.submitPeriodic()
+      else if (this.selectedMode.value === 'sensor') this.submitSensor()
+    },
+    submitTime() {
+      console.log('submitTime')
+    },
+    submitPeriodic() {
+      console.log('submitPeriodic')
+    },
+    submitSensor() {
+      console.log('submitSensor')
+    },
   },
 }
 </script>
