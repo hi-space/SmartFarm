@@ -9,6 +9,7 @@
           <b-form-checkbox-group
             v-model="selectedDay"
             :options="dayOptions"
+            size="sm"
             buttons
             button-variant="outline-primary"
           />
@@ -16,7 +17,7 @@
       </b-col>
       <b-col cols="12">
         <b-form-group
-          class="text-center pt-2 pb-2"
+          class="text-center pt-1 pb-1"
         >
           <v-select
             v-model="selectedMode"
@@ -40,7 +41,7 @@
             label-ampm="오전/오후"
             label-am="오전"
             label-pm="오후"
-            label-no-time-selected="시간을 선택해주세요"
+            label-no-time-selected="시간 선택"
             reset-button
             required
           />
@@ -57,7 +58,7 @@
             label-ampm="오전/오후"
             label-am="오전"
             label-pm="오후"
-            label-no-time-selected="시간을 선택해주세요"
+            label-no-time-selected="시간 선택"
             reset-button
             required
           />
@@ -137,7 +138,7 @@ export default {
   },
   data() {
     return {
-      selectedDay: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
+      selectedDay: [],
       dayOptions: [
         { text: '월', value: 'mon' },
         { text: '화', value: 'tue' },

@@ -10,14 +10,14 @@
           class="cursor-pointer m-1"
           @click="showModal"
         />
-        <feather-icon
+        <!-- <feather-icon
           v-model="isAlert"
           :icon="alertIcon"
           :color="alertColor"
           size="18"
           class="cursor-pointer m-1"
           @click="toggleAlert"
-        />
+        /> -->
         <feather-icon
           v-model="isAuto"
           icon="RepeatIcon"
@@ -26,6 +26,7 @@
           class="cursor-pointer m-1"
           @click="toggleAuto"
         />
+        <setting-modal />
       </div>
     </b-card-header>
 
@@ -87,6 +88,7 @@ import {
 } from 'bootstrap-vue'
 import { heightFade } from '@core/directives/animations'
 import AutomaticList from './AutomaticList.vue'
+import SettingModal from './SettingModal.vue'
 
 export default {
   components: {
@@ -101,6 +103,7 @@ export default {
     BFormRadioGroup,
     BCardText,
     AutomaticList,
+    SettingModal,
   },
   directives: {
     'height-fade': heightFade,

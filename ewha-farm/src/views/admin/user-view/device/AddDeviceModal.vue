@@ -14,7 +14,7 @@
 
     <!-- Modal -->
     <b-modal
-      v-model="addDeviceModal"
+      ref="addDeviceModal"
       title="통신 장비 등록"
       ok-title="등록"
       cancel-title="취소"
@@ -171,7 +171,7 @@ export default {
   methods: {
     showModal() {
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
-      this.addDeviceModal = true
+      this.$refs.addDeviceModal.show()
     },
 
     createDevice() {

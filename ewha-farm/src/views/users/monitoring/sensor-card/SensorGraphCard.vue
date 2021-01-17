@@ -68,7 +68,7 @@ export default {
           },
         },
         markers: {
-          strokeWidth: 7,
+          strokeWidth: 2,
           strokeOpacity: 1,
         },
         dataLabels: {
@@ -76,6 +76,7 @@ export default {
         },
         stroke: {
           show: true,
+          width: 2,
           curve: 'straight',
         },
         grid: {
