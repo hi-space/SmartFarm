@@ -8,7 +8,6 @@
           icon="EditIcon"
           size="18"
           class="cursor-pointer m-1"
-          color="text-musted"
           @click="showModal"
         />
         <feather-icon
@@ -17,21 +16,22 @@
           :color="alertColor"
           size="18"
           class="cursor-pointer m-1"
-          @click="alertSetting"
+          @click="toggleAlert"
         />
         <feather-icon
-          icon="SettingsIcon"
+          v-model="isAuto"
+          icon="RepeatIcon"
+          :color="autoColor"
           size="18"
           class="cursor-pointer m-1"
-          color="text-musted"
+          @click="toggleAuto"
         />
       </div>
     </b-card-header>
 
     <!-- body buttons -->
-    <b-card-body class="text-center">
-
-      <b-card-text class="pb-1">
+    <b-card-body class="text-center pb-1">
+      <b-card-text>
         작동 시간
         <h4> <strong> 2021. 1. 17. 오후 4:12:34 </strong> </h4>
       </b-card-text>
@@ -42,47 +42,17 @@
           button-variant="outline-primary"
           :options="buttonOptions"
           buttons
+          class="p-1"
         />
       </b-form-group>
 
-      <b-button
-        v-b-toggle.autoSettings
-        variant="gradient-primary"
-        size="sm"
-        block
+      <b-alert
+        variant="secondary"
+        show
       >
-        자동화 설정
-      </b-button>
-
-      <!-- collapse -->
-      <b-collapse
-        id="autoSettings"
-        class="mt-2"
-      >
-        <draggable
-          v-model="augoSettingList"
-          class="list-group list-group-flush cursor-move"
-          tag="ul"
-        >
-          <transition-group
-            type="transition"
-            name="flip-list"
-          >
-            <b-list-group-item
-              v-for="listItem in augoSettingList"
-              :key="listItem.name"
-              tag="li"
-            >
-              <div class="d-flex">
-                <b-card-text class="font-weight-bold mb-0">
-                  {{ listItem.name }}
-                </b-card-text>
-              </div>
-            </b-list-group-item>
-          </transition-group>
-        </draggable>
-
-      </b-collapse>
+        자동화 동작 중
+      </b-alert>
+      <automatic-list />
     </b-card-body>
 
     <!-- modal -->
@@ -112,12 +82,13 @@
 
 <script>
 import {
-  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BCollapse, BButton, BListGroupItem, VBToggle,
+  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BAlert,
 } from 'bootstrap-vue'
-import draggable from 'vuedraggable'
+import AutomaticList from './AutomaticList.vue'
 
 export default {
   components: {
+    BAlert,
     BCard,
     BCardHeader,
     BCardTitle,
@@ -127,13 +98,7 @@ export default {
     BFormInput,
     BFormRadioGroup,
     BCardText,
-    BCollapse,
-    BButton,
-    BListGroupItem,
-    draggable,
-  },
-  directives: {
-    'b-toggle': VBToggle,
+    AutomaticList,
   },
   props: {
     title: {
@@ -147,6 +112,8 @@ export default {
       isAlert: true,
       alertIcon: 'BellIcon',
       alertColor: 'text-warning',
+      isAuto: true,
+      autoColor: 'text-danger',
       name: this.title,
       selectedButton: 'stop',
       buttonOptions: [
@@ -154,27 +121,15 @@ export default {
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
       ],
-      augoSettingList: [
-        {
-          name: 'hello',
-          email: 'girliness@spotlike.co.uk',
-        },
-        {
-          name: 'hi',
-          email: 'girliness@spotlike.co.uk',
-        },
-        {
-          name: 'yo',
-          email: 'girliness@spotlike.co.uk',
-        },
-      ],
-
     }
   },
   watch: {
     isAlert() {
       this.alertIcon = this.isAlert ? 'BellIcon' : 'BellOffIcon'
       this.alertColor = this.isAlert ? 'text-warning' : 'text-musted'
+    },
+    isAuto() {
+      this.autoColor = this.isAuto ? 'text-danger' : 'text-musted'
     },
     selectedButton() {
       console.log(this.selectedButton)
@@ -187,15 +142,12 @@ export default {
     modifyName() {
       console.log(this.name)
     },
-    alertSetting() {
+    toggleAlert() {
       this.isAlert = !this.isAlert
+    },
+    toggleAuto() {
+      this.isAuto = !this.isAuto
     },
   },
 }
 </script>
-
-<style>
-.list-group-item {
-  transition: all 0.5s
-}
-</style>
