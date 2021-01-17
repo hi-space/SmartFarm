@@ -2,23 +2,23 @@
   <b-card-actions
     :title="title"
     action-collapse
+    no-body
   >
     <!-- datepicker -->
-    <!-- <div class="d-flex align-items-center">
+    <!-- <b-form-group>
       <feather-icon
         icon="CalendarIcon"
         size="16"
       />
       <flat-pickr
         v-model="rangePicker"
+        class="form-control"
         :config="{ mode: 'range'}"
-        class="form-control flat-picker bg-transparent border-0 shadow-none"
-        placeholder="YYYY-MM-DD"
       />
-    </div> -->
-    <!-- datepicker -->
+    </b-form-group> -->
 
     <b-card-body>
+      <!-- datepicker -->
       <vue-apex-charts
         ref="chart"
         type="area"
@@ -44,6 +44,7 @@ export default {
   components: {
     BCardActions,
     BCardBody,
+    // BFormGroup,
     // flatPickr,
     VueApexCharts,
   },
@@ -59,15 +60,22 @@ export default {
       sensorData: [],
       chartOptions: {
         chart: {
+          zoom: {
+            enabled: false,
+          },
           toolbar: {
             show: false,
           },
+        },
+        markers: {
+          strokeWidth: 7,
+          strokeOpacity: 1,
         },
         dataLabels: {
           enabled: false,
         },
         stroke: {
-          show: false,
+          show: true,
           curve: 'straight',
         },
         grid: {
@@ -76,12 +84,6 @@ export default {
               show: true,
             },
           },
-        },
-        xaxis: {
-        },
-        fill: {
-          opacity: 1,
-          type: 'solid',
         },
       },
     }
