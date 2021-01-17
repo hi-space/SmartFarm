@@ -21,10 +21,19 @@ export default {
       type: [String, Object, Array],
       default: 'badge-primary',
     },
+    color: {
+      type: String,
+      default: '',
+    },
   },
   render(h, { props, data }) {
     // Create Feather Icon
     const svg = h(icons[props.icon], { props: { size: props.size }, ...data })
+
+    if (props.color) {
+      console.log(svg)
+      svg.data.staticClass += ` ${props.color}`
+    }
 
     // If no badge is provided => Render just SVG
     if (!props.badge) return svg

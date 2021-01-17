@@ -6,20 +6,23 @@
         <feather-icon
           icon="EditIcon"
           size="18"
-          class="text-muted cursor-pointer m-1"
+          class="cursor-pointer m-1"
+          color="text-musted"
           @click="showModal"
         />
         <feather-icon
           v-model="isAlert"
           :icon="alertIcon"
+          :color="alertColor"
           size="18"
-          class="text-muted cursor-pointer m-1"
+          class="cursor-pointer m-1"
           @click="alertSetting"
         />
         <feather-icon
           icon="SettingsIcon"
           size="18"
-          class="text-muted cursor-pointer m-1"
+          class="cursor-pointer m-1"
+          color="text-musted"
         />
       </div>
     </b-card-header>
@@ -133,6 +136,7 @@ export default {
       modifyNameModal: false,
       isAlert: true,
       alertIcon: 'BellIcon',
+      alertColor: 'text-warning',
       name: this.title,
       selectedButton: 'stop',
       buttonOptions: [
@@ -145,6 +149,7 @@ export default {
   watch: {
     isAlert() {
       this.alertIcon = this.isAlert ? 'BellIcon' : 'BellOffIcon'
+      this.alertColor = this.isAlert ? 'text-warning' : 'text-musted'
     },
     selectedButton() {
       console.log(this.selectedButton)
