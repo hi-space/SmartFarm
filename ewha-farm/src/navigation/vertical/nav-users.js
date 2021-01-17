@@ -32,7 +32,14 @@ export default [
   },
   {
     title: '원격제어',
-    route: 'remote',
+    route: 'remote-control',
+    icon: 'SlidersIcon',
+    action: 'read',
+    resource: 'User',
+  },
+  {
+    title: '자동설정',
+    route: 'remote-setting',
     icon: 'SlidersIcon',
     action: 'read',
     resource: 'User',

@@ -28,11 +28,19 @@
             :key="listItem.name"
             tag="li"
           >
-            <div class="d-flex">
+            <div class="d-flex justify-content-between align-items-center">
               <b-card-text class="font-weight-bold mb-0">
                 {{ listItem.name }}
               </b-card-text>
+              <b-badge
+                variant="light-warning"
+                class="badge-round text-center"
+                pill
+              >
+                Warning
+              </b-badge>
             </div>
+
           </b-list-group-item>
         </transition-group>
       </draggable>
@@ -43,7 +51,7 @@
 
 <script>
 import {
-  BCardText, BCollapse, BButton, BListGroupItem,
+  BCardText, BCollapse, BButton, BListGroupItem, BBadge,
 } from 'bootstrap-vue'
 import draggable from 'vuedraggable'
 
@@ -53,6 +61,7 @@ export default {
     BCollapse,
     BButton,
     BListGroupItem,
+    BBadge,
     draggable,
   },
   data() {

@@ -47,6 +47,7 @@
       </b-form-group>
 
       <b-alert
+        v-if="isAuto"
         variant="secondary"
         show
       >
@@ -84,6 +85,7 @@
 import {
   BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BAlert,
 } from 'bootstrap-vue'
+import { heightFade } from '@core/directives/animations'
 import AutomaticList from './AutomaticList.vue'
 
 export default {
@@ -99,6 +101,9 @@ export default {
     BFormRadioGroup,
     BCardText,
     AutomaticList,
+  },
+  directives: {
+    'height-fade': heightFade,
   },
   props: {
     title: {

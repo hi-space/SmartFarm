@@ -70,7 +70,6 @@
           >
             <v-select
               v-model="userData.userInfo.status"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               :options="statusOptions"
               :reduce="val => val.value"
               :clearable="false"
