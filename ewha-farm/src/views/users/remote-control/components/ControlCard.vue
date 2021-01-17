@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 <template>
   <b-card no-body>
     <b-card-header>
@@ -37,7 +38,6 @@
 
       <b-form-group>
         <b-form-radio-group
-          id="btn-radios-1"
           v-model="selectedButton"
           button-variant="outline-primary"
           :options="buttonOptions"
@@ -54,26 +54,35 @@
         자동화 설정
       </b-button>
 
+      <!-- collapse -->
       <b-collapse
         id="autoSettings"
         class="mt-2"
       >
-        <b-list-group
-          class="d-flex bg-transparent"
-          flush
+        <draggable
+          v-model="augoSettingList"
+          class="list-group list-group-flush cursor-move"
+          tag="ul"
         >
-          <b-list-group-item>
-            <span> hi </span>
-          </b-list-group-item>
-          <b-list-group-item>
-            <span> hello </span>
-          </b-list-group-item>
-          <b-list-group-item>
-            <span> yo </span>
-          </b-list-group-item>
-        </b-list-group>
-      </b-collapse>
+          <transition-group
+            type="transition"
+            name="flip-list"
+          >
+            <b-list-group-item
+              v-for="listItem in augoSettingList"
+              :key="listItem.name"
+              tag="li"
+            >
+              <div class="d-flex">
+                <b-card-text class="font-weight-bold mb-0">
+                  {{ listItem.name }}
+                </b-card-text>
+              </div>
+            </b-list-group-item>
+          </transition-group>
+        </draggable>
 
+      </b-collapse>
     </b-card-body>
 
     <!-- modal -->
@@ -103,8 +112,9 @@
 
 <script>
 import {
-  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BCollapse, BButton, VBToggle, BListGroup, BListGroupItem,
+  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BCollapse, BButton, BListGroupItem, VBToggle,
 } from 'bootstrap-vue'
+import draggable from 'vuedraggable'
 
 export default {
   components: {
@@ -119,8 +129,8 @@ export default {
     BCardText,
     BCollapse,
     BButton,
-    BListGroup,
     BListGroupItem,
+    draggable,
   },
   directives: {
     'b-toggle': VBToggle,
@@ -144,6 +154,21 @@ export default {
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
       ],
+      augoSettingList: [
+        {
+          name: 'hello',
+          email: 'girliness@spotlike.co.uk',
+        },
+        {
+          name: 'hi',
+          email: 'girliness@spotlike.co.uk',
+        },
+        {
+          name: 'yo',
+          email: 'girliness@spotlike.co.uk',
+        },
+      ],
+
     }
   },
   watch: {
@@ -168,3 +193,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.list-group-item {
+  transition: all 0.5s
+}
+</style>

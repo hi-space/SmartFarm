@@ -30,10 +30,7 @@ export default {
     // Create Feather Icon
     const svg = h(icons[props.icon], { props: { size: props.size }, ...data })
 
-    if (props.color) {
-      console.log(svg)
-      svg.data.staticClass += ` ${props.color}`
-    }
+    if (props.color) svg.data.staticClass += ` ${props.color}`
 
     // If no badge is provided => Render just SVG
     if (!props.badge) return svg
