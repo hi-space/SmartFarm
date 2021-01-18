@@ -19,6 +19,7 @@ u<template>
       ok-title="등록"
       cancel-title="취소"
       cancel-variant="outline-secondary"
+      no-close-on-backdrop
       centered
     >
       <b-form>

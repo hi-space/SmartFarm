@@ -18,7 +18,6 @@
         selectable
         select-mode="single"
         class="mb-0"
-        fixed
         @row-selected="onRowSelected"
       >
         <template #cell(show_details)="row">

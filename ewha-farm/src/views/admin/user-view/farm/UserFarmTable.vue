@@ -14,7 +14,6 @@
         :fields="fields"
         hover
         responsive
-        fixed
         class="mb-0"
       >
 

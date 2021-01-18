@@ -19,7 +19,7 @@
       ok-title="등록"
       cancel-title="취소"
       cancel-variant="outline-secondary"
-      scrollable
+      no-close-on-backdrop
       centered
       @ok="createHousing()"
     >

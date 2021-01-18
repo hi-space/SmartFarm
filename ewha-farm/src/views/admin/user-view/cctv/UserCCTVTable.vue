@@ -15,7 +15,6 @@
         hover
         responsive
         scrollable
-        fixed
         class="position-relative mb-0"
       >
         <template #cell(status)="data">
