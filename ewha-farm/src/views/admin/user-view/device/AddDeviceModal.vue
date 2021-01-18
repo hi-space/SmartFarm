@@ -158,15 +158,7 @@ export default {
   },
   watch: {
     farmName(newVal) {
-      const housingList = this.$store.state.housing.housings
-      this.housingOptions = housingList
-        .filter(elem => elem.farmId === newVal.value)
-        .map((obj => {
-          const rObj = {}
-          rObj.label = obj.name
-          rObj.value = obj._id
-          return rObj
-        }))
+      this.housingOptions = this.$store.getters['housing/getHousingSelect'](newVal.value)
     },
   },
   methods: {

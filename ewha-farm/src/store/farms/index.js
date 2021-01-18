@@ -7,7 +7,6 @@ export default {
   },
   getters: {
     getFarmSelect(state) {
-      console.log(state.farms)
       const farmList = state.farms
       return farmList.map((obj => {
         const rObj = {}

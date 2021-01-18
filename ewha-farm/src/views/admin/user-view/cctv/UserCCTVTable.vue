@@ -61,8 +61,8 @@ export default {
   data() {
     return {
       fields: [
-        { key: '_id', label: 'ID', sortable: true },
-        { key: 'farmId', label: '축사 ID', sortable: true },
+        // { key: '_id', label: 'ID', sortable: true },
+        { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'name', label: 'CCTV 이름', sortable: true },
         { key: 'info', label: '정보', sortable: true },
         { key: 'rtspUrl', label: 'rtsp URL', sortable: true },

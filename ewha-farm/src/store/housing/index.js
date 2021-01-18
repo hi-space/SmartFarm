@@ -5,7 +5,16 @@ export default {
   state: {
     housings: [],
   },
-  getters: {},
+  getters: {
+    getHousingSelect: state => farmId => state.housings
+      .filter(el => el.farmId._id === farmId)
+      .map((obj => {
+        const rObj = {}
+        rObj.label = obj.name
+        rObj.value = obj._id
+        return rObj
+      })),
+  },
   mutations: {
     SET_HOUSING(state, housings) {
       state.housings = housings

@@ -70,7 +70,7 @@ export default {
     store.dispatch('housing/fetchHousings', { userId: store.state.users.user._id })
       .then(response => {
         housingData.value = response.data
-        // console.log(response)
+        // console.log(response.data)
       })
       .catch(error => {
         console.log(error)
@@ -83,10 +83,10 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'farmId', label: '축사 ID', sortable: true },
-        { key: '_id', label: '함체 ID', sortable: true },
+        { key: 'farmId.name', label: '축사 이름', sortable: true },
+        // { key: '_id', label: '함체 ID', sortable: true },
         { key: 'name', label: '함체 이름', sortable: true },
-        { key: 'info', label: '함체 이름', sortable: true },
+        { key: 'info', label: '함체 정보', sortable: true },
         { key: 'ddns', label: 'DDNS', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },

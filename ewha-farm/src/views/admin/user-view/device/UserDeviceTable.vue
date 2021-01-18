@@ -64,7 +64,7 @@ export default {
     store.dispatch('device/fetchDevices', { userId: store.state.users.user._id })
       .then(response => {
         deviceData.value = response.data
-        // console.log(response)
+        // console.log(response.data)
       })
       .catch(error => {
         console.log(error)
@@ -77,8 +77,8 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'farmId', label: '축사 Id', sortable: true },
-        { key: 'housingId', label: '함체 Id', sortable: true },
+        { key: 'farmId.name', label: '축사 이름', sortable: true },
+        { key: 'housingId.name', label: '함체 이름', sortable: true },
         { key: 'name', label: '장비 이름', sortable: true },
         { key: 'type', label: '함체 타입', sortable: true },
         { key: 'port', label: 'port', sortable: true },

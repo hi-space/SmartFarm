@@ -90,7 +90,7 @@ export default {
     }
   },
   mounted() {
-    axiosIns.get('/dummy/sensor/123').then(res => {
+    axiosIns.get('/utils/sensor/123').then(res => {
       console.log(res.data)
       this.$refs.chart.updateSeries(res.data)
     }).catch(err => {
