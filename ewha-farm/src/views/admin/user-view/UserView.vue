@@ -41,6 +41,14 @@
 
       <b-row>
         <b-col>
+          <user-sensor-table
+            class="mt-2 pt-75"
+          />
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col>
           <user-housing-table
             class="mt-2 pt-75"
           />
@@ -85,6 +93,7 @@ import {
 
 import UserViewInfo from './UserViewInfo.vue'
 import UserFarmTable from './farm/UserFarmTable.vue'
+import UserSensorTable from './sensor/UserSensorTable.vue'
 import UserHousingTable from './housing/UserHousingTable.vue'
 import UserCCTVTable from './cctv/UserCCTVTable.vue'
 import UserDeviceTable from './device/UserDeviceTable.vue'
@@ -98,6 +107,7 @@ export default {
     BLink,
     UserViewInfo,
     UserFarmTable,
+    UserSensorTable,
     UserHousingTable,
     'user-cctv-table': UserCCTVTable,
     UserDeviceTable,

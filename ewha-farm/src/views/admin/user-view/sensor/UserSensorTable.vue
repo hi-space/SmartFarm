@@ -1,0 +1,94 @@
+<template>
+  <b-card
+    no-body
+  >
+    <div class="card-header">
+      <!-- Title -->
+      <b-card-title> <h3> 센서 정보 </h3> </b-card-title>
+      <b-card-sub-title> <add-sensor-modal /> </b-card-sub-title>
+    </div>
+
+    <div>
+
+      <b-table
+        :items="sensorData"
+        :fields="fields"
+        hover
+        responsive
+        selectable
+        select-mode="single"
+        class="mb-0"
+      >
+        <template #row-details="row">
+          <b-card>
+            {{ row.item.id }}
+            <!-- <user-device-table /> -->
+          </b-card>
+        </template>
+        <template #cell(show_details)="row">
+
+          <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
+          <b-form-checkbox
+            v-model="row.detailsShowing"
+            @change="row.toggleDetails"
+          >
+            {{ row.detailsShowing ? 'Hide' : 'Show' }}
+          </b-form-checkbox>
+        </template>
+
+        <template #cell(status)="data">
+          <b-badge :variant="status[1][data.value]">
+            {{ status[0][data.value] }}
+          </b-badge>
+        </template>
+      </b-table>
+    </div>
+  </b-card>
+</template>
+
+<script>
+import {
+  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BBadge,
+} from 'bootstrap-vue'
+import { ref } from '@vue/composition-api'
+import store from '@/store'
+import AddSensorModal from './AddSensorModal.vue'
+
+export default {
+  components: {
+    BCard,
+    BCardTitle,
+    BCardSubTitle,
+    BTable,
+    BFormCheckbox,
+    BBadge,
+    AddSensorModal,
+  },
+  setup() {
+    const sensorData = ref(null)
+    store.dispatch('sensor/fetchSensors', { userId: store.state.users.user._id })
+      .then(response => {
+        sensorData.value = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    return {
+      sensorData,
+    }
+  },
+  data() {
+    return {
+      fields: [
+        { key: 'farmId.name', label: '축사 이름', sortable: true },
+        // { key: '_id', label: '함체 ID', sortable: true },
+        { key: 'type', label: '센서 타입', sortable: true },
+        { key: 'name', label: '센서 이름', sortable: true },
+        { key: 'createdAt', label: '생성일', sortable: true },
+      ],
+      selected: [],
+    }
+  },
+}
+</script>
