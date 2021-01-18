@@ -9,7 +9,7 @@
     @mouseleave="updateMouseHovered(false)"
   >
     <!-- main menu header-->
-    <div class="navbar-header expanded">
+    <div class="navbar-header expanded mb-2">
       <slot
         name="header"
         :toggleVerticalMenuActive="toggleVerticalMenuActive"
@@ -58,7 +58,10 @@
     </div>
     <!-- / main menu header-->
 
-    <div class="navbar-header expanded pt-2">
+    <div
+      v-if="userRole==='customer'"
+      class="navbar-header expanded p-2 mb-2"
+    >
       <farm-selector />
     </div>
 
@@ -85,6 +88,7 @@
 </template>
 
 <script>
+import { getUserData } from '@/auth/utils'
 import navMenuItems from '@/navigation/vertical'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import { BLink, BImg } from 'bootstrap-vue'
@@ -122,6 +126,7 @@ export default {
       updateMouseHovered,
     } = useVerticalNavMenu(props)
 
+    const userRole = getUserData().role
     const { skin } = useAppConfig()
 
     // Shadow bottom is UI specific and can be removed by user => It's not in `useVerticalNavMenu`
@@ -158,6 +163,8 @@ export default {
       // App Name
       appName,
       appLogoImage,
+
+      userRole,
     }
   },
 }
@@ -165,4 +172,5 @@ export default {
 
 <style lang="scss">
 @import "~@core/scss/base/core/menu/menu-types/vertical-menu.scss";
+@import '@core/scss/vue/libs/vue-select.scss';
 </style>

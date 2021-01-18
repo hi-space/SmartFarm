@@ -7,6 +7,6 @@ export default [
     route: 'user-list',
     icon: 'UsersIcon',
     action: 'manage',
-    resource: 'Manager',
+    resource: 'Admin',
   },
 ]

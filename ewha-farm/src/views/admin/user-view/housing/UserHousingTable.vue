@@ -90,7 +90,7 @@ export default {
         { key: 'ddns', label: 'DDNS', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
-        { key: 'show_details', label: 'details' },
+        // { key: 'show_details', label: 'details' },
       ],
       selected: [],
     }
