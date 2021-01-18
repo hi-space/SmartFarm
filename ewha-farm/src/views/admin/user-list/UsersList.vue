@@ -40,10 +40,9 @@
             cols="12"
             md="6"
           >
-            <div class="d-flex align-items-center justify-content-end">
+            <div class="align-items-center justify-content-end">
               <b-form-group
                 label-for="filter-input"
-                label-align-sm="right"
                 class="mb-0"
               >
                 <b-input-group>
@@ -261,7 +260,7 @@ export default {
           key: 'status',
         },
         {
-          label: '생성일',
+          label: '가입일',
           key: 'createdAt',
         },
         // { key: 'actions' },
