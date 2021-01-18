@@ -11,7 +11,7 @@
     <!-- Modal -->
     <b-modal
       ref="settingModal"
-      title="통신 장비 등록"
+      title="자동화 등록"
       ok-title="등록"
       cancel-title="취소"
       cancel-variant="outline-secondary"
@@ -151,13 +151,28 @@
           </b-form-group>
         </b-col>
       </b-row>
+
+      <div
+        v-if="selectedMode"
+        class="text-center m-1"
+      >
+        <b-form-group>
+          <b-form-radio-group
+            v-model="selectedButton"
+            button-variant="outline-primary"
+            :options="buttonOptions"
+            buttons
+            class="p-1 d-flex"
+          />
+        </b-form-group>
+      </div>
     </b-modal>
   </div>
 </template>
 
 <script>
 import {
-  BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormTimepicker, BFormSpinbutton, BFormInput,
+  BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormTimepicker, BFormSpinbutton, BFormInput, BFormRadioGroup,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import 'vue2-timepicker/dist/VueTimepicker.css'
@@ -172,6 +187,7 @@ export default {
     BFormTimepicker,
     BFormSpinbutton,
     BFormInput,
+    BFormRadioGroup,
   },
   data() {
     return {
@@ -214,6 +230,13 @@ export default {
       // sensor
       minValue: 0,
       maxValue: 0,
+
+      selectedButton: 'stop',
+      buttonOptions: [
+        { text: '열기', value: 'open' },
+        { text: '중지', value: 'stop' },
+        { text: '닫기', value: 'close' },
+      ],
     }
   },
   methods: {

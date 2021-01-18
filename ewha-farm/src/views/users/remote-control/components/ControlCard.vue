@@ -43,7 +43,7 @@
           button-variant="outline-primary"
           :options="buttonOptions"
           buttons
-          class="p-1"
+          class="p-1 d-flex"
         />
       </b-form-group>
 
