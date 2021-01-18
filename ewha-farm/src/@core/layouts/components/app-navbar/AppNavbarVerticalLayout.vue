@@ -17,10 +17,6 @@
     </ul>
 
     <b-navbar-nav class="nav align-items-center ml-auto">
-      <farm-selector />
-    </b-navbar-nav>
-
-    <b-navbar-nav class="nav align-items-center ml-auto">
       <notification-dropdown />
       <user-dropdown />
     </b-navbar-nav>
@@ -33,7 +29,6 @@ import {
 } from 'bootstrap-vue'
 import NotificationDropdown from './components/NotificationDropdown.vue'
 import UserDropdown from './components/UserDropdown.vue'
-import FarmSelector from './components/FarmSelector.vue'
 
 export default {
   components: {
@@ -43,7 +38,6 @@ export default {
     BNavbarNav,
     NotificationDropdown,
     UserDropdown,
-    FarmSelector,
   },
   props: {
     toggleVerticalMenuActive: {

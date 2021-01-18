@@ -16,8 +16,8 @@
         :toggleCollapsed="toggleCollapsed"
         :collapseTogglerIcon="collapseTogglerIcon"
       >
-        <ul class="nav navbar-nav flex-row">
 
+        <ul class="nav navbar-nav flex-row">
           <!-- Logo & Text -->
           <li class="nav-item mr-auto">
             <b-link
@@ -58,6 +58,10 @@
     </div>
     <!-- / main menu header-->
 
+    <div class="navbar-header expanded pt-2">
+      <farm-selector />
+    </div>
+
     <!-- Shadow -->
     <div
       :class="{'d-block': shallShadowBottom}"
@@ -89,6 +93,7 @@ import useAppConfig from '@core/app-config/useAppConfig'
 import { $themeConfig } from '@themeConfig'
 import VerticalNavMenuItems from './vertical-nav-menu-items/VerticalNavMenuItems.vue'
 import useVerticalNavMenu from './useVerticalNavMenu'
+import FarmSelector from './FarmSelector.vue'
 
 export default {
   components: {
@@ -96,6 +101,7 @@ export default {
     VerticalNavMenuItems,
     BLink,
     BImg,
+    FarmSelector,
   },
   props: {
     isVerticalMenuActive: {
