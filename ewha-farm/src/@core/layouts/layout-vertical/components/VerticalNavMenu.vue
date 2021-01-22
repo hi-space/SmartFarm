@@ -62,7 +62,7 @@
       v-if="role==='customer'"
       class="navbar-header expanded p-2 mb-2"
     >
-      <farm-selector :id="id" />
+      <farm-selector />
     </div>
 
     <!-- Shadow -->
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import store from '@/store'
+// import store from '@/store'
 import { getUserData } from '@/auth/utils'
 import navMenuItems from '@/navigation/vertical'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
@@ -118,6 +118,12 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      selectedFarm: '',
+      farmOptions: [],
+    }
+  },
   setup(props) {
     const {
       isMouseHovered,
@@ -144,8 +150,7 @@ export default {
     // App Name
     const { appName, appLogoImage } = $themeConfig.app
 
-    const { id, role } = getUserData()
-    store.dispatch('users/fetchUser', { id })
+    const { role } = getUserData()
 
     return {
       navMenuItems,
@@ -167,7 +172,6 @@ export default {
       appName,
       appLogoImage,
 
-      id,
       role,
     }
   },

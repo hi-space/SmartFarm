@@ -3,7 +3,7 @@
     ref="weatherCard"
     title="현재 날씨"
     action-collapse
-    collapsed
+    action-refresh
     :sub-title="getCurrentTime()"
     @refresh="getWeatherData"
   >
@@ -101,7 +101,7 @@ export default {
           icon: 'ThermometerIcon',
           color: 'light-primary',
           title: '온도',
-          subtitle: this.temp,
+          subtitle: `${this.temp} °C`,
         },
         {
           icon: 'DropletIcon',
@@ -113,7 +113,7 @@ export default {
           icon: 'SlidersIcon',
           color: 'light-danger',
           title: '최저/최고 온도',
-          subtitle: `${this.temp_min} ~ ${this.temp_max}`,
+          subtitle: `${this.temp_min} °C ~ ${this.temp_max} °C`,
         },
         {
           icon: 'WindIcon',

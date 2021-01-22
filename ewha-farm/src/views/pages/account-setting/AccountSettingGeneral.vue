@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     updateInfo() {
-      store.dispatch('app-user/updateUser', { id: this.userId, queryBody: this.userData })
+      store.dispatch('users/updateUser', { id: this.userId, queryBody: this.userData })
         .then(() => {
           this.$bvModal.msgBoxOk('개인 정보가 수정되었습니다', {
             title: '개인 정보 수정',

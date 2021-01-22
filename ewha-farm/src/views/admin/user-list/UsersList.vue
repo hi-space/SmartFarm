@@ -67,6 +67,8 @@
         :current-page="currentPage"
         :per-page="perPage"
         :filter="filter"
+        sort-direction="desc"
+        sort-by="createdAt"
         primary-key="_id"
         hover
         responsive
@@ -262,6 +264,8 @@ export default {
         {
           label: '가입일',
           key: 'createdAt',
+          sortable: true,
+          sortDirection: 'desc',
           formatter: value => {
             const date = new Date(value)
             return `${date.getFullYear()}/${1 + date.getMonth()}/${date.getDate()}`
@@ -274,7 +278,7 @@ export default {
       currentPage: 1,
       perPage: 10,
       pageOptions: [5, 10, 15, 20],
-      sortDirection: 'asc',
+      sortDirection: 'desc',
       filter: null,
       selectedRow: [],
     }

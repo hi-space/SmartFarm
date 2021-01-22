@@ -10,35 +10,37 @@
 
 <script>
 import store from '@/store'
-// import { ref } from '@vue/composition-api'
+import { getUserData } from '@/auth/utils'
 import vSelect from 'vue-select'
 
 export default {
   components: {
     vSelect,
   },
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-  },
   data() {
     return {
       selectedFarm: '',
-      farmOptions: ['제 1농장', '제 2농장'],
+      farmOptions: [],
     }
   },
-  async setup(props) {
-    // const farmOptions = store.getters['farm/getFarmSelect']
-
-    const result = await store.dispatch('farm/fetchFarms', { userId: props.id })
-    console.log(result)
-    const farmOptions = store.getters['farm/getFarmSelect']
-
-    return {
-      farmOptions,
-    }
+  watch: {
+    selectedFarm(newVal) {
+      const farmId = newVal.value
+      store.dispatch('farm/fetchFarm', { id: farmId }).then(() => {
+        console.log(store.state.farm.farm)
+      })
+    },
+  },
+  created() {
+    this.getFarmOptions()
+  },
+  methods: {
+    async getFarmOptions() {
+      const { id } = getUserData()
+      await store.dispatch('users/fetchUser', { id })
+      await store.dispatch('farm/fetchFarms', { userId: id })
+      this.farmOptions = await store.getters['farm/getFarmSelect']
+    },
   },
 }
 </script>

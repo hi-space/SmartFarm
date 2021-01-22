@@ -71,7 +71,6 @@ export default {
     store.dispatch('users/fetchUser', { id: userId })
       .then(response => {
         userData.value = response.data
-        console.log(response)
       })
       .catch(error => {
         console.log(error)
