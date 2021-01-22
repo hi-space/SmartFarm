@@ -43,6 +43,17 @@
           </b-card>
         </template>
 
+        <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="remove(row)"
+          >
+            <feather-icon icon="Trash2Icon" />
+          </b-button>
+        </template>
+
         <template #cell(show_details)="row">
           <b-button
             size="sm"
@@ -65,7 +76,6 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
 
-// import fakeData from '@/data/farms.json'
 import store from '@/store'
 
 import AddFarmModal from './AddFarmModal.vue'
@@ -120,10 +130,35 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
+        { key: 'action', label: '삭제' },
         // { key: 'show_details', label: 'details' },
       ],
-      // items: fakeData,
     }
+  },
+  methods: {
+    remove(row) {
+      this.$bvModal
+        .msgBoxConfirm('농장에 등록된 모든 정보가 사라집니다.', {
+          title: '축사 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: '삭제',
+          cancelTitle: '취소',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('farm/deleteFarm', { id: row.item._id })
+              .then(() => {
+                this.$forceUpdate()
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
+    },
   },
 }
 </script>

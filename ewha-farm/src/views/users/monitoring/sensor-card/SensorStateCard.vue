@@ -70,28 +70,33 @@ export default {
   },
   methods: {
     async getSensor() {
-      const result = await store.dispatch('sensor/fetchSensors', { userId: store.state.users.user._id, farmId: store.state.farm.farm._id })
+      const result = await store.dispatch('sensor/fetchSensors',
+        { userId: store.state.users.user._id, farmId: store.state.farm.farm._id })
       const sensorData = result.data
 
       sensorData.forEach(el => {
         let icon = 'CpuIcon'
         let color = 'light-primary'
+        let postfix = ''
         if (el.type === 'temperature') {
           icon = 'ThermometerIcon'
           color = 'light-danger'
+          postfix = '°C'
         } else if (el.type === 'humidity') {
           icon = 'DropletIcon'
           color = 'light-warning'
         } else if (el.type === 'rain') {
           color = 'light-info'
           icon = 'UmbrellaIcon'
+        } else {
+          postfix = 'ppm'
         }
 
         this.sensorItems.push({
           id: el._id,
           icon,
           color,
-          title: el.lastValue || 0,
+          title: `${el.lastValue || 0} ${postfix}`,
           subtitle: el.name,
         })
       })

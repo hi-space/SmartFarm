@@ -83,7 +83,29 @@ export default {
       fields: [
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         // { key: '_id', label: '함체 ID', sortable: true },
-        { key: 'type', label: '센서 타입', sortable: true },
+        {
+          key: 'type',
+          label: '센서 타입',
+          sortable: true,
+          formatter: value => {
+            if (value === 'temperature') {
+              return '온도 센서'
+            }
+            if (value === 'humidity') {
+              return '습도 센서'
+            }
+            if (value === 'rain') {
+              return '우적 센서'
+            }
+            if (value === 'hs2') {
+              return '황화수소'
+            }
+            if (value === 'nh3') {
+              return '암모니아'
+            }
+            return ''
+          },
+        },
         { key: 'name', label: '센서 이름', sortable: true },
         {
           label: '생성일자',
