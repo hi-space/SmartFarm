@@ -5,6 +5,8 @@
     class="per-page-selector d-inline-block mx-100 w-100"
     :options="farmOptions"
     placeholder="농장을 선택해주세요"
+    :searchable="searchable"
+    :clearable="clearable"
   />
 </template>
 
@@ -21,13 +23,15 @@ export default {
     return {
       selectedFarm: '',
       farmOptions: [],
+      searchable: false,
+      clearable: false,
     }
   },
   watch: {
     selectedFarm(newVal) {
       const farmId = newVal.value
       store.dispatch('farm/fetchFarm', { id: farmId }).then(() => {
-        console.log(store.state.farm.farm)
+        // console.log(store.state.farm.farm)
       })
     },
   },
@@ -40,6 +44,10 @@ export default {
       await store.dispatch('users/fetchUser', { id })
       await store.dispatch('farm/fetchFarms', { userId: id })
       this.farmOptions = await store.getters['farm/getFarmSelect']
+      if (this.farmOptions.length > 0) {
+        // eslint-disable-next-line prefer-destructuring
+        this.selectedFarm = this.farmOptions[0]
+      }
     },
   },
 }

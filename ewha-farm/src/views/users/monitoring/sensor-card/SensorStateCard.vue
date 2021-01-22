@@ -5,8 +5,8 @@
   >
     <b-row>
       <b-col
-        v-for="item in statisticsItems"
-        :key="item.subtitle"
+        v-for="item in sensorItems"
+        :key="item._id"
         class="mb-2"
         lg="6"
         sm="12"
@@ -46,6 +46,7 @@
 import {
   BCardText, BRow, BCol, BMedia, BMediaAside, BAvatar, BMediaBody,
 } from 'bootstrap-vue'
+import store from '@/store'
 import BCardActions from '@core/components/b-card-actions/BCardActions.vue'
 
 export default {
@@ -61,39 +62,40 @@ export default {
   },
   data() {
     return {
-      statisticsItems: [
-        {
-          icon: 'ThermometerIcon',
-          color: 'light-primary',
-          title: '21',
-          subtitle: '온도',
-        },
-        {
-          icon: 'humidity',
-          color: 'light-info',
-          title: '8',
-          subtitle: '습도',
-        },
-        {
-          icon: 'UmbrellaIcon',
-          color: 'light-danger',
-          title: 'ON',
-          subtitle: '우적 센서',
-        },
-        {
-          icon: 'CpuIcon',
-          color: 'light-success',
-          title: '30 ppm',
-          subtitle: '황화수소',
-        },
-        {
-          icon: 'CpuIcon',
-          color: 'light-success',
-          title: '45 ppm',
-          subtitle: '암모니아',
-        },
-      ],
+      sensorItems: [],
     }
+  },
+  created() {
+    this.getSensor()
+  },
+  methods: {
+    async getSensor() {
+      const result = await store.dispatch('sensor/fetchSensors', { userId: store.state.users.user._id, farmId: store.state.farm.farm._id })
+      const sensorData = result.data
+
+      sensorData.forEach(el => {
+        let icon = 'CpuIcon'
+        let color = 'light-primary'
+        if (el.type === 'temperature') {
+          icon = 'ThermometerIcon'
+          color = 'light-danger'
+        } else if (el.type === 'humidity') {
+          icon = 'DropletIcon'
+          color = 'light-warning'
+        } else if (el.type === 'rain') {
+          color = 'light-info'
+          icon = 'UmbrellaIcon'
+        }
+
+        this.sensorItems.push({
+          id: el._id,
+          icon,
+          color,
+          title: el.lastValue || 0,
+          subtitle: el.name,
+        })
+      })
+    },
   },
 }
 </script>
