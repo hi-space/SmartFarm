@@ -68,15 +68,15 @@ export default {
     return {
       settingList: [
         {
-          name: 'hello',
+          name: '온도센서 24도 이상일 때 닫기',
           email: 'girliness@spotlike.co.uk',
         },
         {
-          name: 'hi',
+          name: '매 시간마다 열기',
           email: 'girliness@spotlike.co.uk',
         },
         {
-          name: 'yo',
+          name: '12:00 ~ 15:00 열기',
           email: 'girliness@spotlike.co.uk',
         },
       ],

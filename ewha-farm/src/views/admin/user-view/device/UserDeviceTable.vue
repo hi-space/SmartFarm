@@ -16,6 +16,7 @@
         hover
         responsive
         selectable
+        scrollable
         select-mode="single"
         class="mb-0"
         @row-selected="onRowSelected"
@@ -84,6 +85,20 @@ export default {
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         { key: 'serialNum', label: 'S/N', sortable: true },
+        {
+          label: '생성일자',
+          key: 'createdAt',
+          sortable: true,
+          formatter: value => {
+            const date = new Date(value)
+            const y = date.getFullYear()
+            const m = 1 + date.getMonth()
+            const d = date.getDate()
+            const h = date.getHours()
+            const mm = date.getMinutes()
+            return `${y}/${m}/${d} ${h}:${mm}`
+          },
+        },
         // { key: 'show_details', label: 'details' },
       ],
       selected: [],

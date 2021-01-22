@@ -2,6 +2,8 @@
   <b-card-actions
     ref="weatherCard"
     title="현재 날씨"
+    action-collapse
+    collapsed
     :sub-title="getCurrentTime()"
     @refresh="getWeatherData"
   >

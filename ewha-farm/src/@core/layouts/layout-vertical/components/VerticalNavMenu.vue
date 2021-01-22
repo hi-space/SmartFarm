@@ -59,10 +59,10 @@
     <!-- / main menu header-->
 
     <div
-      v-if="userRole==='customer'"
+      v-if="role==='customer'"
       class="navbar-header expanded p-2 mb-2"
     >
-      <farm-selector />
+      <farm-selector :id="id" />
     </div>
 
     <!-- Shadow -->
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import store from '@/store'
 import { getUserData } from '@/auth/utils'
 import navMenuItems from '@/navigation/vertical'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
@@ -126,7 +127,6 @@ export default {
       updateMouseHovered,
     } = useVerticalNavMenu(props)
 
-    const userRole = getUserData().role
     const { skin } = useAppConfig()
 
     // Shadow bottom is UI specific and can be removed by user => It's not in `useVerticalNavMenu`
@@ -143,6 +143,9 @@ export default {
 
     // App Name
     const { appName, appLogoImage } = $themeConfig.app
+
+    const { id, role } = getUserData()
+    store.dispatch('users/fetchUser', { id })
 
     return {
       navMenuItems,
@@ -164,7 +167,8 @@ export default {
       appName,
       appLogoImage,
 
-      userRole,
+      id,
+      role,
     }
   },
 }

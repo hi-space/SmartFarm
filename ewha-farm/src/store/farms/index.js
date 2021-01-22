@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: {
     farms: [],
+    farm: null,
   },
   getters: {
     getFarmSelect(state) {
@@ -17,8 +18,11 @@ export default {
     },
   },
   mutations: {
-    SET_FARM(state, farms) {
+    SET_FARMS(state, farms) {
       state.farms = farms
+    },
+    SET_FARM(state, farm) {
+      state.farm = farm
     },
     CLEAR_FARM(state) {
       state.farm = null
@@ -27,11 +31,12 @@ export default {
   actions: {
     async fetchFarms({ commit }, queryParams) {
       const result = await axios.get('/farm', { params: queryParams })
-      commit('SET_FARM', result.data)
+      commit('SET_FARMS', result.data)
       return result
     },
-    async fetchFarm(ctx, { id }) {
+    async fetchFarm({ commit }, { id }) {
       const result = await axios.get(`/farm/${id}`)
+      commit('SET_FARM', result.data)
       return result
     },
     async createFarm(ctx, { queryBody }) {

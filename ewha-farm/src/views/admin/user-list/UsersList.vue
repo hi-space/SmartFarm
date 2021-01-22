@@ -262,6 +262,10 @@ export default {
         {
           label: '가입일',
           key: 'createdAt',
+          formatter: value => {
+            const date = new Date(value)
+            return `${date.getFullYear()}/${1 + date.getMonth()}/${date.getDate()}`
+          },
         },
         // { key: 'actions' },
       ],

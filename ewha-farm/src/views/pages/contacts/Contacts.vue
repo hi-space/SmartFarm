@@ -5,7 +5,7 @@
       show
     >
       <div class="alert-heading">
-        <h3 class="text-primary"> <strong> 문의사항이 있으면 담당자에게 연락주세요 </strong> </h3>
+        <h3 class="text-primary"> <strong> 문의사항이 있으면 <br> 담당자에게 연락주세요 </strong> </h3>
       </div>
       <div class="alert-body">
         <h4 class="text-primary"> <strong> {{ manager_name }} </strong> {{ manager_phone }} </h4>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      manager_name: '김땡땡',
+      manager_name: '관리자',
       manager_phone: '010-1234-5678',
     }
   },

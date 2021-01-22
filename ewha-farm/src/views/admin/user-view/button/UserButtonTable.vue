@@ -14,6 +14,7 @@
         :fields="fields"
         hover
         responsive
+        scrollable
         class="mb-0"
       />
     </div>

@@ -85,7 +85,20 @@ export default {
         // { key: '_id', label: '함체 ID', sortable: true },
         { key: 'type', label: '센서 타입', sortable: true },
         { key: 'name', label: '센서 이름', sortable: true },
-        { key: 'createdAt', label: '생성일', sortable: true },
+        {
+          label: '생성일자',
+          key: 'createdAt',
+          sortable: true,
+          formatter: value => {
+            const date = new Date(value)
+            const y = date.getFullYear()
+            const m = 1 + date.getMonth()
+            const d = date.getDate()
+            const h = date.getHours()
+            const mm = date.getMinutes()
+            return `${y}/${m}/${d} ${h}:${mm}`
+          },
+        },
       ],
       selected: [],
     }

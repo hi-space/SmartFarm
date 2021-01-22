@@ -7,14 +7,14 @@
       >
         <cctv-player :src="cctv_url_1" />
       </b-col>
-      <b-col
+      <!-- <b-col
         md="6"
         sm="12"
       >
         <cctv-player :src="cctv_url_1" />
-      </b-col>
+      </b-col> -->
     </b-row>
-    <b-row>
+    <!-- <b-row>
       <b-col
         md="6"
         sm="12"
@@ -27,7 +27,7 @@
       >
         <cctv-player :src="cctv_url_1" />
       </b-col>
-    </b-row>
+    </b-row> -->
   </div>
 </template>
 

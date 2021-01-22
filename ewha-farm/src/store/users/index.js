@@ -5,7 +5,11 @@ export default {
   state: {
     user: null,
   },
-  getters: {},
+  getters: {
+    getUser(state) {
+      return state.user
+    },
+  },
   mutations: {
     SET_USER(state, user) {
       state.user = user

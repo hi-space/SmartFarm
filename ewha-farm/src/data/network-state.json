@@ -4,42 +4,42 @@
        "farm_name":"제 1축사",
        "device_name":"중앙함체",
        "status":"success",
-       "timestamp":"09/23/2016"
+       "timestamp":"09/23/2020"
     },
     {
       "id":2,
       "farm_name":"제 2축사",
       "device_name":"메인함체",
       "status":"success",
-      "timestamp":"09/23/2016"
+      "timestamp":"09/23/2020"
    },
    {
       "id":3,
       "farm_name":"제 1축사",
       "device_name":"중앙함체",
       "status":"failure",
-      "timestamp":"09/23/2016"
+      "timestamp":"09/23/2020"
    },
    {
       "id":4,
       "farm_name":"제 1축사",
       "device_name":"중앙함체",
       "status":"success",
-      "timestamp":"09/23/2016"
+      "timestamp":"09/23/2020"
    },
    {
       "id":5,
       "farm_name":"제 2축사",
       "device_name":"메인함체",
       "status":"success",
-      "timestamp":"09/23/2016"
+      "timestamp":"09/23/2020"
    },
    {
       "id":6,
       "farm_name":"제 1축사",
       "device_name":"중앙함체",
       "status":"failure",
-      "timestamp":"09/23/2016"
+      "timestamp":"09/23/2020"
    }
  ]
  
