@@ -1,8 +1,7 @@
-/* eslint-disable quote-props */
 <template>
   <b-card no-body>
     <b-card-header>
-      <b-card-title> <strong> {{ title }} </strong> </b-card-title>
+      <b-card-title> <strong> {{ buttonItem.name }} </strong> </b-card-title>
       <div class="d-flex justify-content-start">
         <feather-icon
           icon="EditIcon"
@@ -34,7 +33,7 @@
     <b-card-body class="text-center pb-1">
       <b-card-text>
         작동 시간
-        <h4> <strong> 2021. 1. 17. 오후 4:12:34 </strong> </h4>
+        <h4> <strong> {{ getDateString() }} </strong> </h4>
       </b-card-text>
 
       <b-form-group>
@@ -86,6 +85,8 @@
 import {
   BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BAlert,
 } from 'bootstrap-vue'
+import store from '@/store'
+import { getDateString } from '@core/utils/utils'
 import { heightFade } from '@core/directives/animations'
 import AutomaticList from './AutomaticList.vue'
 import SettingModal from './SettingModal.vue'
@@ -109,9 +110,9 @@ export default {
     'height-fade': heightFade,
   },
   props: {
-    title: {
-      type: String,
-      default: '',
+    item: {
+      type: Object,
+      required: true,
     },
   },
   data() {
@@ -120,41 +121,86 @@ export default {
       isAlert: true,
       alertIcon: 'BellIcon',
       alertColor: 'text-warning',
-      isAuto: true,
-      autoColor: 'text-danger',
-      name: this.title,
-      selectedButton: 'stop',
+      selectedButton: '',
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
       ],
+      workingTime: '',
+      title: '',
+      name: this.buttonItem.name,
+    }
+  },
+  setup(props) {
+    const buttonItem = props.item
+    const { isAuto } = buttonItem
+    const autoColor = isAuto ? 'text-danger' : 'text-musted'
+    return {
+      buttonItem,
+      isAuto,
+      autoColor,
     }
   },
   watch: {
-    isAlert() {
-      this.alertIcon = this.isAlert ? 'BellIcon' : 'BellOffIcon'
-      this.alertColor = this.isAlert ? 'text-warning' : 'text-musted'
-    },
-    isAuto() {
-      this.autoColor = this.isAuto ? 'text-danger' : 'text-musted'
-    },
     selectedButton() {
       console.log(this.selectedButton)
     },
   },
   methods: {
+    getDateString() {
+      return getDateString(this.buttonItem.workingTime)
+    },
     showModal() {
       this.$refs.modifyNameModal.show()
     },
+    updateData() {
+      store.dispatch('button/fetchButton', { id: this.buttonItem._id })
+        .then(response => {
+          this.buttonItem = response.data
+          this.$forceUpdate()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     modifyName() {
-      console.log(this.name)
+      store.dispatch('button/updateButton',
+        {
+          id: this.buttonItem._id,
+          queryBody: {
+            name: this.name,
+          },
+        })
+        .then(() => {
+          this.updateData()
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     toggleAlert() {
       this.isAlert = !this.isAlert
+      this.alertIcon = this.isAlert ? 'BellIcon' : 'BellOffIcon'
+      this.alertColor = this.isAlert ? 'text-warning' : 'text-musted'
     },
     toggleAuto() {
       this.isAuto = !this.isAuto
+      this.autoColor = this.isAuto ? 'text-danger' : 'text-musted'
+
+      store.dispatch('button/updateButton',
+        {
+          id: this.buttonItem._id,
+          queryBody: {
+            isAuto: this.isAuto,
+          },
+        })
+        .then(() => {
+          this.updateData()
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
   },
 }

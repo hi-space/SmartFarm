@@ -15,6 +15,27 @@ export const isToday = date => {
   )
 }
 
+export const getDateString = value => {
+  const date = new Date(value)
+  const y = date.getFullYear()
+  let m = 1 + date.getMonth()
+  if (m < 10) m = `0${m}`
+  let d = date.getDate()
+  if (d < 10) d = `0${d}`
+
+  let h = date.getHours()
+  let ampm = '오전'
+  if (h > 12) {
+    h -= 12
+    ampm = '오후'
+  }
+  if (h < 10) h = `0${h}`
+  let mm = date.getMinutes()
+  if (mm < 10) mm = `0${mm}`
+
+  return `${y}-${m}-${d} ${ampm} ${h}:${mm}`
+}
+
 const getRandomFromArray = array => array[Math.floor(Math.random() * array.length)]
 
 // ? Light and Dark variant is not included

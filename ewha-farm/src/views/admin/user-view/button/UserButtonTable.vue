@@ -54,6 +54,7 @@ export default {
     return {
       buttonData: [],
       fields: [
+        { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'name', label: '이름', sortable: true },
         {
           key: 'type',
