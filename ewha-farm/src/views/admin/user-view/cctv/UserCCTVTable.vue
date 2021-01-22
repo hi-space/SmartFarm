@@ -17,10 +17,15 @@
         scrollable
         class="position-relative mb-0"
       >
-        <template #cell(status)="data">
-          <b-badge :variant="status[1][data.value]">
-            {{ status[0][data.value] }}
-          </b-badge>
+        <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="remove(row)"
+          >
+            <feather-icon icon="Trash2Icon" />
+          </b-button>
         </template>
       </b-table>
     </div>
@@ -29,9 +34,8 @@
 
 <script>
 import {
-  BCard, BCardTitle, BCardSubTitle, BTable, BBadge,
+  BCard, BCardTitle, BCardSubTitle, BTable, BButton,
 } from 'bootstrap-vue'
-import { ref } from '@vue/composition-api'
 import store from '@/store'
 import AddCameraModal from './AddCameraModal.vue'
 
@@ -41,25 +45,12 @@ export default {
     BCardTitle,
     BCardSubTitle,
     BTable,
-    BBadge,
+    BButton,
     'add-camera-modal': AddCameraModal,
   },
-  setup() {
-    const cctvData = ref(null)
-    store.dispatch('cctv/fetchCCTVs', { userId: store.state.users.user._id })
-      .then(response => {
-        cctvData.value = response.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    return {
-      cctvData,
-    }
-  },
-
   data() {
     return {
+      cctvData: [],
       fields: [
         // { key: '_id', label: 'ID', sortable: true },
         { key: 'farmId.name', label: '축사 이름', sortable: true },
@@ -81,8 +72,46 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
+        { key: 'action', label: '삭제' },
       ],
     }
+  },
+  created() {
+    this.initData()
+  },
+  methods: {
+    initData() {
+      store.dispatch('cctv/fetchCCTVs', { userId: store.state.users.user._id })
+        .then(response => {
+          this.cctvData = response.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    remove(row) {
+      this.$bvModal
+        .msgBoxConfirm('CCTV를 정말 삭제하시겠습니까?', {
+          title: 'CCTV 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: '삭제',
+          cancelTitle: '취소',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('cctv/deleteCCTV', { id: row.item._id })
+              .then(() => {
+                this.initData()
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
+    },
   },
 }
 </script>

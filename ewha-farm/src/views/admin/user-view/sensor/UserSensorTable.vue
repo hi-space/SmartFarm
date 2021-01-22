@@ -36,10 +36,15 @@
           </b-form-checkbox>
         </template>
 
-        <template #cell(status)="data">
-          <b-badge :variant="status[1][data.value]">
-            {{ status[0][data.value] }}
-          </b-badge>
+        <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="remove(row)"
+          >
+            <feather-icon icon="Trash2Icon" />
+          </b-button>
         </template>
       </b-table>
     </div>
@@ -48,9 +53,8 @@
 
 <script>
 import {
-  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BBadge,
+  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton,
 } from 'bootstrap-vue'
-import { ref } from '@vue/composition-api'
 import store from '@/store'
 import AddSensorModal from './AddSensorModal.vue'
 
@@ -61,25 +65,12 @@ export default {
     BCardSubTitle,
     BTable,
     BFormCheckbox,
-    BBadge,
+    BButton,
     AddSensorModal,
-  },
-  setup() {
-    const sensorData = ref(null)
-    store.dispatch('sensor/fetchSensors', { userId: store.state.users.user._id })
-      .then(response => {
-        sensorData.value = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-    return {
-      sensorData,
-    }
   },
   data() {
     return {
+      sensorData: [],
       fields: [
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         // { key: '_id', label: '함체 ID', sortable: true },
@@ -121,9 +112,47 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
+        { key: 'action', label: '삭제' },
       ],
       selected: [],
     }
+  },
+  created() {
+    this.initData()
+  },
+  methods: {
+    initData() {
+      store.dispatch('sensor/fetchSensors', { userId: store.state.users.user._id })
+        .then(response => {
+          this.sensorData = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    remove(row) {
+      this.$bvModal
+        .msgBoxConfirm('센서를 정말 삭제하시겠습니까?', {
+          title: '센서 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: '삭제',
+          cancelTitle: '취소',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('sensor/deleteSensor', { id: row.item._id })
+              .then(() => {
+                this.initData()
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
+    },
   },
 }
 </script>

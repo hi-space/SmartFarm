@@ -14,19 +14,30 @@
         :fields="fields"
         hover
         responsive
+        selectable
         scrollable
+        select-mode="single"
         class="mb-0"
-      />
+      >
+        <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="remove(row)"
+          >
+            <feather-icon icon="Trash2Icon" />
+          </b-button>
+        </template>
+      </b-table>
     </div>
   </b-card>
 </template>
 
 <script>
 import {
-  BCard, BCardTitle, BCardSubTitle, BTable,
+  BCard, BCardTitle, BCardSubTitle, BTable, BButton,
 } from 'bootstrap-vue'
-import { ref } from '@vue/composition-api'
-import fakeData from '@/data/buttons.json'
 import store from '@/store'
 import AddButtonModal from './AddButtonModal.vue'
 
@@ -36,23 +47,12 @@ export default {
     BCardTitle,
     BCardSubTitle,
     BTable,
+    BButton,
     'add-button-modal': AddButtonModal,
-  },
-  setup() {
-    const buttonData = ref(null)
-    store.dispatch('button/fetchButtons', { userId: store.state.users.user._id })
-      .then(response => {
-        buttonData.value = response.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    return {
-      buttonData,
-    }
   },
   data() {
     return {
+      buttonData: [],
       fields: [
         { key: 'name', label: '이름', sortable: true },
         {
@@ -60,7 +60,6 @@ export default {
           label: '타입',
           sortable: true,
           formatter: value => {
-            console.log(value)
             if (value === 'curtain') {
               return '커튼'
             }
@@ -98,10 +97,46 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
+        { key: 'action', label: '삭제' },
       ],
-      /* eslint-disable global-require */
-      items: fakeData,
     }
+  },
+  created() {
+    this.initData()
+  },
+  methods: {
+    initData() {
+      store.dispatch('button/fetchButtons', { userId: store.state.users.user._id })
+        .then(response => {
+          this.buttonData = response.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    remove(row) {
+      this.$bvModal
+        .msgBoxConfirm('버튼을 정말 삭제하시겠습니까?', {
+          title: '버튼 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: '삭제',
+          cancelTitle: '취소',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('button/deleteButton', { id: row.item._id })
+              .then(() => {
+                this.initData()
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
+    },
   },
 }
 </script>

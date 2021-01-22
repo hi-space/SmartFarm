@@ -3,7 +3,6 @@
     <!-- Button -->
     <b-button
       v-b-modal.add-farm-modal
-      v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       variant="outline-primary"
       class="btn-icon"
       pill
@@ -52,7 +51,6 @@
 import {
   BButton, BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
-import Ripple from 'vue-ripple-directive'
 
 import store from '@/store'
 
@@ -66,7 +64,6 @@ export default {
   },
   directives: {
     'b-modal': VBModal,
-    Ripple,
   },
   data() {
     return {

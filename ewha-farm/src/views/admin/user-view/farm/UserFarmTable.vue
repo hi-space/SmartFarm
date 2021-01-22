@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import { ref } from '@vue/composition-api'
 import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton, BRow, BCol,
 } from 'bootstrap-vue'
@@ -91,22 +90,9 @@ export default {
     BCol,
     'add-farm-modal': AddFarmModal,
   },
-  setup() {
-    const farmData = ref(null)
-    store.dispatch('farm/fetchFarms', { userId: store.state.users.user._id })
-      .then(response => {
-        farmData.value = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-    return {
-      farmData,
-    }
-  },
   data() {
     return {
+      farmData: [],
       fields: [
         // { key: '_id', label: '축사 ID', sortable: true },
         {
@@ -135,7 +121,20 @@ export default {
       ],
     }
   },
+  created() {
+    this.initData()
+  },
   methods: {
+    initData() {
+      store.dispatch('farm/fetchFarms', { userId: store.state.users.user._id })
+        .then(response => {
+          this.farmData = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+
     remove(row) {
       this.$bvModal
         .msgBoxConfirm('농장에 등록된 모든 정보가 사라집니다.', {
@@ -152,7 +151,7 @@ export default {
           if (value === true) {
             store.dispatch('farm/deleteFarm', { id: row.item._id })
               .then(() => {
-                this.$forceUpdate()
+                this.initData()
               }).catch(error => {
                 console.log(error)
               })

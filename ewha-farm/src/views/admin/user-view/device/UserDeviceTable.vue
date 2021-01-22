@@ -32,10 +32,15 @@
           </b-form-checkbox>
         </template>
 
-        <template #cell(status)="data">
-          <b-badge :variant="status[1][data.value]">
-            {{ status[0][data.value] }}
-          </b-badge>
+        <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="remove(row)"
+          >
+            <feather-icon icon="Trash2Icon" />
+          </b-button>
         </template>
       </b-table>
     </div>
@@ -44,9 +49,8 @@
 
 <script>
 import {
-  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BBadge,
+  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton,
 } from 'bootstrap-vue'
-import { ref } from '@vue/composition-api'
 import store from '@/store'
 import AddDeviceModal from './AddDeviceModal.vue'
 
@@ -57,26 +61,12 @@ export default {
     BCardSubTitle,
     BTable,
     BFormCheckbox,
-    BBadge,
+    BButton,
     'add-device-modal': AddDeviceModal,
-  },
-  setup() {
-    const deviceData = ref(null)
-    store.dispatch('device/fetchDevices', { userId: store.state.users.user._id })
-      .then(response => {
-        deviceData.value = response.data
-        // console.log(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-    return {
-      deviceData,
-    }
   },
   data() {
     return {
+      deviceData: [],
       fields: [
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'housingId.name', label: '함체 이름', sortable: true },
@@ -99,15 +89,52 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
+        { key: 'action', label: '삭제' },
         // { key: 'show_details', label: 'details' },
       ],
       selected: [],
     }
   },
+  created() {
+    this.initData()
+  },
   methods: {
     onRowSelected(items) {
       this.selected = items
-      // console.log(this.selected)
+    },
+
+    initData() {
+      store.dispatch('device/fetchDevices', { userId: store.state.users.user._id })
+        .then(response => {
+          this.deviceData = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+
+    remove(row) {
+      this.$bvModal
+        .msgBoxConfirm('통신 장비를 정말 삭제하시겠습니까?', {
+          title: '통신 장비 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: '삭제',
+          cancelTitle: '취소',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('device/deleteDevice', { id: row.item._id })
+              .then(() => {
+                this.initData()
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
     },
   },
 }
