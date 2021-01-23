@@ -9,13 +9,13 @@ export default [
     action: 'read',
     resource: 'User',
   },
-  {
-    title: 'CCTV',
-    route: 'cctv',
-    icon: 'VideoIcon',
-    action: 'read',
-    resource: 'User',
-  },
+  // {
+  //   title: 'CCTV',
+  //   route: 'cctv',
+  //   icon: 'VideoIcon',
+  //   action: 'read',
+  //   resource: 'User',
+  // },
   {
     title: '원격제어',
     route: 'remote-control',

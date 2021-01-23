@@ -2,6 +2,7 @@
   <div>
     <!-- <cctv-viewer /> -->
     <sensor-monitor />
+    <remote-control />
     <network-state-table />
   </div>
 </template>
@@ -14,6 +15,7 @@
 // import CCTVPlayer from './monitoring/CCTVViewer.vue'
 import SensorMonitor from './monitoring/SensorMonitor.vue'
 import NetworkStateTable from './monitoring/NetworkStateTable.vue'
+import RemoteControl from './remote-control/RemoteControl.vue'
 
 export default {
   components: {
@@ -21,6 +23,7 @@ export default {
     // 'cctv-viewer': CCTVPlayer,
     SensorMonitor,
     NetworkStateTable,
+    RemoteControl,
   },
 }
 </script>

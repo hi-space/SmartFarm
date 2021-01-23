@@ -8,28 +8,19 @@
         lg="6"
         sm="12"
       >
-        <weather-card />
-      </b-col>
-      <b-col
-        lg="6"
-        sm="12"
-      >
         <sensor-state-card />
       </b-col>
       <b-col
         lg="6"
         sm="12"
       >
-        <sensor-graph-card
-          title="온도/습도"
-        />
+        <weather-card />
       </b-col>
       <b-col
-        lg="6"
         sm="12"
       >
         <sensor-graph-card
-          title="암모니아 / 황화수소"
+          title="온도/습도"
         />
       </b-col>
     </b-row>

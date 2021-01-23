@@ -38,7 +38,7 @@
                 class="badge-round text-center"
                 pill
               >
-                센서
+                열기
               </b-badge>
             </div>
 
