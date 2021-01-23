@@ -2,7 +2,7 @@
   <div>
     <!-- Button -->
     <feather-icon
-      icon="SettingsIcon"
+      icon="PlusCircleIcon"
       size="18"
       class="cursor-pointer m-1"
       @click="showModal()"
@@ -236,7 +236,7 @@ export default {
       minValue: 0,
       maxValue: 0,
 
-      selectedButton: '',
+      selectedButton: { text: '중지', value: 'stop' },
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
@@ -283,7 +283,10 @@ export default {
         startTime: this.startTime,
         endTime: this.endTime,
       }
-      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param })
+      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
+        // this.$router.go()
+        this.$emit('submit')
+      })
     },
     submitPeriodic() {
       if (this.selectedTime.value === 'hour') {
@@ -297,7 +300,10 @@ export default {
         command: this.selectedButton,
         periodic: this.inputTime,
       }
-      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param })
+      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
+        // this.$router.go()
+        this.$emit('submit')
+      })
     },
     submitSensor() {
       const param = {
@@ -308,7 +314,10 @@ export default {
         minValue: this.minValue,
         maxValue: this.maxValue,
       }
-      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param })
+      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
+        // this.$router.go()
+        this.$emit('submit')
+      })
     },
   },
 }

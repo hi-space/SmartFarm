@@ -25,7 +25,10 @@
           class="cursor-pointer m-1"
           @click="toggleAuto"
         />
-        <setting-modal :button-id="buttonItem._id" />
+        <setting-modal
+          :button-id="buttonItem._id"
+          @submit="updateSettings()"
+        />
       </div>
     </b-card-header>
 
@@ -48,12 +51,15 @@
 
       <b-alert
         v-if="isAuto"
-        variant="secondary"
+        variant="dark"
         show
       >
         자동화 동작 중
       </b-alert>
-      <automatic-list :button-id="buttonItem._id" />
+      <automatic-list
+        ref="automaticList"
+        :button-id="buttonItem._id"
+      />
     </b-card-body>
 
     <!-- modal -->
@@ -142,12 +148,10 @@ export default {
       autoColor,
     }
   },
-  watch: {
-    selectedButton() {
-      console.log(this.selectedButton)
-    },
-  },
   methods: {
+    updateSettings() {
+      this.$refs.automaticList.initSettings()
+    },
     getDateString() {
       return getDateString(this.buttonItem.workingTime)
     },

@@ -6,7 +6,7 @@
       block
       @click="toggleSettingList"
     >
-      자동화 동작
+      자동화 동작 목록
     </b-button>
 
     <!-- collapse -->
@@ -19,6 +19,7 @@
         v-model="settingList"
         class="list-group list-group-flush cursor-move"
         tag="ul"
+        :disabled="!isEditing"
       >
         <transition-group
           type="transition"
@@ -61,10 +62,9 @@
                 class="badge-round text-center"
                 pill
               >
-                {{ listItem.command }}
+                {{ getCommand(listItem.command) }}
               </b-badge>
             </div>
-
             <div class="justify-content-between align-items-center">
               <b-badge
                 v-for="item in listItem.days"
@@ -76,10 +76,35 @@
                 {{ getDays(item) }}
               </b-badge>
             </div>
+            <div
+              v-if="isEditing === true"
+              class="justify-content-between align-items-center"
+            >
+              <hr>
+              <b-button
+                variant="outline-danger"
+                size="sm"
+                block
+                @click="remove(listItem._id)"
+              >
+                삭제
+              </b-button>
+            </div>
 
           </b-list-group-item>
         </transition-group>
       </draggable>
+
+      <b-button
+        v-if="settingList.length > 0"
+        :variant="toggleEditColor"
+        size="sm"
+        block
+        class="mt-1"
+        @click="toggleEdit"
+      >
+        {{ toggleEditText }}
+      </b-button>
 
     </b-collapse>
   </div>
@@ -111,16 +136,18 @@ export default {
     return {
       settingList: [],
       modeColor: 'light-primary',
+      isEditing: false,
+      toggleEditText: '자동화 동작 순서 편집',
+      toggleEditColor: 'outline-secondary',
     }
   },
   created() {
-    this.getSettings()
+    this.initSettings()
   },
   methods: {
-    async getSettings() {
+    async initSettings() {
       await store.dispatch('button/fetchSettings', { id: this.buttonId }).then(result => {
         this.settingList = result.data.autoSettings
-        console.log(this.settingList)
       })
     },
 
@@ -147,9 +174,7 @@ export default {
     },
 
     getTime(time) {
-      console.log(Date(time))
       const splited = time.split(':')
-      console.log(splited)
       return `${splited[0]}시 ${splited[1]}분`
     },
 
@@ -163,12 +188,57 @@ export default {
       return `${time}분`
     },
 
-    getSensor(sensor) {
-      return `${sensor}가`
+    getCommand(command) {
+      if (command === 'open') {
+        return '열기'
+      }
+      if (command === 'stop') {
+        return '중지'
+      }
+      if (command === 'close') {
+        return '닫기'
+      }
+      return ''
     },
 
     toggleSettingList() {
       this.$refs.autoSettings.show = !this.$refs.autoSettings.show
+    },
+
+    toggleEdit() {
+      this.isEditing = !this.isEditing
+
+      if (this.isEditing) {
+        this.toggleEditColor = 'outline-warning'
+        this.toggleEditText = '수정 완료'
+      } else {
+        this.toggleEditColor = 'outline-dark'
+        this.toggleEditText = '자동화 동작 순서 편집'
+      }
+    },
+
+    remove(id) {
+      this.$bvModal
+        .msgBoxConfirm('자동화 설정을 정말 삭제하시겠습니까?', {
+          title: '자동화 설정 삭제',
+          size: 'sm',
+          okVariant: 'danger',
+          okTitle: '삭제',
+          cancelTitle: '취소',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then(value => {
+          if (value === true) {
+            store.dispatch('button/deleteSetting', { buttonId: this.buttonId, settingId: id })
+              .then(() => {
+                this.initSettings()
+              }).catch(error => {
+                console.log(error)
+              })
+          }
+        })
     },
   },
 }

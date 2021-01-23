@@ -36,5 +36,9 @@ export default {
       const result = await axios.get(`/button/${id}/setting`)
       return result
     },
+    async deleteSetting(ctx, { buttonId, settingId }) {
+      const result = await axios.delete(`/button/${buttonId}/setting/${settingId}`)
+      return result
+    },
   },
 }
