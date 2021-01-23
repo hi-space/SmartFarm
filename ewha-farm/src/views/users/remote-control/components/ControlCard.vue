@@ -41,6 +41,7 @@
 
       <b-form-group>
         <b-form-radio-group
+          v-if="!isAuto"
           v-model="selectedButton"
           button-variant="outline-primary"
           :options="buttonOptions"
@@ -127,7 +128,6 @@ export default {
       isAlert: true,
       alertIcon: 'BellIcon',
       alertColor: 'text-warning',
-      selectedButton: '',
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
@@ -140,13 +140,29 @@ export default {
   },
   setup(props) {
     const buttonItem = props.item
-    const { isAuto } = buttonItem
+    const { command, isAuto } = buttonItem
     const autoColor = isAuto ? 'text-danger' : 'text-musted'
+    const selectedButton = command
     return {
       buttonItem,
       isAuto,
       autoColor,
+      selectedButton,
     }
+  },
+  watch: {
+    selectedButton(newVal) {
+      const param = {
+        command: newVal,
+      }
+
+      store.dispatch('button/command', { id: this.buttonItem._id, queryBody: param })
+        .then(() => {
+          this.updateData()
+        }).catch(error => {
+          console.log(error)
+        })
+    },
   },
   methods: {
     updateSettings() {

@@ -200,7 +200,7 @@ export default {
   },
   data() {
     return {
-      selectedDay: [],
+      selectedDay: [0, 1, 2, 3, 4, 5, 6],
       dayOptions: [
         { text: '월', value: 0 },
         { text: '화', value: 1 },
@@ -236,7 +236,7 @@ export default {
       minValue: 0,
       maxValue: 0,
 
-      selectedButton: { text: '중지', value: 'stop' },
+      selectedButton: 'stop',
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
@@ -260,7 +260,7 @@ export default {
       this.$refs.settingModal.show()
     },
     reset() {
-      this.selectedDay = []
+      this.selectedDay = [0, 1, 2, 3, 4, 5, 6]
       this.selectedMode = ''
       this.startTime = '00:00'
       this.endTime = '00:00'
@@ -268,6 +268,7 @@ export default {
       this.selectedSensor = ''
       this.minValue = 0
       this.maxValue = 0
+      this.selectedButton = 'stop'
       this.getSensorOptions()
     },
     submit() {
@@ -284,7 +285,6 @@ export default {
         endTime: this.endTime,
       }
       store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
-        // this.$router.go()
         this.$emit('submit')
       })
     },
@@ -301,7 +301,6 @@ export default {
         periodic: this.inputTime,
       }
       store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
-        // this.$router.go()
         this.$emit('submit')
       })
     },
@@ -315,7 +314,6 @@ export default {
         maxValue: this.maxValue,
       }
       store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
-        // this.$router.go()
         this.$emit('submit')
       })
     },

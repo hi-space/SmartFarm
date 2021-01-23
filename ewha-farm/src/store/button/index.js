@@ -40,5 +40,10 @@ export default {
       const result = await axios.delete(`/button/${buttonId}/setting/${settingId}`)
       return result
     },
+
+    async command(ctx, { id, queryBody }) {
+      const result = await axios.post(`/button/${id}/command`, queryBody)
+      return result
+    },
   },
 }
