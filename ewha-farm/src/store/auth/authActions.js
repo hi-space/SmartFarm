@@ -10,7 +10,6 @@ export default {
         phone: payload.phone,
         password: payload.password,
       }).then(response => {
-        console.log(response)
         if (response.status === 200) {
           const { userData } = response.data
 

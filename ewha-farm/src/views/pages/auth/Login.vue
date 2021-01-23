@@ -126,6 +126,7 @@
 </template>
 
 <script>
+import { token } from '@/services/messaging'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
   BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardText, BInputGroup, BInputGroupAppend,
@@ -133,6 +134,7 @@ import {
 import Logo from '@core/layouts/components/Logo.vue'
 import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/forms'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
   components: {
@@ -176,7 +178,22 @@ export default {
 
           this.$store.dispatch('auth/login', payload)
             .then(result => {
-              console.log(result)
+              const params = {
+                token: token.value,
+              }
+              this.$store.dispatch('users/addDeviceToken', { id: result.id, queryBody: params }).then(() => {
+                localStorage.setItem('deviceToken', token.value)
+              })
+              this.$toast({
+                component: ToastificationContent,
+                position: 'top-right',
+                props: {
+                  title: `환영합니다 ${result.name}님`,
+                  icon: 'CoffeeIcon',
+                  variant: 'success',
+                  text: '농장을 선택해주세요',
+                },
+              })
             }).catch(err => {
               console.log(err)
               this.$bvModal

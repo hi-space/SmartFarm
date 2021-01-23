@@ -40,5 +40,15 @@ export default {
       const result = await axios.delete(`/users/${id}`)
       return result
     },
+
+    async addDeviceToken(ctx, { id, queryBody }) {
+      const result = await axios.post(`/users/${id}/token`, queryBody)
+      return result
+    },
+
+    async deleteDeviceToken(ctx, { id, tokenId }) {
+      const result = await axios.delete(`/users/${id}/token/${tokenId}`)
+      return result
+    },
   },
 }

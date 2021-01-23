@@ -22,7 +22,7 @@ import { watch } from '@vue/composition-api'
 import useAppConfig from '@core/app-config/useAppConfig'
 
 import { useWindowSize, useCssVar } from '@vueuse/core'
-
+import { messaging } from '@/services/messaging'
 import store from '@/store'
 
 const LayoutVertical = () => import('@/layouts/vertical/LayoutVertical.vue')
@@ -95,6 +95,10 @@ export default {
     const { width: windowWidth } = useWindowSize()
     watch(windowWidth, val => {
       store.commit('app/UPDATE_WINDOW_WIDTH', val)
+    })
+
+    messaging.onMessage(payload => {
+      console.log(payload)
     })
 
     return {

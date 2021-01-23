@@ -91,7 +91,13 @@ export default {
     }
   },
   methods: {
-    logout() {
+    async logout() {
+      this.$store.dispatch('users/deleteDeviceToken',
+        {
+          id: this.$store.getters['users/getUserId'],
+          tokenId: localStorage.getItem('deviceToken'),
+        })
+
       // Remove userData from localStorage
       // ? You just removed token from localStorage. If you like, you can also make API call to backend to blacklist used token
       localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName)

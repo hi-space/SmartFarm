@@ -28,7 +28,7 @@ export default {
     }
   },
   beforeMount() {
-    if (store.state.farm.farms.length > 0) {
+    if (store.getters['farm/getFarmSelect']) {
       router.push({ name: 'dashboard' })
     } else {
       this.text = '농장을 등록해주세요'
