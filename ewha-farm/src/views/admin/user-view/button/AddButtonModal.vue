@@ -173,7 +173,7 @@ export default {
 
     createButton() {
       const payload = {
-        userId: this.$store.state.users.user._id,
+        userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,

@@ -7,6 +7,12 @@ export default {
     farm: null,
   },
   getters: {
+    getFarmId(state) {
+      if (state.farm === null) {
+        return sessionStorage.getItem('selectedFarmId')
+      }
+      return state.farm._id
+    },
     getFarmSelect(state) {
       const farmList = state.farms
       return farmList.map((obj => {
@@ -23,6 +29,7 @@ export default {
     },
     SET_FARM(state, farm) {
       state.farm = farm
+      sessionStorage.setItem('selectedFarmId', farm._id)
     },
     CLEAR_FARM(state) {
       state.farm = null

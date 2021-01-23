@@ -71,7 +71,7 @@ export default {
   methods: {
     async getSensor() {
       const result = await store.dispatch('sensor/fetchSensors',
-        { userId: store.state.users.user._id, farmId: store.state.farm.farm._id })
+        { userId: store.getters['users/getUserId'], farmId: store.getters['farm/getFarmId'] })
       const sensorData = result.data
 
       sensorData.forEach(el => {

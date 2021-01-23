@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     initData() {
-      store.dispatch('button/fetchButtons', { userId: store.state.users.user._id })
+      store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
         .then(response => {
           this.buttonData = response.data
         })

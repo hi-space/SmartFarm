@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     initData() {
-      store.dispatch('cctv/fetchCCTVs', { userId: store.state.users.user._id })
+      store.dispatch('cctv/fetchCCTVs', { userId: store.getters['users/getUserId'] })
         .then(response => {
           this.cctvData = response.data
         })

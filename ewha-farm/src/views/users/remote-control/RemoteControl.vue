@@ -36,7 +36,7 @@ export default {
   methods: {
     async initData() {
       const result = await store.dispatch('button/fetchButtons',
-        { userId: store.state.users.user._id, farmId: store.state.farm.farm._id })
+        { userId: store.getters['users/getUserId'], farmId: store.getters['farm/getFarmId'] })
       this.buttonItems = result.data
     },
   },

@@ -104,7 +104,7 @@ export default {
     },
 
     initData() {
-      store.dispatch('device/fetchDevices', { userId: store.state.users.user._id })
+      store.dispatch('device/fetchDevices', { userId: store.getters['users/getUserId'] })
         .then(response => {
           this.deviceData = response.data
         })

@@ -100,6 +100,9 @@ export default {
       // Remove userData from localStorage
       localStorage.removeItem('userData')
 
+      localStorage.clear()
+      sessionStorage.clear()
+
       // Reset ability
       this.$ability.update(initialAbility)
 

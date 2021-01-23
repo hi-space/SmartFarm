@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- <cctv-viewer /> -->
-    <sensor-monitor />
     <remote-control />
+    <sensor-monitor />
     <network-state-table />
   </div>
 </template>

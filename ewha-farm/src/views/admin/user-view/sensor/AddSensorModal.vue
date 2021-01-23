@@ -106,7 +106,7 @@ export default {
     createSensor() {
       console.log(this.type.value)
       const payload = {
-        userId: this.$store.state.users.user._id,
+        userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
         type: this.type.value,
         name: this.sensorName,

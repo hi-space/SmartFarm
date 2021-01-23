@@ -123,7 +123,7 @@ export default {
       this.selected = items
     },
     initData() {
-      store.dispatch('housing/fetchHousings', { userId: store.state.users.user._id })
+      store.dispatch('housing/fetchHousings', { userId: store.getters['users/getUserId'] })
         .then(response => {
           this.housingData = response.data
         })

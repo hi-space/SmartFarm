@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     initData() {
-      store.dispatch('farm/fetchFarms', { userId: store.state.users.user._id })
+      store.dispatch('farm/fetchFarms', { userId: store.getters['users/getUserId'] })
         .then(response => {
           this.farmData = response.data
         })

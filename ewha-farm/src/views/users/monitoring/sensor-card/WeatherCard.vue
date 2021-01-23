@@ -24,7 +24,7 @@
           height="140"
         />
         <h2 class="display-3 font-weight-bolder mt-2"> {{ temp }}
-          <sup>o</sup>
+          <sup>°</sup>
         </h2>
       </b-col>
     </b-row>

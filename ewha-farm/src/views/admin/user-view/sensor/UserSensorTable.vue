@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     initData() {
-      store.dispatch('sensor/fetchSensors', { userId: store.state.users.user._id })
+      store.dispatch('sensor/fetchSensors', { userId: store.getters['users/getUserId'] })
         .then(response => {
           this.sensorData = response.data
         })

@@ -6,13 +6,17 @@ export default {
     user: null,
   },
   getters: {
-    getUser(state) {
-      return state.user
+    getUserId(state) {
+      if (state.user === null) {
+        return sessionStorage.getItem('selectedUserId')
+      }
+      return state.user._id
     },
   },
   mutations: {
     SET_USER(state, user) {
       state.user = user
+      sessionStorage.setItem('selectedUserId', user._id)
     },
     CLEAR_USER(state) {
       state.user = null

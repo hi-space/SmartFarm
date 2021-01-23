@@ -74,7 +74,7 @@ export default {
   methods: {
     createFarm() {
       const postBody = {
-        userId: store.state.users.user._id,
+        userId: store.getters['users/getUserId'],
         name: this.name,
         info: this.info,
       }
