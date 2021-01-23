@@ -26,5 +26,15 @@ export default {
       const result = await axios.delete(`/button/${id}`)
       return result
     },
+
+    async addNewSetting(ctx, { id, queryBody }) {
+      const result = await axios.post(`/button/${id}/setting`, queryBody)
+      return result
+    },
+
+    async fetchSettings(ctx, { id }) {
+      const result = await axios.get(`/button/${id}/setting`)
+      return result
+    },
   },
 }

@@ -25,7 +25,7 @@
           class="cursor-pointer m-1"
           @click="toggleAuto"
         />
-        <setting-modal />
+        <setting-modal :button-id="buttonItem._id" />
       </div>
     </b-card-header>
 
@@ -53,7 +53,7 @@
       >
         자동화 동작 중
       </b-alert>
-      <automatic-list :item="buttonItem" />
+      <automatic-list :button-id="buttonItem._id" />
     </b-card-body>
 
     <!-- modal -->

@@ -98,7 +98,12 @@ export default {
             return ''
           },
         },
-        { key: 'name', label: '센서 이름', sortable: true },
+        {
+          key: 'name',
+          label: '센서 이름',
+          sortable: true,
+          isRowHeader: true,
+        },
         {
           label: '생성일자',
           key: 'createdAt',

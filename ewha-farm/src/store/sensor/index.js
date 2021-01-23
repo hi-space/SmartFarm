@@ -6,12 +6,28 @@ export default {
     sensors: [],
   },
   getters: {
+    getSensorSelect(state) {
+      const sensorList = state.sensors
+      return sensorList.map((obj => {
+        const rObj = {}
+        rObj.label = obj.name
+        rObj.value = obj._id
+        return rObj
+      }))
+    },
   },
   mutations: {
+    SET_SENSOR(state, sensors) {
+      state.sensors = sensors
+    },
+    CLEAR_SENSOR(state) {
+      state.sensors = null
+    },
   },
   actions: {
-    async fetchSensors(ctx, queryParams) {
+    async fetchSensors({ commit }, queryParams) {
       const result = await axios.get('/sensor', { params: queryParams })
+      commit('SET_SENSOR', result.data)
       return result
     },
     async fetchSensor(ctx, { id }) {

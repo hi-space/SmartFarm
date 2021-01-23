@@ -42,6 +42,7 @@
               v-model="selectedMode"
               :options="modeOptions"
               placeholder="선택해주세요"
+              :clearable="false"
             />
           </b-form-group>
         </b-col>
@@ -96,8 +97,8 @@
             <b-form-spinbutton
               id="working-time"
               v-model="inputTime"
-              min="5"
-              step="5"
+              min="1"
+              step="1"
               cols="6"
             />
           </b-form-group>
@@ -112,6 +113,7 @@
               id="working-time-unit"
               v-model="selectedTime"
               :options="timeOptions"
+              :clearable="false"
             />
           </b-form-group>
         </b-col>
@@ -171,6 +173,7 @@
 </template>
 
 <script>
+import store from '@/store'
 import {
   BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormTimepicker, BFormSpinbutton, BFormInput, BFormRadioGroup,
 } from 'bootstrap-vue'
@@ -189,17 +192,23 @@ export default {
     BFormInput,
     BFormRadioGroup,
   },
+  props: {
+    buttonId: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       selectedDay: [],
       dayOptions: [
-        { text: '월', value: 'mon' },
-        { text: '화', value: 'tue' },
-        { text: '수', value: 'wed' },
-        { text: '목', value: 'thu' },
-        { text: '금', value: 'fri' },
-        { text: '토', value: 'sat' },
-        { text: '일', value: 'sun' },
+        { text: '월', value: 0 },
+        { text: '화', value: 1 },
+        { text: '수', value: 2 },
+        { text: '목', value: 3 },
+        { text: '금', value: 4 },
+        { text: '토', value: 5 },
+        { text: '일', value: 6 },
       ],
       modeOptions: [
         { label: '시간 설정', value: 'time' },
@@ -211,7 +220,7 @@ export default {
       // time
       startTime: '00:00',
       endTime: '00:00',
-      inputTime: 5,
+      inputTime: 1,
       selectedTime: { label: '분', value: 'min' },
       timeOptions: [
         { label: '분', value: 'min' },
@@ -221,17 +230,13 @@ export default {
 
       // periodic
       selectedSensor: '',
-      sensorOptions: [
-        { label: '우적 센서', value: 'rain' },
-        { label: '온도 센서', value: 'temp' },
-        { label: '습도 센서', value: 'humi' },
-      ],
+      sensorOptions: [],
 
       // sensor
       minValue: 0,
       maxValue: 0,
 
-      selectedButton: 'stop',
+      selectedButton: '',
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
@@ -239,7 +244,18 @@ export default {
       ],
     }
   },
+  created() {
+    this.getSensorOptions()
+  },
   methods: {
+    async getSensorOptions() {
+      if (store.state.sensor.sensors.length < 0) {
+        await store.dispatch('sensor/fetchSensors',
+          { userId: store.state.users.user._id, farmId: store.state.farm.farm._id })
+      }
+      this.sensorOptions = await store.getters['sensor/getSensorSelect']
+    },
+
     showModal() {
       this.$refs.settingModal.show()
     },
@@ -248,10 +264,11 @@ export default {
       this.selectedMode = ''
       this.startTime = '00:00'
       this.endTime = '00:00'
-      this.inputTime = 5
+      this.inputTime = 1
       this.selectedSensor = ''
       this.minValue = 0
       this.maxValue = 0
+      this.getSensorOptions()
     },
     submit() {
       if (this.selectedMode.value === 'time') this.submitTime()
@@ -259,13 +276,39 @@ export default {
       else if (this.selectedMode.value === 'sensor') this.submitSensor()
     },
     submitTime() {
-      console.log('submitTime')
+      const param = {
+        mode: this.selectedMode.value,
+        days: this.selectedDay,
+        command: this.selectedButton,
+        startTime: this.startTime,
+        endTime: this.endTime,
+      }
+      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param })
     },
     submitPeriodic() {
-      console.log('submitPeriodic')
+      if (this.selectedTime.value === 'hour') {
+        this.inputTime *= 60
+      } else if (this.selectedTime.value === 'day') {
+        this.inputTime *= 60 * 24
+      }
+      const param = {
+        mode: this.selectedMode.value,
+        days: this.selectedDay,
+        command: this.selectedButton,
+        periodic: this.inputTime,
+      }
+      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param })
     },
     submitSensor() {
-      console.log('submitSensor')
+      const param = {
+        mode: this.selectedMode.value,
+        days: this.selectedDay.sort((a, b) => a - b),
+        command: this.selectedButton,
+        sensorId: this.selectedSensor.value,
+        minValue: this.minValue,
+        maxValue: this.maxValue,
+      }
+      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param })
     },
   },
 }
