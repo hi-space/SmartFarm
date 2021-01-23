@@ -5,10 +5,6 @@
       show
     >
       <h2 class="text-primary text-center">
-        <feather-icon
-          class="mr-25"
-          icon="AlertCircleIcon"
-        />
         <span v-text="text" />
       </h2>
     </b-alert>
@@ -32,7 +28,7 @@ export default {
     }
   },
   beforeMount() {
-    if (typeof store.state.farm.farm !== 'undefined') {
+    if (store.state.farm.farms.length > 0) {
       router.push({ name: 'dashboard' })
     } else {
       this.text = '농장을 등록해주세요'

@@ -53,7 +53,7 @@
       >
         자동화 동작 중
       </b-alert>
-      <automatic-list />
+      <automatic-list :item="buttonItem" />
     </b-card-body>
 
     <!-- modal -->

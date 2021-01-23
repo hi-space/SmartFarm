@@ -13,6 +13,7 @@
     <b-collapse
       ref="autoSettings"
       class="mt-2"
+      visible
     >
       <draggable
         v-model="settingList"
@@ -37,7 +38,7 @@
                 class="badge-round text-center"
                 pill
               >
-                Warning
+                센서
               </b-badge>
             </div>
 
@@ -63,6 +64,12 @@ export default {
     BListGroupItem,
     BBadge,
     draggable,
+  },
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
