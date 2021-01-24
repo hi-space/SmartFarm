@@ -26,7 +26,8 @@
           <b-card-title> <b>{{ $attrs.title }} </b> </b-card-title>
           <b-card-sub-title
             v-if="$attrs['sub-title']"
-            class="mt-1">
+            class="mt-1"
+          >
             {{ $attrs['sub-title'] }}
           </b-card-sub-title>
         </div>

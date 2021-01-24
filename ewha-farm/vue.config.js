@@ -12,6 +12,11 @@ module.exports = {
     },
   },
   configureWebpack: {
+    devServer: {
+      host: 'yoo.hispace.kr',
+      port: '8081',
+      overlay: false,
+    },
     resolve: {
       alias: {
         '@themeConfig': path.resolve(__dirname, 'themeConfig.js'),

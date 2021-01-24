@@ -5,10 +5,14 @@
       show
     >
       <div class="alert-heading">
-        <h3 class="text-primary"> <strong> 문의사항이 있으면 <br> 담당자에게 연락주세요 </strong> </h3>
+        <h3 class="text-primary">
+          <strong> 문의사항이 있으면 <br> 담당자에게 연락주세요 </strong>
+        </h3>
       </div>
       <div class="alert-body">
-        <h4 class="text-primary"> <strong> {{ manager_name }} </strong> {{ manager_phone }} </h4>
+        <h4 class="text-primary">
+          <strong> {{ manager_name }} </strong> {{ manager_phone }}
+        </h4>
       </div>
     </b-alert>
   </div>
