@@ -13,8 +13,6 @@ module.exports = {
   },
   configureWebpack: {
     devServer: {
-      host: 'yoo.hispace.kr',
-      port: '8081',
       overlay: false,
     },
     resolve: {
