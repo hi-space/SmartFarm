@@ -8,13 +8,13 @@
         lg="6"
         sm="12"
       >
-        <sensor-state-card />
+        <weather-card />
       </b-col>
       <b-col
         lg="6"
         sm="12"
       >
-        <weather-card />
+        <sensor-state-card />
       </b-col>
       <b-col
         sm="12"
