@@ -70,43 +70,6 @@ export default {
       // this.player.load()
       this.$refs.videoPlayer.player.play()
     },
-    switchPlayer() {
-      this.playVideo(this.src)
-    },
-    onPlayerPause(player) {
-      console.log('player pause!', player)
-    },
-    onPlayerEnded(player) {
-      console.log('player ended!', player)
-    },
-    onPlayerLoadeddata(player) {
-      console.log('player Loadeddata!', player)
-    },
-    onPlayerWaiting(player) {
-      console.log('player Waiting!', player)
-    },
-    onPlayerPlaying(player) {
-      console.log('player Playing!', player)
-    },
-    onPlayerTimeupdate(player) {
-      console.log('player Timeupdate!', player.currentTime())
-    },
-    onPlayerCanplay(player) {
-      console.log('player Canplay!', player)
-    },
-    onPlayerCanplaythrough(player) {
-      console.log('player Canplaythrough!', player)
-    },
-    // or listen state event
-    playerStateChanged(playerCurrentState) {
-      console.log('player current update state', playerCurrentState)
-    },
-    // player is ready
-    playerReadied(player) {
-      // seek to 10s
-      // player.currentTime(10)
-      console.log('example 01: the player is readied', player)
-    },
   },
 }
 </script>

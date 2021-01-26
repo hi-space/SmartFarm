@@ -29,6 +29,8 @@
             v-for="listItem in settingList"
             :key="listItem._id"
             tag="li"
+            :variant="listItem.isOn ? '' : 'secondary'"
+            :class="listItem.isOn ? '' : 'text-secondary'"
           >
             <div class="d-flex justify-content-between align-items-center">
               <b-badge
@@ -58,7 +60,7 @@
                 최소 <strong> {{ listItem.minValue }} </strong> ~ 최대 <strong> {{ listItem.maxValue }} </strong> 이면
               </b-card-text>
               <b-badge
-                variant="light-warning"
+                variant="light-primary"
                 class="badge-round text-center"
                 pill
               >
@@ -76,11 +78,11 @@
                 {{ getDays(item) }}
               </b-badge>
             </div>
+            <hr v-if="isEditing === true">
             <div
               v-if="isEditing === true"
-              class="justify-content-between align-items-center"
+              class="d-flex justify-content-between align-items-center"
             >
-              <hr>
               <b-button
                 variant="outline-danger"
                 size="sm"
@@ -89,6 +91,11 @@
               >
                 삭제
               </b-button>
+              <b-form-checkbox
+                v-model="listItem.isOn"
+                class="custom-control-primary ml-1"
+                switch
+              />
             </div>
 
           </b-list-group-item>
@@ -105,7 +112,6 @@
       >
         {{ toggleEditText }}
       </b-button>
-
     </b-collapse>
   </div>
 </template>
@@ -113,7 +119,7 @@
 <script>
 import store from '@/store'
 import {
-  BCardText, BCollapse, BButton, BListGroupItem, BBadge,
+  BCardText, BCollapse, BButton, BListGroupItem, BBadge, BFormCheckbox,
 } from 'bootstrap-vue'
 import draggable from 'vuedraggable'
 
@@ -124,6 +130,7 @@ export default {
     BButton,
     BListGroupItem,
     BBadge,
+    BFormCheckbox,
     draggable,
   },
   props: {
@@ -137,7 +144,7 @@ export default {
       settingList: [],
       modeColor: 'light-primary',
       isEditing: false,
-      toggleEditText: '자동화 동작 순서 편집',
+      toggleEditText: '자동화 동작 편집',
       toggleEditColor: 'outline-secondary',
     }
   },
@@ -213,7 +220,9 @@ export default {
         this.toggleEditText = '수정 완료'
       } else {
         this.toggleEditColor = 'outline-dark'
-        this.toggleEditText = '자동화 동작 순서 편집'
+        this.toggleEditText = '자동화 동작 편집'
+
+        store.dispatch('button/setSettings', { id: this.buttonId, queryBody: this.settingList })
       }
     },
 
