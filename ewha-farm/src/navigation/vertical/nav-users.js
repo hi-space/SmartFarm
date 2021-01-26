@@ -16,13 +16,13 @@ export default [
     action: 'read',
     resource: 'User',
   },
-  // {
-  //   title: 'CCTV',
-  //   route: 'cctv',
-  //   icon: 'VideoIcon',
-  //   action: 'read',
-  //   resource: 'User',
-  // },
+  {
+    title: 'CCTV',
+    route: 'cctv',
+    icon: 'VideoIcon',
+    action: 'read',
+    resource: 'User',
+  },
   {
     title: '자동설정',
     route: 'remote-setting',

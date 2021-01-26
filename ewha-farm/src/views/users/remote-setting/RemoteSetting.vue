@@ -1,5 +1,6 @@
 <template>
   <b-card>
+    <div id="videoWrapper" />
     <b-card-title class="text-center">
       <h3> <strong> 자동화 설정 </strong> </h3>
     </b-card-title>
@@ -170,6 +171,7 @@
   </b-card>
 </template>
 
+<script src="https://cdn.jsdelivr.net/npm/jsmpeg-player@3/build/jsmpeg-player.min.js"></script>
 <script>
 import store from '@/store'
 import {
@@ -177,6 +179,7 @@ import {
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+import 'jsmpeg-player'
 
 export default {
   components: {
@@ -238,6 +241,9 @@ export default {
         { text: '닫기', value: 'close' },
       ],
     }
+  },
+  setup() {
+    JSMpeg.VideoElement('#videoWrapper', 'D://rtsp/stream/0.ts')
   },
   created() {
     this.getSensorOptions()

@@ -815,7 +815,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.11.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.11.0", "@babel/runtime@^7.11.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -866,6 +866,16 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@casl/vue/-/vue-1.1.1.tgz#e3aa3125b17ec83cabfdd8d3b5029cc57981d54e"
   integrity sha512-lJnPGJ2sdid22IGNPegWsMH0136WSMKZqqZb2YjLWL/vsRvw+wuLZE+yaR7enEfETmH5KZE55WAfXpyZgy99hQ==
+
+"@cycjimmy/awesome-js-funcs@^1.0.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@cycjimmy/awesome-js-funcs/-/awesome-js-funcs-1.1.1.tgz#a4d4fdc8ebf55f5f1a723b45276feea41f9af454"
+  integrity sha512-3e9BFAW8SWZ69frWE9a/QkKWM1+rcqiDsVwr1e0eVqVt5Fet1JtpMD4A+reCb6PUBCvFiSVrHDtDyB+Rxoxm0Q==
+
+"@cycjimmy/sass-lib@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@cycjimmy/sass-lib/-/sass-lib-0.1.0.tgz#4b534ce1ba2e61f0efb184c42a64e74dd60fe952"
+  integrity sha512-Oli6KvYFIpvRxrD8ntfETMi+YtRQEgrZkFv6JPs9PING/B1kr8AhBNbcw9MklA2HapSX70/3dn3BmsVfLBzEjg==
 
 "@dabh/diagnostics@^2.0.2":
   version "2.0.2"
@@ -7020,6 +7030,14 @@ jsesc@~0.5.0:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
 
+jsmpeg-player@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/jsmpeg-player/-/jsmpeg-player-3.0.3.tgz#ed7ee46197cd749729c237359685f02566fac227"
+  integrity sha512-23lQWpf9lWOVCibVevQRqRXKex++QTB/JPcJCdCGf3AzdcJVB7L4io5EXfST80RMOGt9p1dcAvJDOKhqOUYl+Q==
+  dependencies:
+    "@cycjimmy/awesome-js-funcs" "^1.0.1"
+    "@cycjimmy/sass-lib" "^0.1.0"
+
 json-bigint@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/json-bigint/-/json-bigint-1.0.0.tgz#ae547823ac0cad8398667f8cd9ef4730f5b01ff1"
@@ -8061,6 +8079,13 @@ mux.js@5.6.7:
   version "5.6.7"
   resolved "https://registry.yarnpkg.com/mux.js/-/mux.js-5.6.7.tgz#d39fc85cded5a1257de9f6eeb5cf1578c4a63eb8"
   integrity sha512-YSr6B8MUgE4S18MptbY2XM+JKGbw9JDkgs7YkuE/T2fpDKjOhZfb/nD6vmsVxvLYOExWNaQn1UGBp6PGsnTtew==
+
+mux.js@^5.9.1:
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/mux.js/-/mux.js-5.9.1.tgz#7cea6ff5d2a4a0c751818f50ba8868410f98c67c"
+  integrity sha512-EWDCIemLUoTriIQpEHEfKO8hldujpiBYIqC6ilsMaNbd+1hhGoh/w1MZIhP5wkq+tkS+HfnrnNtyfamyXWfnPg==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
 
 mz@^2.4.0:
   version "2.7.0"
@@ -11610,7 +11635,7 @@ verror@1.10.0:
     videojs-font "3.2.0"
     videojs-vtt.js "^0.15.2"
 
-videojs-contrib-hls@^5.12.2:
+videojs-contrib-hls@^5.12.2, videojs-contrib-hls@^5.15.0:
   version "5.15.0"
   resolved "https://registry.yarnpkg.com/videojs-contrib-hls/-/videojs-contrib-hls-5.15.0.tgz#fe4957367e5d68b7d23f78ed32e37a9dd892a0a8"
   integrity sha512-18zbMYZ0XRBKTPEayA9bFTWWrqhT9b4G8+zf0czJLD7Epe5PcK1I/3dflTHQeQ5rwlWir+/XnFU3sMg/B2MMcw==

@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-alert */
 import { ref } from '@vue/composition-api'
-import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 import firebase from 'firebase/app'
 import 'firebase/messaging'
 
@@ -31,17 +30,6 @@ const token = ref('')
 messaging.getToken().then(currentToken => {
   if (currentToken) {
     token.value = currentToken
-
-    this.$toast({
-      component: ToastificationContent,
-      position: 'top-right',
-      props: {
-        title: 'Welcome',
-        icon: 'CoffeeIcon',
-        variant: 'success',
-        text: 'You have successfully logged in.Now you can start to explore!',
-      },
-    })
   } else {
     console.log('No Instance ID token available. Request permission to generate one.')
   }

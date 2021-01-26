@@ -5,7 +5,7 @@
         md="6"
         sm="12"
       >
-        <cctv-player :src="cctv_url_1" />
+        <cctv-player />
       </b-col>
       <!-- <b-col
         md="6"
@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      cctv_url_1: 'http://vjs.zencdn.net/v/oceans.mp4',
+      cctv_url_1: 'https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8',
     }
   },
 }
