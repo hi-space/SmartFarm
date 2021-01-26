@@ -24,6 +24,11 @@ export default {
           rObj.value = obj
           if (obj === 'curtain') rObj.label = '커튼'
           else if (obj === 'ceiling') rObj.label = '천장'
+          else if (obj === 'feeder') rObj.label = '사료급이기'
+          else if (obj === 'light') rObj.label = '조명'
+          else if (obj === 'fan') rObj.label = '선풍기'
+          else if (obj === 'sprayer') rObj.label = '안개분무기'
+          else if (obj === 'inverter') rObj.label = '인버터'
           return rObj
         }))
     },

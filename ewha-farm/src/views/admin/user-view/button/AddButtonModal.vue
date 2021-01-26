@@ -152,6 +152,7 @@ export default {
         { label: '조명', value: 'light' },
         { label: '선풍기', value: 'fan' },
         { label: '안개분무기', value: 'sprayer' },
+        { label: '인버터', value: 'inverter' },
       ],
       signalTypeSelected: 'Toggle',
       signalTypeOptions: ['Toggle'],

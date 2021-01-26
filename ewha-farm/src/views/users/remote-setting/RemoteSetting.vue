@@ -163,7 +163,9 @@
       v-if="selectedButtonType!=[]"
       class="text-center"
     >
-      <b-form-group>
+      <b-form-group
+        v-if="selectedButtonType.value!=='inverter'"
+      >
         <b-form-radio-group
           v-model="selectedButton"
           button-variant="outline-primary"
@@ -172,8 +174,15 @@
           class="p-1 d-flex"
         />
       </b-form-group>
-    </div>
 
+      <vue-slider
+        v-if="selectedButtonType.value==='inverter'"
+        v-model="sliderValue"
+        class="p-1 mb-2 text-primary"
+        tooltip="always"
+        :tooltip-formatter="`${sliderValue} Hz`"
+      />
+    </div>
     <!-- submit and reset -->
     <b-row v-if="selectedButtons.length !== 0">
       <b-col>
@@ -197,6 +206,7 @@ import store from '@/store'
 import {
   BRow, BCol, BFormGroup, BButton, BFormCheckboxGroup, BCard, BCardTitle, BFormTimepicker, BFormSpinbutton, BFormInput, BFormRadioGroup,
 } from 'bootstrap-vue'
+import VueSlider from 'vue-slider-component'
 import vSelect from 'vue-select'
 import 'vue2-timepicker/dist/VueTimepicker.css'
 
@@ -214,6 +224,7 @@ export default {
     BFormSpinbutton,
     BFormInput,
     BFormRadioGroup,
+    VueSlider,
   },
   data() {
     return {
@@ -259,6 +270,7 @@ export default {
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
       ],
+      sliderValue: 0,
 
       selectedButtonType: '',
       buttonTypeOptions: [],
@@ -343,4 +355,5 @@ export default {
 
 <style lang="scss">
 @import '@core/scss/vue/libs/vue-select.scss';
+@import '@core/scss/vue/libs/vue-slider.scss';
 </style>
