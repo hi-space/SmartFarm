@@ -2,12 +2,49 @@ import axios from '@axios'
 
 export default {
   namespaced: true,
-  state: {},
-  getters: {},
-  mutations: {},
+  state: {
+    buttons: [],
+  },
+  getters: {
+    getButtonCheckbox(state) {
+      const buttonList = state.buttons
+      return buttonList.map((obj => {
+        const rObj = {}
+        rObj.text = obj.name
+        rObj.value = obj._id
+        return rObj
+      }))
+    },
+    getButtonTypes(state) {
+      return state.buttons
+        .map((obj => obj.type))
+        .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
+        .map((obj => {
+          const rObj = {}
+          rObj.value = obj
+          if (obj === 'curtain') rObj.label = '커튼'
+          else if (obj === 'ceiling') rObj.label = '천장'
+          return rObj
+        }))
+    },
+    getButtonInType: state => type => state.buttons
+      .filter((obj => obj.type === type))
+      .map((obj => {
+        const rObj = {}
+        rObj.text = `(${obj.farmId.name}) ${obj.name}`
+        rObj.value = obj._id
+        return rObj
+      })),
+  },
+  mutations: {
+    SET_BUTTONS(state, buttons) {
+      state.buttons = buttons
+    },
+  },
   actions: {
-    async fetchButtons(ctx, queryParams) {
+    async fetchButtons({ commit }, queryParams) {
       const result = await axios.get('/button', { params: queryParams })
+      commit('SET_BUTTONS', result.data)
       return result
     },
     async fetchButton(ctx, { id }) {

@@ -138,9 +138,30 @@
       </b-col>
     </b-row>
 
+    <!-- select button -->
     <div
       v-if="selectedMode"
-      class="text-center m-1"
+      class="text-center"
+    >
+      <hr>
+      <v-select
+        v-model="selectedButtonType"
+        :options="buttonTypeOptions"
+        placeholder="선택해주세요"
+        :clearable="false"
+      />
+
+      <b-form-checkbox-group
+        v-model="selectedButtons"
+        :options="buttonCheckbox"
+        class="d-flex text-center p-3"
+      />
+    </div>
+
+    <!-- button control -->
+    <div
+      v-if="selectedButtonType!=[]"
+      class="text-center"
     >
       <b-form-group>
         <b-form-radio-group
@@ -154,7 +175,7 @@
     </div>
 
     <!-- submit and reset -->
-    <b-row v-if="selectedMode">
+    <b-row v-if="selectedButtons.length !== 0">
       <b-col>
         <b-button
           type="submit"
@@ -238,18 +259,37 @@ export default {
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
       ],
+
+      selectedButtonType: '',
+      buttonTypeOptions: [],
+      buttonCheckbox: [],
+      selectedButtons: [],
     }
+  },
+  watch: {
+    async selectedButtonType() {
+      this.buttonCheckbox = await store.getters['button/getButtonInType'](this.selectedButtonType.value)
+      this.selectedButtons = []
+    },
   },
   created() {
     this.getSensorOptions()
+    this.getButtonCheckbox()
   },
   methods: {
     async getSensorOptions() {
-      if (store.state.sensor.sensors.length < 0) {
+      if (store.state.sensor.sensors.length <= 0) {
         await store.dispatch('sensor/fetchSensors',
           { userId: store.getters['users/getUserId'], farmId: store.getters['farm/getFarmId'] })
       }
       this.sensorOptions = await store.getters['sensor/getSensorSelect']
+    },
+    async getButtonCheckbox() {
+      if (store.state.button.buttons.length <= 0) {
+        await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
+      }
+
+      this.buttonTypeOptions = await store.getters['button/getButtonTypes']
     },
     submit() {
       if (this.selectedMode.value === 'time') this.submitTime()
