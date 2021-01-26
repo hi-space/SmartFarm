@@ -25,10 +25,10 @@
           class="cursor-pointer m-1"
           @click="toggleAuto"
         />
-        <setting-modal
+        <!-- <setting-modal
           :button-id="buttonItem._id"
           @submit="updateSettings()"
-        />
+        /> -->
       </div>
     </b-card-header>
 
@@ -96,7 +96,7 @@ import store from '@/store'
 import { getDateString } from '@core/utils/utils'
 import { heightFade } from '@core/directives/animations'
 import AutomaticList from './AutomaticList.vue'
-import SettingModal from './SettingModal.vue'
+// import SettingModal from './SettingModal.vue'
 
 export default {
   components: {
@@ -111,7 +111,7 @@ export default {
     BFormRadioGroup,
     BCardText,
     AutomaticList,
-    SettingModal,
+    // SettingModal,
   },
   directives: {
     'height-fade': heightFade,
