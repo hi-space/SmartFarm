@@ -69,6 +69,11 @@ export default {
       return result
     },
 
+    async addSettingMany(ctx, { queryBody }) {
+      const result = await axios.post('/button/settings', queryBody)
+      return result
+    },
+
     async addNewSetting(ctx, { id, queryBody }) {
       const result = await axios.post(`/button/${id}/setting`, queryBody)
       return result

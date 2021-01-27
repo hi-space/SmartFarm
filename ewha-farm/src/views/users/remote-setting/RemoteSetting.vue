@@ -149,13 +149,21 @@
         :options="buttonTypeOptions"
         placeholder="선택해주세요"
         :clearable="false"
+        class="mb-1"
       />
-
-      <b-form-checkbox-group
-        v-model="selectedButtons"
-        :options="buttonCheckbox"
-        class="d-flex text-center p-3"
-      />
+      <div class="m-2">
+        <b-card
+          border-variant="primary"
+          bg-variant="transparent"
+          clsss="d-flex p-3"
+        >
+          <b-form-checkbox-group
+            v-model="selectedButtons"
+            :options="buttonCheckbox"
+            class="d-flex text-center"
+          />
+        </b-card>
+      </div>
     </div>
 
     <!-- button control -->
@@ -163,11 +171,13 @@
       v-if="selectedButtonType!=[]"
       class="text-center"
     >
+
+      <!-- open / stop / close -->
       <b-form-group
         v-if="selectedButtonType.value!=='inverter'"
       >
         <b-form-radio-group
-          v-model="selectedButton"
+          v-model="selectedCommand"
           button-variant="outline-primary"
           :options="buttonOptions"
           buttons
@@ -175,14 +185,26 @@
         />
       </b-form-group>
 
-      <vue-slider
-        v-if="selectedButtonType.value==='inverter'"
-        v-model="sliderValue"
-        class="p-1 mb-2 text-primary"
-        tooltip="always"
-        :tooltip-formatter="`${sliderValue} Hz`"
-      />
+      <!-- inverter: slider, work / etop -->
+      <b-form-group
+        v-if="selectedButtonType.value=='inverter'"
+      >
+        <vue-slider
+          v-model="sliderValue"
+          class="p-1 m-2 text-primary"
+          tooltip="always"
+          :tooltip-formatter="`${sliderValue} Hz`"
+        />
+        <b-form-radio-group
+          v-model="selectedCommand"
+          button-variant="outline-primary"
+          :options="inverterOptions"
+          buttons
+          class="p-1 d-flex mt-2"
+        />
+      </b-form-group>
     </div>
+
     <!-- submit and reset -->
     <b-row v-if="selectedButtons.length !== 0">
       <b-col>
@@ -264,11 +286,15 @@ export default {
       minValue: 0,
       maxValue: 0,
 
-      selectedButton: 'stop',
+      selectedCommand: 'stop',
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
+      ],
+      inverterOptions: [
+        { text: '동작', value: 'work' },
+        { text: '중지', value: 'stop' },
       ],
       sliderValue: 0,
 
@@ -304,21 +330,31 @@ export default {
       this.buttonTypeOptions = await store.getters['button/getButtonTypes']
     },
     submit() {
-      if (this.selectedMode.value === 'time') this.submitTime()
-      else if (this.selectedMode.value === 'periodic') this.submitPeriodic()
-      else if (this.selectedMode.value === 'sensor') this.submitSensor()
+      let settingParam = {}
+
+      if (this.selectedMode.value === 'time') settingParam = this.submitTime()
+      else if (this.selectedMode.value === 'periodic') settingParam = this.submitPeriodic()
+      else if (this.selectedMode.value === 'sensor') settingParam = this.submitSensor()
+
+      const param = {
+        ids: this.selectedButtons,
+        setting: settingParam,
+      }
+
+      store.dispatch('button/addSettingMany', { queryBody: param }).then(() => {
+        this.$emit('submit')
+      })
     },
     submitTime() {
       const param = {
         mode: this.selectedMode.value,
         days: this.selectedDay,
-        command: this.selectedButton,
+        command: this.selectedCommand,
+        commandValue: this.sliderValue,
         startTime: this.startTime,
         endTime: this.endTime,
       }
-      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
-        this.$emit('submit')
-      })
+      return param
     },
     submitPeriodic() {
       if (this.selectedTime.value === 'hour') {
@@ -329,25 +365,23 @@ export default {
       const param = {
         mode: this.selectedMode.value,
         days: this.selectedDay,
-        command: this.selectedButton,
+        command: this.selectedCommand,
+        commandValue: this.sliderValue,
         periodic: this.inputTime,
       }
-      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
-        this.$emit('submit')
-      })
+      return param
     },
     submitSensor() {
       const param = {
         mode: this.selectedMode.value,
         days: this.selectedDay.sort((a, b) => a - b),
-        command: this.selectedButton,
+        command: this.selectedCommand,
+        commandValue: this.sliderValue,
         sensorId: this.selectedSensor.value,
         minValue: this.minValue,
         maxValue: this.maxValue,
       }
-      store.dispatch('button/addNewSetting', { id: this.buttonId, queryBody: param }).then(() => {
-        this.$emit('submit')
-      })
+      return param
     },
   },
 }

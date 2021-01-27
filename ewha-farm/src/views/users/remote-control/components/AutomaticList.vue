@@ -64,7 +64,7 @@
                 class="badge-round text-center"
                 pill
               >
-                {{ getCommand(listItem.command) }}
+                {{ getCommand(listItem.command, listItem.commandValue) }}
               </b-badge>
             </div>
             <div class="justify-content-between align-items-center">
@@ -142,7 +142,7 @@ export default {
   data() {
     return {
       settingList: [],
-      modeColor: 'light-primary',
+      modeColor: 'light-warning',
       isEditing: false,
       toggleEditText: '자동화 동작 편집',
       toggleEditColor: 'outline-secondary',
@@ -155,6 +155,7 @@ export default {
     async initSettings() {
       await store.dispatch('button/fetchSettings', { id: this.buttonId }).then(result => {
         this.settingList = result.data.autoSettings
+        console.log(this.settingList)
       })
     },
 
@@ -195,7 +196,7 @@ export default {
       return `${time}분`
     },
 
-    getCommand(command) {
+    getCommand(command, commandValue) {
       if (command === 'open') {
         return '열기'
       }
@@ -204,6 +205,9 @@ export default {
       }
       if (command === 'close') {
         return '닫기'
+      }
+      if (command === 'work') {
+        return `${commandValue}Hz 동작`
       }
       return ''
     },
