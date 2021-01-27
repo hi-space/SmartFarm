@@ -1,40 +1,12 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <b-card-title>
-        <b-form-checkbox
-          checked
-        >
-          <strong> {{ buttonItem.name }} </strong>
-        </b-form-checkbox>
-      </b-card-title>
+      <b-card-title> <strong> {{ buttonItem.name }} </strong> </b-card-title>
       <div class="d-flex justify-content-start">
-        <feather-icon
-          icon="EditIcon"
-          size="18"
-          class="cursor-pointer m-1"
-          @click="showModal"
+        <b-form-checkbox
+          value="A"
+          checked
         />
-        <!-- <feather-icon
-          v-model="isAlert"
-          :icon="alertIcon"
-          :color="alertColor"
-          size="18"
-          class="cursor-pointer m-1"
-          @click="toggleAlert"
-        /> -->
-        <feather-icon
-          v-model="isAuto"
-          icon="RepeatIcon"
-          :color="autoColor"
-          size="18"
-          class="cursor-pointer m-1"
-          @click="toggleAuto"
-        />
-        <!-- <setting-modal
-          :button-id="buttonItem._id"
-          @submit="updateSettings()"
-        /> -->
       </div>
     </b-card-header>
 
@@ -45,37 +17,6 @@
         <h4> <strong> {{ getDateString() }} </strong> </h4>
       </b-card-text>
 
-      <!-- open / stop / close -->
-      <b-form-group v-if="!isAuto">
-        <b-form-radio-group
-          v-if="buttonItem.type!=='inverter'"
-          v-model="selectedButton"
-          button-variant="outline-primary"
-          :options="buttonOptions"
-          buttons
-          class="p-1 d-flex"
-        />
-
-        <!-- inverter: slider, work / etop -->
-        <vue-slider
-          v-if="buttonItem.type==='inverter'"
-          v-model="sliderValue"
-          class="p-1 mt-2 text-primary"
-          :lazy="true"
-          tooltip="always"
-          :disabled="buttonItem.command==='stop'"
-          :tooltip-formatter="`${sliderValue} Hz`"
-        />
-        <b-form-radio-group
-          v-if="buttonItem.type==='inverter'"
-          v-model="selectedButton"
-          button-variant="outline-primary"
-          :options="inverterOptions"
-          buttons
-          class="p-1 d-flex"
-        />
-      </b-form-group>
-
       <b-alert
         v-if="isAuto"
         variant="dark"
@@ -83,48 +24,17 @@
       >
         자동화 동작 중
       </b-alert>
-
-      <automatic-list
-        v-if="isAuto"
-        ref="automaticList"
-        :button-id="buttonItem._id"
-      />
     </b-card-body>
-
-    <!-- modal -->
-    <b-modal
-      ref="modifyNameModal"
-      title="변경할 이름을 입력해주세요"
-      ok-title="수정"
-      cancel-variant="outline-secondary"
-      centered
-      @ok="modifyName"
-    >
-      <form>
-        <b-form-group
-          label="장치 이름"
-          label-for="name-input"
-        >
-          <b-form-input
-            id="name-input"
-            v-model="name"
-            required
-          />
-        </b-form-group>
-      </form>
-    </b-modal>
   </b-card>
 </template>
 
 <script>
 import {
-  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BAlert, BFormCheckbox,
+  BCard, BCardHeader, BCardTitle, BCardBody, BCardText, BAlert, BFormCheckbox,
 } from 'bootstrap-vue'
-import VueSlider from 'vue-slider-component'
 import store from '@/store'
 import { getDateString } from '@core/utils/utils'
 import { heightFade } from '@core/directives/animations'
-import AutomaticList from './AutomaticList.vue'
 // import SettingModal from './SettingModal.vue'
 
 export default {
@@ -134,13 +44,7 @@ export default {
     BCardHeader,
     BCardTitle,
     BCardBody,
-    BModal,
-    BFormGroup,
-    BFormInput,
-    BFormRadioGroup,
     BCardText,
-    VueSlider,
-    AutomaticList,
     BFormCheckbox,
     // SettingModal,
   },

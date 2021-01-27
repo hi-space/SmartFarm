@@ -13,7 +13,7 @@
     <b-collapse
       ref="autoSettings"
       class="mt-2"
-      visible
+      :visible="false"
     >
       <draggable
         v-model="settingList"
