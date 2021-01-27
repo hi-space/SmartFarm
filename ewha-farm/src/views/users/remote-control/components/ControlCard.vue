@@ -39,12 +39,32 @@
         <h4> <strong> {{ getDateString() }} </strong> </h4>
       </b-card-text>
 
-      <b-form-group>
+      <!-- open / stop / close -->
+      <b-form-group v-if="!isAuto">
         <b-form-radio-group
-          v-if="!isAuto"
+          v-if="buttonItem.type!=='inverter'"
           v-model="selectedButton"
           button-variant="outline-primary"
           :options="buttonOptions"
+          buttons
+          class="p-1 d-flex"
+        />
+
+        <!-- inverter: slider, work / etop -->
+        <vue-slider
+          v-if="buttonItem.type==='inverter'"
+          v-model="sliderValue"
+          class="p-1 mt-2 text-primary"
+          :lazy="true"
+          tooltip="always"
+          :disabled="buttonItem.command==='stop'"
+          :tooltip-formatter="`${sliderValue} Hz`"
+        />
+        <b-form-radio-group
+          v-if="buttonItem.type==='inverter'"
+          v-model="selectedButton"
+          button-variant="outline-primary"
+          :options="inverterOptions"
           buttons
           class="p-1 d-flex"
         />
@@ -92,6 +112,7 @@
 import {
   BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BAlert,
 } from 'bootstrap-vue'
+import VueSlider from 'vue-slider-component'
 import store from '@/store'
 import { getDateString } from '@core/utils/utils'
 import { heightFade } from '@core/directives/animations'
@@ -110,6 +131,7 @@ export default {
     BFormInput,
     BFormRadioGroup,
     BCardText,
+    VueSlider,
     AutomaticList,
     // SettingModal,
   },
@@ -133,6 +155,10 @@ export default {
         { text: '중지', value: 'stop' },
         { text: '닫기', value: 'close' },
       ],
+      inverterOptions: [
+        { text: '동작', value: 'work' },
+        { text: '중지', value: 'stop' },
+      ],
       workingTime: '',
       title: '',
       name: this.buttonItem.name,
@@ -140,20 +166,35 @@ export default {
   },
   setup(props) {
     const buttonItem = props.item
-    const { command, isAuto } = buttonItem
+    const { command, commandValue, isAuto } = buttonItem
     const autoColor = isAuto ? 'text-danger' : 'text-musted'
     const selectedButton = command
+    const sliderValue = commandValue
     return {
       buttonItem,
       isAuto,
       autoColor,
       selectedButton,
+      sliderValue,
     }
   },
   watch: {
+    sliderValue(newVal) {
+      const param = {
+        command: this.selectedButton,
+        commandValue: newVal,
+      }
+      store.dispatch('button/command', { id: this.buttonItem._id, queryBody: param })
+        .then(() => {
+          this.updateData()
+        }).catch(error => {
+          console.log(error)
+        })
+    },
     selectedButton(newVal) {
       const param = {
         command: newVal,
+        commandValue: this.selectedButton,
       }
 
       store.dispatch('button/command', { id: this.buttonItem._id, queryBody: param })
@@ -225,3 +266,7 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+@import '@core/scss/vue/libs/vue-slider.scss';
+</style>
