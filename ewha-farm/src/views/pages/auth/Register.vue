@@ -3,13 +3,13 @@
     <div class="auth-inner py-2">
 
       <!-- Register -->
-      <b-card class="mb-0">
-        <b-link class="brand-logo">
-          <logo />
-          <h2 class="brand-text text-primary ml-1">
-            Ewha Farm
-          </h2>
-        </b-link>
+      <b-card
+        refs="register-form"
+        class="mb-0"
+      >
+        <h2 class="text-primary text-center p-2">
+          <strong> 회원가입 </strong>
+        </h2>
 
         <!-- form -->
         <validation-observer
@@ -192,19 +192,16 @@
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
-  BCard, BLink, BCardText, BForm,
+  BCard, BCardText, BForm,
   BButton, BFormInput, BFormGroup, BInputGroup, BInputGroupAppend,
 } from 'bootstrap-vue'
-import Logo from '@core/layouts/components/Logo.vue'
 import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/forms'
 
 export default {
   components: {
-    Logo,
     // BSV
     BCard,
-    BLink,
     BCardText,
     BForm,
     BButton,

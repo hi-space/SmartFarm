@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- Filters -->
-    <!-- <users-list-filters
-      :role-filter.sync="roleFilter"
-      :plan-filter.sync="planFilter"
-      :status-filter.sync="statusFilter"
-      :role-options="roleOptions"
-      :status-options="statusOptions"
-    /> -->
-
     <!-- Table Container Card -->
     <b-card
       no-body
@@ -197,19 +188,46 @@
         </b-row>
       </div>
     </b-card>
+
+    <b-card class="mt-1">
+      <b-button
+        v-b-modal.add-user-modal
+        variant="outline-primary"
+        class="btn-icon"
+        block
+        pill
+      >
+        <span class="align-middle"> 고객 추가</span>
+        <feather-icon icon="PlusIcon" />
+      </b-button>
+
+      <!-- Modal -->
+      <b-modal
+        id="add-user-modal"
+        ok-title="등록"
+        cancel-title="취소"
+        cancel-variant="outline-secondary"
+        centered
+        hide-header
+        hide-footer
+        @ok="createButton()"
+      >
+        <register-modal />
+      </b-modal>
+    </b-card>
   </div>
 </template>
 
 <script>
 import {
-  BCard, BRow, BCol, BFormInput, BTable, BMedia, BAvatar, BLink,
-  BBadge, BDropdown, BDropdownItem, BPagination, BFormGroup, BInputGroup,
+  BCard, BRow, BCol, BFormInput, BTable, BMedia, BAvatar, BLink, BButton,
+  BBadge, BDropdown, BDropdownItem, BPagination, BFormGroup, BInputGroup, BModal,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import { ref } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
 import store from '@/store'
-
+import RegisterModal from './RegisterModal.vue'
 import userListTable from './userListTable'
 
 export default {
@@ -220,6 +238,7 @@ export default {
     BFormInput,
     BTable,
     BMedia,
+    BButton,
     BAvatar,
     BLink,
     BBadge,
@@ -228,8 +247,9 @@ export default {
     BPagination,
     BFormGroup,
     BInputGroup,
+    BModal,
     vSelect,
-
+    RegisterModal,
     // UsersListFilters,
   },
   data() {

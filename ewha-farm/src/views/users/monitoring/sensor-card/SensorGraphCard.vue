@@ -1,6 +1,6 @@
 <template>
   <b-card-actions
-    :title="title"
+    title="센서 그래프"
     action-collapse
     no-body
   >
@@ -47,12 +47,6 @@ export default {
     // BFormGroup,
     // flatPickr,
     VueApexCharts,
-  },
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
   },
   data() {
     return {

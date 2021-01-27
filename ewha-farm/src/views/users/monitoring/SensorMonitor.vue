@@ -19,9 +19,7 @@
       <b-col
         sm="12"
       >
-        <sensor-graph-card
-          title="온도/습도"
-        />
+        <sensor-graph-card />
       </b-col>
     </b-row>
   </div>
