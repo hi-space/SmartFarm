@@ -151,7 +151,10 @@
         :clearable="false"
         class="mb-1"
       />
-      <div class="m-2">
+      <div
+        v-if="selectedButtonType!=[]"
+        class="m-2"
+      >
         <b-card
           border-variant="primary"
           bg-variant="transparent"
@@ -313,8 +316,33 @@ export default {
   created() {
     this.getSensorOptions()
     this.getButtonCheckbox()
+    this.initData()
   },
   methods: {
+    initData() {
+      this.selectedDay = [0, 1, 2, 3, 4, 5, 6]
+      this.selectedMode = ''
+
+      // time
+      this.startTime = '00:00'
+      this.endTime = '00:00'
+      this.inputTime = 1
+      this.selectedTime = { label: '분', value: 'min' }
+
+      // periodic
+      this.selectedSensor = ''
+
+      // sensor
+      this.minValue = 0
+      this.maxValue = 0
+
+      this.selectedCommand = 'stop'
+      this.sliderValue = 0
+
+      this.selectedButtonType = ''
+      this.buttonCheckbox = []
+      this.selectedButtons = []
+    },
     async getSensorOptions() {
       if (store.state.sensor.sensors.length <= 0) {
         await store.dispatch('sensor/fetchSensors',
@@ -343,6 +371,12 @@ export default {
 
       store.dispatch('button/addSettingMany', { queryBody: param }).then(() => {
         this.$emit('submit')
+        this.$bvModal.msgBoxOk('새로운 자동화 설정이 추가되었습니다', {
+          title: '자동화 설정 추가',
+          centered: true,
+        }).then(() => {
+          this.initData()
+        })
       })
     },
     submitTime() {
