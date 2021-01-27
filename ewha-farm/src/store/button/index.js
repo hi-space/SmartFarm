@@ -15,8 +15,12 @@ export default {
         return rObj
       }))
     },
-    getButtonTypes(state) {
-      return state.buttons
+    getButtonTypes: state => farmId => {
+      let { buttons } = state
+
+      if (farmId !== '') buttons = buttons.filter((obj => obj.farmId._id === farmId))
+
+      return buttons
         .map((obj => obj.type))
         .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
         .map((obj => {
@@ -32,7 +36,8 @@ export default {
           return rObj
         }))
     },
-    getButtonInType: state => type => state.buttons
+    getButtonInType: state => type => state.buttons.filter((obj => obj.type === type)),
+    getButtonInTypeOptions: state => type => state.buttons
       .filter((obj => obj.type === type))
       .map((obj => {
         const rObj = {}

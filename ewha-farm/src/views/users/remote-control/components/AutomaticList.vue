@@ -155,7 +155,6 @@ export default {
     async initSettings() {
       await store.dispatch('button/fetchSettings', { id: this.buttonId }).then(result => {
         this.settingList = result.data.autoSettings
-        console.log(this.settingList)
       })
     },
 

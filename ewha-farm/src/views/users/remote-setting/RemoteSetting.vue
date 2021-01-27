@@ -306,7 +306,7 @@ export default {
   },
   watch: {
     async selectedButtonType() {
-      this.buttonCheckbox = await store.getters['button/getButtonInType'](this.selectedButtonType.value)
+      this.buttonCheckbox = await store.getters['button/getButtonInTypeOptions'](this.selectedButtonType.value)
       this.selectedButtons = []
     },
   },
@@ -327,7 +327,7 @@ export default {
         await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
       }
 
-      this.buttonTypeOptions = await store.getters['button/getButtonTypes']
+      this.buttonTypeOptions = await store.getters['button/getButtonTypes']('')
     },
     submit() {
       let settingParam = {}
