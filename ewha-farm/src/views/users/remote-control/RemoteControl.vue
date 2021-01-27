@@ -30,10 +30,34 @@
     </b-card>
 
     <b-card v-if="buttonItems.length > 0">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- all select checkbox -->
+        <b-form-checkbox
+          v-model="allChecked"
+        >
+          전체선택
+        </b-form-checkbox>
+        <b-form-radio-group
+          v-model="selectedAutomaticOption"
+          :disabled="checkedItem.length === 0"
+          :options="automaticOptions"
+          button-variant="outline-primary"
+          size="sm"
+          buttons
+        />
+      </div>
+
       <!-- selected button control -->
       <div
+        v-if="checkedItem.length > 0"
         class="text-center m-1"
       >
+        <div class="divider my-2">
+          <div class="divider-text text-primary">
+            선택한 장치 제어
+          </div>
+        </div>
         <!-- open / stop / close -->
         <b-form-group
           v-if="selectedButton.value!=='inverter'"
@@ -42,6 +66,7 @@
             v-model="selectedCommand"
             button-variant="outline-primary"
             :options="buttonOptions"
+            :disabled="checkedItem.length === 0"
             buttons
             class="p-1 d-flex"
           />
@@ -56,44 +81,23 @@
             class="p-1 m-2 text-primary"
             tooltip="always"
             :tooltip-formatter="`${sliderValue} Hz`"
+            :disabled="checkedItem.length === 0"
           />
           <b-form-radio-group
             v-model="selectedCommand"
             button-variant="outline-primary"
             :options="inverterOptions"
+            :disabled="checkedItem.length === 0"
             buttons
             class="p-1 d-flex mt-2"
           />
         </b-form-group>
       </div>
-
-      <div class="divider my-2">
-        <div class="divider-text text-primary">
-          선택한 장치 제어
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center">
-        <!-- all select checkbox -->
-        <b-form-checkbox
-          v-model="allSelectCheckbox"
-        >
-          전체선택
-        </b-form-checkbox>
-        <b-button-group size="sm">
-          <b-button
-            v-for="option in automaticOptions"
-            :key="option.value"
-            variant="outline-primary"
-          >
-            {{ option.text }}
-          </b-button>
-        </b-button-group>
-      </div>
     </b-card>
 
     <hr>
 
+    <!-- control card -->
     <b-row>
       <b-col
         v-for="item in buttonItems"
@@ -102,7 +106,11 @@
         md="6"
         lg="4"
       >
-        <control-card :item="item" />
+        <control-card
+          :item="item"
+          :prop-checked="allChecked"
+          @changeChecked="changeChecked"
+        />
       </b-col>
     </b-row>
   </div>
@@ -110,7 +118,7 @@
 
 <script>
 import {
-  BRow, BCol, BCard, BButtonGroup, BButton, BFormCheckbox, BFormGroup, BFormRadioGroup,
+  BRow, BCol, BCard, BFormCheckbox, BFormGroup, BFormRadioGroup,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import VueSlider from 'vue-slider-component'
@@ -119,8 +127,6 @@ import ControlCard from './components/ControlCard.vue'
 
 export default {
   components: {
-    BButtonGroup,
-    BButton,
     BFormCheckbox,
     BCard,
     BCol,
@@ -137,6 +143,8 @@ export default {
       selectedButton: [],
       farmOptions: [],
       buttonTypeOptions: [],
+
+      selectedAutomaticOption: '',
       automaticOptions: [
         { text: '자동', value: true },
         { text: '수동', value: false },
@@ -144,7 +152,7 @@ export default {
 
       buttonItems: [],
 
-      selectedCommand: 'stop',
+      selectedCommand: '',
       buttonOptions: [
         { text: '열기', value: 'open' },
         { text: '중지', value: 'stop' },
@@ -156,10 +164,16 @@ export default {
       ],
       sliderValue: 0,
 
-      allSelectCheckbox: false,
+      allChecked: false,
+      checkedItem: [],
     }
   },
   watch: {
+    checkedItem() {
+      this.selectedAutomaticOption = ''
+      this.selectedCommand = ''
+      this.sliderValue = 0
+    },
     async selectedFarm() {
       if (store.state.button.buttons.length <= 0) {
         await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
@@ -167,22 +181,37 @@ export default {
       this.buttonTypeOptions = await store.getters['button/getButtonTypes'](this.selectedFarm.value)
       this.selectedButton = []
       this.buttonItems = []
+      this.initValue()
     },
     async selectedButton() {
       this.buttonItems = await store.getters['button/getButtonInType'](this.selectedButton.value)
-      console.log(this.buttonItems)
+      this.initValue()
     },
   },
   created() {
     this.getFarmOptions()
   },
   methods: {
+    initValue() {
+      this.allChecked = false
+      this.checkedItem = []
+      this.selectedAutomaticOption = ''
+      this.selectedCommand = ''
+      this.sliderValue = 0
+    },
     async getFarmOptions() {
       await store.dispatch('farm/fetchFarms', { userId: store.getters['users/getUserId'] })
       this.farmOptions = await store.getters['farm/getFarmSelect']
       if (this.farmOptions.length > 0) {
         // eslint-disable-next-line prefer-destructuring
         this.selectedFarm = this.farmOptions[0]
+      }
+    },
+    changeChecked(buttonId, newVal) {
+      if (newVal) {
+        this.checkedItem.push(buttonId)
+      } else {
+        this.checkedItem.pop(buttonId)
       }
     },
   },

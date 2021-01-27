@@ -3,7 +3,8 @@
     <b-card-header>
       <b-card-title>
         <b-form-checkbox
-          checked
+          ref="checkbox"
+          v-model="checked"
         >
           <strong> {{ buttonItem.name }} </strong>
         </b-form-checkbox>
@@ -152,6 +153,9 @@ export default {
       type: Object,
       required: true,
     },
+    propChecked: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -186,6 +190,16 @@ export default {
       selectedButton,
       sliderValue,
     }
+  },
+  computed: {
+    checked: {
+      get() {
+        return this.propChecked
+      },
+      set(newVal) {
+        this.$emit('changeChecked', this.buttonItem._id, newVal)
+      },
+    },
   },
   watch: {
     sliderValue(newVal) {
