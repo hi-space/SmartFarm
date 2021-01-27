@@ -41,6 +41,11 @@ export default {
       return result
     },
 
+    async addCustomer(ctx, { id, queryBody }) {
+      const result = await axios.post(`/users/${id}/customer`, queryBody)
+      return result
+    },
+
     async addDeviceToken(ctx, { id, queryBody }) {
       const result = await axios.post(`/users/${id}/token`, queryBody)
       return result

@@ -5,11 +5,9 @@
       no-body
       class="mb-0"
     >
-
       <div class="m-2">
         <!-- Table Top -->
         <b-row>
-
           <!-- Per Page -->
           <b-col
             cols="12"
@@ -204,15 +202,17 @@
       <!-- Modal -->
       <b-modal
         id="add-user-modal"
+        ref="addUserModal"
         ok-title="등록"
         cancel-title="취소"
         cancel-variant="outline-secondary"
         centered
         hide-header
         hide-footer
-        @ok="createButton()"
       >
-        <register-modal />
+        <register-modal
+          @addCustomer="close()"
+        />
       </b-modal>
     </b-card>
   </div>
@@ -374,6 +374,10 @@ export default {
             }
           })
       }
+    },
+    close() {
+      this.$refs.addUserModal.hide()
+      this.$router.go()
     },
   },
 }

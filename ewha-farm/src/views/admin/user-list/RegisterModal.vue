@@ -178,6 +178,7 @@ import {
   BButton, BFormInput, BFormGroup, BInputGroup, BInputGroupAppend,
 } from 'bootstrap-vue'
 import { required } from '@validations'
+import { getUserData } from '@/auth/utils'
 import { togglePasswordVisibility } from '@core/mixins/forms'
 
 export default {
@@ -225,19 +226,9 @@ export default {
           }
           this.$store.dispatch('auth/register', payload)
             .then(response => {
-              console.log(response)
-              this.$bvModal
-                .msgBoxOk('관리자의 승인이 있을 때 까지 기다려주세요', {
-                  title: '회원가입 완료',
-                  size: 'sm',
-                  hideHeaderClose: true,
-                  centered: true,
-                })
-                .then(value => {
-                  if (value === true) {
-                    this.$router.push({ name: 'auth-login' })
-                  }
-                })
+              this.$store.dispatch('users/addCustomer', { id: getUserData().id, queryBody: { id: response.data._id } }).then(() => {
+                this.$emit('addCustomer', response.data)
+              })
             }).catch(error => {
               console.log(error)
               this.$bvModal
