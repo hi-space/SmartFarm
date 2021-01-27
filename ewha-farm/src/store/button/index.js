@@ -73,6 +73,10 @@ export default {
       const result = await axios.delete(`/button/${id}`)
       return result
     },
+    async updateButtonMany(ctx, { queryBody }) {
+      const result = await axios.put('/button', queryBody)
+      return result
+    },
 
     async addSettingMany(ctx, { queryBody }) {
       const result = await axios.post('/button/settings', queryBody)

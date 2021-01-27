@@ -79,6 +79,7 @@
           <vue-slider
             v-model="sliderValue"
             class="p-1 m-2 text-primary"
+            :lazy="true"
             tooltip="always"
             :tooltip-formatter="`${sliderValue} Hz`"
             :disabled="checkedItem.length === 0"
@@ -107,6 +108,8 @@
         lg="4"
       >
         <control-card
+          ref="controlCard"
+          :key="item._id"
           :item="item"
           :prop-checked="allChecked"
           @changeChecked="changeChecked"
@@ -169,23 +172,42 @@ export default {
     }
   },
   watch: {
-    checkedItem() {
-      this.selectedAutomaticOption = ''
-      this.selectedCommand = ''
-      this.sliderValue = 0
-    },
     async selectedFarm() {
-      if (store.state.button.buttons.length <= 0) {
-        await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
-      }
+      await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
       this.buttonTypeOptions = await store.getters['button/getButtonTypes'](this.selectedFarm.value)
       this.selectedButton = []
       this.buttonItems = []
       this.initValue()
     },
     async selectedButton() {
-      this.buttonItems = await store.getters['button/getButtonInType'](this.selectedButton.value)
+      this.getButtonList()
       this.initValue()
+    },
+    checkedItem() {
+      this.selectedAutomaticOption = ''
+      this.selectedCommand = ''
+      this.sliderValue = 0
+    },
+    selectedAutomaticOption() {
+      if (this.selectedAutomaticOption === '') return
+      const param = {
+        ids: this.checkedItem,
+        data: {
+          isAuto: this.selectedAutomaticOption,
+        },
+      }
+      this.updateData(param)
+    },
+    selectedCommand() {
+      if (this.selectedCommand === '') return
+      const param = {
+        ids: this.checkedItem,
+        data: {
+          command: this.selectedCommand,
+          commandValue: this.sliderValue,
+        },
+      }
+      this.updateData(param)
     },
   },
   created() {
@@ -193,8 +215,8 @@ export default {
   },
   methods: {
     initValue() {
-      this.allChecked = false
       this.checkedItem = []
+      this.allChecked = false
       this.selectedAutomaticOption = ''
       this.selectedCommand = ''
       this.sliderValue = 0
@@ -207,12 +229,22 @@ export default {
         this.selectedFarm = this.farmOptions[0]
       }
     },
+    async getButtonList() {
+      this.buttonItems = []
+      this.buttonItems = await store.getters['button/getButtonInType'](this.selectedButton.value)
+    },
     changeChecked(buttonId, newVal) {
       if (newVal) {
         this.checkedItem.push(buttonId)
       } else {
-        this.checkedItem.pop(buttonId)
+        this.checkedItem.splice(this.checkedItem.indexOf(buttonId), 1)
       }
+    },
+    async updateData(param) {
+      await store.dispatch('button/updateButtonMany', { queryBody: param })
+      await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
+      await this.getButtonList()
+      this.initValue()
     },
   },
 }
