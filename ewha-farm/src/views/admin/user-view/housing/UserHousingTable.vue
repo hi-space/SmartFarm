@@ -5,7 +5,22 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 함체 정보 </h3> </b-card-title>
-      <b-card-sub-title> <add-housing-modal /> </b-card-sub-title>
+      <b-card-sub-title>
+        <b-button
+          variant="outline-primary"
+          class="btn-icon"
+          pill
+          @click="$refs.addHousingModal.showModal()"
+        >
+          <span class="align-middle"> 함체 추가</span>
+          <feather-icon icon="PlusIcon" />
+        </b-button>
+
+        <add-housing-modal
+          ref="addHousingModal"
+          @update="initData()"
+        />
+      </b-card-sub-title>
     </div>
 
     <div>
@@ -39,6 +54,15 @@
         </template>
 
         <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="$refs.addHousingModal.editModal(row.item)"
+          >
+            <feather-icon icon="EditIcon" />
+          </b-button>
+
           <b-button
             size="sm"
             class="btn-icon"
