@@ -227,6 +227,7 @@ import vSelect from 'vue-select'
 import { ref } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
 import store from '@/store'
+import { getUserData } from '@/auth/utils'
 import RegisterModal from './RegisterModal.vue'
 import userListTable from './userListTable'
 
@@ -308,8 +309,9 @@ export default {
     const userListData = ref(null)
 
     store
-      .dispatch('users/fetchUsers')
+      .dispatch('users/getCustomers', { id: getUserData().id })
       .then(response => {
+        console.log(response.data)
         const users = response.data
         userListData.value = users
         totalUsers.value = users.length
