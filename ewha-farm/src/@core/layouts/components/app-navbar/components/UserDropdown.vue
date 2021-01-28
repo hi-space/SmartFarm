@@ -55,7 +55,7 @@
 
     <b-dropdown-item
       link-class="d-flex align-items-center"
-      @click="logout"
+      @click="doLogout"
     >
       <feather-icon
         size="16"
@@ -70,8 +70,9 @@
 import {
   BNavItemDropdown, BDropdownItem, BDropdownDivider, BAvatar,
 } from 'bootstrap-vue'
-import { initialAbility } from '@/libs/acl/config'
-import useJwt from '@/auth/jwt/useJwt'
+// import { initialAbility } from '@/libs/acl/config'
+// import useJwt from '@/auth/jwt/useJwt'
+import { logout } from '@/auth/utils'
 import { avatarText } from '@core/utils/filter'
 
 // import fakeUser from '@/data/user.json'
@@ -91,29 +92,8 @@ export default {
     }
   },
   methods: {
-    async logout() {
-      this.$store.dispatch('users/deleteDeviceToken',
-        {
-          id: this.$store.getters['users/getUserId'],
-          tokenId: localStorage.getItem('deviceToken'),
-        })
-
-      // Remove userData from localStorage
-      // ? You just removed token from localStorage. If you like, you can also make API call to backend to blacklist used token
-      localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName)
-      localStorage.removeItem(useJwt.jwtConfig.storageRefreshTokenKeyName)
-
-      // Remove userData from localStorage
-      localStorage.removeItem('userData')
-
-      localStorage.clear()
-      sessionStorage.clear()
-
-      // Reset ability
-      this.$ability.update(initialAbility)
-
-      // Redirect to login page
-      this.$router.push({ name: 'auth-login' })
+    doLogout() {
+      logout()
     },
   },
 }

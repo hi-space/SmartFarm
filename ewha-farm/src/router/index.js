@@ -42,7 +42,8 @@ router.beforeEach((to, _, next) => {
   // Redirect if logged in
   if (to.meta.redirectIfLoggedIn && isLoggedIn) {
     const userData = getUserData()
-    next(getHomeRouteForLoggedInUser(userData ? userData.role : null))
+    console.log(to.meta)
+    next(getHomeRouteForLoggedInUser(userData ? userData.role : userData.status))
   }
 
   return next()

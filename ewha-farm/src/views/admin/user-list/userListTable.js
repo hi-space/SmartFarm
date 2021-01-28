@@ -18,7 +18,6 @@ export default function userListTable() {
   }
 
   const resolveUserStatusVariant = status => {
-    if (status === 'pending') return 'warning'
     if (status === 'active') return 'success'
     if (status === 'inactive') return 'secondary'
     return 'primary'

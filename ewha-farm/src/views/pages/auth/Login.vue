@@ -184,6 +184,7 @@ export default {
               this.$store.dispatch('users/addDeviceToken', { id: result.id, queryBody: params }).then(() => {
                 localStorage.setItem('deviceToken', token.value)
               })
+
               this.$toast({
                 component: ToastificationContent,
                 position: 'top-right',
@@ -191,7 +192,7 @@ export default {
                   title: `환영합니다 ${result.name}님`,
                   icon: 'CoffeeIcon',
                   variant: 'success',
-                  text: '농장을 선택해주세요',
+                  // text: '농장을 선택해주세요',
                 },
               })
             }).catch(err => {

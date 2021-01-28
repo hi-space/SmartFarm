@@ -1,4 +1,9 @@
+/* eslint-disable import/no-cycle */
 import useJwt from '@/auth/jwt/useJwt'
+import { initialAbility } from '@/libs/acl/config'
+import store from '@/store'
+import router from '@/router'
+import ability from '@/libs/acl/ability'
 
 /**
  * Return if user is logged in
@@ -20,8 +25,33 @@ export const getUserData = () => JSON.parse(localStorage.getItem('userData'))
  * NOTE: If you have different pages to navigate based on user ability then this function can be useful. However, you need to update it.
  * @param {String} userRole Role of user
  */
-export const getHomeRouteForLoggedInUser = userRole => {
+export const getHomeRouteForLoggedInUser = (userRole, userStatus) => {
+  if (userStatus !== 'active') return { name: 'not-authorized' }
   if (userRole === 'admin' || userRole === 'manager') return { name: 'user-list' }
-  if (userRole === 'customer') return { name: 'empty' }
-  return { name: 'login' }
+  return { name: 'auth-login' }
+}
+
+export const logout = () => {
+  store.dispatch('users/deleteDeviceToken',
+    {
+      id: getUserData().id,
+      tokenId: localStorage.getItem('deviceToken'),
+    })
+
+  // Remove userData from localStorage
+  // ? You just removed token from localStorage. If you like, you can also make API call to backend to blacklist used token
+  localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName)
+  localStorage.removeItem(useJwt.jwtConfig.storageRefreshTokenKeyName)
+
+  // Remove userData from localStorage
+  localStorage.removeItem('userData')
+
+  localStorage.clear()
+  sessionStorage.clear()
+
+  // Reset ability
+  ability.update(initialAbility)
+
+  // Redirect to login page
+  router.push({ name: 'auth-login' })
 }

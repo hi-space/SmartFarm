@@ -174,7 +174,6 @@ export default {
       nextTodoId: 2,
       buttonType: [
         { label: 'Toggle', value: 'toggle' },
-        { label: 'Pending', value: 'pending' },
       ],
     }
   },

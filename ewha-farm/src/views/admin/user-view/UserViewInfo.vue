@@ -195,7 +195,6 @@ export default {
     ]
 
     const statusOptions = [
-      { label: 'Pending', value: 'pending' },
       { label: 'Active', value: 'active' },
       { label: 'Inactive', value: 'inactive' },
     ]

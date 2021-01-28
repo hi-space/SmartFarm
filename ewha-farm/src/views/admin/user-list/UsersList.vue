@@ -56,8 +56,9 @@
         :current-page="currentPage"
         :per-page="perPage"
         :filter="filter"
-        sort-direction="desc"
-        sort-by="createdAt"
+        :sort-by="sortBy"
+        sort-desc
+        no-provider-sorting
         primary-key="_id"
         hover
         responsive
@@ -258,21 +259,17 @@ export default {
       tableColumns: [
         {
           key: 'user',
-          sortable: true,
+          sortable: false,
         },
         {
           label: 'phone',
           key: 'userInfo.phone',
           sortable: true,
-          sortByFormatted: true,
-          filterByFormatted: true,
         },
         {
           label: 'address',
           key: 'userInfo.address',
           sortable: true,
-          sortByFormatted: true,
-          filterByFormatted: true,
         },
         {
           label: 'role',
@@ -286,7 +283,6 @@ export default {
           label: '가입일',
           key: 'createdAt',
           sortable: true,
-          sortDirection: 'desc',
           formatter: value => {
             const date = new Date(value)
             return `${date.getFullYear()}/${1 + date.getMonth()}/${date.getDate()}`
@@ -299,7 +295,7 @@ export default {
       currentPage: 1,
       perPage: 10,
       pageOptions: [5, 10, 15, 20],
-      sortDirection: 'desc',
+      sortBy: 'createdAt',
       filter: null,
       selectedRow: [],
     }
@@ -311,14 +307,12 @@ export default {
     store
       .dispatch('users/getCustomers', { id: getUserData().id })
       .then(response => {
-        console.log(response.data)
         const users = response.data
         userListData.value = users
         totalUsers.value = users.length
       })
       .catch(err => {
         console.log(err)
-        console.log('Error fetching users list')
       })
 
     const roleOptions = [
@@ -328,7 +322,6 @@ export default {
     ]
 
     const statusOptions = [
-      { label: 'Pending', value: 'pending' },
       { label: 'Active', value: 'active' },
       { label: 'Inactive', value: 'inactive' },
     ]
@@ -358,7 +351,7 @@ export default {
       this.$router.push({ name: 'user-view', params: { id: this.selectedRow[0]._id } })
     },
     toggleStatus(userId, status) {
-      if (status === 'inactive' || status === 'pending') {
+      if (status === 'inactive') {
         this.$bvModal
           .msgBoxConfirm('이 사용자를 승인하시겠습니까?', {
             title: '사용자 상태 변경',

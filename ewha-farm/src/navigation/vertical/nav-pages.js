@@ -12,7 +12,7 @@ export default [
         children: [
           {
             title: 'Login',
-            route: 'auth-login',
+            route: 'login',
             target: '_blank',
           },
           {

@@ -19,13 +19,24 @@
         <h1 class="mt-4 font-weight-bolder">
           권한이 없습니다
         </h1>
+        <h4>
+          관리자에게 문의해주세요
+        </h4>
+
+        <b-button
+          variant="outline-primary"
+          class="mt-3 btn-sm-block"
+          :to="backRoute()"
+        >
+          돌아가기
+        </b-button>
 
         <b-button
           variant="primary"
-          class="mt-2 btn-sm-block"
-          :to="loginRoute()"
+          class="mt-1 btn-sm-block"
+          @click="loginRoute()"
         >
-          돌아가기
+          로그인으로 돌아가기
         </b-button>
 
       </div>
@@ -38,7 +49,7 @@
 import { BLink, BImg, BButton } from 'bootstrap-vue'
 import Logo from '@core/layouts/components/Logo.vue'
 import store from '@/store/index'
-import { getHomeRouteForLoggedInUser } from '@/auth/utils'
+import { getHomeRouteForLoggedInUser, logout } from '@/auth/utils'
 
 export default {
   components: {
@@ -60,9 +71,13 @@ export default {
     },
   },
   methods: {
-    loginRoute() {
+    backRoute() {
       const user = JSON.parse(localStorage.getItem('userData'))
-      return getHomeRouteForLoggedInUser(user ? user.role : null)
+      return getHomeRouteForLoggedInUser(user ? user.role : null,
+        user ? user.status : null)
+    },
+    loginRoute() {
+      logout()
     },
   },
 }
