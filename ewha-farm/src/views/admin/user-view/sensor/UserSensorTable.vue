@@ -110,7 +110,7 @@ export default {
           sortable: true,
           formatter: value => getDateString(value),
         },
-        { key: 'action', label: '삭제' },
+        { key: 'action', label: '수정' },
       ],
       selected: [],
     }

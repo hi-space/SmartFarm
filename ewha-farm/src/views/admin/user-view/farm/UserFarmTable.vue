@@ -5,7 +5,22 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 축사 정보 </h3> </b-card-title>
-      <b-card-sub-title> <add-farm-modal /> </b-card-sub-title>
+      <b-card-sub-title>
+        <b-button
+          variant="outline-primary"
+          class="btn-icon"
+          pill
+          @click="$refs.addFarmModal.showModal()"
+        >
+          <span class="align-middle"> 축사 추가</span>
+          <feather-icon icon="PlusIcon" />
+        </b-button>
+
+        <add-farm-modal
+          ref="addFarmModal"
+          @update="initData()"
+        />
+      </b-card-sub-title>
     </div>
 
     <div>
@@ -44,6 +59,14 @@
         </template>
 
         <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="edit(row)"
+          >
+            <feather-icon icon="EditIcon" />
+          </b-button>
           <b-button
             size="sm"
             class="btn-icon"
@@ -116,7 +139,7 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
-        { key: 'action', label: '삭제' },
+        { key: 'action', label: '수정' },
         // { key: 'show_details', label: 'details' },
       ],
     }
@@ -134,7 +157,9 @@ export default {
           console.log(error)
         })
     },
-
+    edit(row) {
+      this.$refs.addFarmModal.editModal(row.item)
+    },
     remove(row) {
       this.$bvModal
         .msgBoxConfirm('농장에 등록된 모든 정보가 사라집니다.', {
