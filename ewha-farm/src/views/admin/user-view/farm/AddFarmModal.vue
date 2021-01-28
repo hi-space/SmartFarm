@@ -68,7 +68,6 @@ export default {
       this.name = item.name
       this.info = item.info
 
-      this.isEdit = true
       this.$refs.addFarmModal.show()
     },
     createFarm() {

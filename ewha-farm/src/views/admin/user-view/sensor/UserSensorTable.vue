@@ -5,7 +5,21 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 센서 정보 </h3> </b-card-title>
-      <b-card-sub-title> <add-sensor-modal /> </b-card-sub-title>
+      <b-card-sub-title>
+        <b-button
+          variant="outline-primary"
+          class="btn-icon"
+          pill
+          @click="$refs.addSensorModal.showModal()"
+        >
+          <span class="align-middle"> 센서 추가</span>
+          <feather-icon icon="PlusIcon" />
+        </b-button>
+        <add-sensor-modal
+          ref="addSensorModal"
+          @update="initData()"
+        />
+      </b-card-sub-title>
     </div>
 
     <div>
@@ -37,6 +51,14 @@
         </template>
 
         <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="$refs.addSensorModal.editModal(row.item)"
+          >
+            <feather-icon icon="EditIcon" />
+          </b-button>
           <b-button
             size="sm"
             class="btn-icon"
@@ -73,7 +95,6 @@ export default {
     return {
       sensorData: [],
       fields: [
-        { key: 'farmId.name', label: '축사 이름', sortable: true },
         // { key: '_id', label: '함체 ID', sortable: true },
         {
           key: 'type',
@@ -102,7 +123,6 @@ export default {
           key: 'name',
           label: '센서 이름',
           sortable: true,
-          isRowHeader: true,
         },
         {
           label: '생성일자',

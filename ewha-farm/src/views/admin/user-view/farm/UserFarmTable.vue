@@ -63,7 +63,7 @@
             size="sm"
             class="btn-icon"
             variant="flat"
-            @click="edit(row)"
+            @click="$refs.addFarmModal.editModal(row.item)"
           >
             <feather-icon icon="EditIcon" />
           </b-button>
@@ -156,9 +156,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-    },
-    edit(row) {
-      this.$refs.addFarmModal.editModal(row.item)
     },
     remove(row) {
       this.$bvModal
