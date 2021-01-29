@@ -99,7 +99,6 @@ import {
   BModal, VBModal, BForm, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
-import Ripple from 'vue-ripple-directive'
 
 export default {
   components: {
@@ -111,7 +110,6 @@ export default {
   },
   directives: {
     'b-modal': VBModal,
-    Ripple,
   },
   data() {
     return {

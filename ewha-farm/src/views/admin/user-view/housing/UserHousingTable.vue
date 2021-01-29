@@ -133,7 +133,7 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
-        { key: 'action', label: '삭제' },
+        { key: 'action', label: '수정' },
         // { key: 'show_details', label: 'details' },
       ],
       selected: [],

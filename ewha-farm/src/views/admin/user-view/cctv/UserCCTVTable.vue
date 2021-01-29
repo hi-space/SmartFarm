@@ -5,7 +5,23 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> CCTV 정보 </h3> </b-card-title>
-      <b-card-sub-title> <add-camera-modal /> </b-card-sub-title>
+      <b-card-sub-title>
+        <!-- Button -->
+        <b-button
+          variant="outline-primary"
+          class="btn-icon"
+          pill
+          @click="$refs.addCameraModal.showModal()"
+        >
+          <span class="align-middle"> CCTV 추가</span>
+          <feather-icon icon="PlusIcon" />
+        </b-button>
+
+        <add-camera-modal
+          ref="addCameraModal"
+          @update="initData()"
+        />
+      </b-card-sub-title>
     </div>
 
     <div>
@@ -18,6 +34,15 @@
         class="position-relative mb-0"
       >
         <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="$refs.addCameraModal.editModal(row.item)"
+          >
+            <feather-icon icon="EditIcon" />
+          </b-button>
+
           <b-button
             size="sm"
             class="btn-icon"
@@ -72,7 +97,7 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
-        { key: 'action', label: '삭제' },
+        { key: 'action', label: '수정' },
       ],
     }
   },

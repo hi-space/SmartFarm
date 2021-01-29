@@ -33,7 +33,7 @@
 
         <b-button
           variant="primary"
-          class="mt-1 btn-sm-block"
+          class="mt-3 btn-sm-block"
           @click="loginRoute()"
         >
           로그인으로 돌아가기
