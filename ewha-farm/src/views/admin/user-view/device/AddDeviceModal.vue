@@ -21,6 +21,7 @@
           v-model="farmName"
           :options="farmOptions"
           :clearable="false"
+          :searchable="false"
         />
       </b-form-group>
       <b-form-group
@@ -32,6 +33,7 @@
           v-model="housingName"
           :options="housingOptions"
           :clearable="false"
+          :searchable="false"
         />
       </b-form-group>
       <b-form-group
@@ -60,6 +62,7 @@
           v-model="deviceType"
           :options="type_option"
           :clearable="false"
+          :searchable="false"
         />
       </b-form-group>
       <b-form-group

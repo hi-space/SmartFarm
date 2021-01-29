@@ -19,6 +19,7 @@
           v-model="farmName"
           :options="farmOptions"
           :clearable="false"
+          :searchable="false"
           placeholder="농장 선택"
         />
       </b-form-group>

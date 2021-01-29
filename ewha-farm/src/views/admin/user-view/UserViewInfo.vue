@@ -16,7 +16,6 @@
         <h3 class="card-text">
           {{ userData.userInfo.phone }}
         </h3>
-        <span class="card-text">{{ userData._id }}</span>
       </div>
     </div>
 
@@ -41,23 +40,6 @@
             />
           </b-form-group>
         </b-col>
-
-        <!-- Field: Mobile -->
-        <!-- <b-col
-          cols="12"
-          md="4"
-        >
-          <b-form-group
-            label="전화번호"
-            label-for="phone"
-          >
-            <b-form-input
-              id="phone"
-              v-model="userData.userInfo.phone"
-              readonly
-            />
-          </b-form-group>
-        </b-col> -->
 
         <!-- Field: Status -->
         <b-col
@@ -89,10 +71,10 @@
           >
             <v-select
               v-model="userData.userInfo.role"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               :options="roleOptions"
               :reduce="val => val.value"
               :clearable="false"
+              :disabled="roleDisabled"
               input-id="user-role"
             />
           </b-form-group>
@@ -162,6 +144,7 @@ import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
 import store from '@/store'
 import router from '@/router'
+import { getUserData } from '@/auth/utils'
 import userListTable from '../user-list/userListTable'
 
 export default {
@@ -183,6 +166,7 @@ export default {
   data() {
     return {
       userData: store.state.users.user,
+      roleDisabled: getUserData().role !== 'admin',
     }
   },
   setup() {

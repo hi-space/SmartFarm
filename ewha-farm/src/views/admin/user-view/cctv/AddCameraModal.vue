@@ -21,6 +21,7 @@
           v-model="farmName"
           :options="farmOptions"
           :clearable="false"
+          :searchable="false"
         />
       </b-form-group>
       <b-form-group

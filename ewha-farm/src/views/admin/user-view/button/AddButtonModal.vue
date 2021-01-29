@@ -78,7 +78,9 @@ import {
   BModal, VBModal, BForm, BFormGroup, BFormSpinbutton, BFormInput,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
-import { buttonList, signalList, getButtonLabel, getSignalLabel } from './utils'
+import {
+  buttonList, signalList, getButtonLabel, getSignalLabel,
+} from './utils'
 
 export default {
   components: {

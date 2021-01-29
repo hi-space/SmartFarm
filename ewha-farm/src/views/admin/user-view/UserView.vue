@@ -31,53 +31,56 @@
         </b-col>
       </b-row>
 
-      <b-row>
-        <b-col>
-          <user-farm-table
-            class="mt-2 pt-75"
-          />
-        </b-col>
-      </b-row>
+      <div v-if="userData.userInfo.role === 'customer'">
+        <b-row>
+          <b-col>
+            <user-farm-table
+              class="mt-2 pt-75"
+            />
+          </b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <user-sensor-table
-            class="mt-2 pt-75"
-          />
-        </b-col>
-      </b-row>
+        <b-row>
+          <b-col>
+            <user-sensor-table
+              class="mt-2 pt-75"
+            />
+          </b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <user-housing-table
-            class="mt-2 pt-75"
-          />
-        </b-col>
-      </b-row>
+        <b-row>
+          <b-col>
+            <user-housing-table
+              class="mt-2 pt-75"
+            />
+          </b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <user-device-table
-            class="mt-2 pt-75"
-          />
-        </b-col>
-      </b-row>
+        <b-row>
+          <b-col>
+            <user-device-table
+              class="mt-2 pt-75"
+            />
+          </b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <user-cctv-table
-            class="mt-2 pt-75"
-          />
-        </b-col>
-      </b-row>
+        <b-row>
+          <b-col>
+            <user-cctv-table
+              class="mt-2 pt-75"
+            />
+          </b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <user-button-table
-            class="mt-2 pt-75"
-          />
-        </b-col>
-      </b-row>
+        <b-row>
+          <b-col>
+            <user-button-table
+              class="mt-2 pt-75"
+            />
+          </b-col>
+        </b-row>
+      </div>
+
     </template>
 
   </div>
