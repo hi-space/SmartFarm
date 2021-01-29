@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 // Routes
 import { canNavigate } from '@/libs/acl/routeProtection'
+// eslint-disable-next-line import/no-cycle
 import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
 import adminMenu from './routes/adminMenu'
 import userMenu from './routes/userMenu'

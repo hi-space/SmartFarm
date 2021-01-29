@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import useJwt from '@/auth/jwt/useJwt'
 import router from '@/router'
 import { getHomeRouteForLoggedInUser } from '@/auth/utils'

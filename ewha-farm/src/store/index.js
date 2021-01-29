@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import app from './app'
 import appConfig from './app-config'
 import verticalMenu from './vertical-menu'
+// eslint-disable-next-line import/no-cycle
 import auth from './auth'
 import users from './users'
 import farm from './farms'

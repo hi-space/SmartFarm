@@ -4,7 +4,7 @@
       <h6 class="section-label mx-1 mb-2">
         알림 설정
       </h6>
-      <b-col
+      <!-- <b-col
         cols="12"
         class="mb-2"
       >
@@ -17,7 +17,7 @@
         >
           <span>센서 알림</span>
         </b-form-checkbox>
-      </b-col>
+      </b-col> -->
       <b-col
         cols="12"
         class="mb-2"
