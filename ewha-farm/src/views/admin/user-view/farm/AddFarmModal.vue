@@ -9,7 +9,7 @@
     no-close-on-backdrop
     scrollable
     centered
-    @ok="id ? modifyFarm() : createFarm()"
+    @ok="id ? modify() : create()"
   >
     <b-form>
       <b-form-group
@@ -61,6 +61,8 @@ export default {
   methods: {
     showModal() {
       this.id = null
+      this.name = ''
+      this.info = ''
       this.$refs.addFarmModal.show()
     },
     editModal(item) {
@@ -70,7 +72,7 @@ export default {
 
       this.$refs.addFarmModal.show()
     },
-    createFarm() {
+    create() {
       const postBody = {
         userId: store.getters['users/getUserId'],
         name: this.name,
@@ -89,7 +91,7 @@ export default {
           console.log(error)
         })
     },
-    modifyFarm() {
+    modify() {
       const postBody = {
         userId: store.getters['users/getUserId'],
         name: this.name,

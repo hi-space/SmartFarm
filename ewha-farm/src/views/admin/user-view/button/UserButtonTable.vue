@@ -5,7 +5,23 @@
     <div class="card-header">
       <!-- Title -->
       <b-card-title> <h3> 버튼 목록 </h3> </b-card-title>
-      <b-card-sub-title> <add-button-modal /> </b-card-sub-title>
+      <b-card-sub-title>
+        <!-- Button -->
+        <b-button
+          variant="outline-primary"
+          class="btn-icon"
+          pill
+          @click="$refs.addButtonModal.showModal()"
+        >
+          <span class="align-middle"> 버튼 추가</span>
+          <feather-icon icon="PlusIcon" />
+        </b-button>
+
+        <add-button-modal
+          ref="addButtonModal"
+          @update="initData()"
+        />
+      </b-card-sub-title>
     </div>
 
     <div>
@@ -20,6 +36,15 @@
         class="mb-0"
       >
         <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="$refs.addButtonModal.editModal(row.item)"
+          >
+            <feather-icon icon="EditIcon" />
+          </b-button>
+
           <b-button
             size="sm"
             class="btn-icon"
@@ -39,6 +64,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton,
 } from 'bootstrap-vue'
 import store from '@/store'
+import { getButtonLabel, getSignalLabel } from './utils'
 import AddButtonModal from './AddButtonModal.vue'
 
 export default {
@@ -60,30 +86,15 @@ export default {
           key: 'type',
           label: '타입',
           sortable: true,
-          formatter: value => {
-            if (value === 'curtain') {
-              return '커튼'
-            }
-            if (value === 'ceiling') {
-              return '천장'
-            }
-            if (value === 'feeder') {
-              return '사료급이기'
-            }
-            if (value === 'light') {
-              return '조명'
-            }
-            if (value === 'fan') {
-              return '선풍기'
-            }
-            if (value === 'sprayer') {
-              return '안개분무기'
-            }
-            return ''
-          },
+          formatter: value => getButtonLabel(value).label,
         },
         { key: 'buttonSetting.relayCount', label: '릴레이 갯수', sortable: true },
-        { key: 'buttonSetting.signalType', label: '신호 타입', sortable: true },
+        {
+          key: 'buttonSetting.signalType',
+          label: '신호 타입',
+          sortable: true,
+          formatter: value => getSignalLabel(value).label,
+        },
         {
           label: '생성일자',
           key: 'createdAt',
@@ -98,7 +109,7 @@ export default {
             return `${y}/${m}/${d} ${h}:${mm}`
           },
         },
-        { key: 'action', label: '삭제' },
+        { key: 'action', label: '수정' },
       ],
     }
   },

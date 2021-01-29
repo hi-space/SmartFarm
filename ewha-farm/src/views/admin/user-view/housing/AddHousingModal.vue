@@ -127,6 +127,13 @@ export default {
   methods: {
     showModal() {
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
+      this.farmName = ''
+      this.housingName = ''
+      this.info = ''
+      this.ddns = ''
+      this.port = ''
+      this.account = ''
+      this.password = ''
       this.$refs.addHousingModal.show()
     },
     editModal(item) {

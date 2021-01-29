@@ -79,6 +79,7 @@ import {
 } from 'bootstrap-vue'
 import { getDateString } from '@core/utils/utils'
 import store from '@/store'
+import { getSensorLabel } from './utils'
 import AddSensorModal from './AddSensorModal.vue'
 
 export default {
@@ -100,24 +101,7 @@ export default {
           key: 'type',
           label: '센서 타입',
           sortable: true,
-          formatter: value => {
-            if (value === 'temperature') {
-              return '온도 센서'
-            }
-            if (value === 'humidity') {
-              return '습도 센서'
-            }
-            if (value === 'rain') {
-              return '우적 센서'
-            }
-            if (value === 'hs2') {
-              return '황화수소'
-            }
-            if (value === 'nh3') {
-              return '암모니아'
-            }
-            return ''
-          },
+          formatter: value => getSensorLabel(value).label,
         },
         {
           key: 'name',

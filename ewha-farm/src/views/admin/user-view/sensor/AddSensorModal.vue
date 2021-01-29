@@ -8,7 +8,7 @@
     cancel-variant="outline-secondary"
     no-close-on-backdrop
     centered
-    @ok="id ? modifySensor() : createSensor()"
+    @ok="id ? modify() : create()"
   >
     <b-form>
       <b-form-group
@@ -65,6 +65,8 @@ export default {
   methods: {
     showModal() {
       this.id = null
+      this.type = ''
+      this.sensorName = ''
       this.$refs.addSensorModal.show()
     },
     editModal(item) {
@@ -74,7 +76,7 @@ export default {
 
       this.$refs.addSensorModal.show()
     },
-    createSensor() {
+    create() {
       console.log(this.type.value)
       const payload = {
         userId: this.$store.getters['users/getUserId'],
@@ -95,7 +97,7 @@ export default {
           console.log(error)
         })
     },
-    modifySensor() {
+    modify() {
       const payload = {
         userId: this.$store.getters['users/getUserId'],
         type: this.type.value,

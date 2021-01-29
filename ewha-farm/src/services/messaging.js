@@ -20,7 +20,6 @@ const messaging = firebase.messaging()
 messaging.usePublicVapidKey('BHpBXs42V6czZdZvuvOxcbb4vPiQFhbv0A43zRU1I7FiFUSOOmLfBA0vilF8EKainR9FYJ1A1iWsmb_1Gx_wvTY')
 
 Notification.requestPermission().then(permission => {
-  console.log('permission ', permission)
   if (permission !== 'granted') {
     alert('알림을 허용해주세요')
   }

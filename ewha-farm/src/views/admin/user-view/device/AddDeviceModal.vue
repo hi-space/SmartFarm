@@ -128,7 +128,6 @@ export default {
   },
   data() {
     return {
-      addDeviceModal: false,
       farmOptions: [],
       housingOptions: [],
       type_option: ['KC868'],
@@ -151,6 +150,14 @@ export default {
   methods: {
     showModal() {
       this.id = null
+      this.farmName = ''
+      this.housingName = ''
+      this.deviceName = ''
+      this.deviceType = ''
+      this.port = ''
+      this.account = ''
+      this.password = ''
+      this.serialNum = ''
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.$refs.addDeviceModal.show()
     },
