@@ -9,7 +9,7 @@
 
     <div>
       <b-table
-        :items="items"
+        :items="networkData"
         :fields="fields"
         :tbody-tr-class="rowColor"
         responsive
@@ -23,7 +23,9 @@
 import {
   BCard, BCardTitle, BTable,
 } from 'bootstrap-vue'
-import fakeData from '@/data/network-state.json'
+import { ref } from '@vue/composition-api'
+import axiosIns from '@/libs/axios'
+import { getUserData } from '@/auth/utils'
 
 export default {
   components: {
@@ -35,23 +37,40 @@ export default {
     return {
       fields: [
         {
-          key: 'farm_name',
+          key: 'farmId.name',
           label: '축사 이름',
           sortable: true,
           tdClass: 'td',
         },
         {
-          key: 'device_name',
+          key: 'deviceId.name',
           label: '함체 이름',
           sortable: true,
           tdClass: 'td',
         },
         { key: 'status', label: '정보', sortable: true },
-        { key: 'timestamp', label: '생성일', sortable: true },
+        {
+          key: 'createdAt',
+          label: '일자',
+          sortable: true,
+          formatter: value => {
+            const date = new Date(value)
+            return `${date.getFullYear()}/${1 + date.getMonth()}/${date.getDate()}`
+          },
+        },
       ],
-      /* eslint-disable global-require */
-      items: fakeData,
-      /* eslint-disable global-require */
+    }
+  },
+  setup() {
+    const networkData = ref(null)
+    axiosIns.get('network', { _id: getUserData().id }).then(response => {
+      networkData.value = response.data
+    }).catch(err => {
+      console.log(err)
+    })
+
+    return {
+      networkData,
     }
   },
   methods: {
