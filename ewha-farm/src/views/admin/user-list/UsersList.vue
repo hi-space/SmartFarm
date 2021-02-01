@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ testMsg }}
     <!-- Table Container Card -->
     <b-card
       no-body
@@ -256,6 +257,7 @@ export default {
   },
   data() {
     return {
+      testMsg: '',
       tableColumns: [
         {
           key: 'user',

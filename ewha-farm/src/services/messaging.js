@@ -23,6 +23,8 @@ Notification.requestPermission().then(permission => {
   if (permission !== 'granted') {
     alert('알림을 허용해주세요')
   }
+}).catch(err => {
+  console.log(err)
 })
 
 const token = ref('')
@@ -32,10 +34,13 @@ messaging.getToken().then(currentToken => {
   } else {
     console.log('No Instance ID token available. Request permission to generate one.')
   }
+}).catch(err => {
+  console.log(err)
 })
 
 messaging.onMessage(payload => {
   console.log(payload)
+  alert(payload)
 
   const title = 'Title'
   const options = {

@@ -5,7 +5,7 @@
         md="6"
         sm="12"
       >
-        <cctv-player />
+        <cctv-player :src="cctv_url_1" />
       </b-col>
       <!-- <b-col
         md="6"
@@ -47,7 +47,8 @@ export default {
   },
   data() {
     return {
-      cctv_url_1: 'https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8',
+      cctv_url_1: 'http://localhost:4000/videos/output.m3u8',
+      // cctv_url_1: 'http://192.168.0.25:4000/videos/output.m3u8',
     }
   },
 }

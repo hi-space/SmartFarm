@@ -14,12 +14,16 @@
         lg="6"
         sm="12"
       >
-        <sensor-state-card />
+        <sensor-state-card
+          ref="sensorStateCard"
+        />
       </b-col>
       <b-col
         sm="12"
       >
-        <sensor-graph-card />
+        <sensor-graph-card
+          ref="sensorGraphCard"
+        />
       </b-col>
     </b-row>
   </div>
@@ -31,6 +35,8 @@ import {
   BCol,
 } from 'bootstrap-vue'
 
+import { getUserData } from '@/auth/utils'
+import store from '@/store'
 import SensorStateCard from './sensor-card/SensorStateCard.vue'
 import WeatherCard from './sensor-card/WeatherCard.vue'
 import SensorGraphCard from './sensor-card/SensorGraphCard.vue'
@@ -42,6 +48,25 @@ export default {
     SensorStateCard,
     WeatherCard,
     SensorGraphCard,
+  },
+  data() {
+    return {
+      sensorData: [],
+    }
+  },
+  created() {
+    this.getSensor()
+  },
+  methods: {
+    async getSensor() {
+      const result = await store.dispatch('sensor/fetchSensors',
+        { userId: getUserData().id })
+      this.sensorData = result.data
+      console.log(this.sensorData)
+
+      this.$refs.sensorStateCard.updateUI(this.sensorData)
+      this.$refs.sensorGraphCard.updateUI(this.sensorData)
+    },
   },
 }
 </script>

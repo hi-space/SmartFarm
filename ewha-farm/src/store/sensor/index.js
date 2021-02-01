@@ -15,6 +15,9 @@ export default {
         return rObj
       }))
     },
+    getSensorIds(state) {
+      return state.sensors.map(el => el._id)
+    },
   },
   mutations: {
     SET_SENSOR(state, sensors) {

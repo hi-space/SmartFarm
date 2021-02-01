@@ -46,7 +46,6 @@
 import {
   BCardText, BRow, BCol, BMedia, BMediaAside, BAvatar, BMediaBody,
 } from 'bootstrap-vue'
-import store from '@/store'
 import BCardActions from '@core/components/b-card-actions/BCardActions.vue'
 
 export default {
@@ -65,15 +64,8 @@ export default {
       sensorItems: [],
     }
   },
-  created() {
-    this.getSensor()
-  },
   methods: {
-    async getSensor() {
-      const result = await store.dispatch('sensor/fetchSensors',
-        { userId: store.getters['users/getUserId'], farmId: store.getters['farm/getFarmId'] })
-      const sensorData = result.data
-
+    async updateUI(sensorData) {
       sensorData.forEach(el => {
         let icon = 'CpuIcon'
         let color = 'light-primary'

@@ -23,12 +23,12 @@ export default {
     // videoPlayer,
     VideoPlayer,
   },
-  // props: {
-  //   src: {
-  //     type: String,
-  //     default: 'http://vjs.zencdn.net/v/oceans.mp4',
-  //   },
-  // },
+  props: {
+    src: {
+      type: String,
+      default: 'http://vjs.zencdn.net/v/oceans.mp4',
+    },
+  },
   data() {
     return {
       playerOptions: {
@@ -47,9 +47,9 @@ export default {
     },
   },
   mounted() {
-    console.log('mounted')
-    const src = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
-    this.playVideo(src)
+    console.log(this.src)
+    // const src = 'http://localhost:4000/videos/output.m3u8'
+    this.playVideo(this.src)
   },
   methods: {
     onPlayerPlay(player) {

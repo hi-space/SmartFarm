@@ -24,7 +24,7 @@
         type="area"
         height="400"
         :options="chartOptions"
-        :series="sensorData"
+        :series="[]"
       />
     </b-card-body>
 
@@ -36,7 +36,6 @@ import {
   BCardBody,
 } from 'bootstrap-vue'
 import BCardActions from '@core/components/b-card-actions/BCardActions.vue'
-import axiosIns from '@/libs/axios'
 import VueApexCharts from 'vue-apexcharts'
 // import flatPickr from 'vue-flatpickr-component'
 
@@ -51,7 +50,7 @@ export default {
   data() {
     return {
       rangePicker: ['2019-05-01', '2019-05-10'],
-      sensorData: [],
+      sensorList: [],
       chartOptions: {
         chart: {
           zoom: {
@@ -60,6 +59,9 @@ export default {
           toolbar: {
             show: false,
           },
+        },
+        xaxis: {
+          type: 'datetime',
         },
         markers: {
           strokeWidth: 2,
@@ -83,13 +85,27 @@ export default {
       },
     }
   },
-  mounted() {
-    axiosIns.get('/utils/sensor/123').then(res => {
-      console.log(res.data)
-      this.$refs.chart.updateSeries(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
+  methods: {
+    updateUI(sensorData) {
+      const series = []
+      console.log(sensorData)
+      sensorData.forEach(element => {
+        const xydata = []
+        element.values.forEach(el => {
+          xydata.push({
+            x: new Date(el.time).getTime(),
+            y: el.value,
+          })
+        })
+
+        series.push({
+          name: element.name,
+          data: xydata,
+        })
+      })
+
+      this.$refs.chart.updateSeries(series)
+    },
   },
 }
 </script>

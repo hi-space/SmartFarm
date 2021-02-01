@@ -94,7 +94,7 @@
         <b-form-input
           id="password"
           v-model="password"
-          type="password"
+          type="text"
           placeholder="············"
         />
       </b-form-group>
