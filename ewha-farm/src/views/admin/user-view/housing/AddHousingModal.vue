@@ -193,7 +193,7 @@ export default {
             title: '함체 수정',
             centered: true,
           }).then(() => {
-            this.$emit('update')
+            this.$router.go(0)
           })
         })
         .catch(error => {

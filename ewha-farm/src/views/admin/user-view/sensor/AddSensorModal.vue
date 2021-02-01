@@ -110,7 +110,7 @@ export default {
             title: '센서 수정',
             centered: true,
           }).then(() => {
-            this.$emit('update')
+            this.$router.go(0)
           })
         })
         .catch(error => {

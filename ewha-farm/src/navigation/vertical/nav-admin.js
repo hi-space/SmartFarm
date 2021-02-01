@@ -9,4 +9,11 @@ export default [
     action: 'manage',
     resource: 'Admin',
   },
+  {
+    title: '장치 현황',
+    route: 'network-status',
+    icon: 'SettingsIcon',
+    action: 'manage',
+    resource: 'Admin',
+  },
 ]

@@ -34,4 +34,19 @@ export default [
       ],
     },
   },
+  {
+    path: '/network',
+    name: 'network-status',
+    component: () => import('@/views/admin/network/NetworkStatusTable.vue'),
+    meta: {
+      resource: 'Admin',
+      action: 'manage',
+      breadcrumb: [
+        {
+          text: '장치 현황',
+          active: true,
+        },
+      ],
+    },
+  },
 ]

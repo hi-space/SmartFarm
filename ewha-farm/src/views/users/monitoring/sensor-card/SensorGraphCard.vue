@@ -88,7 +88,6 @@ export default {
   methods: {
     updateUI(sensorData) {
       const series = []
-      console.log(sensorData)
       sensorData.forEach(element => {
         const xydata = []
         element.values.forEach(el => {

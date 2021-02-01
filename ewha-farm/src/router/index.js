@@ -5,8 +5,8 @@ import VueRouter from 'vue-router'
 import { canNavigate } from '@/libs/acl/routeProtection'
 // eslint-disable-next-line import/no-cycle
 import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
-import adminMenu from './routes/adminMenu'
-import userMenu from './routes/userMenu'
+import adminMenu from './routes/router-admin'
+import userMenu from './routes/router-users'
 import pages from './routes/pages'
 
 Vue.use(VueRouter)

@@ -104,7 +104,7 @@ export default {
             title: '축사 수정',
             centered: true,
           }).then(() => {
-            this.$emit('update')
+            this.$router.go(0)
           })
         }).catch(error => {
           console.log(error)

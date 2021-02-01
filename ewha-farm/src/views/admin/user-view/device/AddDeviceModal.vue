@@ -216,7 +216,7 @@ export default {
 
       this.$store.dispatch('device/updateDevice', { id: this.id, queryBody: postBody })
         .then(() => {
-          this.$emit('update')
+          this.$router.go(0)
         })
         .catch(error => {
           console.log(error)

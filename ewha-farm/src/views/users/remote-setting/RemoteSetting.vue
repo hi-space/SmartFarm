@@ -234,6 +234,7 @@ import {
 import VueSlider from 'vue-slider-component'
 import vSelect from 'vue-select'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+import { getUserData } from '@/auth/utils'
 
 export default {
   components: {
@@ -346,13 +347,13 @@ export default {
     async getSensorOptions() {
       if (store.state.sensor.sensors.length <= 0) {
         await store.dispatch('sensor/fetchSensors',
-          { userId: store.getters['users/getUserId'], farmId: store.getters['farm/getFarmId'] })
+          { userId: getUserData().id })
       }
       this.sensorOptions = await store.getters['sensor/getSensorSelect']
     },
     async getButtonCheckbox() {
       if (store.state.button.buttons.length <= 0) {
-        await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
+        await store.dispatch('button/fetchButtons', { userId: getUserData().id })
       }
 
       this.buttonTypeOptions = await store.getters['button/getButtonTypes']('')

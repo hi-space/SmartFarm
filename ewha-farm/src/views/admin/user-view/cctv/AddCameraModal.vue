@@ -170,7 +170,7 @@ export default {
 
       this.$store.dispatch('cctv/updateCCTV', { id: this.id, queryBody: payload })
         .then(() => {
-          this.$emit('update')
+          this.$router.go(0)
         }).catch(err => {
           console.log(err)
         })

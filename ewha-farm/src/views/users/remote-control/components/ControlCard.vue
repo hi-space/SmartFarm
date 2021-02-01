@@ -77,13 +77,13 @@
         />
       </b-form-group>
 
-      <b-alert
+      <!-- <b-alert
         v-if="isAuto"
         variant="dark"
         show
       >
         자동화 동작 중
-      </b-alert>
+      </b-alert> -->
 
       <automatic-list
         v-if="isAuto"
@@ -119,7 +119,7 @@
 
 <script>
 import {
-  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BAlert, BFormCheckbox,
+  BCard, BCardHeader, BCardTitle, BCardBody, BModal, BFormInput, BFormGroup, BFormRadioGroup, BCardText, BFormCheckbox,
 } from 'bootstrap-vue'
 import VueSlider from 'vue-slider-component'
 import store from '@/store'
@@ -130,7 +130,7 @@ import AutomaticList from './AutomaticList.vue'
 
 export default {
   components: {
-    BAlert,
+    // BAlert,
     BCard,
     BCardHeader,
     BCardTitle,

@@ -126,6 +126,7 @@ import {
 import vSelect from 'vue-select'
 import VueSlider from 'vue-slider-component'
 import store from '@/store'
+import { getUserData } from '@/auth/utils'
 import ControlCard from './components/ControlCard.vue'
 
 export default {
@@ -173,7 +174,7 @@ export default {
   },
   watch: {
     async selectedFarm() {
-      await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
+      await store.dispatch('button/fetchButtons', { userId: getUserData().id })
       this.buttonTypeOptions = await store.getters['button/getButtonTypes'](this.selectedFarm.value)
       this.selectedButton = []
       this.buttonItems = []
@@ -222,7 +223,7 @@ export default {
       this.sliderValue = 0
     },
     async getFarmOptions() {
-      await store.dispatch('farm/fetchFarms', { userId: store.getters['users/getUserId'] })
+      await store.dispatch('farm/fetchFarms', { userId: getUserData().id })
       this.farmOptions = await store.getters['farm/getFarmSelect']
       if (this.farmOptions.length > 0) {
         // eslint-disable-next-line prefer-destructuring
@@ -242,7 +243,7 @@ export default {
     },
     async updateData(param) {
       await store.dispatch('button/updateButtonMany', { queryBody: param })
-      await store.dispatch('button/fetchButtons', { userId: store.getters['users/getUserId'] })
+      await store.dispatch('button/fetchButtons', { userId: getUserData().id })
       await this.getButtonList()
       this.initValue()
     },
