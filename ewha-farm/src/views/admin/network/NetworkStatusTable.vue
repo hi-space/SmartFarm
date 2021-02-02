@@ -36,6 +36,12 @@ export default {
     return {
       fields: [
         {
+          key: 'userId.name',
+          label: '사용자 이름',
+          sortable: true,
+          tdClass: 'td',
+        },
+        {
           key: 'farmId.name',
           label: '축사 이름',
           sortable: true,

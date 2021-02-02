@@ -31,45 +31,39 @@
 
     <!-- Notifications -->
     <vue-perfect-scrollbar
-      v-once
+      v-if="notiItems.length"
       :settings="perfectScrollbarSettings"
       class="scrollable-container media-list scroll-area"
       tagname="li"
     >
 
-      <!-- System Notification Toggler -->
-      <!-- <div class="media d-flex align-items-center">
-        <h6 class="font-weight-bolder mr-auto mb-0">
-          System Notifications
-        </h6>
-        <b-form-checkbox
-          :checked="true"
-          switch
-        />
-      </div> -->
-
       <!-- System Notifications -->
-      <b-link
-        v-for="notification in systemNotifications"
-        :key="notification.id"
+      <b-media
+        v-for="item in notiItems"
+        :key="item.id"
       >
-        <b-media>
-          <template #aside>
-            <b-avatar
-              size="32"
-              :variant="notification.type"
-            >
-              <feather-icon :icon="notification.icon" />
-            </b-avatar>
-          </template>
-          <p class="media-heading">
-            <span class="font-weight-bolder">
-              {{ notification.title }}
-            </span>
-          </p>
-          <small class="notification-text">{{ notification.subtitle }}</small>
-        </b-media>
-      </b-link>
+        <template #aside>
+          <b-avatar
+            size="32"
+            :variant="item.type"
+          >
+            <feather-icon :icon="item.icon" />
+          </b-avatar>
+        </template>
+
+        <feather-icon
+          icon="XIcon"
+          class="cursor-pointer cart-item-remove"
+          @click.stop="removeItem(item.id)"
+        />
+        <p class="media-heading">
+          <span class="font-weight-bolder">
+            {{ item.title }}
+          </span>
+        </p>
+        <small class="item-text">{{ item.subtitle }}</small>
+      </b-media>
+      <!-- </b-link> -->
     </vue-perfect-scrollbar>
 
     <!-- Cart Footer -->
@@ -84,7 +78,7 @@
 
 <script>
 import {
-  BNavItemDropdown, BBadge, BMedia, BLink, BAvatar, BButton,
+  BNavItemDropdown, BBadge, BMedia, BAvatar, BButton,
 } from 'bootstrap-vue'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import Ripple from 'vue-ripple-directive'
@@ -94,7 +88,6 @@ export default {
     BNavItemDropdown,
     BBadge,
     BMedia,
-    BLink,
     BAvatar,
     VuePerfectScrollbar,
     BButton,
@@ -104,7 +97,7 @@ export default {
     Ripple,
   },
   setup() {
-    const systemNotifications = [
+    const notiItems = [
       {
         id: 1,
         title: '서버 연결 실패',
@@ -176,13 +169,16 @@ export default {
     }
 
     return {
-      systemNotifications,
+      notiItems,
       perfectScrollbarSettings,
     }
   },
+  methods: {
+    removeItem(id) {
+      console.log(id)
+      const itemIndex = this.notiItems.findIndex(p => p.id === id)
+      this.notiItems.splice(itemIndex, 1)
+    },
+  },
 }
 </script>
-
-<style>
-
-</style>
