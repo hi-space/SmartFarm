@@ -6,7 +6,7 @@
   >
     <template #button-content>
       <feather-icon
-        badge="9"
+        :badge="notiItems.length"
         badge-classes="bg-danger"
         class="text-body"
         icon="BellIcon"
@@ -24,7 +24,7 @@
           pill
           variant="light-primary"
         >
-          9 New
+          {{ notiItems.length }} New
         </b-badge>
       </div>
     </li>
@@ -40,7 +40,7 @@
       <!-- System Notifications -->
       <b-media
         v-for="item in notiItems"
-        :key="item.id"
+        :key="item._id"
       >
         <template #aside>
           <b-avatar
@@ -54,7 +54,7 @@
         <feather-icon
           icon="XIcon"
           class="cursor-pointer cart-item-remove"
-          @click.stop="removeItem(item.id)"
+          @click.stop="removeItem(item._id)"
         />
         <p class="media-heading">
           <span class="font-weight-bolder">
@@ -67,21 +67,26 @@
     </vue-perfect-scrollbar>
 
     <!-- Cart Footer -->
-    <li class="dropdown-menu-footer"><b-button
-      v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+    <!-- <li class="dropdown-menu-footer"><b-button
       variant="primary"
       block
     >모든 알림 제거</b-button>
-    </li>
+    </li> -->
+    <p
+      v-if="!notiItems.length"
+      class="m-0 p-1 text-center"
+    >
+      새로운 알림이 없습니다
+    </p>
   </b-nav-item-dropdown>
 </template>
 
 <script>
 import {
-  BNavItemDropdown, BBadge, BMedia, BAvatar, BButton,
+  BNavItemDropdown, BBadge, BMedia, BAvatar,
 } from 'bootstrap-vue'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import Ripple from 'vue-ripple-directive'
+import { getUserData } from '@/auth/utils'
 
 export default {
   components: {
@@ -90,93 +95,37 @@ export default {
     BMedia,
     BAvatar,
     VuePerfectScrollbar,
-    BButton,
+    // BButton,
     // BFormCheckbox,
   },
-  directives: {
-    Ripple,
+  data() {
+    return {
+      notiItems: [],
+    }
+  },
+  created() {
+    this.getPushList()
   },
   setup() {
-    const notiItems = [
-      {
-        id: 1,
-        title: '서버 연결 실패',
-        subtitle: '서버 연결이 실패했습니다',
-        type: 'light-danger',
-        icon: 'XIcon',
-      },
-      {
-        id: 2,
-        title: '커튼 닫음',
-        subtitle: '커튼이 자동으로 닫혔습니다',
-        type: 'light-success',
-        icon: 'CheckIcon',
-      },
-      {
-        id: 3,
-        title: '온도 센서',
-        subtitle: '온도가 너무 높습니다',
-        type: 'light-warning',
-        icon: 'AlertTriangleIcon',
-      },
-      {
-        id: 4,
-        title: '서버 연결 실패',
-        subtitle: '서버 연결이 실패했습니다',
-        type: 'light-danger',
-        icon: 'XIcon',
-      },
-      {
-        id: 5,
-        title: '커튼 닫음',
-        subtitle: '커튼이 자동으로 닫혔습니다',
-        type: 'light-success',
-        icon: 'CheckIcon',
-      },
-      {
-        id: 6,
-        title: '온도 센서',
-        subtitle: '온도가 너무 높습니다',
-        type: 'light-warning',
-        icon: 'AlertTriangleIcon',
-      },
-      {
-        id: 7,
-        title: '서버 연결 실패',
-        subtitle: '서버 연결이 실패했습니다',
-        type: 'light-danger',
-        icon: 'XIcon',
-      },
-      {
-        id: 8,
-        title: '커튼 닫음',
-        subtitle: '커튼이 자동으로 닫혔습니다',
-        type: 'light-success',
-        icon: 'CheckIcon',
-      },
-      {
-        id: 9,
-        title: '온도 센서',
-        subtitle: '온도가 너무 높습니다',
-        type: 'light-warning',
-        icon: 'AlertTriangleIcon',
-      },
-    ]
-
     const perfectScrollbarSettings = {
       maxScrollbarLength: 60,
       wheelPropagation: false,
     }
 
     return {
-      notiItems,
       perfectScrollbarSettings,
     }
   },
   methods: {
+    async getPushList() {
+      this.notiItems = (await this.$store.dispatch('push/fetchPush', { id: getUserData().id })).data
+      console.log(this.notiItems)
+    },
     removeItem(id) {
       console.log(id)
-      const itemIndex = this.notiItems.findIndex(p => p.id === id)
+      this.$store.dispatch('push/deletePush', { id: getUserData().id, pushId: id })
+
+      const itemIndex = this.notiItems.findIndex(p => p._id === id)
       this.notiItems.splice(itemIndex, 1)
     },
   },

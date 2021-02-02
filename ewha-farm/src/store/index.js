@@ -14,6 +14,7 @@ import device from './devices'
 import cctv from './cctv'
 import button from './button'
 import sensor from './sensor'
+import push from './push'
 
 Vue.use(Vuex)
 
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     cctv,
     button,
     sensor,
+    push,
   },
   strict: process.env.DEV,
 })
