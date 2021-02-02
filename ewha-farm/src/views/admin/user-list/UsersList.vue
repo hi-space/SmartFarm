@@ -230,9 +230,9 @@ import { ref } from '@vue/composition-api'
 import { avatarText } from '@core/utils/filter'
 import store from '@/store'
 import { getUserData } from '@/auth/utils'
+import { getDateString } from '@core/utils/utils'
 import RegisterModal from './RegisterModal.vue'
 import userListTable from './userListTable'
-import { getDateString } from '@/core/utils/utils'
 
 export default {
   components: {
