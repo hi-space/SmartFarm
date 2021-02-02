@@ -35,5 +35,15 @@ export default {
       const result = await axios.delete(`/device/${id}`)
       return result
     },
+
+    async setRelay(ctx, { id, queryBody }) {
+      console.log(id)
+      const result = await axios.post(`/device/${id}/relay`, queryBody)
+      return result
+    },
+    async fetchRelay(ctx, { id }) {
+      const result = await axios.get(`/device/${id}/relay`)
+      return result
+    },
   },
 }

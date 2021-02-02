@@ -15,6 +15,36 @@ export default {
         return rObj
       }))
     },
+    getAllButtonForRelay: state => farmId => {
+      let { buttons } = state
+
+      if (farmId !== '') buttons = buttons.filter((obj => obj.farmId._id === farmId))
+
+      return buttons.map((obj => {
+        const rObj = {}
+        rObj.label = obj.name
+        rObj.value = obj._id
+        rObj.relayCnt = obj.buttonSetting.relayCount
+        return rObj
+      }))
+    },
+    getButtonForRelay: state => buttonId => {
+      const { buttons } = state
+
+      if (buttonId === null) {
+        return null
+      }
+
+      const button = buttons.filter((obj => obj._id === buttonId))
+
+      return button.map((obj => {
+        const rObj = {}
+        rObj.label = obj.name
+        rObj.value = obj._id
+        rObj.relayCnt = obj.buttonSetting.relayCount
+        return rObj
+      }))[0]
+    },
     getButtonTypes: state => farmId => {
       let { buttons } = state
 

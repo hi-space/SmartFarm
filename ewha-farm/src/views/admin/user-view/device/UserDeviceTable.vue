@@ -21,6 +21,11 @@
           ref="addDeviceModal"
           @update="initData()"
         />
+
+        <add-relay-modal
+          ref="addRelayModal"
+        />
+
       </b-card-sub-title>
     </div>
 
@@ -35,7 +40,6 @@
         scrollable
         select-mode="single"
         class="mb-0"
-        @row-selected="onRowSelected"
       >
         <template #cell(show_details)="row">
 
@@ -49,6 +53,16 @@
         </template>
 
         <template #cell(action)="row">
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
+            @click="$refs.addRelayModal.show(row.item)"
+            @update="initData()"
+          >
+            <feather-icon icon="SettingsIcon" />
+          </b-button>
+
           <b-button
             size="sm"
             class="btn-icon"
@@ -78,6 +92,7 @@ import {
 } from 'bootstrap-vue'
 import store from '@/store'
 import AddDeviceModal from './AddDeviceModal.vue'
+import AddRelayModal from './AddRelayModal.vue'
 
 export default {
   components: {
@@ -88,6 +103,7 @@ export default {
     BFormCheckbox,
     BButton,
     'add-device-modal': AddDeviceModal,
+    AddRelayModal,
   },
   data() {
     return {
@@ -96,7 +112,7 @@ export default {
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'housingId.name', label: '함체 이름', sortable: true },
         { key: 'name', label: '장비 이름', sortable: true },
-        { key: 'type', label: '함체 타입', sortable: true },
+        // { key: 'type', label: '함체 타입', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         { key: 'serialNum', label: 'S/N', sortable: true },

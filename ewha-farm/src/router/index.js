@@ -38,10 +38,12 @@ router.beforeEach((to, _, next) => {
     // If logged in => not authorized
     return next({ name: 'not-authorized' })
   }
+  console.log('@@@@', to.meta.redirectIfLoggedIn)
 
   // Redirect if logged in
   if (to.meta.redirectIfLoggedIn && isLoggedIn) {
     const userData = getUserData()
+    console.log('!!!!')
     console.log(to.meta)
     next(getHomeRouteForLoggedInUser(userData ? userData.role : userData.status))
   }
