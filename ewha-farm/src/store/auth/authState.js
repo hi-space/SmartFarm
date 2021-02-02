@@ -1,4 +1,4 @@
 export default {
   userId: null,
-  userRole: null,
+  userData: null,
 }

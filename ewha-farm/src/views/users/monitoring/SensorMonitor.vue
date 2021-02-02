@@ -62,7 +62,6 @@ export default {
       const result = await store.dispatch('sensor/fetchSensors',
         { userId: getUserData().id })
       this.sensorData = result.data
-      console.log(this.sensorData)
 
       this.$refs.sensorStateCard.updateUI(this.sensorData)
       this.$refs.sensorGraphCard.updateUI(this.sensorData)

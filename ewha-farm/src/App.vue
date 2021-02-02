@@ -102,7 +102,6 @@ export default {
       const push = payload.data
 
       console.log('fcm: ', payload.data)
-      // alert(push)
 
       const { title } = push
       const options = {

@@ -23,7 +23,6 @@ messaging.setBackgroundMessageHandler(payload => {
   console.log('Background Message received. ', payload)
 
   const push = payload.data
-
   const { title } = push
   const options = {
     body: push.subtitle,
