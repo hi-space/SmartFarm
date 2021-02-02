@@ -25,6 +25,7 @@ import {
 } from 'bootstrap-vue'
 import { ref } from '@vue/composition-api'
 import axiosIns from '@/libs/axios'
+import { getDateString } from '@/@core/utils/utils'
 
 export default {
   components: {
@@ -58,10 +59,7 @@ export default {
           key: 'createdAt',
           label: '일자',
           sortable: true,
-          formatter: value => {
-            const date = new Date(value)
-            return `${date.getFullYear()}/${1 + date.getMonth()}/${date.getDate()}`
-          },
+          formatter: value => getDateString(value),
         },
       ],
     }

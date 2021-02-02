@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 // Routes
 import { canNavigate } from '@/libs/acl/routeProtection'
 // eslint-disable-next-line import/no-cycle
-import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
+import { isUserLoggedIn, getHomeRouteForLoggedInUser } from '@/auth/utils'
 import adminMenu from './routes/router-admin'
 import userMenu from './routes/router-users'
 import pages from './routes/pages'
@@ -41,10 +41,7 @@ router.beforeEach((to, _, next) => {
 
   // Redirect if logged in
   if (to.meta.redirectIfLoggedIn && isLoggedIn) {
-    const userData = getUserData()
-    console.log('!!!!')
-    console.log(to.meta)
-    next(getHomeRouteForLoggedInUser(userData ? userData.role : null, userData ? userData.status : null))
+    next(getHomeRouteForLoggedInUser())
   }
 
   return next()

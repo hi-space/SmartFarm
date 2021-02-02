@@ -232,6 +232,7 @@ import store from '@/store'
 import { getUserData } from '@/auth/utils'
 import RegisterModal from './RegisterModal.vue'
 import userListTable from './userListTable'
+import { getDateString } from '@/core/utils/utils'
 
 export default {
   components: {
@@ -285,10 +286,7 @@ export default {
           label: '가입일',
           key: 'createdAt',
           sortable: true,
-          formatter: value => {
-            const date = new Date(value)
-            return `${date.getFullYear()}/${1 + date.getMonth()}/${date.getDate()}`
-          },
+          formatter: value => getDateString(value),
         },
         // { key: 'actions' },
       ],

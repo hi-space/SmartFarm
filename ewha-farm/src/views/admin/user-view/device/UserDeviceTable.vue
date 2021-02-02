@@ -91,6 +91,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton,
 } from 'bootstrap-vue'
 import store from '@/store'
+import { getDateString } from '@core/utils/utils'
 import AddDeviceModal from './AddDeviceModal.vue'
 import AddRelayModal from './AddRelayModal.vue'
 
@@ -120,15 +121,7 @@ export default {
           label: '생성일자',
           key: 'createdAt',
           sortable: true,
-          formatter: value => {
-            const date = new Date(value)
-            const y = date.getFullYear()
-            const m = 1 + date.getMonth()
-            const d = date.getDate()
-            const h = date.getHours()
-            const mm = date.getMinutes()
-            return `${y}/${m}/${d} ${h}:${mm}`
-          },
+          formatter: value => getDateString(value),
         },
         { key: 'action', label: '수정' },
         // { key: 'show_details', label: 'details' },

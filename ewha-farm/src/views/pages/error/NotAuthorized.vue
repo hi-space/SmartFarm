@@ -72,9 +72,7 @@ export default {
   },
   methods: {
     backRoute() {
-      const user = JSON.parse(localStorage.getItem('userData'))
-      return getHomeRouteForLoggedInUser(user ? user.role : null,
-        user ? user.status : null)
+      return getHomeRouteForLoggedInUser()
     },
     loginRoute() {
       logout()

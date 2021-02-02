@@ -22,7 +22,7 @@ export default {
 
           commit('UPDATE_USER_INFO', userData)
 
-          router.push(getHomeRouteForLoggedInUser(userData.role, userData.status))
+          router.push(getHomeRouteForLoggedInUser())
           resolve(userData)
         } else {
           reject(response)
