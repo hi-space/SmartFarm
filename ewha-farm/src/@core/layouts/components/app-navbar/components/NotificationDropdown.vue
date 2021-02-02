@@ -1,4 +1,6 @@
-<template>
+<template
+  ref="notificationDropdown"
+>
   <b-nav-item-dropdown
     class="dropdown-notification mr-25"
     menu-class="dropdown-menu-media"
@@ -56,12 +58,15 @@
           class="cursor-pointer cart-item-remove"
           @click.stop="removeItem(item._id)"
         />
+
         <p class="media-heading">
           <span class="font-weight-bolder">
             {{ item.title }}
           </span>
         </p>
         <small class="item-text">{{ item.subtitle }}</small>
+        <br>
+        <small class="item-text">{{ getDate(item.createdAt) }} </small>
       </b-media>
       <!-- </b-link> -->
     </vue-perfect-scrollbar>
@@ -87,6 +92,7 @@ import {
 } from 'bootstrap-vue'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import { getUserData } from '@/auth/utils'
+import { getDateString } from '@/@core/utils/utils'
 
 export default {
   components: {
@@ -98,10 +104,15 @@ export default {
     // BButton,
     // BFormCheckbox,
   },
-  data() {
-    return {
-      notiItems: [],
-    }
+  computed: {
+    notiItems: {
+      get() {
+        return this.$store.state.push.push
+      },
+      set() {
+
+      },
+    },
   },
   created() {
     this.getPushList()
@@ -119,14 +130,15 @@ export default {
   methods: {
     async getPushList() {
       this.notiItems = (await this.$store.dispatch('push/fetchPush', { id: getUserData().id })).data
-      console.log(this.notiItems)
     },
     removeItem(id) {
-      console.log(id)
       this.$store.dispatch('push/deletePush', { id: getUserData().id, pushId: id })
 
       const itemIndex = this.notiItems.findIndex(p => p._id === id)
       this.notiItems.splice(itemIndex, 1)
+    },
+    getDate(created) {
+      return getDateString(created)
     },
   },
 }

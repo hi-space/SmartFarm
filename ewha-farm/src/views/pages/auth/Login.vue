@@ -79,17 +79,6 @@
               </validation-provider>
             </b-form-group>
 
-            <!-- checkbox -->
-            <!-- <b-form-group>
-              <b-form-checkbox
-                id="remember-me"
-                v-model="status"
-                name="checkbox-1"
-              >
-                아이디, 비밀번호 저장
-              </b-form-checkbox>
-            </b-form-group> -->
-
             <div class="divider my-2" />
 
             <!-- submit button -->
@@ -126,7 +115,7 @@
 </template>
 
 <script>
-import { token } from '@/services/messaging'
+import { deviceToken } from '@/services/messaging'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
   BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardText, BInputGroup, BInputGroupAppend,
@@ -179,10 +168,10 @@ export default {
           this.$store.dispatch('auth/login', payload)
             .then(result => {
               const params = {
-                token: token.value,
+                token: deviceToken.value,
               }
               this.$store.dispatch('users/addDeviceToken', { id: result.id, queryBody: params }).then(() => {
-                localStorage.setItem('deviceToken', token.value)
+                localStorage.setItem('deviceToken', deviceToken.value)
               })
 
               this.$toast({

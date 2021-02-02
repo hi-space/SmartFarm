@@ -20,11 +20,13 @@ const messaging = firebase.messaging()
 
 // 백그라운드 상태에서 받은 알림 처리
 messaging.setBackgroundMessageHandler(payload => {
-  console.log('Message received. ', payload)
-  // Customize notification here
-  const title = 'Background Message Title'
+  console.log('Background Message received. ', payload)
+
+  const push = payload.data
+
+  const { title } = push
   const options = {
-    body: payload.data.message,
+    body: push.subtitle,
     icon: '/firebase-logo.png',
   }
 

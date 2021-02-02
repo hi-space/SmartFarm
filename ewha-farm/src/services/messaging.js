@@ -27,10 +27,10 @@ Notification.requestPermission().then(permission => {
   console.log(err)
 })
 
-const token = ref('')
+const deviceToken = ref('')
 messaging.getToken().then(currentToken => {
   if (currentToken) {
-    token.value = currentToken
+    deviceToken.value = currentToken
   } else {
     console.log('No Instance ID token available. Request permission to generate one.')
   }
@@ -47,11 +47,14 @@ messaging.onMessage(payload => {
     body: payload.notification.body,
     icon: '/firebase-logo.png',
   }
+
+  console.log('title: ', title)
+  console.log('options: ', options)
   const notification = new Notification(title, options)
   return notification
 })
 
 export {
-  token,
+  deviceToken,
   messaging,
 }

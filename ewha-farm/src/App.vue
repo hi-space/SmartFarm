@@ -24,6 +24,7 @@ import useAppConfig from '@core/app-config/useAppConfig'
 import { useWindowSize, useCssVar } from '@vueuse/core'
 import { messaging } from '@/services/messaging'
 import store from '@/store'
+import { getUserData } from './auth/utils'
 
 const LayoutVertical = () => import('@/layouts/vertical/LayoutVertical.vue')
 const LayoutHorizontal = () => import('@/layouts/horizontal/LayoutHorizontal.vue')
@@ -98,7 +99,21 @@ export default {
     })
 
     messaging.onMessage(payload => {
-      console.log(payload)
+      const push = payload.data
+
+      console.log('fcm: ', payload.data)
+      // alert(push)
+
+      const { title } = push
+      const options = {
+        body: push.subtitle,
+        icon: '/firebase-logo.png',
+      }
+
+      store.dispatch('push/fetchPush', { id: getUserData().id })
+
+      const notification = new Notification(title, options)
+      return notification
     })
 
     return {

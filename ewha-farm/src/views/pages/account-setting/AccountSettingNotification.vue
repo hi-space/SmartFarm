@@ -43,7 +43,7 @@
           switch
           inline
         >
-          <span>네트워크 연결 알림</span>
+          <span>네트워크 에러 알림</span>
         </b-form-checkbox>
       </b-col>
 

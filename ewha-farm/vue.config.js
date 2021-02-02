@@ -14,9 +14,9 @@ module.exports = {
   },
   configureWebpack: {
     devServer: {
-      host: '0.0.0.0',
+      // host: '0.0.0.0',
       overlay: false,
-      disableHostCheck: true,
+      // disableHostCheck: true,
       // https: {
       //   key: fs.readFileSync('D://share/privkey1.pem'),
       //   cert: fs.readFileSync('D://share/cert1.pem'),
