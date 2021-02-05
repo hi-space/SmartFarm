@@ -1,4 +1,4 @@
-<template>
+<template no-body>
   <!-- <video-player
     ref="videoPlayer"
     class="vjs-custom-skin"
@@ -8,8 +8,8 @@
     ref="videoPlayer"
     class="vjs-custom-skin"
     :options="playerOptions"
-    @play="onPlayerPlay($event)"
-    @ready="onPlayerReady($event)"
+    :playsinline="true"
+    @ready="onPlayerReady"
   />
 </template>
 
@@ -26,18 +26,23 @@ export default {
   props: {
     src: {
       type: String,
-      default: 'http://vjs.zencdn.net/v/oceans.mp4',
+      default: 'https://220.71.87.34:4000/videos/output.m3u8',
     },
   },
   data() {
     return {
       playerOptions: {
-        autoplay: true,
+        autoplay: 'muted',
         controls: true,
         controlBar: {
-          timeDivider: false,
-          durationDisplay: false,
+          timeDivider: true,
+          durationDisplay: true,
         },
+        fluid: false,
+        preload: 'auto',
+        loop: true,
+        height: '300',
+        responsive: 'true',
       },
     }
   },
@@ -47,28 +52,23 @@ export default {
     },
   },
   mounted() {
-    console.log(this.src)
-    // const src = 'http://localhost:4000/videos/output.m3u8'
     this.playVideo(this.src)
   },
   methods: {
-    onPlayerPlay(player) {
-      console.log('player play!', player)
-    },
     onPlayerReady(player) {
       console.log('player ready!', player)
-      this.$refs.videoPlayer.player.play()
+      this.player.play()
     },
     playVideo(source) {
+      console.log('playVideo!!!!!!!!!!!!!!!!!')
       const video = {
         withCredentials: false,
         type: 'application/x-mpegurl',
         src: source,
       }
-      this.$refs.videoPlayer.player.reset() // in IE11 (mode IE10) direct usage of src() when <src> is already set, generated errors,
-      this.$refs.videoPlayer.player.src(video)
-      // this.player.load()
-      this.$refs.videoPlayer.player.play()
+      this.player.reset() // in IE11 (mode IE10) direct usage of src() when <src> is already set, generated errors,
+      this.player.src(video)
+      this.player.load()
     },
   },
 }
