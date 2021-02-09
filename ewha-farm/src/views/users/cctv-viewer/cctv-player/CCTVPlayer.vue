@@ -6,7 +6,6 @@
   /> -->
   <video-player
     ref="videoPlayer"
-    class="vjs-custom-skin"
     :options="playerOptions"
     :playsinline="true"
     @ready="onPlayerReady"
@@ -15,6 +14,7 @@
 
 <script>
 // import { videoPlayer } from 'vue-video-player'
+import store from '@/store'
 import VideoPlayer from './VideoPlayer.vue'
 import 'video.js/dist/video-js.css'
 
@@ -26,14 +26,14 @@ export default {
   props: {
     src: {
       type: String,
-      default: 'https://220.71.87.34:4000/videos/output.m3u8',
+      default: '',
     },
   },
   data() {
     return {
       playerOptions: {
         autoplay: 'muted',
-        controls: true,
+        controls: false,
         controlBar: {
           timeDivider: true,
           durationDisplay: true,
@@ -41,8 +41,8 @@ export default {
         fluid: false,
         preload: 'auto',
         loop: true,
-        height: '300',
-        responsive: 'true',
+        width: `${store.state.app.windowWidth / 2 - 28}`,
+        responsive: true,
       },
     }
   },
@@ -53,6 +53,7 @@ export default {
   },
   mounted() {
     this.playVideo(this.src)
+    console.log(store.state.app.windowWidth)
   },
   methods: {
     onPlayerReady(player) {

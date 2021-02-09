@@ -20,7 +20,7 @@ export default [
   {
     path: '/cctv',
     name: 'cctv',
-    component: () => import('@/views/users/monitoring/CCTVViewer.vue'),
+    component: () => import('@/views/users/cctv-viewer/CCTVViewer.vue'),
     meta: {
       resource: 'User',
       action: 'read',
