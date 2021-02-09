@@ -66,7 +66,7 @@
         show-empty
         selectable
         select-mode="single"
-        empty-text="No matching records found"
+        empty-text="사용자가 없습니다"
         @row-selected="onRowSelected"
       >
 

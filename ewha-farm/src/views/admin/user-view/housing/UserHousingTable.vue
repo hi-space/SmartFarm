@@ -99,6 +99,7 @@ export default {
     return {
       housingData: [],
       fields: [
+        { key: '_id', label: '축사 ID', sortable: true },
         {
           key: 'farmId.name',
           label: '축사 이름',

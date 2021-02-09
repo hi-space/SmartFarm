@@ -119,7 +119,7 @@ export default {
     return {
       farmData: [],
       fields: [
-        // { key: '_id', label: '축사 ID', sortable: true },
+        { key: '_id', label: '축사 ID', sortable: true },
         {
           key: 'name',
           label: '축사 이름',
