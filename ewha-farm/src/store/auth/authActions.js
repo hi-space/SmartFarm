@@ -35,15 +35,7 @@ export default {
 
   register({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      useJwt.register({
-        userInfo: {
-          phone: payload.phone,
-          name: payload.name,
-          address: payload.address,
-          password: payload.password,
-          // password: bcrypt.hashSync(payload.password, bcrypt.genSaltSync(10)),
-        },
-      }).then(response => {
+      useJwt.register(payload).then(response => {
         resolve(response)
         commit('UPDATE_USER_INFO')
       }).catch(err => { reject(err) })

@@ -219,10 +219,11 @@ export default {
       this.$refs.registerForm.validate().then(success => {
         if (success) {
           const payload = {
-            phone: this.phone,
-            name: this.name,
-            address: this.address,
-            password: this.password,
+            'userInfo.phone': this.phone,
+            'userInfo.name': this.name,
+            'userInfo.address': this.address,
+            'userInfo.password': this.password,
+            manager: getUserData().id,
           }
           this.$store.dispatch('auth/register', payload)
             .then(response => {

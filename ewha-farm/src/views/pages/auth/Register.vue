@@ -237,14 +237,13 @@ export default {
       this.$refs.registerForm.validate().then(success => {
         if (success) {
           const payload = {
-            phone: this.phone,
-            name: this.name,
-            address: this.address,
-            password: this.password,
+            'userInfo.phone': this.phone,
+            'userInfo.name': this.name,
+            'userInfo.address': this.address,
+            'userInfo.password': this.password,
           }
           this.$store.dispatch('auth/register', payload)
-            .then(response => {
-              console.log(response)
+            .then(() => {
               this.$bvModal
                 .msgBoxOk('관리자의 승인이 있을 때 까지 기다려주세요', {
                   title: '회원가입 완료',

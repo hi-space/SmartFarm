@@ -5,13 +5,13 @@
       show
     >
       <div class="alert-heading">
-        <h3 class="text-primary">
-          <strong> 문의사항이 있으면 <br> 담당자에게 연락주세요 </strong>
-        </h3>
+        <h5 class="text-primary">
+          문의사항이 있으면 <br> 담당자에게 연락주세요
+        </h5>
       </div>
       <div class="alert-body">
         <h4 class="text-primary">
-          <strong> {{ manager_name }} </strong> {{ manager_phone }}
+          <strong> {{ managerName }} </strong> <br> {{ managerPhone }}
         </h4>
       </div>
     </b-alert>
@@ -21,6 +21,9 @@
 <script>
 import { BAlert } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
+import { getUserData } from '@/auth/utils'
+import axiosIns from '@/libs/axios'
+import { ref } from '@vue/composition-api'
 
 export default {
   directives: {
@@ -29,10 +32,18 @@ export default {
   components: {
     BAlert,
   },
-  data() {
+  setup() {
+    const managerName = ref(null)
+    const managerPhone = ref(null)
+
+    axiosIns.get(`users/${getUserData().id}/manager`).then(response => {
+      managerName.value = response.data.name
+      managerPhone.value = response.data.phone
+    })
+
     return {
-      manager_name: '관리자',
-      manager_phone: '010-1234-5678',
+      managerName,
+      managerPhone,
     }
   },
 }
