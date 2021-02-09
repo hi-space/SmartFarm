@@ -3,12 +3,14 @@ import useJwt from '@/auth/jwt/useJwt'
 import router from '@/router'
 import { getHomeRouteForLoggedInUser } from '@/auth/utils'
 import ability from '@/libs/acl/ability'
+// import bcrypt from 'bcryptjs'
 
 export default {
   login({ commit }, payload) {
     return new Promise((resolve, reject) => {
       useJwt.login({
         phone: payload.phone,
+        // password: bcrypt.hashSync(payload.password, bcrypt.genSaltSync(10)),
         password: payload.password,
       }).then(response => {
         if (response.status === 200) {
@@ -39,6 +41,7 @@ export default {
           name: payload.name,
           address: payload.address,
           password: payload.password,
+          // password: bcrypt.hashSync(payload.password, bcrypt.genSaltSync(10)),
         },
       }).then(response => {
         resolve(response)
