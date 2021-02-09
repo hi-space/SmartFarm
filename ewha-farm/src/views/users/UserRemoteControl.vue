@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- <cctv-viewer /> -->
-    <cctv-viewer />
+    <keep-alive>
+      <cctv-viewer />
+    </keep-alive>
     <hr class="m-2">
     <remote-control />
   </div>

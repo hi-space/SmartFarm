@@ -12,6 +12,7 @@
             :options="farmOptions"
             placeholder="축사 선택"
             :clearable="false"
+            :searchable="false"
           />
         </b-col>
         <b-col
@@ -24,6 +25,7 @@
             :options="buttonTypeOptions"
             placeholder="장치 선택"
             :clearable="false"
+            :searchable="false"
           />
         </b-col>
       </b-row>
