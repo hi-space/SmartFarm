@@ -4,10 +4,10 @@
     :options="swiperOption"
   >
     <swiper-slide
-      v-for="(data,index) in swiperData"
+      v-for="(data,index) in cctv"
       :key="index"
     >
-      <cctv-player :src="data.url" />
+      <cctv-player :src="data.rtspUrl" />
     </swiper-slide>
 
     <div
@@ -40,13 +40,7 @@ export default {
   },
   data() {
     return {
-      swiperData: [
-        { url: 'https://yoo.hispace.kr:4000/videos/output.m3u8' },
-        { url: 'https://yoo.hispace.kr:4000/videos/output.m3u8' },
-        { url: 'https://yoo.hispace.kr:4000/videos/output.m3u8' },
-        { url: 'https://yoo.hispace.kr:4000/videos/output.m3u8' },
-        { url: 'https://yoo.hispace.kr:4000/videos/output.m3u8' },
-      ],
+      cctv: [],
       swiperOption: {
         slidesPerView: 2,
         slidesPerColumn: 2,
