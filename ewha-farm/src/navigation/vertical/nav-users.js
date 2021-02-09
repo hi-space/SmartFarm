@@ -5,20 +5,13 @@ export default [
   {
     title: '원격제어',
     route: 'remote-control',
-    icon: 'VideoIcon',
+    icon: 'ToggleRightIcon',
     action: 'read',
     resource: 'User',
   },
   {
     title: '모니터링',
     route: 'dashboard',
-    icon: 'VideoIcon',
-    action: 'read',
-    resource: 'User',
-  },
-  {
-    title: 'CCTV',
-    route: 'cctv',
     icon: 'VideoIcon',
     action: 'read',
     resource: 'User',

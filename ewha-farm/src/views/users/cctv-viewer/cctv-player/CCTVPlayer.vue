@@ -1,4 +1,4 @@
-<template no-body>
+<template>
   <!-- <video-player
     ref="videoPlayer"
     class="vjs-custom-skin"
@@ -6,15 +6,15 @@
   /> -->
   <video-player
     ref="videoPlayer"
+    class="vjs-custom-skin"
     :options="playerOptions"
-    :playsinline="true"
+    :playsinline="false"
     @ready="onPlayerReady"
   />
 </template>
 
 <script>
 // import { videoPlayer } from 'vue-video-player'
-import store from '@/store'
 import VideoPlayer from './VideoPlayer.vue'
 import 'video.js/dist/video-js.css'
 
@@ -41,7 +41,7 @@ export default {
         fluid: false,
         preload: 'auto',
         loop: true,
-        width: `${store.state.app.windowWidth / 2 - 28}`,
+        width: `${parseFloat(getComputedStyle(document.querySelector('.app-content')).width) / 2 - 28}`,
         responsive: true,
       },
     }
@@ -53,7 +53,6 @@ export default {
   },
   mounted() {
     this.playVideo(this.src)
-    console.log(store.state.app.windowWidth)
   },
   methods: {
     onPlayerReady(player) {
@@ -61,7 +60,6 @@ export default {
       this.player.play()
     },
     playVideo(source) {
-      console.log('playVideo!!!!!!!!!!!!!!!!!')
       const video = {
         withCredentials: false,
         type: 'application/x-mpegurl',

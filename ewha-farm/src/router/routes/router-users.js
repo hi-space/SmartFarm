@@ -47,7 +47,7 @@ export default [
   {
     path: '/remote/control',
     name: 'remote-control',
-    component: () => import('@/views/users/remote-control/RemoteControl.vue'),
+    component: () => import('@/views/users/UserRemoteControl.vue'),
     meta: {
       resource: 'User',
       action: 'read',

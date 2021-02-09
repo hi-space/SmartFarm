@@ -6,19 +6,18 @@
     <swiper-slide
       v-for="(data,index) in swiperData"
       :key="index"
-      class="text-center"
     >
       <cctv-player :src="data.url" />
     </swiper-slide>
 
-    <!-- <div
+    <div
       slot="button-next"
       class="swiper-button-next"
     />
     <div
       slot="button-prev"
       class="swiper-button-prev"
-    /> -->
+    />
     <div
       slot="pagination"
       class="swiper-pagination"
