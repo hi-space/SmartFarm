@@ -16,43 +16,36 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
-const messaging = firebase.messaging()
-messaging.usePublicVapidKey('BHpBXs42V6czZdZvuvOxcbb4vPiQFhbv0A43zRU1I7FiFUSOOmLfBA0vilF8EKainR9FYJ1A1iWsmb_1Gx_wvTY')
-
-Notification.requestPermission().then(permission => {
-  if (permission !== 'granted') {
-    alert('알림을 허용해주세요')
-  }
-}).catch(err => {
-  console.log(err)
-})
-
+// eslint-disable-next-line import/no-mutable-exports
+let messaging = null
 const deviceToken = ref('')
-messaging.getToken().then(currentToken => {
-  if (currentToken) {
-    deviceToken.value = currentToken
-  } else {
-    console.log('No Instance ID token available. Request permission to generate one.')
-  }
-}).catch(err => {
-  console.log(err)
-})
 
-messaging.onMessage(payload => {
-  console.log(payload)
-  alert(payload)
+if (firebase.messaging.isSupported()) {
+  console.log('this browser is supported firebase')
 
-  const title = 'Title'
-  const options = {
-    body: payload.notification.body,
-    icon: '/firebase-logo.png',
-  }
+  messaging = firebase.messaging()
+  messaging.usePublicVapidKey('BHpBXs42V6czZdZvuvOxcbb4vPiQFhbv0A43zRU1I7FiFUSOOmLfBA0vilF8EKainR9FYJ1A1iWsmb_1Gx_wvTY')
 
-  console.log('title: ', title)
-  console.log('options: ', options)
-  const notification = new Notification(title, options)
-  return notification
-})
+  Notification.requestPermission().then(permission => {
+    if (permission !== 'granted') {
+      alert('알림을 허용해주세요')
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+
+  messaging.getToken().then(currentToken => {
+    if (currentToken) {
+      deviceToken.value = currentToken
+    } else {
+      console.log('No Instance ID token available. Request permission to generate one.')
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+} else {
+  console.log('this browser is not supported firebase')
+}
 
 export {
   deviceToken,

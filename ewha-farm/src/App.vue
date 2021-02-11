@@ -98,22 +98,21 @@ export default {
       store.commit('app/UPDATE_WINDOW_WIDTH', val)
     })
 
-    messaging.onMessage(payload => {
-      const push = payload.data
+    if (!messaging) {
+      messaging.onMessage(payload => {
+        const push = payload.data
+        const { title } = push
+        const options = {
+          body: push.subtitle,
+          icon: '/firebase-logo.png',
+        }
 
-      console.log('fcm: ', payload.data)
+        store.dispatch('push/fetchPush', { id: getUserData().id })
 
-      const { title } = push
-      const options = {
-        body: push.subtitle,
-        icon: '/firebase-logo.png',
-      }
-
-      store.dispatch('push/fetchPush', { id: getUserData().id })
-
-      const notification = new Notification(title, options)
-      return notification
-    })
+        const notification = new Notification(title, options)
+        return notification
+      })
+    }
 
     return {
       skinClasses,
