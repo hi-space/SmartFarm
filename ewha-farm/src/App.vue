@@ -27,21 +27,16 @@ import store from '@/store'
 import { getUserData } from './auth/utils'
 
 const LayoutVertical = () => import('@/layouts/vertical/LayoutVertical.vue')
-const LayoutHorizontal = () => import('@/layouts/horizontal/LayoutHorizontal.vue')
 const LayoutFull = () => import('@/layouts/full/LayoutFull.vue')
 
 export default {
   components: {
-
     // Layouts
-    LayoutHorizontal,
     LayoutVertical,
     LayoutFull,
 
     ScrollToTop,
   },
-  // ! We can move this computed: layout & contentLayoutType once we get to use Vue 3
-  // Currently, router.currentRoute is not reactive and doesn't trigger any change
   computed: {
     layout() {
       if (this.$route.meta.layout === 'full') return 'layout-full'
@@ -73,15 +68,9 @@ export default {
     document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr')
   },
   setup() {
-    const { skin, skinClasses } = useAppConfig()
+    const { skinClasses } = useAppConfig()
     const { enableScrollToTop } = $themeConfig.layout
 
-    // If skin is dark when initialized => Add class to body
-    if (skin.value === 'dark') document.body.classList.add('dark-layout')
-
-    // Provide toast for Composition API usage
-    // This for those apps/components which uses composition API
-    // Demos will still use Options API for ease
     provideToast({
       hideProgressBar: true,
       closeOnClick: false,

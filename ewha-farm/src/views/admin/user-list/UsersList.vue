@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ testMsg }}
     <!-- Table Container Card -->
     <b-card
       no-body
@@ -254,11 +253,9 @@ export default {
     BModal,
     vSelect,
     RegisterModal,
-    // UsersListFilters,
   },
   data() {
     return {
-      testMsg: '',
       tableColumns: [
         {
           key: 'user',
