@@ -26,6 +26,7 @@ module.exports = {
     resolve: {
       alias: {
         '@themeConfig': path.resolve(__dirname, 'themeConfig.js'),
+        '@firebaseConfig': path.resolve(__dirname, 'firebaseConfig.js'),
         '@core': path.resolve(__dirname, 'src/@core'),
         '@validations': path.resolve(__dirname, 'src/@core/utils/validations/validations.js'),
         '@axios': path.resolve(__dirname, 'src/libs/axios'),
