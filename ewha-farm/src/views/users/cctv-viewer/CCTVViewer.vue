@@ -30,7 +30,7 @@ import { getUserData } from '@/auth/utils'
 import store from '@/store'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
-import CCTVPlayer from './cctv-player/CCTVPlayer.vue'
+import CCTVPlayer from './components/CCTVPlayer.vue'
 
 export default {
   components: {

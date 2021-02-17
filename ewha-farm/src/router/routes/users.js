@@ -1,14 +1,5 @@
 export default [
   {
-    path: '/empty',
-    name: 'empty',
-    component: () => import('@/views/users/Empty.vue'),
-    meta: {
-      resource: 'User',
-      action: 'read',
-    },
-  },
-  {
     path: '/dashboard',
     name: 'dashboard',
     component: () => import('@/views/users/UserDashboard.vue'),

@@ -37,9 +37,9 @@ import {
 
 import { getUserData } from '@/auth/utils'
 import store from '@/store'
-import SensorStateCard from './sensor-card/SensorStateCard.vue'
-import WeatherCard from './sensor-card/WeatherCard.vue'
-import SensorGraphCard from './sensor-card/SensorGraphCard.vue'
+import SensorStateCard from './components/SensorStateCard.vue'
+import WeatherCard from './components/WeatherCard.vue'
+import SensorGraphCard from './components/SensorGraphCard.vue'
 
 export default {
   components: {
