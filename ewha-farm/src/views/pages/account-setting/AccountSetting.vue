@@ -29,7 +29,7 @@
     <!--/ general tab -->
 
     <!-- notification -->
-    <!-- <b-tab>
+    <b-tab>
       <template #title>
         <feather-icon
           icon="BellIcon"
@@ -41,8 +41,10 @@
 
       <account-setting-notification
         v-if="userData"
+        :user-id="userId"
+        :user-data="userData"
       />
-    </b-tab> -->
+    </b-tab>
   </b-tabs>
 </template>
 
@@ -53,14 +55,14 @@ import store from '@/store'
 import { ref } from '@vue/composition-api'
 
 import AccountSettingGeneral from './AccountSettingGeneral.vue'
-// import AccountSettingNotification from './AccountSettingNotification.vue'
+import AccountSettingNotification from './AccountSettingNotification.vue'
 
 export default {
   components: {
     BTabs,
     BTab,
     AccountSettingGeneral,
-    // AccountSettingNotification,
+    AccountSettingNotification,
   },
   setup() {
     const userData = ref(null)
