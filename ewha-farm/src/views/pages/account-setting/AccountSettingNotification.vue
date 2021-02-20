@@ -4,46 +4,17 @@
       <h6 class="section-label mx-1 mb-2">
         알림 설정
       </h6>
-      <!-- <b-col
-        cols="12"
-        class="mb-2"
-      >
-        <b-form-checkbox
-          id="accountSwitch1"
-          checked="true"
-          name="check-button"
-          switch
-          inline
-        >
-          <span>센서 알림</span>
-        </b-form-checkbox>
-      </b-col> -->
+
       <b-col
         cols="12"
         class="mb-2"
       >
         <b-form-checkbox
-          id="accountSwitch2"
-          :checked="true"
-          name="check-button"
+          v-model="userData.pushSetting.automatic"
           switch
           inline
         >
-          <span>자동 제어 알림</span>
-        </b-form-checkbox>
-      </b-col>
-      <b-col
-        cols="12"
-        class="mb-2"
-      >
-        <b-form-checkbox
-          id="accountSwitch3"
-          :checked="false"
-          name="check-button"
-          switch
-          inline
-        >
-          <span>네트워크 에러 알림</span>
+          <span>알림 받기</span>
         </b-form-checkbox>
       </b-col>
 
@@ -51,16 +22,10 @@
       <b-col cols="12">
         <b-button
           variant="primary"
-          class="mr-1 mt-1"
+          class="mr-1 mt-1 float-right"
+          @click="updateInfo"
         >
           설정 변경
-        </b-button>
-        <b-button
-          type="reset"
-          class="mt-1"
-          variant="outline-secondary"
-        >
-          취소
         </b-button>
       </b-col>
       <!--/ buttons -->
@@ -72,7 +37,7 @@
 import {
   BButton, BRow, BCol, BCard, BFormCheckbox,
 } from 'bootstrap-vue'
-import Ripple from 'vue-ripple-directive'
+import store from '@/store'
 
 export default {
   components: {
@@ -82,8 +47,33 @@ export default {
     BCard,
     BFormCheckbox,
   },
-  directives: {
-    Ripple,
+  props: {
+    userId: {
+      type: String,
+      required: true,
+    },
+    userData: {
+      type: Object,
+      required: true,
+    },
+  },
+  methods: {
+    updateInfo() {
+      store.dispatch('users/updateUser', { id: this.userId, queryBody: this.userData })
+        .then(() => {
+          this.$bvModal.msgBoxOk('개인 정보가 수정되었습니다', {
+            title: '개인 정보 수정',
+            centered: true,
+          }).then({})
+        })
+        .catch(error => {
+          console.log(error)
+          this.$bvModal.msgBoxOk('개인 정보 수정이 실패했습니다', {
+            title: '개인 정보 수정',
+            centered: true,
+          }).then({})
+        })
+    },
   },
 }
 </script>

@@ -129,6 +129,7 @@ export default {
         }
       }
       // player
+      // eslint-disable-next-line func-names
       this.player = videojs(videoObj, videoOptions, function () {
         // events
         const DEFAULT_EVENTS = [

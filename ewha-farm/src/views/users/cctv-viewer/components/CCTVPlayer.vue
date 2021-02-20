@@ -1,9 +1,4 @@
 <template>
-  <!-- <video-player
-    ref="videoPlayer"
-    class="vjs-custom-skin"
-    :options="playerOptions"
-  /> -->
   <video-player
     ref="videoPlayer"
     class="vjs-custom-skin"
@@ -14,7 +9,6 @@
 </template>
 
 <script>
-// import { videoPlayer } from 'vue-video-player'
 import VideoPlayer from './VideoPlayer.vue'
 import 'video.js/dist/video-js.css'
 

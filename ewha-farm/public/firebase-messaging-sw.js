@@ -2,8 +2,7 @@
 importScripts('https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/8.2.1/firebase-messaging.js')
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const { firebaseConfig } = require('../firebaseConfig')
 const firebaseConfig = {
   apiKey: 'AIzaSyDCdTq8rTZiz3AJURPv2IOtWVqpPAx0MEo',
   authDomain: 'ewha-farm.firebaseapp.com',
@@ -13,6 +12,7 @@ const firebaseConfig = {
   appId: '1:807655548321:web:fa1780e8b5000d4023d7e0',
   measurementId: 'G-53W79RTRFP',
 }
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 
