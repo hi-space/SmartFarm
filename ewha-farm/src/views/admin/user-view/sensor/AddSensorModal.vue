@@ -32,6 +32,39 @@
           placeholder="이름"
         />
       </b-form-group>
+      <b-form-group
+        label="URL"
+        label-for="url"
+      >
+        <b-form-input
+          id="URL"
+          v-model="url"
+          type="text"
+          placeholder="COM9,9600,8,0,1"
+        />
+      </b-form-group>
+      <b-form-group
+        label="Slave ID"
+        label-for="slaveId"
+      >
+        <b-form-input
+          id="Slave ID"
+          v-model="slaveId"
+          type="number"
+          placeholder="2"
+        />
+      </b-form-group>
+      <b-form-group
+        label="address"
+        label-for="address"
+      >
+        <b-form-input
+          id="address"
+          v-model="address"
+          type="number"
+          placeholder="0"
+        />
+      </b-form-group>
     </b-form>
   </b-modal>
 </template>
@@ -59,6 +92,9 @@ export default {
       type: '',
       typeOptions: sensorList,
       sensorName: '',
+      url: '',
+      slaveId: '',
+      address: '',
       id: null,
     }
   },
@@ -67,12 +103,18 @@ export default {
       this.id = null
       this.type = ''
       this.sensorName = ''
+      this.url = ''
+      this.slaveId = ''
+      this.address = ''
       this.$refs.addSensorModal.show()
     },
     editModal(item) {
       this.id = item._id
       this.type = getSensorLabel(item.type)
       this.sensorName = item.name
+      this.url = item.url
+      this.slaveId = item.slaveId
+      this.address = item.address
 
       this.$refs.addSensorModal.show()
     },
@@ -82,6 +124,9 @@ export default {
         userId: this.$store.getters['users/getUserId'],
         type: this.type.value,
         name: this.sensorName,
+        url: this.url,
+        slaveId: this.slaveId,
+        address: this.address,
       }
 
       this.$store.dispatch('sensor/createSensor', { queryBody: payload })
@@ -102,6 +147,9 @@ export default {
         userId: this.$store.getters['users/getUserId'],
         type: this.type.value,
         name: this.sensorName,
+        url: this.url,
+        slaveId: this.slaveId,
+        address: this.address,
       }
 
       this.$store.dispatch('sensor/updateSensor', { id: this.id, queryBody: payload })
