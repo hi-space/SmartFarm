@@ -61,12 +61,12 @@
         />
       </b-form-group>
       <b-form-group
-        label="Relay URL"
-        label-for="relayUrl"
+        label="Streming Server URL"
+        label-for="streamingUrl"
       >
         <b-form-input
-          id="relayUrl"
-          v-model="relayUrl"
+          id="streamingUrl"
+          v-model="streamingUrl"
           type="text"
           placeholder=""
         />
@@ -121,7 +121,7 @@ export default {
       name: '',
       info: '',
       rtspUrl: '',
-      relayUrl: '',
+      streamingUrl: '',
       account: '',
       password: '',
       id: null,
@@ -133,10 +133,10 @@ export default {
       this.farmName = ''
       this.name = ''
       this.info = ''
-      this.rtspUrl = ''
-      this.relayUrl = ''
-      this.account = ''
-      this.password = ''
+      this.rtspUrl = '220.71.87.34:554/media/video1'
+      this.streamingUrl = 'https://yoo.hispace.kr:4000'
+      this.account = 'admin'
+      this.password = 'geniuszz12'
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.$refs.addCameraModal.show()
     },
@@ -147,7 +147,7 @@ export default {
       this.name = item.name
       this.info = item.info
       this.rtspUrl = item.rtspUrl
-      this.relayUrl = item.relayUrl
+      this.streamingUrl = item.streamingUrl
       this.account = item.account
       this.password = item.password
       this.$refs.addCameraModal.show()
@@ -160,7 +160,7 @@ export default {
         name: this.name,
         info: this.info,
         rtspUrl: this.rtspUrl,
-        relayUrl: this.relayUrl,
+        streamingUrl: this.streamingUrl,
         account: this.account,
         password: this.password,
       }
@@ -179,7 +179,7 @@ export default {
         name: this.name,
         info: this.info,
         rtspUrl: this.rtspUrl,
-        relayUrl: this.relayUrl,
+        streamingUrl: this.streamingUrl,
         account: this.account,
         password: this.password,
       }

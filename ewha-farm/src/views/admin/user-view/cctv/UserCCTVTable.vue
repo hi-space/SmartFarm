@@ -38,6 +38,15 @@
             size="sm"
             class="btn-icon"
             variant="flat"
+            @click="updateStream(row.item)"
+          >
+            <feather-icon icon="RefreshCwIcon" />
+          </b-button>
+
+          <b-button
+            size="sm"
+            class="btn-icon"
+            variant="flat"
             @click="$refs.addCameraModal.editModal(row.item)"
           >
             <feather-icon icon="EditIcon" />
@@ -62,6 +71,7 @@ import {
   BCard, BCardTitle, BCardSubTitle, BTable, BButton,
 } from 'bootstrap-vue'
 import store from '@/store'
+import axiosIns from '@/libs/axios'
 import { getDateString } from '@core/utils/utils'
 import AddCameraModal from './AddCameraModal.vue'
 
@@ -83,7 +93,8 @@ export default {
         { key: 'name', label: 'CCTV 이름', sortable: true },
         { key: 'info', label: '정보', sortable: true },
         { key: 'rtspUrl', label: 'rtsp URL', sortable: true },
-        { key: 'relayUrl', label: 'relay URL', sortable: true },
+        { key: 'streamingUrl', label: 'streming URL', sortable: true },
+        // { key: 'relayUrl', label: 'relay URL', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         {
           label: '생성일자',
@@ -130,6 +141,14 @@ export default {
               })
           }
         })
+    },
+    updateStream(row) {
+      console.log(row)
+      axiosIns.put(`cctv/${row._id}/stream`, row).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.log(err)
+      })
     },
   },
 }
