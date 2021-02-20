@@ -115,6 +115,7 @@ export default {
         { key: 'housingId.name', label: '함체 이름', sortable: true },
         { key: 'name', label: '장비 이름', sortable: true },
         // { key: 'type', label: '함체 타입', sortable: true },
+        { key: 'channel', label: '채널', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         { key: 'serialNum', label: 'S/N', sortable: true },

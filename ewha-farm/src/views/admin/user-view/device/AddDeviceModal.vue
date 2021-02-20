@@ -66,6 +66,18 @@
         />
       </b-form-group>
       <b-form-group
+        label="채널"
+        label-for="channel"
+      >
+        <v-select
+          id="channel"
+          v-model="channel"
+          :options="channel_option"
+          :clearable="false"
+          :searchable="false"
+        />
+      </b-form-group>
+      <b-form-group
         label="Port"
         label-for="port"
       >
@@ -134,10 +146,12 @@ export default {
       farmOptions: [],
       housingOptions: [],
       type_option: ['KC868'],
+      channel_option: [8, 16],
       farmName: '',
       housingName: '',
       deviceName: '',
       deviceType: '',
+      channel: '',
       port: '',
       account: '',
       password: '',
@@ -157,6 +171,7 @@ export default {
       this.housingName = ''
       this.deviceName = ''
       this.deviceType = ''
+      this.channel = ''
       this.port = ''
       this.account = ''
       this.password = ''
@@ -172,6 +187,7 @@ export default {
       this.housingName = this.housingOptions.find(el => item.housingId._id === el.value)
       this.deviceName = item.name
       this.deviceType = item.type
+      this.channel = item.channel
       this.port = item.port
       this.account = item.account
       this.password = item.password
@@ -187,6 +203,7 @@ export default {
         housingId: this.housingName.value,
         name: this.deviceName,
         type: this.deviceType,
+        channel: this.channel,
         port: this.port,
         account: this.account,
         password: this.password,
@@ -208,6 +225,7 @@ export default {
         housingId: this.housingName.value,
         name: this.deviceName,
         type: this.deviceType,
+        channel: this.channel,
         port: this.port,
         account: this.account,
         password: this.password,
