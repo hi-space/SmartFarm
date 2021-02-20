@@ -110,7 +110,7 @@ export default {
     return {
       deviceData: [],
       fields: [
-        { key: '_id', label: '축사 ID', sortable: true },
+        // { key: '_id', label: '축사 ID', sortable: true },
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'housingId.name', label: '함체 이름', sortable: true },
         { key: 'name', label: '장비 이름', sortable: true },

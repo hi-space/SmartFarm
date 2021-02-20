@@ -83,6 +83,7 @@ export default {
         { key: 'name', label: 'CCTV 이름', sortable: true },
         { key: 'info', label: '정보', sortable: true },
         { key: 'rtspUrl', label: 'rtsp URL', sortable: true },
+        { key: 'relayUrl', label: 'relay URL', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         {
           label: '생성일자',

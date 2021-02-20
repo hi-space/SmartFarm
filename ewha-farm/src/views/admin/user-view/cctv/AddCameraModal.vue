@@ -50,14 +50,25 @@
       </div>
 
       <b-form-group
-        label="URL"
+        label="RTSP URL"
         label-for="rtspUrl"
       >
         <b-form-input
           id="rtspUrl"
           v-model="rtspUrl"
           type="text"
-          placeholder="rtsp://.../media/video1"
+          placeholder=""
+        />
+      </b-form-group>
+      <b-form-group
+        label="Relay URL"
+        label-for="relayUrl"
+      >
+        <b-form-input
+          id="relayUrl"
+          v-model="relayUrl"
+          type="text"
+          placeholder=""
         />
       </b-form-group>
       <b-form-group
@@ -110,6 +121,7 @@ export default {
       name: '',
       info: '',
       rtspUrl: '',
+      relayUrl: '',
       account: '',
       password: '',
       id: null,
@@ -122,6 +134,7 @@ export default {
       this.name = ''
       this.info = ''
       this.rtspUrl = ''
+      this.relayUrl = ''
       this.account = ''
       this.password = ''
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
@@ -134,6 +147,7 @@ export default {
       this.name = item.name
       this.info = item.info
       this.rtspUrl = item.rtspUrl
+      this.relayUrl = item.relayUrl
       this.account = item.account
       this.password = item.password
       this.$refs.addCameraModal.show()
@@ -146,6 +160,7 @@ export default {
         name: this.name,
         info: this.info,
         rtspUrl: this.rtspUrl,
+        relayUrl: this.relayUrl,
         account: this.account,
         password: this.password,
       }
@@ -164,6 +179,7 @@ export default {
         name: this.name,
         info: this.info,
         rtspUrl: this.rtspUrl,
+        relayUrl: this.relayUrl,
         account: this.account,
         password: this.password,
       }
