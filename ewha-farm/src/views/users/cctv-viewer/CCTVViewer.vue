@@ -7,7 +7,7 @@
       v-for="(data,index) in cctv"
       :key="index"
     >
-      <cctv-player :src="data.rtspUrl" />
+      <cctv-player :src="data.relayUrl" />
     </swiper-slide>
 
     <div
