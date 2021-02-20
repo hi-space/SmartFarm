@@ -9,5 +9,9 @@ export const sensorList = [
 ]
 
 export function getSensorLabel(value) {
-  return sensorList.find(el => value === el.value)
+  const result = sensorList.find(el => value === el.value)
+  if (result === undefined) {
+    return ''
+  }
+  return result
 }

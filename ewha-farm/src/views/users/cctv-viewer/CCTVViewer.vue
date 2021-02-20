@@ -64,7 +64,6 @@ export default {
       const result = await store.dispatch('cctv/fetchCCTVs',
         { userId: getUserData().id })
       this.cctv = result.data
-      console.log(result.data)
     },
   },
 }

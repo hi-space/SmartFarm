@@ -15,9 +15,17 @@ export const signalList = [
 ]
 
 export function getButtonLabel(value) {
-  return buttonList.find(el => value === el.value)
+  const result = buttonList.find(el => value === el.value)
+  if (result === undefined) {
+    return ''
+  }
+  return result
 }
 
 export function getSignalLabel(value) {
-  return signalList.find(el => value === el.value)
+  const result = signalList.find(el => value === el.value)
+  if (result === undefined) {
+    return ''
+  }
+  return result
 }
