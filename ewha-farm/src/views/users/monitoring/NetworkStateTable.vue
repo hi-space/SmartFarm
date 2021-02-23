@@ -23,7 +23,6 @@
 import {
   BCard, BCardTitle, BTable,
 } from 'bootstrap-vue'
-import { ref } from '@vue/composition-api'
 import axiosIns from '@/libs/axios'
 import { getUserData } from '@/auth/utils'
 import { getDateString } from '@core/utils/utils'
@@ -34,8 +33,15 @@ export default {
     BCardTitle,
     BTable,
   },
+  props: {
+    farmId: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
+      networkData: [],
       fields: [
         {
           key: 'farmId.name',
@@ -59,21 +65,33 @@ export default {
       ],
     }
   },
-  setup() {
-    const networkData = ref(null)
-    axiosIns.get('network', {
-      params: { _id: getUserData().id },
-    }).then(response => {
-      networkData.value = response.data
-    }).catch(err => {
-      console.log(err)
-    })
-
-    return {
-      networkData,
-    }
+  created() {
+    this.getNetworkData(this.farmId)
   },
+  // setup() {
+  //   const networkData = ref(null)
+  //   axiosIns.get('network', {
+  //     params: { _id: getUserData().id },
+  //   }).then(response => {
+  //     networkData.value = response.data
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+
+  //   return {
+  //     networkData,
+  //   }
+  // },
   methods: {
+    getNetworkData(farmId) {
+      axiosIns.get('network', {
+        params: { _id: getUserData().id, farmId },
+      }).then(response => {
+        this.networkData = response.data
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     rowColor(item, type) {
       if (!item || type !== 'row') {
         return

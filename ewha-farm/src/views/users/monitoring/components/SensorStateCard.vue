@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     async updateUI(sensorData) {
+      this.sensorItems = []
       sensorData.forEach(el => {
         let icon = 'CpuIcon'
         let color = 'light-primary'

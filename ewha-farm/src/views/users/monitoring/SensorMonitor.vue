@@ -49,18 +49,25 @@ export default {
     WeatherCard,
     SensorGraphCard,
   },
+  props: {
+    farmId: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       sensorData: [],
     }
   },
   created() {
-    this.getSensor()
+    this.getSensor(this.farmId)
   },
   methods: {
-    async getSensor() {
+    async getSensor(farmId) {
       const result = await store.dispatch('sensor/fetchSensors',
-        { userId: getUserData().id })
+        { userId: getUserData().id, farmId })
+
       this.sensorData = result.data
 
       this.$refs.sensorStateCard.updateUI(this.sensorData)
