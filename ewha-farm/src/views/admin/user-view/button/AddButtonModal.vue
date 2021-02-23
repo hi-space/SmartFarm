@@ -47,6 +47,40 @@
         />
       </b-form-group>
       <b-form-group
+        v-if="type==='inverter'"
+        label="URL"
+        label-for="url"
+      >
+        <b-form-input
+          id="URL"
+          v-model="url"
+          type="text"
+          placeholder="COM9,9600,8,0,1"
+        />
+      </b-form-group>
+      <b-form-group
+        label="Slave ID"
+        label-for="slaveId"
+      >
+        <b-form-input
+          id="Slave ID"
+          v-model="slaveId"
+          type="number"
+          placeholder="2"
+        />
+      </b-form-group>
+      <b-form-group
+        label="address"
+        label-for="address"
+      >
+        <b-form-input
+          id="address"
+          v-model="address"
+          type="number"
+          placeholder="0"
+        />
+      </b-form-group>
+      <b-form-group
         label="신호 타입"
         label-for="signal-type"
       >
@@ -99,6 +133,9 @@ export default {
   data() {
     return {
       type: '',
+      url: '',
+      slaveId: '',
+      address: '',
       name: '',
       buttonOptions: buttonList,
       signalTypeSelected: '',
@@ -115,6 +152,9 @@ export default {
       this.id = null
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.type = ''
+      this.url = ''
+      this.slaveId = ''
+      this.address = ''
       this.name = ''
       this.signalTypeSelected = ''
       this.farmName = ''
@@ -128,6 +168,9 @@ export default {
       this.farmName = this.farmOptions.filter(el => item.farmId._id === el.value)
       this.name = item.name
       this.type = getButtonLabel(item.type)
+      this.url = item.url
+      this.address = item.address
+      this.slaveId = item.slaveId
       this.relayNum = item.buttonSetting.relayCount
       this.signalTypeSelected = getSignalLabel(item.buttonSetting.signalType)
       this.$refs.addButtonModal.show()
@@ -139,6 +182,9 @@ export default {
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,
+        url: this.url,
+        slaveId: this.slaveId,
+        address: this.address,
         'buttonSetting.relayCount': this.relayNum,
         'buttonSetting.signalType': this.signalTypeSelected.value,
       }
@@ -157,6 +203,9 @@ export default {
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,
+        url: this.url,
+        slaveId: this.slaveId,
+        address: this.address,
         'buttonSetting.relayCount': this.relayNum,
         'buttonSetting.signalType': this.signalTypeSelected.value,
       }
