@@ -1,8 +1,8 @@
 <template>
-  <keep-alive>
+  <div>
     <sensor-monitor />
     <network-state-table />
-  </keep-alive>
+  </div>
 </template>
 
 <script>

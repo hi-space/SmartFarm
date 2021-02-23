@@ -61,7 +61,9 @@ export default {
   },
   setup() {
     const networkData = ref(null)
-    axiosIns.get('network', { _id: getUserData().id }).then(response => {
+    axiosIns.get('network', {
+      params: { _id: getUserData().id },
+    }).then(response => {
       networkData.value = response.data
     }).catch(err => {
       console.log(err)

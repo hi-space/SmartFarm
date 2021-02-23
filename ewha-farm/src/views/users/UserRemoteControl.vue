@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      dy: 100,
+      dy: 50,
     }
   },
   computed: {
@@ -35,21 +35,9 @@ export default {
       }
     },
   },
-  // created() {
-  //   window.addEventListener('scroll', this.handleScroll)
-  // },
-  // destroyed() {
-  //   window.removeEventListener('scroll', this.handleScroll)
-  // },
   mounted() {
     this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height) / 2 + 200
   },
-  // methods: {
-  //   handleScroll(event) {
-  //     // this.dy = window.top.scrollY
-  //     console.log(window.top.scrollY)
-  //   },
-  // },
 }
 </script>
 
@@ -57,7 +45,7 @@ export default {
 .fixed {
   position: fixed;
   display: inline-block;
-  z-index: 9999;
+  z-index: 1000;
   width: 100% !important;
   /* height: 100% !important; */
 }
