@@ -24,6 +24,17 @@
         />
       </b-form-group>
       <b-form-group
+        label="버튼 이름"
+        label-for="button-name"
+      >
+        <b-form-input
+          id="button-name"
+          v-model="name"
+          type="text"
+          placeholder="이름"
+        />
+      </b-form-group>
+      <b-form-group
         label="버튼 타입"
         label-for="button-type"
       >
@@ -36,18 +47,7 @@
         />
       </b-form-group>
       <b-form-group
-        label="버튼 이름"
-        label-for="button-name"
-      >
-        <b-form-input
-          id="button-name"
-          v-model="name"
-          type="text"
-          placeholder="이름"
-        />
-      </b-form-group>
-      <b-form-group
-        v-if="type==='inverter'"
+        v-if="type.value==='inverter'"
         label="URL"
         label-for="url"
       >
@@ -59,6 +59,7 @@
         />
       </b-form-group>
       <b-form-group
+        v-if="type.value==='inverter'"
         label="Slave ID"
         label-for="slaveId"
       >
@@ -70,6 +71,7 @@
         />
       </b-form-group>
       <b-form-group
+        v-if="type.value==='inverter'"
         label="address"
         label-for="address"
       >
