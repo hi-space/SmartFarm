@@ -82,6 +82,7 @@
             v-model="sliderValue"
             class="p-1 m-2 text-primary"
             :lazy="true"
+            max="60"
             tooltip="always"
             :tooltip-formatter="`${sliderValue} Hz`"
             :disabled="checkedItem.length === 0"

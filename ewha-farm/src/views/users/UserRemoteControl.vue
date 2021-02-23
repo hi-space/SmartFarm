@@ -1,5 +1,5 @@
 <template>
-  <div class="no-scroll">
+  <div>
     <keep-alive>
       <div class="fixed">
         <cctv-viewer />
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      dy: 50,
+      dy: 100,
     }
   },
   computed: {
@@ -35,21 +35,21 @@ export default {
       }
     },
   },
-  created() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
+  // created() {
+  //   window.addEventListener('scroll', this.handleScroll)
+  // },
+  // destroyed() {
+  //   window.removeEventListener('scroll', this.handleScroll)
+  // },
   mounted() {
-    this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height) / 2
+    this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height) / 2 + 200
   },
-  methods: {
-    handleScroll(event) {
-      // this.dy = window.top.scrollY
-      console.log(window.top.scrollY)
-    },
-  },
+  // methods: {
+  //   handleScroll(event) {
+  //     // this.dy = window.top.scrollY
+  //     console.log(window.top.scrollY)
+  //   },
+  // },
 }
 </script>
 
@@ -57,14 +57,14 @@ export default {
 .fixed {
   position: fixed;
   display: inline-block;
-  /* z-index: 9999; */
+  z-index: 9999;
   width: 100% !important;
-  height: 100% !important;
+  /* height: 100% !important; */
 }
 
 .spacer {
   position: fixed;
-  /* z-index: 1000; */
+  z-index: 9999;
 }
 
 </style>
