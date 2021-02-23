@@ -64,9 +64,9 @@ export default {
     this.getSensor(this.farmId)
   },
   methods: {
-    async getSensor(farmId) {
+    async getSensor(farm) {
       const result = await store.dispatch('sensor/fetchSensors',
-        { userId: getUserData().id, farmId })
+        { userId: getUserData().id, farmId: farm })
 
       this.sensorData = result.data
 

@@ -83,9 +83,9 @@ export default {
   //   }
   // },
   methods: {
-    getNetworkData(farmId) {
+    getNetworkData(farm) {
       axiosIns.get('network', {
-        params: { _id: getUserData().id, farmId },
+        params: { userId: getUserData().id, farmId: farm },
       }).then(response => {
         this.networkData = response.data
       }).catch(err => {
