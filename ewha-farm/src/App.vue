@@ -87,7 +87,7 @@ export default {
       store.commit('app/UPDATE_WINDOW_WIDTH', val)
     })
 
-    if (!messaging) {
+    if (messaging) {
       messaging.onMessage(payload => {
         const push = payload.data
         const { title } = push

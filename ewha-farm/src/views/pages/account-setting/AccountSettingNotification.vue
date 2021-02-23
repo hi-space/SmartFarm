@@ -10,7 +10,7 @@
         class="mb-2"
       >
         <b-form-checkbox
-          v-model="userData.pushSetting.automatic"
+          v-model="userData.pushSetting.network"
           switch
           inline
         >
@@ -59,6 +59,7 @@ export default {
   },
   methods: {
     updateInfo() {
+      console.log(this.userData)
       store.dispatch('users/updateUser', { id: this.userId, queryBody: this.userData })
         .then(() => {
           this.$bvModal.msgBoxOk('개인 정보가 수정되었습니다', {
