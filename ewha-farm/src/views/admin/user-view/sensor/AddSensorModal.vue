@@ -12,6 +12,18 @@
   >
     <b-form>
       <b-form-group
+        label="농장 이름"
+        label-for="farmName"
+      >
+        <v-select
+          id="farmName"
+          v-model="farmName"
+          :options="farmOptions"
+          :clearable="false"
+          :searchable="false"
+        />
+      </b-form-group>
+      <b-form-group
         label="센서 타입"
         label-for="type"
       >
@@ -19,6 +31,8 @@
           id="type"
           v-model="type"
           :options="typeOptions"
+          :clearable="false"
+          :searchable="false"
         />
       </b-form-group>
       <b-form-group
@@ -89,6 +103,8 @@ export default {
   },
   data() {
     return {
+      farmOptions: [],
+      farmName: '',
       type: '',
       typeOptions: sensorList,
       sensorName: '',
@@ -101,14 +117,18 @@ export default {
   methods: {
     showModal() {
       this.id = null
+      this.farmName = ''
       this.type = ''
       this.sensorName = ''
       this.url = ''
       this.slaveId = ''
       this.address = ''
+      this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.$refs.addSensorModal.show()
     },
     editModal(item) {
+      this.farmOptions = this.$store.getters['farm/getFarmSelect']
+      this.farmName = this.farmOptions.find(el => item.farmId._id === el.value)
       this.id = item._id
       this.type = getSensorLabel(item.type)
       this.sensorName = item.name
@@ -122,6 +142,7 @@ export default {
       console.log(this.type.value)
       const payload = {
         userId: this.$store.getters['users/getUserId'],
+        farmId: this.farmName.value,
         type: this.type.value,
         name: this.sensorName,
         url: this.url,
@@ -145,6 +166,7 @@ export default {
     modify() {
       const payload = {
         userId: this.$store.getters['users/getUserId'],
+        farmId: this.farmName.value,
         type: this.type.value,
         name: this.sensorName,
         url: this.url,

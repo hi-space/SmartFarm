@@ -97,6 +97,7 @@ export default {
       sensorData: [],
       fields: [
         // { key: '_id', label: '함체 ID', sortable: true },
+        { key: 'farmId.name', label: '축사 이름', sortable: true },
         {
           key: 'type',
           label: '센서 타입',
