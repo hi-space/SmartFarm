@@ -18,7 +18,9 @@
 
     <b-navbar-nav class="nav align-items-center ml-auto">
       <notification-dropdown />
-      <user-dropdown />
+      <user-dropdown
+        class="top"
+      />
     </b-navbar-nav>
   </div>
 </template>
@@ -47,3 +49,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.top {
+  z-index: 9999;
+}
+</style>

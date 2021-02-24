@@ -45,14 +45,13 @@ export default {
 .fixed {
   position: fixed;
   display: inline-block;
-  z-index: 1000;
+  z-index: 10;
   width: 100% !important;
   /* height: 100% !important; */
 }
-
-.spacer {
+/* .spacer {
   position: fixed;
   z-index: 9999;
-}
+} */
 
 </style>
