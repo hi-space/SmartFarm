@@ -48,7 +48,6 @@ export default {
       const farmId = newVal.value
       this.$refs.networkTable.getNetworkData(farmId)
       this.$refs.sensorMonitor.getSensor(farmId)
-      console.log(farmId)
     },
   },
   created() {

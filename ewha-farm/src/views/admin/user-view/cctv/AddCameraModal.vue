@@ -133,10 +133,10 @@ export default {
       this.farmName = ''
       this.name = ''
       this.info = ''
-      this.rtspUrl = '220.71.87.34:554/media/video1'
-      this.streamingUrl = 'https://yoo.hispace.kr:4000'
-      this.account = 'admin'
-      this.password = 'geniuszz12'
+      this.rtspUrl = ''
+      this.streamingUrl = ''
+      this.account = ''
+      this.password = ''
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.$refs.addCameraModal.show()
     },
