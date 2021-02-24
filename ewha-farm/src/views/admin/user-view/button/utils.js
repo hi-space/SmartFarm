@@ -8,6 +8,7 @@ export const buttonList = [
   { label: '선풍기', value: 'fan' },
   { label: '안개분무기', value: 'sprayer' },
   { label: '인버터', value: 'inverter' },
+  { label: '유압제어기', value: 'hydraulic' },
 ]
 
 export const signalList = [

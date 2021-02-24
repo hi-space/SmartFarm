@@ -16,14 +16,6 @@
           class="cursor-pointer m-1"
           @click="showModal"
         />
-        <!-- <feather-icon
-          v-model="isAlert"
-          :icon="alertIcon"
-          :color="alertColor"
-          size="18"
-          class="cursor-pointer m-1"
-          @click="toggleAlert"
-        /> -->
         <feather-icon
           v-model="isAuto"
           icon="RepeatIcon"
@@ -32,15 +24,14 @@
           class="cursor-pointer m-1"
           @click="toggleAuto"
         />
-        <!-- <setting-modal
-          :button-id="buttonItem._id"
-          @submit="updateSettings()"
-        /> -->
       </div>
     </b-card-header>
 
     <!-- body buttons -->
-    <b-card-body class="text-center pb-1">
+    <b-card-body
+      v-if="buttonItem.type !== 'feeder' && buttonItem.type !== 'hydraulic'"
+      class="text-center pb-1"
+    >
       <b-card-text>
         작동 시간
         <h4> <strong> {{ getDateString() }} </strong> </h4>

@@ -53,6 +53,7 @@ export default {
       return buttons
         .map((obj => obj.type))
         .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
+        .filter((obj => obj !== 'hydraulic'))
         .map((obj => {
           const rObj = {}
           rObj.value = obj

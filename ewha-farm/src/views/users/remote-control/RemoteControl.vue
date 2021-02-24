@@ -60,9 +60,10 @@
             선택한 장치 제어
           </div>
         </div>
+
         <!-- open / stop / close -->
         <b-form-group
-          v-if="selectedButton.value!=='inverter'"
+          v-if="selectedButton.value !== 'inverter' && selectedButton.value !== 'feeder'"
         >
           <b-form-radio-group
             v-model="selectedCommand"
@@ -76,13 +77,13 @@
 
         <!-- inverter: slider, work / etop -->
         <b-form-group
-          v-if="selectedButton.value=='inverter'"
+          v-if="selectedButton.value === 'inverter' || selectedButton.value === 'feeder'"
         >
           <vue-slider
+            v-if="selectedButton.value === 'inverter'"
             v-model="sliderValue"
             class="p-1 m-2 text-primary"
             :lazy="true"
-            max="60"
             tooltip="always"
             :tooltip-formatter="`${sliderValue} Hz`"
             :disabled="checkedItem.length === 0"
@@ -236,6 +237,11 @@ export default {
     async getButtonList() {
       this.buttonItems = []
       this.buttonItems = await store.getters['button/getButtonInType'](this.selectedButton.value)
+
+      if (this.selectedButton.value === 'feeder') {
+        const hydraulicItems = await store.getters['button/getButtonInType']('hydraulic')
+        this.buttonItems = this.buttonItems.concat(hydraulicItems)
+      }
     },
     changeChecked(buttonId, newVal) {
       if (newVal) {

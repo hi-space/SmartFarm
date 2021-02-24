@@ -1,7 +1,7 @@
 <template>
   <div>
     <keep-alive>
-      <div class="fixed">
+      <div class="fixed container">
         <cctv-viewer />
       </div>
     </keep-alive>
@@ -36,7 +36,7 @@ export default {
     },
   },
   mounted() {
-    this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height) / 2 + 200
+    this.dy = parseFloat(getComputedStyle(document.querySelector('.swiper-container')).height) / 2 + 200
   },
 }
 </script>
