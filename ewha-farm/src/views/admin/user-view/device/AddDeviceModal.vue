@@ -24,7 +24,7 @@
           :searchable="false"
         />
       </b-form-group>
-      <b-form-group
+      <!-- <b-form-group
         label="함체 이름"
         label-for="housingName"
       >
@@ -35,7 +35,7 @@
           :clearable="false"
           :searchable="false"
         />
-      </b-form-group>
+      </b-form-group> -->
       <b-form-group
         label="통신 장비 이름"
         label-for="deviceName"
@@ -155,11 +155,11 @@ export default {
   data() {
     return {
       farmOptions: [],
-      housingOptions: [],
+      // housingOptions: [],
       type_option: ['KC868'],
       channel_option: [8, 16],
       farmName: '',
-      housingName: '',
+      // housingName: '',
       deviceName: '',
       deviceType: '',
       channel: '',
@@ -171,16 +171,16 @@ export default {
       id: null,
     }
   },
-  watch: {
-    farmName(newVal) {
-      this.housingOptions = this.$store.getters['housing/getHousingSelect'](newVal.value)
-    },
-  },
+  // watch: {
+  //   farmName(newVal) {
+  //     this.housingOptions = this.$store.getters['housing/getHousingSelect'](newVal.value)
+  //   },
+  // },
   methods: {
     showModal() {
       this.id = null
       this.farmName = ''
-      this.housingName = ''
+      // this.housingName = ''
       this.deviceName = ''
       this.deviceType = ''
       this.channel = ''
@@ -196,8 +196,8 @@ export default {
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.id = item._id
       this.farmName = this.farmOptions.find(el => item.farmId._id === el.value)
-      this.housingOptions = this.$store.getters['housing/getHousingSelect'](item.farmId._id)
-      this.housingName = this.housingOptions.find(el => item.housingId._id === el.value)
+      // this.housingOptions = this.$store.getters['housing/getHousingSelect'](item.farmId._id)
+      // this.housingName = this.housingOptions.find(el => item.housingId._id === el.value)
       this.deviceName = item.name
       this.deviceType = item.type
       this.channel = item.channel
@@ -214,7 +214,7 @@ export default {
       const postBody = {
         userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
-        housingId: this.housingName.value,
+        // housingId: this.housingName.value,
         name: this.deviceName,
         type: this.deviceType,
         channel: this.channel,
@@ -237,7 +237,7 @@ export default {
       const postBody = {
         userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
-        housingId: this.housingName.value,
+        // housingId: this.housingName.value,
         name: this.deviceName,
         type: this.deviceType,
         channel: this.channel,
