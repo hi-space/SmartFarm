@@ -19,7 +19,7 @@ if (firebase.messaging.isSupported()) {
 
   Notification.requestPermission().then(permission => {
     if (permission !== 'granted') {
-      alert('알림을 허용해주세요')
+      console.log('알림을 허용해주세요')
     }
   }).catch(err => {
     console.log(err)

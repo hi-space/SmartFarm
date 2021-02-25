@@ -89,13 +89,15 @@ export default {
           sortable: true,
           formatter: value => getButtonLabel(value).label,
         },
+        { key: 'ddns', label: 'DDNS', sortable: true },
+        { key: 'url', label: 'URL', sortable: true },
         { key: 'buttonSetting.relayCount', label: '릴레이 갯수', sortable: true },
-        {
-          key: 'buttonSetting.signalType',
-          label: '신호 타입',
-          sortable: true,
-          formatter: value => getSignalLabel(value).label,
-        },
+        // {
+        //   key: 'buttonSetting.signalType',
+        //   label: '신호 타입',
+        //   sortable: true,
+        //   formatter: value => getSignalLabel(value).label,
+        // },
         {
           label: '생성일자',
           key: 'createdAt',

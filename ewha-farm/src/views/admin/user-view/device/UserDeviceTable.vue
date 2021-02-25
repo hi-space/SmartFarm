@@ -105,8 +105,8 @@ export default {
         { key: 'channel', label: '채널', sortable: true },
         { key: 'ddns', label: 'ddns', sortable: true },
         { key: 'port', label: 'port', sortable: true },
-        { key: 'account', label: 'account', sortable: true },
-        { key: 'serialNum', label: 'S/N', sortable: true },
+        // { key: 'account', label: 'account', sortable: true },
+        // { key: 'serialNum', label: 'S/N', sortable: true },
         {
           label: '생성일자',
           key: 'createdAt',

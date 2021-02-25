@@ -24,17 +24,6 @@
         />
       </b-form-group>
       <b-form-group
-        label="버튼 이름"
-        label-for="button-name"
-      >
-        <b-form-input
-          id="button-name"
-          v-model="name"
-          type="text"
-          placeholder="이름"
-        />
-      </b-form-group>
-      <b-form-group
         label="버튼 타입"
         label-for="button-type"
       >
@@ -47,39 +36,14 @@
         />
       </b-form-group>
       <b-form-group
-        v-if="type.value==='inverter'"
-        label="URL"
-        label-for="url"
+        label="버튼 이름"
+        label-for="button-name"
       >
         <b-form-input
-          id="URL"
-          v-model="url"
+          id="button-name"
+          v-model="name"
           type="text"
-          placeholder="COM9,9600,8,0,1"
-        />
-      </b-form-group>
-      <b-form-group
-        v-if="type.value==='inverter'"
-        label="Slave ID"
-        label-for="slaveId"
-      >
-        <b-form-input
-          id="Slave ID"
-          v-model="slaveId"
-          type="number"
-          placeholder="2"
-        />
-      </b-form-group>
-      <b-form-group
-        v-if="type.value==='inverter'"
-        label="address"
-        label-for="address"
-      >
-        <b-form-input
-          id="address"
-          v-model="address"
-          type="number"
-          placeholder="0"
+          placeholder="이름"
         />
       </b-form-group>
       <b-form-group
@@ -103,6 +67,61 @@
           v-model="relayNum"
           min="1"
           max="5"
+        />
+      </b-form-group>
+      <b-form-group
+        label="DDNS"
+        label-for="ddns"
+      >
+        <b-form-input
+          id="ddns"
+          v-model="ddns"
+          type="text"
+          placeholder=""
+        />
+      </b-form-group>
+      <b-form-group
+        label="Port"
+        label-for="port"
+      >
+        <b-form-input
+          id="port"
+          v-model="port"
+          type="number"
+          placeholder=""
+        />
+      </b-form-group>
+      <b-form-group
+        label="URL"
+        label-for="url"
+      >
+        <b-form-input
+          id="URL"
+          v-model="url"
+          type="text"
+          placeholder="COM9,9600,8,0,1"
+        />
+      </b-form-group>
+      <b-form-group
+        label="Slave ID"
+        label-for="slaveId"
+      >
+        <b-form-input
+          id="Slave ID"
+          v-model="slaveId"
+          type="number"
+          placeholder="2"
+        />
+      </b-form-group>
+      <b-form-group
+        label="address"
+        label-for="address"
+      >
+        <b-form-input
+          id="address"
+          v-model="address"
+          type="number"
+          placeholder="0"
         />
       </b-form-group>
     </b-form>
@@ -135,6 +154,8 @@ export default {
   data() {
     return {
       type: '',
+      ddns: '',
+      port: '',
       url: '',
       slaveId: '',
       address: '',
@@ -154,6 +175,8 @@ export default {
       this.id = null
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.type = ''
+      this.ddns = ''
+      this.port = ''
       this.url = ''
       this.slaveId = ''
       this.address = ''
@@ -170,6 +193,8 @@ export default {
       this.farmName = this.farmOptions.filter(el => item.farmId._id === el.value)
       this.name = item.name
       this.type = getButtonLabel(item.type)
+      this.ddns = item.ddns
+      this.port = item.port
       this.url = item.url
       this.address = item.address
       this.slaveId = item.slaveId
@@ -184,6 +209,8 @@ export default {
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,
+        ddns: this.ddns,
+        port: this.port,
         url: this.url,
         slaveId: this.slaveId,
         address: this.address,
@@ -205,6 +232,8 @@ export default {
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,
+        ddns: this.ddns,
+        port: this.port,
         url: this.url,
         slaveId: this.slaveId,
         address: this.address,

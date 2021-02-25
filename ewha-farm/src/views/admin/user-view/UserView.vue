@@ -66,7 +66,7 @@
 
         <b-row>
           <b-col>
-            <user-cctv-table
+            <user-button-table
               class="mt-2 pt-75"
             />
           </b-col>
@@ -74,7 +74,7 @@
 
         <b-row>
           <b-col>
-            <user-button-table
+            <user-cctv-table
               class="mt-2 pt-75"
             />
           </b-col>

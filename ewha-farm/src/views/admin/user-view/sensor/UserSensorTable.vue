@@ -112,8 +112,8 @@ export default {
         { key: 'ddns', label: 'DDNS', sortable: true },
         { key: 'port', label: 'Port', sortable: true },
         { key: 'url', label: 'URL', sortable: true },
-        { key: 'slaveId', label: 'Slave ID', sortable: true },
-        { key: 'address', label: 'address', sortable: true },
+        // { key: 'slaveId', label: 'Slave ID', sortable: true },
+        // { key: 'address', label: 'address', sortable: true },
         {
           label: '생성일자',
           key: 'createdAt',

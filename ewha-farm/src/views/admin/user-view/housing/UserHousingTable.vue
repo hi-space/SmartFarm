@@ -112,12 +112,12 @@ export default {
           sortable: true,
           tdClass: 'td',
         },
-        {
-          key: 'info',
-          label: '함체 정보',
-          sortable: true,
-          tdClass: 'td',
-        },
+        // {
+        //   key: 'info',
+        //   label: '함체 정보',
+        //   sortable: true,
+        //   tdClass: 'td',
+        // },
         { key: 'ddns', label: 'DDNS', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },

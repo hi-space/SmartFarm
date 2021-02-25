@@ -91,7 +91,7 @@ export default {
         // { key: '_id', label: 'ID', sortable: true },
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'name', label: 'CCTV 이름', sortable: true },
-        { key: 'info', label: '정보', sortable: true },
+        // { key: 'info', label: '정보', sortable: true },
         { key: 'rtspUrl', label: 'rtsp URL', sortable: true },
         { key: 'streamingUrl', label: 'streming URL', sortable: true },
         // { key: 'relayUrl', label: 'relay URL', sortable: true },
