@@ -47,6 +47,28 @@
         />
       </b-form-group>
       <b-form-group
+        label="DDNS"
+        label-for="ddns"
+      >
+        <b-form-input
+          id="ddns"
+          v-model="ddns"
+          type="text"
+          placeholder=""
+        />
+      </b-form-group>
+      <b-form-group
+        label="Port"
+        label-for="port"
+      >
+        <b-form-input
+          id="port"
+          v-model="port"
+          type="number"
+          placeholder=""
+        />
+      </b-form-group>
+      <b-form-group
         label="URL"
         label-for="url"
       >
@@ -108,6 +130,8 @@ export default {
       type: '',
       typeOptions: sensorList,
       sensorName: '',
+      ddns: '',
+      port: '',
       url: '',
       slaveId: '',
       address: '',
@@ -120,6 +144,8 @@ export default {
       this.farmName = ''
       this.type = ''
       this.sensorName = ''
+      this.ddns = ''
+      this.port = ''
       this.url = ''
       this.slaveId = ''
       this.address = ''
@@ -132,6 +158,8 @@ export default {
       this.id = item._id
       this.type = getSensorLabel(item.type)
       this.sensorName = item.name
+      this.ddns = item.ddns
+      this.port = item.port
       this.url = item.url
       this.slaveId = item.slaveId
       this.address = item.address
@@ -139,12 +167,13 @@ export default {
       this.$refs.addSensorModal.show()
     },
     create() {
-      console.log(this.type.value)
       const payload = {
         userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
         type: this.type.value,
         name: this.sensorName,
+        ddns: this.ddns,
+        port: this.port,
         url: this.url,
         slaveId: this.slaveId,
         address: this.address,
@@ -169,6 +198,8 @@ export default {
         farmId: this.farmName.value,
         type: this.type.value,
         name: this.sensorName,
+        ddns: this.ddns,
+        port: this.port,
         url: this.url,
         slaveId: this.slaveId,
         address: this.address,

@@ -143,7 +143,6 @@ export default {
         })
     },
     updateStream(row) {
-      console.log(row)
       axiosIns.put(`cctv/${row._id}/stream`, row).then(response => {
         console.log(response)
       }).catch(err => {

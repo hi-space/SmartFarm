@@ -41,17 +41,6 @@
         select-mode="single"
         class="mb-0"
       >
-        <template #cell(show_details)="row">
-
-          <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
-          <b-form-checkbox
-            v-model="row.detailsShowing"
-            @change="row.toggleDetails"
-          >
-            <!-- {{ row.detailsShowing ? 'Hide' : 'Show' }} -->
-          </b-form-checkbox>
-        </template>
-
         <template #cell(action)="row">
           <b-button
             size="sm"
@@ -88,7 +77,7 @@
 
 <script>
 import {
-  BCard, BCardTitle, BCardSubTitle, BTable, BFormCheckbox, BButton,
+  BCard, BCardTitle, BCardSubTitle, BTable, BButton,
 } from 'bootstrap-vue'
 import store from '@/store'
 import { getDateString } from '@core/utils/utils'
@@ -101,7 +90,6 @@ export default {
     BCardTitle,
     BCardSubTitle,
     BTable,
-    BFormCheckbox,
     BButton,
     'add-device-modal': AddDeviceModal,
     AddRelayModal,
@@ -114,8 +102,8 @@ export default {
         { key: 'farmId.name', label: '축사 이름', sortable: true },
         { key: 'housingId.name', label: '함체 이름', sortable: true },
         { key: 'name', label: '장비 이름', sortable: true },
-        // { key: 'type', label: '함체 타입', sortable: true },
         { key: 'channel', label: '채널', sortable: true },
+        { key: 'ddns', label: 'ddns', sortable: true },
         { key: 'port', label: 'port', sortable: true },
         { key: 'account', label: 'account', sortable: true },
         { key: 'serialNum', label: 'S/N', sortable: true },
@@ -126,7 +114,6 @@ export default {
           formatter: value => getDateString(value),
         },
         { key: 'action', label: '수정' },
-        // { key: 'show_details', label: 'details' },
       ],
       selected: [],
     }

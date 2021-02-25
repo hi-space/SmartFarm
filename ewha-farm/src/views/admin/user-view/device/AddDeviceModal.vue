@@ -78,6 +78,17 @@
         />
       </b-form-group>
       <b-form-group
+        label="DDNS"
+        label-for="ddns"
+      >
+        <b-form-input
+          id="ddns"
+          v-model="ddns"
+          type="text"
+          placeholder=""
+        />
+      </b-form-group>
+      <b-form-group
         label="Port"
         label-for="port"
       >
@@ -152,6 +163,7 @@ export default {
       deviceName: '',
       deviceType: '',
       channel: '',
+      ddns: '',
       port: '',
       account: '',
       password: '',
@@ -172,6 +184,7 @@ export default {
       this.deviceName = ''
       this.deviceType = ''
       this.channel = ''
+      this.ddns = ''
       this.port = ''
       this.account = ''
       this.password = ''
@@ -188,6 +201,7 @@ export default {
       this.deviceName = item.name
       this.deviceType = item.type
       this.channel = item.channel
+      this.ddns = item.ddns
       this.port = item.port
       this.account = item.account
       this.password = item.password
@@ -204,6 +218,7 @@ export default {
         name: this.deviceName,
         type: this.deviceType,
         channel: this.channel,
+        ddns: this.ddns,
         port: this.port,
         account: this.account,
         password: this.password,
@@ -226,6 +241,7 @@ export default {
         name: this.deviceName,
         type: this.deviceType,
         channel: this.channel,
+        ddns: this.ddns,
         port: this.port,
         account: this.account,
         password: this.password,
