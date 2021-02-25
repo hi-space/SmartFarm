@@ -18,14 +18,92 @@
           />
         </b-form-group>
       </b-col>
+
+      <b-col>
+        <!-- select button -->
+        <div
+          class="text-center"
+        >
+          <hr>
+          <v-select
+            v-model="selectedButtonType"
+            :options="buttonTypeOptions"
+            placeholder="장치를 선택해주세요"
+            :clearable="false"
+            class="mb-1"
+          />
+          <div
+            v-if="selectedButtonType!=[]"
+            class="m-2"
+          >
+            <b-card
+              border-variant="primary"
+              bg-variant="transparent"
+              clsss="d-flex p-3"
+            >
+              <b-form-checkbox-group
+                v-model="selectedButtons"
+                :options="buttonCheckbox"
+                class="d-flex text-center"
+              />
+            </b-card>
+          </div>
+        </div>
+
+        <!-- button control -->
+        <div
+          v-if="selectedButtonType!=[]"
+          class="text-center"
+        >
+
+          <!-- open / stop / close -->
+          <b-form-group
+            v-if="selectedButtonType.value!=='inverter' && selectedButtonType.value !=='feeder'"
+          >
+            <b-form-radio-group
+              v-model="selectedCommand"
+              button-variant="outline-primary"
+              :options="buttonOptions"
+              buttons
+              class="p-1 d-flex"
+            />
+          </b-form-group>
+
+          <!-- slider, work / stop -->
+          <b-form-group
+            v-if="selectedButtonType.value=='inverter' || selectedButtonType.value=='feeder'"
+          >
+            <vue-slider
+              v-if="selectedButtonType.value=='inverter'"
+              v-model="sliderValue"
+              class="p-1 m-2 text-primary"
+              tooltip="always"
+              :tooltip-formatter="`${sliderValue} Hz`"
+            />
+            <b-form-radio-group
+              v-model="selectedCommand"
+              button-variant="outline-primary"
+              :options="inverterOptions"
+              buttons
+              class="p-1 d-flex mt-2"
+            />
+          </b-form-group>
+        </div>
+      </b-col>
+
       <b-col cols="12">
+        <div class="divider my-2">
+          <div class="divider-text text-primary">
+            Mode Setting
+          </div>
+        </div>
         <b-form-group
           class="text-center pt-1 pb-1"
         >
           <v-select
             v-model="selectedMode"
             :options="modeOptions"
-            placeholder="선택해주세요"
+            placeholder="자동화 모드를 선택해주세요"
             :clearable="false"
           />
         </b-form-group>
@@ -138,76 +216,6 @@
       </b-col>
     </b-row>
 
-    <!-- select button -->
-    <div
-      v-if="selectedMode"
-      class="text-center"
-    >
-      <hr>
-      <v-select
-        v-model="selectedButtonType"
-        :options="buttonTypeOptions"
-        placeholder="선택해주세요"
-        :clearable="false"
-        class="mb-1"
-      />
-      <div
-        v-if="selectedButtonType!=[]"
-        class="m-2"
-      >
-        <b-card
-          border-variant="primary"
-          bg-variant="transparent"
-          clsss="d-flex p-3"
-        >
-          <b-form-checkbox-group
-            v-model="selectedButtons"
-            :options="buttonCheckbox"
-            class="d-flex text-center"
-          />
-        </b-card>
-      </div>
-    </div>
-
-    <!-- button control -->
-    <div
-      v-if="selectedButtonType!=[]"
-      class="text-center"
-    >
-
-      <!-- open / stop / close -->
-      <b-form-group
-        v-if="selectedButtonType.value!=='inverter'"
-      >
-        <b-form-radio-group
-          v-model="selectedCommand"
-          button-variant="outline-primary"
-          :options="buttonOptions"
-          buttons
-          class="p-1 d-flex"
-        />
-      </b-form-group>
-
-      <!-- inverter: slider, work / etop -->
-      <b-form-group
-        v-if="selectedButtonType.value=='inverter'"
-      >
-        <vue-slider
-          v-model="sliderValue"
-          class="p-1 m-2 text-primary"
-          tooltip="always"
-          :tooltip-formatter="`${sliderValue} Hz`"
-        />
-        <b-form-radio-group
-          v-model="selectedCommand"
-          button-variant="outline-primary"
-          :options="inverterOptions"
-          buttons
-          class="p-1 d-flex mt-2"
-        />
-      </b-form-group>
-    </div>
-
     <!-- submit and reset -->
     <b-row v-if="selectedButtons.length !== 0">
       <b-col>
@@ -312,6 +320,11 @@ export default {
     async selectedButtonType() {
       this.buttonCheckbox = await store.getters['button/getButtonInTypeOptions'](this.selectedButtonType.value)
       this.selectedButtons = []
+
+      if (this.selectedButtonType.value === 'feeder') {
+        const hydraulicItems = await store.getters['button/getButtonInTypeOptions']('hydraulic')
+        this.buttonCheckbox = this.buttonCheckbox.concat(hydraulicItems)
+      }
     },
   },
   created() {
