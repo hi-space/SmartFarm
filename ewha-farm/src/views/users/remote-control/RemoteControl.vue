@@ -183,6 +183,8 @@ export default {
       this.selectedButton = []
       this.buttonItems = []
       this.initValue()
+
+      this.$emit('updateFarm', this.selectedFarm.value)
     },
     async selectedButton() {
       this.getButtonList()

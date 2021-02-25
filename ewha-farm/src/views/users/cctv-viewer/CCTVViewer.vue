@@ -57,12 +57,12 @@ export default {
     }
   },
   created() {
-    this.getCCTV()
+    // this.getCCTV()
   },
   methods: {
-    async getCCTV() {
+    async getCCTV(farmId) {
       const result = await store.dispatch('cctv/fetchCCTVs',
-        { userId: getUserData().id })
+        { userId: getUserData().id, farmId })
       this.cctv = result.data
       this.$emit('updateUI')
     },

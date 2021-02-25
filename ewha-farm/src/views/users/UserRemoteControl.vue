@@ -2,12 +2,15 @@
   <div>
     <div class="fixed container">
       <cctv-viewer
+        ref="cctvViewer"
         @updateUI="updateLayout()"
       />
     </div>
     <div :style="style">
       <hr class="m-2">
-      <remote-control />
+      <remote-control
+        @updateFarm="updateFarm"
+      />
     </div>
   </div>
 </template>
@@ -35,11 +38,20 @@ export default {
     },
   },
   updated() {
-    this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
+    this.updateCCTVHeight()
   },
   methods: {
+    updateCCTVHeight() {
+      setTimeout(() => {
+        this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
+      }, 200)
+    },
     updateLayout() {
-      this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
+      this.updateCCTVHeight()
+    },
+    updateFarm(farmId) {
+      this.$refs.cctvViewer.getCCTV(farmId)
+      this.updateCCTVHeight()
     },
   },
 }
