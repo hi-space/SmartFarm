@@ -65,7 +65,7 @@ import {
 } from 'bootstrap-vue'
 import store from '@/store'
 import { getDateString } from '@core/utils/utils'
-import { getButtonLabel, getSignalLabel } from './utils'
+import { getButtonLabel } from './utils'
 import AddButtonModal from './AddButtonModal.vue'
 
 export default {

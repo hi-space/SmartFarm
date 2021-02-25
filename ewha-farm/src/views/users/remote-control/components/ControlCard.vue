@@ -55,7 +55,6 @@
           class="p-1 mt-2 text-primary"
           :lazy="true"
           tooltip="always"
-          :disabled="buttonItem.command==='stop'"
           :tooltip-formatter="`${sliderValue} Hz`"
         />
         <b-form-radio-group
@@ -208,7 +207,6 @@ export default {
     selectedButton(newVal) {
       const param = {
         command: newVal,
-        commandValue: this.selectedButton,
       }
 
       store.dispatch('button/command', { id: this.buttonItem._id, queryBody: param })
