@@ -65,23 +65,6 @@ export default {
       ],
     }
   },
-  created() {
-    this.getNetworkData(this.farmId)
-  },
-  // setup() {
-  //   const networkData = ref(null)
-  //   axiosIns.get('network', {
-  //     params: { _id: getUserData().id },
-  //   }).then(response => {
-  //     networkData.value = response.data
-  //   }).catch(err => {
-  //     console.log(err)
-  //   })
-
-  //   return {
-  //     networkData,
-  //   }
-  // },
   methods: {
     getNetworkData(farm) {
       axiosIns.get('network', {

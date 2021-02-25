@@ -49,19 +49,10 @@ export default {
     WeatherCard,
     SensorGraphCard,
   },
-  props: {
-    farmId: {
-      type: String,
-      default: '',
-    },
-  },
   data() {
     return {
       sensorData: [],
     }
-  },
-  created() {
-    this.getSensor(this.farmId)
   },
   methods: {
     async getSensor(farm) {

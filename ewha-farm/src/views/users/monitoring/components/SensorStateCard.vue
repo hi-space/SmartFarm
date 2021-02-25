@@ -89,7 +89,7 @@ export default {
           id: el._id,
           icon,
           color,
-          title: `${el.lastValue || 0} ${postfix}`,
+          title: `${el.values.pop() || 0} ${postfix}`,
           subtitle: el.name,
         })
       })
