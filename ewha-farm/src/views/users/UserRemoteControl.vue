@@ -1,10 +1,10 @@
 <template>
   <div>
-    <keep-alive>
-      <div class="fixed container">
-        <cctv-viewer />
-      </div>
-    </keep-alive>
+    <div class="fixed container">
+      <cctv-viewer
+        @updateUI="updateLayout()"
+      />
+    </div>
     <div :style="style">
       <hr class="m-2">
       <remote-control />
@@ -28,15 +28,19 @@ export default {
   },
   computed: {
     style() {
-      console.log(this.dy)
       return {
         'padding-top': `${this.dy}px`,
-        // top: `${this.dy}px`,
+        'z-index': 11,
       }
     },
   },
-  mounted() {
-    this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height) / 2 + 200
+  updated() {
+    this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
+  },
+  methods: {
+    updateLayout() {
+      this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
+    },
   },
 }
 </script>
@@ -44,7 +48,7 @@ export default {
 <style>
 .fixed {
   position: fixed;
-  display: inline-block;
+  display: block;
   z-index: 10;
   width: 100% !important;
   /* height: 100% !important; */
