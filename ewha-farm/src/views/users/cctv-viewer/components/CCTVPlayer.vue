@@ -4,7 +4,6 @@
     class="vjs-custom-skin"
     :options="playerOptions"
     :playsinline="false"
-    @ready="onPlayerReady"
   />
 </template>
 
@@ -14,7 +13,6 @@ import 'video.js/dist/video-js.css'
 
 export default {
   components: {
-    // videoPlayer,
     VideoPlayer,
   },
   props: {
@@ -34,8 +32,9 @@ export default {
         },
         fluid: false,
         preload: 'auto',
-        loop: true,
-        width: `${parseFloat(getComputedStyle(document.querySelector('.app-content')).width) / 2 - 28}`,
+        loop: false,
+        width: `${parseFloat(getComputedStyle(document.querySelector('.app-content')).width) / 2}` - 28,
+        // height: 240,
         responsive: true,
       },
     }
@@ -49,10 +48,6 @@ export default {
     this.playVideo(this.src)
   },
   methods: {
-    onPlayerReady(player) {
-      console.log('player ready!', player)
-      this.player.play()
-    },
     playVideo(source) {
       const video = {
         withCredentials: false,

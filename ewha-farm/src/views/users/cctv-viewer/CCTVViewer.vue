@@ -7,7 +7,11 @@
       v-for="(data,index) in cctv"
       :key="index"
     >
-      <cctv-player :src="data.relayUrl" />
+      <div>
+        <cctv-player
+          :src="data.relayUrl"
+        />
+      </div>
     </swiper-slide>
 
     <div
@@ -45,6 +49,7 @@ export default {
         slidesPerView: 2,
         slidesPerColumn: 2,
         spaceBetween: 0,
+        slidesPerGroupSkip: 4,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -56,11 +61,9 @@ export default {
       },
     }
   },
-  created() {
-    // this.getCCTV()
-  },
   methods: {
     async getCCTV(farmId) {
+      this.cctv = []
       const result = await store.dispatch('cctv/fetchCCTVs',
         { userId: getUserData().id, farmId })
       this.cctv = result.data

@@ -3,7 +3,7 @@
     <div class="fixed container">
       <cctv-viewer
         ref="cctvViewer"
-        @updateUI="updateLayout()"
+        @updateUI="updateCCTVHeight()"
       />
     </div>
     <div :style="style">
@@ -44,10 +44,7 @@ export default {
     updateCCTVHeight() {
       setTimeout(() => {
         this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
-      }, 200)
-    },
-    updateLayout() {
-      this.updateCCTVHeight()
+      }, 1000)
     },
     updateFarm(farmId) {
       this.$refs.cctvViewer.getCCTV(farmId)
@@ -63,7 +60,6 @@ export default {
   display: block;
   z-index: 10;
   width: 100% !important;
-  /* height: 100% !important; */
 }
 
 </style>
