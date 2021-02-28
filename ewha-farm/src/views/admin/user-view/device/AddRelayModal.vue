@@ -6,6 +6,7 @@
     ok-title="등록"
     cancel-title="취소"
     cancel-variant="outline-secondary"
+    no-close-on-backdrop
     centered
     @ok="update()"
   >
@@ -210,7 +211,6 @@ export default {
       this.$store.dispatch('device/setRelay', { id: this.deviceId, queryBody: body })
         .then(() => {
           this.$emit('update')
-          this.$router.go(0)
         })
         .catch(error => {
           console.log(error)

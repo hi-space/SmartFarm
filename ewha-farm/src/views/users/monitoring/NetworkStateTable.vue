@@ -55,7 +55,7 @@ export default {
           sortable: true,
           tdClass: 'td',
         },
-        { key: 'status', label: '정보', sortable: true },
+        { key: 'status', label: '상태', sortable: true },
         {
           key: 'createdAt',
           label: '일자',
