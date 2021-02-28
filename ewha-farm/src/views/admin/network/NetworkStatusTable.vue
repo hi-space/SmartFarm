@@ -42,7 +42,7 @@
                 sm="10"
               >
                 <b-form-textarea
-                  v-model="row.item.info"
+                  v-model="row.item.msg"
                 />
               </b-col>
               <b-col
@@ -126,6 +126,7 @@ export default {
           sortable: true,
           tdClass: 'td',
         },
+        { key: 'command', label: '명령어', sortable: true },
         { key: 'status', label: '정보', sortable: true },
         {
           key: 'createdAt',
