@@ -243,7 +243,7 @@ export default {
 
       this.$store.dispatch('button/updateButton', { id: this.id, queryBody: payload })
         .then(() => {
-          this.$router.go(0)
+          this.$emit('update')
         }).catch(err => {
           console.log(err)
         })
