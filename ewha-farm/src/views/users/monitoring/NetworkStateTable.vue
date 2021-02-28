@@ -7,21 +7,39 @@
       <b-card-title> <h3> <strong> 네트워크 현황 </strong> </h3> </b-card-title>
     </div>
 
-    <div>
-      <b-table
-        :items="networkData"
-        :fields="fields"
-        :tbody-tr-class="rowColor"
-        responsive
-        class="mb-0"
-      />
-    </div>
+    <b-row>
+      <b-col cols="12">
+        <b-table
+          :items="networkData"
+          :fields="fields"
+          :tbody-tr-class="rowColor"
+          :per-page="perPage"
+          :current-page="currentPage"
+          responsive
+          show-empty
+          empty-text="데이터가 없습니다"
+        />
+      </b-col>
+      <b-col
+        cols="12"
+        class="p-2"
+      >
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="totalRows"
+          :per-page="perPage"
+          align="center"
+          size="sm"
+          class="my-0"
+        />
+      </b-col>
+    </b-row>
   </b-card>
 </template>
 
 <script>
 import {
-  BCard, BCardTitle, BTable,
+  BCard, BCardTitle, BTable, BPagination, BRow, BCol,
 } from 'bootstrap-vue'
 import axiosIns from '@/libs/axios'
 import { getUserData } from '@/auth/utils'
@@ -32,6 +50,9 @@ export default {
     BCard,
     BCardTitle,
     BTable,
+    BPagination,
+    BRow,
+    BCol,
   },
   props: {
     farmId: {
@@ -41,6 +62,9 @@ export default {
   },
   data() {
     return {
+      perPage: 10,
+      currentPage: 1,
+      totalRows: 0,
       networkData: [],
       fields: [
         {
@@ -71,6 +95,7 @@ export default {
         params: { userId: getUserData().id, farmId: farm },
       }).then(response => {
         this.networkData = response.data
+        this.totalRows = response.data.length
       }).catch(err => {
         console.log(err)
       })
