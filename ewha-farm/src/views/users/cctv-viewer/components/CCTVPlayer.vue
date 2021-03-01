@@ -33,8 +33,7 @@ export default {
         fluid: false,
         preload: 'auto',
         loop: false,
-        width: `${parseFloat(getComputedStyle(document.querySelector('.app-content')).width) / 2}` - 28,
-        // height: 240,
+        width: `${parseFloat(getComputedStyle(document.querySelector('.app-content')).width)}` / 2 - `${parseFloat(getComputedStyle(document.querySelector('.app-content')).paddingRight)}` * 1.5,
         responsive: true,
       },
     }

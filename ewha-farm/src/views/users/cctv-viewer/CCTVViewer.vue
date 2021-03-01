@@ -1,5 +1,6 @@
 <template>
   <swiper
+    ref="cctvSwiper"
     class="swiper"
     :options="swiperOption"
   >
@@ -48,8 +49,9 @@ export default {
       swiperOption: {
         slidesPerView: 2,
         slidesPerColumn: 2,
+        slidePerGroup: 2,
         spaceBetween: 0,
-        slidesPerGroupSkip: 4,
+        slidesPerGroupSkip: 2,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -60,6 +62,11 @@ export default {
         },
       },
     }
+  },
+  computed: {
+    swiper() {
+      return this.$refs.cctvSwiper.swiper
+    },
   },
   methods: {
     async getCCTV(farmId) {
