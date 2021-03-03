@@ -80,7 +80,7 @@
           </b-form-group>
         </b-col>
 
-        <!-- Field: Email -->
+        <!-- Field: Address -->
         <b-col
           cols="12"
           md="12"
@@ -96,7 +96,24 @@
           </b-form-group>
         </b-col>
 
-        <!-- Field: Email -->
+        <!-- Field: Server url -->
+        <b-col
+          v-if="userData.userInfo.role === 'customer'"
+          cols="12"
+          md="12"
+        >
+          <b-form-group
+            label="Server URL"
+            label-for="url"
+          >
+            <b-form-input
+              id="url"
+              v-model="userData.url"
+            />
+          </b-form-group>
+        </b-col>
+
+        <!-- Field: Memo -->
         <b-col
           cols="12"
           md="12"

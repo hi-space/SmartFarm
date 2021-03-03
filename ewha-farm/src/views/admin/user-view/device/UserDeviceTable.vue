@@ -24,6 +24,7 @@
 
         <add-relay-modal
           ref="addRelayModal"
+          @update="initData()"
         />
 
       </b-card-sub-title>

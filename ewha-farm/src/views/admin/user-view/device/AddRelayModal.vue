@@ -150,6 +150,11 @@ export default {
       this.inPins = []
       this.inIndex = Array.from({ length: 9 }, () => 0)
 
+      this.outPins.push(null)
+      this.outIndex.push(null)
+      this.inPins.push(null)
+      this.inIndex.push(null)
+
       for (let i = 0; i < item.relays.outPin.length; i++) {
         this.outPins.push(this.$store.getters['button/getButtonForRelay'](item.relays.outPin[i].button))
         this.outIndex.push(item.relays.outPin[i].buttonIdx)
@@ -162,7 +167,6 @@ export default {
     },
 
     makeOutPin(no) {
-      console.log('mkaeOutPin', no)
       let button = null
       if (this.outIndex[no] === 1) {
         button = this.outPins[no].value
@@ -178,7 +182,6 @@ export default {
     },
 
     makeInPin(no) {
-      console.log('mkaeInPin', no)
       let button = null
       if (this.inIndex[no] === 1) {
         button = this.inPins[no].value
