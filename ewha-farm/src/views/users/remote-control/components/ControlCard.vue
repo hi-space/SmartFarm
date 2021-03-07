@@ -67,14 +67,6 @@
         />
       </b-form-group>
 
-      <!-- <b-alert
-        v-if="isAuto"
-        variant="dark"
-        show
-      >
-        자동화 동작 중
-      </b-alert> -->
-
       <automatic-list
         v-if="isAuto"
         ref="automaticList"
@@ -116,7 +108,6 @@ import store from '@/store'
 import { getDateString } from '@core/utils/utils'
 import { heightFade } from '@core/directives/animations'
 import AutomaticList from './AutomaticList.vue'
-// import SettingModal from './SettingModal.vue'
 
 export default {
   components: {
@@ -133,7 +124,6 @@ export default {
     VueSlider,
     AutomaticList,
     BFormCheckbox,
-    // SettingModal,
   },
   directives: {
     'height-fade': heightFade,
@@ -207,6 +197,7 @@ export default {
     selectedButton(newVal) {
       const param = {
         command: newVal,
+        commandValue: this.sliderValue,
       }
 
       store.dispatch('button/command', { id: this.buttonItem._id, queryBody: param })
