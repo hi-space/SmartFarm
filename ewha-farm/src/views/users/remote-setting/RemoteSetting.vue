@@ -30,6 +30,7 @@
             :options="buttonTypeOptions"
             placeholder="장치를 선택해주세요"
             :clearable="false"
+            :searchable="false"
             class="mb-1"
           />
           <div
@@ -105,6 +106,7 @@
             :options="modeOptions"
             placeholder="자동화 모드를 선택해주세요"
             :clearable="false"
+            :searchable="false"
           />
         </b-form-group>
       </b-col>
@@ -176,6 +178,7 @@
             v-model="selectedTime"
             :options="timeOptions"
             :clearable="false"
+            :searchable="false"
           />
         </b-form-group>
       </b-col>
