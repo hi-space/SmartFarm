@@ -48,17 +48,9 @@
           </b-col>
         </b-row>
 
-        <!-- <b-row>
-          <b-col>
-            <user-housing-table
-              class="mt-2 pt-75"
-            />
-          </b-col>
-        </b-row> -->
-
         <b-row>
           <b-col>
-            <user-device-table
+            <user-button-table
               class="mt-2 pt-75"
             />
           </b-col>
@@ -66,7 +58,7 @@
 
         <b-row>
           <b-col>
-            <user-button-table
+            <user-device-table
               class="mt-2 pt-75"
             />
           </b-col>

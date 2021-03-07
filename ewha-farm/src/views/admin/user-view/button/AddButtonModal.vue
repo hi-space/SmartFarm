@@ -69,6 +69,52 @@
           max="5"
         />
       </b-form-group>
+      <b-row>
+        <b-col md="6">
+          <b-form-group
+            label="동작 시간"
+            label-for="signal-time"
+            class="text-center"
+          >
+            <b-form-spinbutton
+              id="signal-time"
+              v-model="signalTime"
+              min="1"
+              step="1"
+              cols="6"
+            />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group
+            label="단위"
+            label-for="signal-time-unit"
+            class="text-center"
+          >
+            <v-select
+              id="signal-time-unit"
+              v-model="signalTimeUnit"
+              :options="timeOptions"
+              :clearable="false"
+              :searchable="false"
+            />
+          </b-form-group>
+        </b-col>
+      </b-row>
+
+      <b-form-group
+        label-for="signalCommand"
+      >
+        <b-form-radio-group
+          id="signalCommand"
+          v-model="signalCommand"
+          button-variant="outline-primary"
+          :options="signalCommandOptions"
+          buttons
+          class="p-1 d-flex"
+        />
+      </b-form-group>
+
       <b-form-group
         label="DDNS"
         label-for="ddns"
@@ -130,7 +176,7 @@
 
 <script>
 import {
-  BModal, VBModal, BForm, BFormGroup, BFormSpinbutton, BFormInput,
+  BModal, VBModal, BForm, BFormGroup, BFormSpinbutton, BFormInput, BRow, BCol, BFormRadioGroup,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import {
@@ -139,13 +185,14 @@ import {
 
 export default {
   components: {
-    // BRow,
-    // BCol,
+    BRow,
+    BCol,
     BModal,
     BForm,
     BFormGroup,
     BFormSpinbutton,
     BFormInput,
+    BFormRadioGroup,
     vSelect,
   },
   directives: {
@@ -154,6 +201,19 @@ export default {
   data() {
     return {
       type: '',
+      signalTimeUnit: { label: '분', value: 'min' },
+      signalTime: 1,
+      timeOptions: [
+        { label: '분', value: 'min' },
+        { label: '시간', value: 'hour' },
+        { label: '일', value: 'day' },
+      ],
+      signalCommand: 'stop',
+      signalCommandOptions: [
+        { text: '열기', value: 'open' },
+        { text: '중지', value: 'stop' },
+        { text: '닫기', value: 'close' },
+      ],
       ddns: '',
       port: '',
       url: '',
@@ -175,6 +235,9 @@ export default {
       this.id = null
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.type = ''
+      this.signalTime = 1
+      this.signalTimeUnit = { label: '분', value: 'min' }
+      this.signalCommand = 'stop'
       this.ddns = ''
       this.port = ''
       this.url = ''
@@ -193,6 +256,7 @@ export default {
       this.farmName = this.farmOptions.filter(el => item.farmId._id === el.value)
       this.name = item.name
       this.type = getButtonLabel(item.type)
+      this.signalCommand = item.signalCommand
       this.ddns = item.ddns
       this.port = item.port
       this.url = item.url
@@ -200,15 +264,36 @@ export default {
       this.slaveId = item.slaveId
       this.relayNum = item.buttonSetting.relayCount
       this.signalTypeSelected = getSignalLabel(item.buttonSetting.signalType)
+
+      if (item.signalTime / 1440 > 1) {
+        this.signalTime = item.signalTime / 1400
+        this.signalTimeUnit = { label: '일', value: 'day' }
+      } else if (item.signalTime / 60 > 1) {
+        this.signalTime = item.signalTime / 60
+        this.signalTimeUnit = { label: '시간', value: 'hour' }
+      } else {
+        this.signalTime = item.signalTime
+        this.signalTimeUnit = { label: '분', value: 'min' }
+      }
+
       this.$refs.addButtonModal.show()
     },
 
     create() {
+      let time = this.signalTime
+      if (this.signalTimeUnit.value === 'hour') {
+        time *= 60
+      } else if (this.signalTimeUnit.value === 'day') {
+        time *= 60 * 24
+      }
+
       const payload = {
         userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,
+        signalTime: time,
+        signalCommand: this.signalCommand,
         ddns: this.ddns,
         port: this.port,
         url: this.url,
@@ -227,11 +312,20 @@ export default {
     },
 
     modify() {
+      let time = this.signalTime
+      if (this.signalTimeUnit.value === 'hour') {
+        time *= 60
+      } else if (this.signalTimeUnit.value === 'day') {
+        time *= 60 * 24
+      }
+
       const payload = {
         userId: this.$store.getters['users/getUserId'],
         farmId: this.farmName.value,
         name: this.name,
         type: this.type.value,
+        signalTime: time,
+        signalCommand: this.signalCommand,
         ddns: this.ddns,
         port: this.port,
         url: this.url,

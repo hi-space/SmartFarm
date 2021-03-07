@@ -29,7 +29,7 @@
       </b-row>
 
       <b-row
-        v-for="item of 8"
+        v-for="item of channel"
         :key="item"
       >
         <b-col cols="6">
@@ -53,6 +53,7 @@
         </b-col>
         <b-col cols="6">
           <b-form-group
+            v-if="item <= 8"
             :label="item.toString()"
             label-for="`in-${item}`"
             label-cols-sm="1"
@@ -96,6 +97,7 @@ export default {
   data() {
     return {
       deviceId: null,
+      channel: 0,
       buttonList: [],
       outPins: [],
       outDisabled: Array.from({ length: 9 }, () => false),
@@ -143,6 +145,8 @@ export default {
   methods: {
     async show(item) {
       this.deviceId = item._id
+      this.channel = item.channel
+
       this.buttonList = await this.$store.getters['button/getAllButtonForRelay'](item.farmId._id)
 
       this.outPins = []
