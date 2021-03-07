@@ -14,7 +14,33 @@
           switch
           inline
         >
-          <span>알림 받기</span>
+          <span>네트워크 알림</span>
+        </b-form-checkbox>
+      </b-col>
+
+      <b-col
+        cols="12"
+        class="mb-2"
+      >
+        <b-form-checkbox
+          v-model="userData.pushSetting.automatic"
+          switch
+          inline
+        >
+          <span>자동제어 알림</span>
+        </b-form-checkbox>
+      </b-col>
+
+      <b-col
+        cols="12"
+        class="mb-2"
+      >
+        <b-form-checkbox
+          v-model="userData.pushSetting.sensor"
+          switch
+          inline
+        >
+          <span>센서 알림</span>
         </b-form-checkbox>
       </b-col>
 
