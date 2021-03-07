@@ -124,6 +124,10 @@ import Logo from '@core/layouts/components/Logo.vue'
 import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/forms'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+import useJwt from '@/auth/jwt/useJwt'
+import router from '@/router'
+import { getHomeRouteForLoggedInUser } from '@/auth/utils'
+import ability from '@/libs/acl/ability'
 
 export default {
   components: {
@@ -157,7 +161,7 @@ export default {
     },
   },
   methods: {
-    login() {
+    async login() {
       this.$refs.loginForm.validate().then(success => {
         if (success) {
           const payload = {
@@ -165,35 +169,48 @@ export default {
             password: this.password,
           }
 
-          this.$store.dispatch('auth/login', payload)
-            .then(result => {
-              const params = {
-                token: deviceToken.value,
-              }
-              this.$store.dispatch('users/addDeviceToken', { id: result.id, queryBody: params }).then(() => {
-                localStorage.setItem('deviceToken', deviceToken.value)
-              })
+          useJwt.login({
+            phone: payload.phone,
+            // password: bcrypt.hashSync(payload.password, bcrypt.genSaltSync(10)),
+            password: payload.password,
+          }).then(response => {
+            console.log(response)
+            const { userData } = response.data
 
-              this.$toast({
-                component: ToastificationContent,
-                position: 'top-right',
-                props: {
-                  title: `환영합니다 ${result.name}님`,
-                  icon: 'CoffeeIcon',
-                  variant: 'success',
-                  // text: '농장을 선택해주세요',
-                },
-              })
-            }).catch(err => {
-              console.log(err)
-              this.$bvModal
-                .msgBoxOk('사용자 정보를 다시 입력하세요', {
-                  title: '로그인 실패',
-                  size: 'sm',
-                  hideHeaderClose: true,
-                  centered: true,
-                })
+            useJwt.setToken(response.data.accessToken)
+            useJwt.setRefreshToken(response.data.refreshToken)
+
+            localStorage.setItem('userData', JSON.stringify(userData))
+            ability.update(userData.ability)
+
+            const params = {
+              token: deviceToken.value,
+            }
+            this.$store.dispatch('users/addDeviceToken', { id: response.id, queryBody: params }).then(() => {
+              localStorage.setItem('deviceToken', deviceToken.value)
             })
+
+            this.$toast({
+              component: ToastificationContent,
+              position: 'top-right',
+              props: {
+                title: `환영합니다 ${response.name}님`,
+                icon: 'CoffeeIcon',
+                variant: 'success',
+              },
+            })
+
+            router.push(getHomeRouteForLoggedInUser())
+          }).catch(err => {
+            console.log(err)
+            this.$bvModal
+              .msgBoxOk('사용자 정보를 다시 입력하세요', {
+                title: '로그인 실패',
+                size: 'sm',
+                hideHeaderClose: true,
+                centered: true,
+              })
+          })
         }
       })
     },
