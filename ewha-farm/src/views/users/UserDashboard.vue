@@ -48,6 +48,9 @@ export default {
       const farmId = newVal.value
       this.$refs.networkTable.getNetworkData(farmId)
       this.$refs.sensorMonitor.getSensor(farmId)
+
+      localStorage.setItem('currentFarmId', newVal.value)
+      localStorage.setItem('currentFarmName', newVal.label)
     },
   },
   created() {
@@ -59,9 +62,17 @@ export default {
       await store.dispatch('users/fetchUser', { id })
       await store.dispatch('farm/fetchFarms', { userId: id })
       this.farmOptions = await store.getters['farm/getFarmSelect']
+
       if (this.farmOptions.length > 0) {
-        // eslint-disable-next-line prefer-destructuring
-        this.selectedFarm = this.farmOptions[0]
+        if (localStorage.getItem('currentFarmId') !== null) {
+          this.selectedFarm = {
+            label: localStorage.getItem('currentFarmName'),
+            value: localStorage.getItem('currentFarmId'),
+          }
+        } else {
+          // eslint-disable-next-line prefer-destructuring
+          this.selectedFarm = this.farmOptions[0]
+        }
       }
     },
   },
