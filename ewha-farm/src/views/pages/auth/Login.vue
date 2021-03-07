@@ -186,7 +186,7 @@ export default {
             const params = {
               token: deviceToken.value,
             }
-            this.$store.dispatch('users/addDeviceToken', { id: response.id, queryBody: params }).then(() => {
+            this.$store.dispatch('users/addDeviceToken', { id: userData.id, queryBody: params }).then(() => {
               localStorage.setItem('deviceToken', deviceToken.value)
             })
 
@@ -194,7 +194,7 @@ export default {
               component: ToastificationContent,
               position: 'top-right',
               props: {
-                title: `환영합니다 ${response.name}님`,
+                title: `환영합니다 ${userData.name}님`,
                 icon: 'CoffeeIcon',
                 variant: 'success',
               },
