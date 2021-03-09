@@ -5,38 +5,6 @@
         ref="cctvViewer"
         @updateUI="updateCCTVHeight()"
       />
-      <b-card
-        style="margin-top: 30px"
-      >
-        <b-row>
-          <b-col
-            sm="12"
-            md="6"
-            class="p-1"
-          >
-            <v-select
-              v-model="selectedFarm"
-              :options="farmOptions"
-              placeholder="축사 선택"
-              :clearable="false"
-              :searchable="false"
-            />
-          </b-col>
-          <b-col
-            sm="12"
-            md="6"
-            class="p-1"
-          >
-            <v-select
-              v-model="selectedButton"
-              :options="buttonTypeOptions"
-              placeholder="장치 선택"
-              :clearable="false"
-              :searchable="false"
-            />
-          </b-col>
-        </b-row>
-      </b-card>
     </div>
     <div :style="style">
       <vue-perfect-scrollbar
@@ -46,6 +14,7 @@
       >
         <remote-control
           ref="remoteControl"
+          @updateFarm="updateFarm"
         />
       </vue-perfect-scrollbar>
     </div>
@@ -53,13 +22,7 @@
 </template>
 
 <script>
-import {
-  BCard, BRow, BCol,
-} from 'bootstrap-vue'
-import vSelect from 'vue-select'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import store from '@/store'
-import { getUserData } from '@/auth/utils'
 import CCTVViewer from './cctv-viewer/CCTVViewer.vue'
 import RemoteControl from './remote-control/RemoteControl.vue'
 
@@ -67,11 +30,7 @@ export default {
   components: {
     'cctv-viewer': CCTVViewer,
     RemoteControl,
-    vSelect,
     VuePerfectScrollbar,
-    BCard,
-    BRow,
-    BCol,
   },
   data() {
     return {
@@ -100,32 +59,7 @@ export default {
       }
     },
   },
-  watch: {
-    async selectedFarm() {
-      await store.dispatch('button/fetchButtons', { userId: getUserData().id })
-      this.buttonTypeOptions = await store.getters['button/getButtonTypes'](this.selectedFarm.value)
-      this.selectedButton = []
-      this.$refs.remoteControl.initValue()
-      this.$refs.cctvViewer.getCCTV(this.selectedFarm.value)
-      this.updateCCTVHeight()
-    },
-    async selectedButton() {
-      this.$refs.remoteControl.getButtonList(this.selectedButton)
-      this.$refs.remoteControl.initValue()
-    },
-  },
-  created() {
-    this.getFarmOptions()
-  },
   methods: {
-    async getFarmOptions() {
-      await store.dispatch('farm/fetchFarms', { userId: getUserData().id })
-      this.farmOptions = await store.getters['farm/getFarmSelect']
-      if (this.farmOptions.length > 0) {
-        // eslint-disable-next-line prefer-destructuring
-        this.selectedFarm = this.farmOptions[0]
-      }
-    },
     updateCCTVHeight() {
       setTimeout(() => {
         this.dy = parseFloat(getComputedStyle(document.querySelector('.fixed')).height)
@@ -134,6 +68,11 @@ export default {
         const footer = parseFloat(getComputedStyle(document.querySelector('.footer')).height)
         this.height = contentHeight - navHeight - footer - this.dy
       }, 1000)
+    },
+
+    updateFarm(farmId) {
+      this.$refs.cctvViewer.getCCTV(farmId)
+      this.updateCCTVHeight()
     },
   },
 }

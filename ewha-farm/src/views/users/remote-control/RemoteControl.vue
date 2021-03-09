@@ -1,6 +1,37 @@
 <template>
   <div>
 
+    <b-card>
+      <b-row>
+        <b-col
+          sm="12"
+          md="6"
+          class="p-1"
+        >
+          <v-select
+            v-model="selectedFarm"
+            :options="farmOptions"
+            placeholder="축사 선택"
+            :clearable="false"
+            :searchable="false"
+          />
+        </b-col>
+        <b-col
+          sm="12"
+          md="6"
+          class="p-1"
+        >
+          <v-select
+            v-model="selectedButton"
+            :options="buttonTypeOptions"
+            placeholder="장치 선택"
+            :clearable="false"
+            :searchable="false"
+          />
+        </b-col>
+      </b-row>
+    </b-card>
+
     <b-card v-if="buttonItems.length > 0">
 
       <div class="d-flex justify-content-between align-items-center">
@@ -95,6 +126,7 @@
 import {
   BRow, BCol, BCard, BFormCheckbox, BFormGroup, BFormRadioGroup,
 } from 'bootstrap-vue'
+import vSelect from 'vue-select'
 import VueSlider from 'vue-slider-component'
 import store from '@/store'
 import { getUserData } from '@/auth/utils'
@@ -110,9 +142,15 @@ export default {
     BFormRadioGroup,
     VueSlider,
     ControlCard,
+    vSelect,
   },
   data() {
     return {
+      selectedFarm: [],
+      selectedButton: [],
+      farmOptions: [],
+      buttonTypeOptions: [],
+
       selectedAutomaticOption: '',
       automaticOptions: [
         { text: '자동', value: true },
@@ -138,6 +176,18 @@ export default {
     }
   },
   watch: {
+    async selectedFarm() {
+      await store.dispatch('button/fetchButtons', { userId: getUserData().id })
+      this.buttonTypeOptions = await store.getters['button/getButtonTypes'](this.selectedFarm.value)
+      this.selectedButton = []
+      this.buttonItems = []
+      this.initValue()
+      this.$emit('updateFarm', this.selectedFarm.value)
+    },
+    async selectedButton() {
+      this.getButtonList()
+      this.initValue()
+    },
     checkedItem() {
       this.selectedAutomaticOption = ''
       this.selectedCommand = ''
@@ -165,6 +215,9 @@ export default {
       this.updateData(param)
     },
   },
+  created() {
+    this.getFarmOptions()
+  },
   methods: {
     initValue() {
       this.checkedItem = []
@@ -173,11 +226,19 @@ export default {
       this.selectedCommand = ''
       this.sliderValue = 0
     },
-    async getButtonList(selectedButton) {
+    async getFarmOptions() {
+      await store.dispatch('farm/fetchFarms', { userId: getUserData().id })
+      this.farmOptions = await store.getters['farm/getFarmSelect']
+      if (this.farmOptions.length > 0) {
+        // eslint-disable-next-line prefer-destructuring
+        this.selectedFarm = this.farmOptions[0]
+      }
+    },
+    async getButtonList() {
       this.buttonItems = []
-      this.buttonItems = await store.getters['button/getButtonInType'](selectedButton.value)
+      this.buttonItems = await store.getters['button/getButtonInType'](this.selectedButton.value)
 
-      if (selectedButton.value === 'feeder') {
+      if (this.selectedButton.value === 'feeder') {
         const hydraulicItems = await store.getters['button/getButtonInType']('hydraulic')
         this.buttonItems = this.buttonItems.concat(hydraulicItems)
       }
