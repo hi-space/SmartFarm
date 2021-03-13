@@ -189,12 +189,11 @@ export default {
   data() {
     return {
       type: '',
-      signalTimeUnit: { label: '분', value: 'min' },
+      signalTimeUnit: { label: '초', value: 'sec' },
       signalTime: 1,
       timeOptions: [
+        { label: '초', value: 'sec' },
         { label: '분', value: 'min' },
-        { label: '시간', value: 'hour' },
-        { label: '일', value: 'day' },
       ],
       ddns: '',
       port: '',
@@ -218,7 +217,7 @@ export default {
       this.farmOptions = this.$store.getters['farm/getFarmSelect']
       this.type = ''
       this.signalTime = 1
-      this.signalTimeUnit = { label: '분', value: 'min' }
+      this.signalTimeUnit = { label: '초', value: 'sec' }
       this.ddns = ''
       this.port = ''
       this.url = ''
@@ -245,15 +244,12 @@ export default {
       this.relayNum = item.buttonSetting.relayCount
       this.signalTypeSelected = getSignalLabel(item.buttonSetting.signalType)
 
-      if (item.signalTime / 1440 > 1) {
-        this.signalTime = item.signalTime / 1400
-        this.signalTimeUnit = { label: '일', value: 'day' }
-      } else if (item.signalTime / 60 > 1) {
+      if (item.signalTime / 60 > 1) {
         this.signalTime = item.signalTime / 60
-        this.signalTimeUnit = { label: '시간', value: 'hour' }
+        this.signalTimeUnit = { label: '분', value: 'min' }
       } else {
         this.signalTime = item.signalTime
-        this.signalTimeUnit = { label: '분', value: 'min' }
+        this.signalTimeUnit = { label: '초', value: 'sec' }
       }
 
       this.$refs.addButtonModal.show()
@@ -261,10 +257,8 @@ export default {
 
     create() {
       let time = this.signalTime
-      if (this.signalTimeUnit.value === 'hour') {
+      if (this.signalTimeUnit.value === 'min') {
         time *= 60
-      } else if (this.signalTimeUnit.value === 'day') {
-        time *= 60 * 24
       }
 
       const payload = {
@@ -292,10 +286,8 @@ export default {
 
     modify() {
       let time = this.signalTime
-      if (this.signalTimeUnit.value === 'hour') {
+      if (this.signalTimeUnit.value === 'min') {
         time *= 60
-      } else if (this.signalTimeUnit.value === 'day') {
-        time *= 60 * 24
       }
 
       const payload = {
