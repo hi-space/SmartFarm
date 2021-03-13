@@ -59,7 +59,7 @@
 
           <!-- open / stop / close -->
           <b-form-group
-            v-if="selectedButtonType.value!=='inverter' && selectedButtonType.value !=='feeder'"
+            v-if="openStopCloseButtons.includes(selectedButtonType.value)"
           >
             <b-form-radio-group
               v-model="selectedCommand"
@@ -72,13 +72,14 @@
 
           <!-- slider, work / stop -->
           <b-form-group
-            v-if="selectedButtonType.value=='inverter' || selectedButtonType.value=='feeder'"
+            v-if="workStopButtons.includes(selectedButtonType.value)"
           >
             <vue-slider
               v-if="selectedButtonType.value=='inverter'"
               v-model="sliderValue"
               class="p-1 m-2 text-primary"
               tooltip="always"
+              :max="60"
               :tooltip-formatter="`${sliderValue} Hz`"
             />
             <b-form-radio-group
@@ -310,6 +311,12 @@ export default {
       inverterOptions: [
         { text: '동작', value: 'work' },
         { text: '중지', value: 'stop' },
+      ],
+      openStopCloseButtons: [
+        'curtain', 'ceiling', 'sprayer',
+      ],
+      workStopButtons: [
+        'inverter', 'feeder', 'light', 'fan',
       ],
       sliderValue: 0,
 

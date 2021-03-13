@@ -100,8 +100,8 @@ export default {
       channel: 0,
       buttonList: [],
       outPins: [],
-      outDisabled: Array.from({ length: 9 }, () => false),
-      outIndex: Array.from({ length: 9 }, () => 0),
+      outDisabled: Array.from({ length: this.channel + 1 }, () => false),
+      outIndex: Array.from({ length: this.channel + 1 }, () => 0),
       inPins: [],
       inDisabled: Array.from({ length: 9 }, () => false),
       inIndex: Array.from({ length: 9 }, () => 0),
@@ -109,10 +109,10 @@ export default {
   },
   watch: {
     outPins(items) {
-      this.outDisabled = Array.from({ length: 9 }, () => false)
-      this.outIndex = Array.from({ length: 9 }, () => 0)
+      this.outDisabled = Array.from({ length: this.channel + 1 }, () => false)
+      this.outIndex = Array.from({ length: this.channel + 1 }, () => 0)
 
-      for (let idx = 1; idx <= 8; idx++) {
+      for (let idx = 1; idx <= this.channel; idx++) {
         try {
           this.outIndex[idx] = items[idx].relayCnt > 0 ? 1 : 0
           for (let tmp = 1; tmp < items[idx].relayCnt; tmp++) {
@@ -150,7 +150,7 @@ export default {
       this.buttonList = await this.$store.getters['button/getAllButtonForRelay'](item.farmId._id)
 
       this.outPins = []
-      this.outIndex = Array.from({ length: 9 }, () => 0)
+      this.outIndex = Array.from({ length: this.channel + 1 }, () => 0)
       this.inPins = []
       this.inIndex = Array.from({ length: 9 }, () => 0)
 
@@ -162,7 +162,9 @@ export default {
       for (let i = 0; i < item.relays.outPin.length; i++) {
         this.outPins.push(this.$store.getters['button/getButtonForRelay'](item.relays.outPin[i].button))
         this.outIndex.push(item.relays.outPin[i].buttonIdx)
+      }
 
+      for (let i = 0; i < item.relays.inPin.length; i++) {
         this.inPins.push(this.$store.getters['button/getButtonForRelay'](item.relays.inPin[i].button))
         this.inIndex.push(item.relays.inPin[i].buttonIdx)
       }
@@ -203,8 +205,11 @@ export default {
     update() {
       const outPin = []
       const inPin = []
-      for (let i = 1; i <= 8; i++) {
+      for (let i = 1; i <= this.channel; i++) {
         outPin.push(this.makeOutPin(i))
+      }
+
+      for (let i = 1; i <= 8; i++) {
         inPin.push(this.makeInPin(i))
       }
 

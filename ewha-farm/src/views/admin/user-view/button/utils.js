@@ -13,6 +13,7 @@ export const buttonList = [
 
 export const signalList = [
   { label: '토글', value: 'toggle' },
+  { label: '트리거', value: 'trigger' },
 ]
 
 export function getButtonLabel(value) {

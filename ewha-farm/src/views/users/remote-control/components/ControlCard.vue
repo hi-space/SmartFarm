@@ -37,10 +37,11 @@
         <h4> <strong> {{ getDateString() }} </strong> </h4>
       </b-card-text>
 
-      <!-- open / stop / close -->
       <b-form-group v-if="!isAuto">
+
+        <!-- open / stop / close -->
         <b-form-radio-group
-          v-if="buttonItem.type!=='inverter'"
+          v-if="openStopCloseButtons.includes(buttonItem.type)"
           v-model="selectedButton"
           button-variant="outline-primary"
           :options="buttonOptions"
@@ -48,17 +49,20 @@
           class="p-1 d-flex"
         />
 
-        <!-- inverter: slider, work / etop -->
+        <!-- inverter: slider -->
         <vue-slider
           v-if="buttonItem.type==='inverter'"
           v-model="sliderValue"
           class="p-1 mt-2 text-primary"
           :lazy="true"
+          :max="60"
           tooltip="always"
           :tooltip-formatter="`${sliderValue} Hz`"
         />
+
+        <!-- work / stop -->
         <b-form-radio-group
-          v-if="buttonItem.type==='inverter'"
+          v-if="workStopButtons.includes(buttonItem.type)"
           v-model="selectedButton"
           button-variant="outline-primary"
           :options="inverterOptions"
@@ -152,6 +156,12 @@ export default {
         { text: '동작', value: 'work' },
         { text: '중지', value: 'stop' },
       ],
+      openStopCloseButtons: [
+        'curtain', 'ceiling', 'sprayer',
+      ],
+      workStopButtons: [
+        'inverter', 'feeder', 'light', 'fan',
+      ],
       workingTime: '',
       title: '',
       name: this.buttonItem.name,
@@ -177,7 +187,7 @@ export default {
         return this.propChecked
       },
       set(newVal) {
-        this.$emit('changeChecked', this.buttonItem._id, newVal)
+        this.$emit('changeChecked', this.buttonItem._id, this.buttonItem.name, newVal)
       },
     },
   },

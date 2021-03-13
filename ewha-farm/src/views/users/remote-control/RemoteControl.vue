@@ -43,7 +43,6 @@
         </b-form-checkbox>
         <b-form-radio-group
           v-model="selectedAutomaticOption"
-          :disabled="checkedItem.length === 0"
           :options="automaticOptions"
           button-variant="outline-primary"
           size="sm"
@@ -64,7 +63,7 @@
 
         <!-- open / stop / close -->
         <b-form-group
-          v-if="selectedButton.value !== 'inverter' && selectedButton.value !== 'feeder'"
+          v-if="openStopCloseButtons.includes(selectedButton.value)"
         >
           <b-form-radio-group
             v-model="selectedCommand"
@@ -78,13 +77,14 @@
 
         <!-- inverter: slider, work / etop -->
         <b-form-group
-          v-if="selectedButton.value === 'inverter' || selectedButton.value === 'feeder'"
+          v-if="workStopButtons.includes(selectedButton.value)"
         >
           <vue-slider
             v-if="selectedButton.value === 'inverter'"
             v-model="sliderValue"
             class="p-1 m-2 text-primary"
             :lazy="true"
+            :max="60"
             tooltip="always"
             :tooltip-formatter="`${sliderValue} Hz`"
             :disabled="checkedItem.length === 0"
@@ -169,10 +169,17 @@ export default {
         { text: '동작', value: 'work' },
         { text: '중지', value: 'stop' },
       ],
+      openStopCloseButtons: [
+        'curtain', 'ceiling', 'sprayer',
+      ],
+      workStopButtons: [
+        'inverter', 'feeder', 'light', 'fan',
+      ],
       sliderValue: 0,
 
       allChecked: false,
       checkedItem: [],
+      checkedItemName: [],
     }
   },
   watch: {
@@ -195,6 +202,9 @@ export default {
     },
     selectedAutomaticOption() {
       if (this.selectedAutomaticOption === '') return
+
+      localStorage.setItem('lastAutoCommand', this.selectedAutomaticOption)
+
       const param = {
         ids: this.checkedItem,
         data: {
@@ -210,6 +220,16 @@ export default {
         data: {
           command: this.selectedCommand,
           commandValue: this.sliderValue,
+        },
+      }
+      this.updateData(param)
+    },
+    sliderValue(newVal) {
+      const param = {
+        ids: this.checkedItem,
+        data: {
+          command: this.selectedCommand,
+          commandValue: newVal,
         },
       }
       this.updateData(param)
@@ -243,11 +263,13 @@ export default {
         this.buttonItems = this.buttonItems.concat(hydraulicItems)
       }
     },
-    changeChecked(buttonId, newVal) {
+    changeChecked(buttonId, buttonName, newVal) {
       if (newVal) {
         this.checkedItem.push(buttonId)
+        this.checkedItemName.push(buttonName)
       } else {
         this.checkedItem.splice(this.checkedItem.indexOf(buttonId), 1)
+        this.checkedItemName.splice(this.checkedItemName.indexOf(buttonName), 1)
       }
     },
     async updateData(param) {

@@ -69,7 +69,9 @@
           max="5"
         />
       </b-form-group>
-      <b-row>
+      <b-row
+        v-if="signalTypeSelected.value==='trigger'"
+      >
         <b-col md="6">
           <b-form-group
             label="동작 시간"
@@ -101,19 +103,6 @@
           </b-form-group>
         </b-col>
       </b-row>
-
-      <b-form-group
-        label-for="signalCommand"
-      >
-        <b-form-radio-group
-          id="signalCommand"
-          v-model="signalCommand"
-          button-variant="outline-primary"
-          :options="signalCommandOptions"
-          buttons
-          class="p-1 d-flex"
-        />
-      </b-form-group>
 
       <b-form-group
         label="DDNS"
@@ -176,7 +165,7 @@
 
 <script>
 import {
-  BModal, VBModal, BForm, BFormGroup, BFormSpinbutton, BFormInput, BRow, BCol, BFormRadioGroup,
+  BModal, VBModal, BForm, BFormGroup, BFormSpinbutton, BFormInput, BRow, BCol,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import {
@@ -192,7 +181,6 @@ export default {
     BFormGroup,
     BFormSpinbutton,
     BFormInput,
-    BFormRadioGroup,
     vSelect,
   },
   directives: {
@@ -207,12 +195,6 @@ export default {
         { label: '분', value: 'min' },
         { label: '시간', value: 'hour' },
         { label: '일', value: 'day' },
-      ],
-      signalCommand: 'stop',
-      signalCommandOptions: [
-        { text: '열기', value: 'open' },
-        { text: '중지', value: 'stop' },
-        { text: '닫기', value: 'close' },
       ],
       ddns: '',
       port: '',
@@ -237,7 +219,6 @@ export default {
       this.type = ''
       this.signalTime = 1
       this.signalTimeUnit = { label: '분', value: 'min' }
-      this.signalCommand = 'stop'
       this.ddns = ''
       this.port = ''
       this.url = ''
@@ -256,7 +237,6 @@ export default {
       this.farmName = this.farmOptions.filter(el => item.farmId._id === el.value)
       this.name = item.name
       this.type = getButtonLabel(item.type)
-      this.signalCommand = item.signalCommand
       this.ddns = item.ddns
       this.port = item.port
       this.url = item.url
@@ -293,7 +273,6 @@ export default {
         name: this.name,
         type: this.type.value,
         signalTime: time,
-        signalCommand: this.signalCommand,
         ddns: this.ddns,
         port: this.port,
         url: this.url,
@@ -325,7 +304,6 @@ export default {
         name: this.name,
         type: this.type.value,
         signalTime: time,
-        signalCommand: this.signalCommand,
         ddns: this.ddns,
         port: this.port,
         url: this.url,
