@@ -28,9 +28,12 @@ export default {
     },
   },
   actions: {
-    async fetchSensors({ commit }, queryParams) {
+    async fetchSensors(ctx, queryParams) {
       const result = await axios.get('/sensor', { params: queryParams })
-      commit('SET_SENSOR', result.data)
+      ctx.commit('SET_SENSOR', result.data)
+      result.data.forEach(async element => {
+        await ctx.dispatch('fetchSensor', { id: element._id })
+      })
       return result
     },
     async fetchSensor(ctx, { id }) {
