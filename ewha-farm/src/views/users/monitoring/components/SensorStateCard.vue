@@ -85,11 +85,18 @@ export default {
           postfix = 'ppm'
         }
 
+        let recentValue = 0
+        try {
+          recentValue = el.values[0].value
+        } catch {
+          recentValue = 0
+        }
+
         this.sensorItems.push({
           id: el._id,
           icon,
           color,
-          title: `${el.values.pop() || 0} ${postfix}`,
+          title: `${recentValue} ${postfix}`,
           subtitle: el.name,
         })
       })

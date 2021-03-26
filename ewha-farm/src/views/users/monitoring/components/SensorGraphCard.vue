@@ -92,7 +92,7 @@ export default {
         const xydata = []
         element.values.forEach(el => {
           xydata.push({
-            x: new Date(el.time).getTime(),
+            x: new Date(el.timestamp).getTime(),
             y: el.value,
           })
         })

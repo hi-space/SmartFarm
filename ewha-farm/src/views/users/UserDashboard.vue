@@ -41,22 +41,28 @@ export default {
     return {
       selectedFarm: '',
       farmOptions: [],
+      updateTimer: null,
     }
   },
   watch: {
     selectedFarm(newVal) {
-      const farmId = newVal.value
-      this.$refs.networkTable.getNetworkData(farmId)
-      this.$refs.sensorMonitor.getSensor(farmId)
-
       localStorage.setItem('currentFarmId', newVal.value)
       localStorage.setItem('currentFarmName', newVal.label)
     },
   },
   created() {
     this.getFarmOptions()
+    this.updateTimer = setInterval(this.updateData, 1000)
+  },
+  destroyed() {
+    clearInterval(this.updateTimer)
   },
   methods: {
+    updateData() {
+      const farmId = this.selectedFarm.value
+      this.$refs.networkTable.getNetworkData(farmId)
+      this.$refs.sensorMonitor.getSensor(farmId)
+    },
     async getFarmOptions() {
       const { id } = getUserData()
       await store.dispatch('users/fetchUser', { id })
