@@ -56,7 +56,7 @@
                 v-if="listItem.mode === 'sensor'"
                 class="font-weight-bold mb-0"
               >
-                <strong> {{ listItem.sensorId.name }} </strong> 센서가 <br>
+                <strong> {{ listItem.sensorId !== null ? listItem.sensorId.name : '' }} </strong> 센서가 <br>
                 최소 <strong> {{ listItem.minValue }} </strong> ~ 최대 <strong> {{ listItem.maxValue }} </strong> 이면
               </b-card-text>
               <b-badge
