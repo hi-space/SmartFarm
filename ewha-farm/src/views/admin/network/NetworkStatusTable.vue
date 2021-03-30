@@ -121,12 +121,43 @@ export default {
           tdClass: 'td',
         },
         {
-          key: 'deviceId.name',
-          label: '함체 이름',
+          key: 'command',
+          label: '명령어',
           sortable: true,
-          tdClass: 'td',
+          formatter(value) {
+            if (value === 'create_button') {
+              return '버튼 생성'
+            }
+            if (value === 'update_button') {
+              return '버튼 수정'
+            }
+            if (value === 'delete_button') {
+              return '버튼 삭제'
+            }
+            if (value === 'create_device') {
+              return '장치 생성'
+            }
+            if (value === 'update_device') {
+              return '장치 수정'
+            }
+            if (value === 'delete_device') {
+              return '장치 삭제'
+            }
+            if (value === 'set_relay') {
+              return '릴레이 설정'
+            }
+            if (value === 'create_sensor') {
+              return '센서 생성'
+            }
+            if (value === 'update_sensor') {
+              return '센서 수정'
+            }
+            if (value === 'delete_sensor') {
+              return '센서 삭제'
+            }
+            return ''
+          },
         },
-        { key: 'command', label: '명령어', sortable: true },
         { key: 'status', label: '상태', sortable: true },
         {
           key: 'createdAt',
