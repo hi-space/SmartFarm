@@ -192,6 +192,7 @@ export default {
       this.$emit('updateFarm', this.selectedFarm.value)
     },
     async selectedButton() {
+      await store.dispatch('button/fetchButtons', { userId: getUserData().id })
       this.getButtonList()
       this.initValue()
     },
