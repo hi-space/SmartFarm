@@ -52,7 +52,10 @@ export default {
   },
   created() {
     this.getFarmOptions()
-    this.updateTimer = setInterval(this.updateData, 1000)
+    this.updateTimer = setInterval(this.updateData, 60000)
+  },
+  mounted() {
+    this.updateData()
   },
   destroyed() {
     clearInterval(this.updateTimer)
