@@ -37,7 +37,7 @@
         responsive
         selectable
         select-mode="single"
-        class="mb-0"
+        class="position-relative mb-0"
       >
         <template #cell(action)="row">
           <b-button

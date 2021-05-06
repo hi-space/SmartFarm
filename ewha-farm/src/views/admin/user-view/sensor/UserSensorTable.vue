@@ -26,10 +26,12 @@
       <b-table
         :items="sensorData"
         :fields="fields"
+        hover
         responsive
+        scrollable
         selectable
         select-mode="single"
-        class="mb-0"
+        class="position-relative mb-0"
       >
         <template #row-details="row">
           <b-card>
