@@ -22,12 +22,10 @@
       </b-card-sub-title>
     </div>
 
-    <div>
-
+    <div class="table-responsive">
       <b-table
         :items="sensorData"
         :fields="fields"
-        hover
         responsive
         selectable
         select-mode="single"
@@ -36,7 +34,6 @@
         <template #row-details="row">
           <b-card>
             {{ row.item.id }}
-            <!-- <user-device-table /> -->
           </b-card>
         </template>
         <template #cell(show_details)="row">
@@ -109,11 +106,9 @@ export default {
           label: '센서 이름',
           sortable: true,
         },
-        { key: 'ddns', label: 'DDNS', sortable: true },
-        { key: 'port', label: 'Port', sortable: true },
-        { key: 'url', label: 'URL', sortable: true },
-        // { key: 'slaveId', label: 'Slave ID', sortable: true },
-        // { key: 'address', label: 'address', sortable: true },
+        // { key: 'ddns', label: 'DDNS', sortable: true },
+        // { key: 'port', label: 'Port', sortable: true },
+        // { key: 'url', label: 'URL', sortable: true },
         {
           label: '생성일자',
           key: 'createdAt',

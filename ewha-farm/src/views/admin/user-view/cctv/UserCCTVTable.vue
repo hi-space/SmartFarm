@@ -24,7 +24,7 @@
       </b-card-sub-title>
     </div>
 
-    <div>
+    <div class="table-responsive">
       <b-table
         :items="cctvData"
         :fields="fields"
