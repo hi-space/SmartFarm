@@ -24,16 +24,14 @@
       </b-card-sub-title>
     </div>
 
-    <div>
+    <div class="table-responsive">
       <b-table
         :items="buttonData"
         :fields="fields"
-        hover
         responsive
         selectable
-        scrollable
         select-mode="single"
-        class="mb-0"
+        class="position-relative mb-0"
       >
         <template #cell(action)="row">
           <b-button
@@ -89,8 +87,8 @@ export default {
           sortable: true,
           formatter: value => getButtonLabel(value).label,
         },
-        { key: 'ddns', label: 'DDNS', sortable: true },
-        { key: 'url', label: 'URL', sortable: true },
+        // { key: 'ddns', label: 'DDNS', sortable: true },
+        // { key: 'url', label: 'URL', sortable: true },
         { key: 'buttonSetting.relayCount', label: '릴레이 갯수', sortable: true },
         // {
         //   key: 'buttonSetting.signalType',

@@ -30,17 +30,14 @@
       </b-card-sub-title>
     </div>
 
-    <div>
-
+    <div class="table-responsive">
       <b-table
         :items="deviceData"
         :fields="fields"
-        hover
         responsive
         selectable
-        scrollable
         select-mode="single"
-        class="mb-0"
+        class="position-relative mb-0"
       >
         <template #cell(action)="row">
           <b-button
@@ -104,8 +101,8 @@ export default {
         // { key: 'housingId.name', label: '함체 이름', sortable: true },
         { key: 'name', label: '장비 이름', sortable: true },
         { key: 'channel', label: '채널', sortable: true },
-        { key: 'ddns', label: 'ddns', sortable: true },
-        { key: 'port', label: 'port', sortable: true },
+        // { key: 'ddns', label: 'ddns', sortable: true },
+        // { key: 'port', label: 'port', sortable: true },
         // { key: 'account', label: 'account', sortable: true },
         // { key: 'serialNum', label: 'S/N', sortable: true },
         {
